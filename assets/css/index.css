@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Unnamed";
+  src: url("@/assets/fonts/Unnamed-Light.woff2") format("woff2"), url("@/assets/fonts/Unnamed-Light.woff") format("woff"),
+    url("@/assets/fonts/Unnamed-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unnamed";
+  src: url("@/assets/fonts/Heming.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 50% 200%;
+}
+
+body {
+  font-family: "Unnamed", sans-serif;
+}
+
+.v-field {
+  border-radius: 0 !important;
+}
+
+.clip-path-circle {
+    -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  transition: all 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.clip-path-circle.active {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
