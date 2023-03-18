@@ -27,12 +27,12 @@
 
 <script setup>
 useHead({
-    title: "The Best BMI Calculator",
+    title: "Pretty BMI Calculator",
     meta: [
-        { hid: "title", name: "title", content: "The Best BMI Calculator" },
-        { hid: "description", name: "description", content: "The Best BMI Calculator" },
-        { hid: "og-title", property: "og:title", content: "The Best BMI Calculator" },
-        { hid: "og:description", property: "og:description", content: "The Best BMI Calculator" },
+        { hid: "title", name: "title", content: "Pretty BMI Calculator" },
+        { hid: "description", name: "description", content: "Pretty BMI Calculator" },
+        { hid: "og-title", property: "og:title", content: "Pretty BMI Calculator" },
+        { hid: "og:description", property: "og:description", content: "Pretty BMI Calculator" },
     ],
 });
 </script>

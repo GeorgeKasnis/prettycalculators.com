@@ -7,6 +7,12 @@ export default defineNuxtConfig({
         },
     },
 
+    modules: ["nuxt-simple-sitemap"],
+
+    // sitemap: {
+    //   siteUrl: 'http://localhost:3000/',
+    // },
+
     css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass"],
 
     app: {
@@ -31,7 +37,4 @@ export default defineNuxtConfig({
             "process.env.DEBUG": false,
         },
     },
-
-    
-    
 });
