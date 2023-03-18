@@ -1,7 +1,7 @@
 <template>
   <header class="p-small">
     <nav>
-        <nuxt-link to="/">The Best Bmi Calculator</nuxt-link>
+        <nuxt-link to="/">The Best BMI Calculator</nuxt-link>
     </nav>
   </header>
 </template>

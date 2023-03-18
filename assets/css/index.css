@@ -3,32 +3,37 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Unnamed";
-  src: url("@/assets/fonts/Unnamed-Light.woff2") format("woff2"), url("@/assets/fonts/Unnamed-Light.woff") format("woff"),
-    url("@/assets/fonts/Unnamed-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+    font-family: "Unnamed";
+    src: url("@/assets/fonts/Unnamed-Light.woff2") format("woff2"), url("@/assets/fonts/Unnamed-Light.woff") format("woff"), url("@/assets/fonts/Unnamed-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: "Unnamed";
-  src: url("@/assets/fonts/Heming.ttf") format("truetype");
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  font-stretch: 50% 200%;
+    font-family: "Unnamed";
+    src: url("@/assets/fonts/Heming.ttf") format("truetype");
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    font-stretch: 50% 200%;
+}
+
+/* Hide scrollbar for all elements */
+::-webkit-scrollbar {
+    display: none;
 }
 
 body {
-  font-family: "Unnamed", sans-serif;
+    font-family: "Unnamed", sans-serif;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-
 
 .clip-path-circle {
     -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
     clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-  transition: all 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.8s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
 .clip-path-circle.active {
@@ -36,30 +41,26 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
-
-
-a{
-  transition: .3s all ease-in-out;
-  font-weight: normal;
+a {
+    transition: 0.3s all ease-in-out;
+    font-weight: normal;
 }
 
-.router-link-active{
-
-  font-weight: 900;
+.router-link-active {
+    font-weight: 900;
 }
 
 .fade-in-enter-active,
 .fade-in-leave-active {
-  transition: opacity 0.5s;
+    transition: opacity 0.5s;
 }
 
 .fade-in-enter,
 .fade-in-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 
-
-input:focus{
-  border: none;
-  outline: none;
+input:focus {
+    border: none;
+    outline: none;
 }

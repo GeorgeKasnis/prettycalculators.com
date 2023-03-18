@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen flex items-center flex-col">
+  <div class="w-screen h-screen flex items-center flex-col border border-black">
     <UiTheHeader />
     <div class="flex-1 grid place-items-center w-full">
       <slot />
