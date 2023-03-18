@@ -52,3 +52,13 @@ a{
 
   font-weight: 900;
 }
+
+.fade-in-enter-active,
+.fade-in-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-in-enter,
+.fade-in-leave-to {
+  opacity: 0;
+}
