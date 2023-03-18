@@ -7,7 +7,11 @@ export default defineNuxtConfig({
         },
     },
 
-    modules: ["nuxt-simple-sitemap"],
+    modules: ["nuxt-simple-sitemap","nuxt-gtag"],
+
+    gtag: {
+        id: 'G-C5PBQPTJG5'
+      },
 
     sitemap: {
       siteUrl: 'https://www.prettybmicalculator.com/',
