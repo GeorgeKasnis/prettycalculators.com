@@ -8,6 +8,21 @@ export default defineNuxtConfig({
   },
 
   css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass"],
+
+  app: {
+    head: {
+      meta: [
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1",
+        },
+        {
+          charset: "utf-8",
+        },
+      ],
+    },
+  },
+
   build: {
     transpile: ["vuetify"],
   },

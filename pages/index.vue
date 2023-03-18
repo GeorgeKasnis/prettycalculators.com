@@ -1,7 +1,7 @@
 <template>
   <div class="w-full p-small">
     <div class="max-w-xl mx-auto w-full">
-      <div class=" flex flex-col gap-small relative">
+      <div class="flex flex-col gap-small relative">
         <div class="">Calculate your BMI</div>
         <div class="flex items-center border border-black">
           <v-text-field placeholder="Height" v-model="height" :rules="[positiveNumberRule, requiredRule]" outlined hide-details="true" type="number"></v-text-field>
@@ -22,11 +22,23 @@
         </div>
       </div>
       <transition name="fade-in">
-        <div class="text-red-700 h-14 mt-small transition-all duration-300" :class="errors ? 'opacity-100':'opacity-0'">{{ errors }}</div>
+        <div class="text-red-700 h-14 mt-small transition-all duration-300" :class="errors ? 'opacity-100' : 'opacity-0'">{{ errors }}</div>
       </transition>
     </div>
   </div>
 </template>
+
+<script setup>
+useHead({
+  title: "The Best BMI Calculator",
+  meta: [
+    { hid: "title", name: "title", content: "The Best BMI Calculator" },
+    { hid: "description", name: "description", content: "The Best BMI Calculator" },
+    { hid: "og-title", property: "og:title", content: "The Best BMI Calculator" },
+    { hid: "og:description", property: "og:description", content: "The Best BMI Calculator" },
+  ],
+});
+</script>
 
 <script>
 export default {
