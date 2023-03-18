@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     modules: ["nuxt-simple-sitemap"],
 
     sitemap: {
-        siteUrl: "https://www.prettybmicalculator.com/",
+      siteUrl: 'https://www.prettybmicalculator.com/',
     },
 
     css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass"],
@@ -29,22 +29,8 @@ export default defineNuxtConfig({
             htmlAttrs: {
                 lang: "en",
             },
-            script: [
-                {
-                    src: "https://www.googletagmanager.com/gtag/js?id=G-C5PBQPTJG5",
-                    async: true,
-                },
-                {
-                    src: "/ga.js",
-                    async: true,
-                },
-            ],
         },
     },
-
-    plugins: [
-        { src: "~/plugins/google-analytics.js", mode: "client" },
-      ],
 
     vite: {
         define: {
