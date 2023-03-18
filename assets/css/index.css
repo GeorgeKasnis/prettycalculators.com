@@ -25,11 +25,6 @@ body {
 }
 
 
-
-.v-field {
-  border-radius: 0 !important;
-}
-
 .clip-path-circle {
     -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
     clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
@@ -61,4 +56,10 @@ a{
 .fade-in-enter,
 .fade-in-leave-to {
   opacity: 0;
+}
+
+
+input:focus{
+  border: none;
+  outline: none;
 }
