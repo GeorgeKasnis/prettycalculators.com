@@ -1,7 +1,7 @@
 <template>
-  <div class="w-screen h-screen flex items-center">
+  <div class="w-full p-small">
     <div class="max-w-xl mx-auto w-full flex flex-col gap-small relative">
-      <div class="">The Best Bmi Calculator</div>
+      <div class="">Calculate your BMI</div>
       <div class="flex items-center border border-black">
         <v-text-field placeholder="Height" v-model="height" :rules="[positiveNumberRule, requiredRule]" outlined hide-details="true" type="number"></v-text-field>
         <div class="p-small bg-black text-white w-16 grid place-items-center">Cm</div>

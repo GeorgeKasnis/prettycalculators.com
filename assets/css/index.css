@@ -24,6 +24,8 @@ body {
   font-family: "Unnamed", sans-serif;
 }
 
+
+
 .v-field {
   border-radius: 0 !important;
 }
@@ -37,4 +39,16 @@ body {
 .clip-path-circle.active {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+
+
+a{
+  transition: .3s all ease-in-out;
+  font-weight: normal;
+}
+
+.router-link-active{
+
+  font-weight: 900;
 }

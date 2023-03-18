@@ -8,15 +8,21 @@ module.exports = {
         big: "2rem",
       },
       colors: {
-        "lightblue": "#6A5ACD",
-        "bluevioloet": "#8A2BE2",
-        "lightpurple": "#9370DB",
-        "lightorchid": "#BA55D3",
-        "darkmagenta": "#8B008B",
+        lightblue: "#6A5ACD",
+        bluevioloet: "#8A2BE2",
+        lightpurple: "#9370DB",
+        lightorchid: "#BA55D3",
+        darkmagenta: "#8B008B",
         Indigo: "#4B0082",
         Purple: "#800080",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }) {
+      addVariant("all-not-first", "& > *+*");
+      addVariant("child", "& > *");
+      addVariant("child-hover", "& > *:hover");
+    },
+  ],
 };
