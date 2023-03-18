@@ -29,6 +29,7 @@ export default defineNuxtConfig({
                 {
                     charset: "utf-8",
                 },
+                { name: 'google-site-verification', content: 'b5AARVPsG9JCuwRHUo9IB40kdShrFEuIT0Dqv3nvRgU' }
             ],
             htmlAttrs: {
                 lang: "en",
