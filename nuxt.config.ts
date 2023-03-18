@@ -13,9 +13,9 @@ export default defineNuxtConfig({
         id: 'G-C5PBQPTJG5'
       },
 
-    sitemap: {
-      siteUrl: 'https://www.prettybmicalculator.com/',
-    },
+    // sitemap: {
+    //   siteUrl: 'https://www.prettybmicalculator.com/',
+    // },
 
     css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass"],
 
