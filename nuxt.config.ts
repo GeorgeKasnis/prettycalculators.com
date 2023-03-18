@@ -7,7 +7,7 @@ export default defineNuxtConfig({
         },
     },
 
-    modules: ["nuxt-simple-sitemap","nuxt-gtag"],
+    modules: ["nuxt-gtag"],
 
     gtag: {
         id: 'G-C5PBQPTJG5'
