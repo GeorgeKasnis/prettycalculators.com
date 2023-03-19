@@ -1,10 +1,17 @@
-import Vue from 'vue'
+
+
+import { createApp } from 'vue'
 import VueGtm from '@gtm-support/vue-gtm'
 
-Vue.use(VueGtm, {
-  id: 'GTM-TP4P927',
-  enabled: true,
-  debug: true,
-  loadScript: true,
-  vueRouter: router,
-})
+export default ({ app }) => {
+  const options = {
+    id: 'GTM-TP4P927',
+    enabled: true,
+    debug: true,
+    loadScript: true,
+    vueRouter: app.router,
+    ignoredViews: ['homepage']
+  }
+  
+  createApp().use(VueGtm, options)
+}
