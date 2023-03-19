@@ -4,16 +4,16 @@
             <div class="flex flex-col gap-small relative">
                 <div class="">Calculate your BMI</div>
                 <div class="flex items-center border border-black">
-                    <input aria-label="Height in cm input" placeholder="Height" v-model="height" class="w-full h-full p-small" inputmode="numeric" pattern="[0-9]*"  onkeydown="return event.keyCode !== 69"  type="number" />
+                    <input aria-label="Height in cm input to calculate Body Mass Index (BMI)" placeholder="Height" v-model="height" class="w-full h-full p-small" inputmode="numeric" pattern="[0-9]*"  onkeydown="return event.keyCode !== 69"  type="number" />
                     <div class="p-small bg-black text-white w-16 grid place-items-center">Cm</div>
                 </div>
                 <div class="flex items-center border border-black">
-                    <input aria-label="Weight in kg input" placeholder="Weight" v-model="weight" class="w-full h-full p-small" inputmode="numeric" pattern="[0-9]*"  onkeydown="return event.keyCode !== 69"   type="number" />
+                    <input aria-label="Weight in kg input to calculate Body Mass Index (BMI)" placeholder="Weight" v-model="weight" class="w-full h-full p-small" inputmode="numeric" pattern="[0-9]*"  onkeydown="return event.keyCode !== 69"   type="number" />
                     <div class="p-small bg-black text-white w-16 grid place-items-center">Kg</div>
                 </div>
-                <button @click="calculateBmi" @keyup.enter="calculateBmi" class="h-14 bg-black duration-300 transition-all" aria-label="Calculate Results Button">Go</button>
+                <button @click="calculateBmi" @keyup.enter="calculateBmi" class="h-14 bg-black duration-300 transition-all" aria-label="Calculate Body Mass Index (BMI) Results Button">Go</button>
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="bmi ? 'active' : ''">
-                    <p v-if="bmi">Your BMI is {{ bmi.toFixed(2) }}</p>
+                    <p v-if="bmi">Your BMI is {{ bmi.toFixed(1) }}</p>
                     <p v-if="bmi">You are {{ bmiCategory }}</p>
                     <button @click="clearEverything" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
                 </div>
@@ -29,10 +29,10 @@
 useHead({
     title: "Pretty BMI Calculator",
     meta: [
-        { hid: "title", name: "title", content: "Pretty BMI Calculator" },
-        { hid: "description", name: "description", content: "Pretty BMI Calculator" },
-        { hid: "og-title", property: "og:title", content: "Pretty BMI Calculator" },
-        { hid: "og:description", property: "og:description", content: "Pretty BMI Calculator" },
+        { hid: "title", name: "title", content: "Pretty Body Mass Index (BMI) Calculator" },
+        { hid: "description", name: "description", content: "Pretty Body Mass Index (BMI) Calculator" },
+        { hid: "og-title", property: "og:title", content: "Pretty Body Mass Index (BMI) Calculator" },
+        { hid: "og:description", property: "og:description", content: "Pretty Body Mass Index (BMI) Calculator" },
     ],
 });
 </script>

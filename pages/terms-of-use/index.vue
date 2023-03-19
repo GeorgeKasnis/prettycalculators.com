@@ -29,3 +29,15 @@
       <div>By using our website, you agree to these terms of use.</div>
   </div>
 </template>
+
+<script setup>
+useHead({
+    title: "Pretty Body Mass Index (BMI) Calculator - Terms of use",
+    meta: [
+        { hid: "title", name: "title", content: "Pretty Body Mass Index (BMI) Calculator - Terms of use" },
+        { hid: "description", name: "description", content: "Pretty Body Mass Index (BMI) Calculator - Terms of use" },
+        { hid: "og-title", property: "og:title", content: "Pretty Body Mass Index (BMI) Calculator - Terms of use" },
+        { hid: "og:description", property: "og:description", content: "Pretty Body Mass Index (BMI) Calculator - Terms of use" },
+    ],
+});
+</script>
