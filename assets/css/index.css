@@ -68,4 +68,5 @@ input:focus {
 
 .full-height {
   height: 100vh;
+  min-height: -webkit-fill-available;
 }
