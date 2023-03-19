@@ -10,7 +10,6 @@ export default ({ app }) => {
     debug: true,
     loadScript: true,
     vueRouter: app.router,
-    ignoredViews: ['homepage']
   }
   
   createApp().use(VueGtm, options)
