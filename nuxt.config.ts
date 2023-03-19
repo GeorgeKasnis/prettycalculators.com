@@ -7,9 +7,7 @@ export default defineNuxtConfig({
         },
     },
 
-    plugins: [
-        { src: '~/plugins/gtm.js', mode: 'client' }
-      ],
+    
 
     modules: ["nuxt-gtag"],
 
