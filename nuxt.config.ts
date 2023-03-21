@@ -9,11 +9,11 @@ export default defineNuxtConfig({
 
     
 
-    modules: ["nuxt-gtag"],
+    // modules: ["nuxt-gtag"],
 
-    gtag: {
-        id: 'GTM-TP4P927'
-      },
+    // gtag: {
+    //     id: 'GTM-TP4P927'
+    //   },
 
     // sitemap: {
     //   siteUrl: 'https://www.prettybmicalculator.com/',
