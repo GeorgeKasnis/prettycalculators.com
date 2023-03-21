@@ -7,6 +7,16 @@ export default defineNuxtConfig({
         },
     },
 
+
+    modules: [
+        'nuxt-simple-sitemap',
+      ],
+
+      runtimeConfig: {
+        public: {
+          siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.prettybmicalculator.com/',
+        }
+      },
     
 
     // modules: ["nuxt-gtag"],
