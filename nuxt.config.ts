@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     modules: ["nuxt-gtag"],
 
     gtag: {
-        id: 'G-C5PBQPTJG5'
+        id: 'GTM-TP4P927'
       },
 
     // sitemap: {
