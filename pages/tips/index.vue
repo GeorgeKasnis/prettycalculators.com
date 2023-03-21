@@ -1,5 +1,5 @@
 <template>
-    <div class="p-small child:mb-small child:py-2 w-full">
+    <div class="p-small child:mb-small child:py-small w-full">
         <h1 class="font-extrabold">Tips</h1>
         <div class="group"><span class="w-10 inline-block group-hover:font-extrabold transition-all">1.</span> Set Realistic Goals: Set achievable fitness goals to improve your Body Mass Index (BMI).</div>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-small child:mb-small child:py-2">
+  <div class="p-small child:mb-small child:py-small">
       <h1 class="font-extrabold">Terms of Use Agreement:</h1>
       <div>
         Introduction: Welcome to The Best BMI Calculator website. By using our website, you agree to these terms of use. If you do not agree to these terms, please do not use our
