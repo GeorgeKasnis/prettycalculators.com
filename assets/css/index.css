@@ -48,7 +48,7 @@ a {
 
 
 
-.router-link-active {
+.active-link,.router-link-exact-active {
     font-weight: 900;
 }
 

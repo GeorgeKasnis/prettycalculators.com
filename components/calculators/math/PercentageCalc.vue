@@ -1,9 +1,9 @@
 <template>
     <div>
         <UiFormContainer title="Percentage Calculator">
-            <InputsTextInput aria-label="Height in cm input to calculate Body Mass Index (BMI)" placeholder="Percentage" v-model="form.percent" measurementUnit="%" />
+            <InputsTextInput aria-label="Percentage" placeholder="Percentage" v-model="form.percent" measurementUnit="%" />
             <div>of</div>
-            <InputsTextInput aria-label="Height in cm input to calculate Body Mass Index (BMI)" placeholder="Number" v-model="form.number" />
+            <InputsTextInput aria-label="Number" placeholder="Number" v-model="form.number" />
 
             <ButtonsCalcBtn @click="calculate" @keyup.enter="calculate" />
             <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="form.result ? 'active' : ''">

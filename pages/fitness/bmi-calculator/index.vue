@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <UiBaseContainer>
         <CalculatorsFitnessBmiCalc />
-    </div>
+    </UiBaseContainer>
 </template>

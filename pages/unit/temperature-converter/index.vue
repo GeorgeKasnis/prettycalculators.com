@@ -1,5 +1,5 @@
 <template>
     <UiBaseContainer>
-        <CalculatorsMathPercentageCalc />
+        <CalculatorsUnitTemperatureCalc />
     </UiBaseContainer>
 </template>
