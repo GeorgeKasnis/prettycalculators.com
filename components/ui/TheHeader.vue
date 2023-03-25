@@ -4,8 +4,9 @@
           <div>
               <nuxt-link to="/">Pretty Calculators</nuxt-link>
           </div>
-          <nav>
+          <nav class="child:mx-2">
             <nuxt-link to="/fitness">Fitness</nuxt-link>
+            <nuxt-link to="/fitness">Math</nuxt-link>
           </nav>
         </div>
     </header>
