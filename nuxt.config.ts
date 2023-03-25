@@ -41,7 +41,7 @@ export default defineNuxtConfig({
                 {
                     charset: "utf-8",
                 },
-                { name: 'google-site-verification', content: 'b5AARVPsG9JCuwRHUo9IB40kdShrFEuIT0Dqv3nvRgU' }
+                { name: 'google-site-verification', content: 'zF5qj09ziYy_arXAmoNcsI7R4HKtGaiDVXA6jJbxqOA' }
             ],
             htmlAttrs: {
                 lang: "en",
