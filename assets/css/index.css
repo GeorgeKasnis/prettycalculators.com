@@ -72,3 +72,29 @@ input:focus {
   height: 100dvh;
   min-height: -webkit-fill-available;
 }
+
+
+
+.brutalist-shadow{
+    background-color: white;
+    border: 1px solid black;
+    position:relative;
+  }
+
+  .brutalist-shadow:hover{
+    outline: 2px solid black;
+  }
+  
+  .brutalist-shadow:after{
+    content:'';
+    position:absolute;
+    background-color:black;
+    top:8px;
+    left:8px;
+    right:-8px;
+    bottom:-8px;
+    z-index:-1;
+  }
+  
+  
+  

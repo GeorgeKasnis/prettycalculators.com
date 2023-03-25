@@ -1,30 +1,39 @@
 <template>
-  <div>
-    <label for="percent">Percentage:</label>
-    <input type="number" id="percent" v-model="percent" />%
+    <div>
+        <UiFormContainer title="Percentage Calculator">
+            <InputsTextInput aria-label="Height in cm input to calculate Body Mass Index (BMI)" placeholder="Percentage" v-model="form.percent" measurementUnit="%" />
+            <div>of</div>
+            <InputsTextInput aria-label="Height in cm input to calculate Body Mass Index (BMI)" placeholder="Number" v-model="form.number" />
 
-    <label for="number">Number:</label>
-    <input type="number" id="number" v-model="number" />
-
-    <button @click="calculate">Calculate</button>
-
-    <p v-if="result">Result: {{ result }}</p>
-  </div>
+            <ButtonsCalcBtn @click="calculate" @keyup.enter="calculate" />
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="form.result ? 'active' : ''">
+                <p v-if="form.result">{{form.percent}}% of {{form.result}} = {{ form.result }}</p>
+                <button @click="clearEverything" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
+            </div>
+        </UiFormContainer>
+    </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      percent: 0,
-      number: 0,
-      result: 0
-    }
-  },
-  methods: {
-    calculate() {
-      this.result = (this.percent / 100) * this.number
-    }
-  }
-}
+    data() {
+        return {
+            form: {
+                percent: null,
+                number: null,
+                result: null,
+            },
+        };
+    },
+    methods: {
+        calculate() {
+            this.form.result = (this.form.percent / 100) * this.form.number;
+        },
+        clearEverything() {
+            for (let key in this.form) {
+                this.form[key] = null;
+            }
+        },
+    },
+};
 </script>

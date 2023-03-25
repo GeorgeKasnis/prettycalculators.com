@@ -7,6 +7,10 @@ module.exports = {
         small: "1rem",
         big: "2rem",
       },
+      fontSize:{
+        small:"1rem",
+        big:"2rem",
+      },
       colors: {
         lightblue: "#6A5ACD",
         bluevioloet: "#8A2BE2",

@@ -1,8 +1,16 @@
 <template>
-    <div class="w-full p-small">
-        <div class="max-w-xl mx-auto w-full">
-            <CalculatorsFitnessBmiCalc />
-            <CalculatorsMathPercentageCalc />
+    <div class="w-full p-small h-full grid grid-cols-1 lg:grid-cols-3 gap-small">
+        <div class="border-2 border-b brutalist-shadow p-big">
+            <div class="text-big font-bold">Fitness</div>
+            <div class="p-small">
+                <nuxt-link to="fitness/bmi-calculator" class="hover:font-bold">BMI Calculator</nuxt-link>
+            </div>
+        </div>
+        <div class="border-2 border-b brutalist-shadow p-big">
+            <div class="text-big font-bold">Math</div>
+            <div class="p-small">
+                <nuxt-link to="math/percentage-calculator" class="hover:font-bold">Percentage Calculator</nuxt-link>
+            </div>
         </div>
     </div>
 </template>
@@ -18,5 +26,3 @@ useHead({
     ],
 });
 </script>
-
-
