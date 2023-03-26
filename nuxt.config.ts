@@ -15,20 +15,7 @@ export default defineNuxtConfig({
         },
     },
 
-    sitemap: {
-        // manually chunk into multiple sitemaps
-        sitemaps: {
-            fitness: {
-                include: ["/fitness/**"],
-            },
-            math: {
-                include: ["/math/**"],
-            },
-            unit: {
-                include: ["/unit/**"],
-            },
-        },
-    },
+
 
     // modules: ["nuxt-gtag"],
 
