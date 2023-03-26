@@ -1,17 +1,16 @@
 <template>
-    <UiFormContainer title="BMI Calculator">
-        <InputsTextInput  aria-label="Height in cm input to calculate Body Mass Index (BMI)" placeholder="Height" v-model="height"  measurementUnit="Cm"  />
-        <InputsTextInput  aria-label="Weight in kg input to calculate Body Mass Index (BMI)" placeholder="Weight" v-model="weight"  measurementUnit="Kg"  />
-        <ButtonsCalcBtn @click="calculate" @keyup.enter="calculate" />
-        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="bmi ? 'active' : ''">
-            <p v-if="bmi">Your BMI is {{ bmi.toFixed(1) }}</p>
-            <p v-if="bmi">You are {{ bmiCategory }}</p>
-            <button @click="clearEverything" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
-        </div>
-    </UiFormContainer>
-    <transition name="fade-in">
-        <div class="text-red-700 h-14 mt-small transition-all duration-300" :class="errors ? 'opacity-100' : 'opacity-0'">{{ errors }}</div>
-    </transition>
+    <UiFormErrorContainer :errors="errors">
+        <UiFormContainer title="BMI Calculator">
+            <InputsTextInput aria-label="Height in cm input to calculate Body Mass Index (BMI)" placeholder="Height" v-model="height" measurementUnit="Cm" />
+            <InputsTextInput aria-label="Weight in kg input to calculate Body Mass Index (BMI)" placeholder="Weight" v-model="weight" measurementUnit="Kg" />
+            <ButtonsCalcBtn @click="calculate" @keyup.enter="calculate" />
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="bmi ? 'active' : ''">
+                <p v-if="bmi">Your BMI is {{ bmi.toFixed(1) }}</p>
+                <p v-if="bmi">You are {{ bmiCategory }}</p>
+                <button @click="clearEverything" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
+            </div>
+        </UiFormContainer>
+    </UiFormErrorContainer>
 </template>
 
 <script>
@@ -37,15 +36,24 @@ export default {
             return [(v) => !!v || "This field is required"];
         },
         bmiCategory() {
-            if (this.bmi < 18.5) {
-                return "underweight";
-            } else if (this.bmi < 25) {
-                return "normal weight";
-            } else if (this.bmi < 30) {
-                return "overweight";
-            } else {
-                return "obese";
+            let category = "";
+
+            switch (true) {
+                case this.bmi < 18.5:
+                    category = "Underweight";
+                    break;
+                case this.bmi < 25:
+                    category = "Normal weight";
+                    break;
+                case this.bmi < 30:
+                    category = "Overweight";
+                    break;
+                default:
+                    category = "Obese";
+                    break;
             }
+
+            return category;
         },
     },
     methods: {
@@ -53,17 +61,19 @@ export default {
             if (!this.height || !this.weight) {
                 this.errors = "All fields is required";
                 this.bmi = null;
-            } else if (this.height <= 0 || this.weight <= 0) {
-                this.errors = "All fields must be positive numbers";
-                this.bmi = null;
-            } else if (this.height && this.weight) {
-                const heightInMeters = this.height / 100;
-                const bmi = this.weight / (heightInMeters * heightInMeters);
-                this.bmi = bmi;
-                this.errors = "";
-            } else {
-                this.bmi = null;
+                return;
             }
+
+            if (this.height <= 0 || this.weight <= 0) {
+                this.errors = "Height and weight must be positive numbers";
+                this.bmi = null;
+                return;
+            }
+
+            const heightInMeters = this.height / 100;
+            const bmi = this.weight / (heightInMeters * heightInMeters);
+            this.bmi = bmi;
+            this.errors = "";
         },
         clearEverything() {
             this.bmi = null;
