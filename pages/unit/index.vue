@@ -1,5 +1,5 @@
 <template>
-    <div>
-        <div>Unit</div>
-    </div>
+    <UiCategoryContainer link="unit/temperature-converter">
+          <CalculatorsUnitTemperatureCalc />
+    </UiCategoryContainer>
 </template>

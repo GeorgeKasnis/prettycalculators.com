@@ -1,5 +1,5 @@
 <template>
-    <div class="p-small child:mb-small child:py-small">
+    <div class="child:mb-small child:py-small">
         <h1 class="font-extrabold">Terms of Use Agreement:</h1>
 
         <div>Use of Website: By using this website, you agree to be bound by these terms of use. You may not use this website if you do not agree to these terms.</div>

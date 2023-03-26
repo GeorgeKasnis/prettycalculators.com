@@ -1,5 +1,5 @@
 <template>
-    <div>
-        <div>Math</div>
-    </div>
+    <UiCategoryContainer link="math/percentage-calculator">
+          <CalculatorsMathPercentageCalc />
+    </UiCategoryContainer>
 </template>

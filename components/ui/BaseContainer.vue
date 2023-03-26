@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-lg w-full p-small">
+    <div class="max-w-lg w-full">
         <slot />
     </div>
 </template>
