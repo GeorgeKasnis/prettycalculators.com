@@ -7,17 +7,28 @@ export default defineNuxtConfig({
         },
     },
 
+    modules: ["nuxt-simple-sitemap"],
 
-    modules: [
-        'nuxt-simple-sitemap',
-      ],
-
-      runtimeConfig: {
+    runtimeConfig: {
         public: {
-          siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.prettycalculators.com/',
-        }
-      },
-    
+            siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://www.prettycalculators.com/",
+        },
+    },
+
+    sitemap: {
+        // manually chunk into multiple sitemaps
+        sitemaps: {
+            fitness: {
+                include: ["/fitness/**"],
+            },
+            math: {
+                include: ["/math/**"],
+            },
+            unit: {
+                include: ["/unit/**"],
+            },
+        },
+    },
 
     // modules: ["nuxt-gtag"],
 
@@ -41,7 +52,7 @@ export default defineNuxtConfig({
                 {
                     charset: "utf-8",
                 },
-                { name: 'google-site-verification', content: 'zF5qj09ziYy_arXAmoNcsI7R4HKtGaiDVXA6jJbxqOA' }
+                { name: "google-site-verification", content: "zF5qj09ziYy_arXAmoNcsI7R4HKtGaiDVXA6jJbxqOA" },
             ],
             htmlAttrs: {
                 lang: "en",
