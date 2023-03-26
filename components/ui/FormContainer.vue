@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-small relative w-full max-w-lg p-small">
+    <div class="flex flex-col gap-small relative w-full max-w-lg m-small">
         <div>{{title}}</div>
         <slot />
     </div>
