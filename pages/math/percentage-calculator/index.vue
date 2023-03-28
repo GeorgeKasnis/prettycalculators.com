@@ -12,3 +12,16 @@
         </UiCalcDescription>
     </UiBaseContainer>
 </template>
+
+
+<script setup>
+useHead({
+    title: "Pretty Calculators - Percentage Calculator",
+    meta: [
+        { hid: "title", name: "title", content: "Pretty Calculators - Percentage Calculator" },
+        { hid: "description", name: "description", content: "Pretty Calculators - Percentage Calculator" },
+        { hid: "og-title", property: "og:title", content: "Pretty Calculators - Percentage Calculator" },
+        { hid: "og:description", property: "og:description", content: "Pretty Calculators - Percentage Calculator" },
+    ],
+});
+</script>

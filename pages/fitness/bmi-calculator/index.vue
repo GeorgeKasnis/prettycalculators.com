@@ -24,3 +24,16 @@
         </UiCalcDescription>
     </UiBaseContainer>
 </template>
+
+
+<script setup>
+useHead({
+    title: "Pretty Calculators - BMI (Body Mass Index Calculator)",
+    meta: [
+        { hid: "title", name: "title", content: "Pretty Calculators - BMI (Body Mass Index Calculator)" },
+        { hid: "description", name: "description", content: "Pretty Calculators - BMI (Body Mass Index Calculator)" },
+        { hid: "og-title", property: "og:title", content: "Pretty Calculators - BMI (Body Mass Index Calculator)" },
+        { hid: "og:description", property: "og:description", content: "Pretty Calculators - BMI (Body Mass Index Calculator)" },
+    ],
+});
+</script>
