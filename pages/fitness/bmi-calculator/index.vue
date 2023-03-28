@@ -17,7 +17,7 @@
             </template>
             <template v-slot:example>
                 <p>Let's say you weigh 70 kilograms and your height is 1.75 meters. </p>
-                <p>To calculate your BMI, you would use the following formula: BMI = weight (kg) / height (m)^2 Substituting the values, you get: BMI = 70 / (1.75)^2 </p>
+                <p>To calculate your BMI, you would use the following formula: BMI = weight (kg) / height (m)<sup>2</sup> Substituting the values, you get: BMI = 70 / (1.75)<sup>2</sup> </p>
                 <p>Simplifying, you get: BMI = 22.86 </p>
                 <p>So, your BMI is 22.86. </p>
             </template>

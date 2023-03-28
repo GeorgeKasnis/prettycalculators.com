@@ -28,6 +28,11 @@ body {
     font-family: "Unnamed", sans-serif;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    background: lightgoldenrodyellow;
+}
+
+input *{
+    background: white !important;
 }
 
 .clip-path-circle {

@@ -1,5 +1,5 @@
 <template>
-    <div class="child:mb-small child:py-small">
+    <div class="child:mb-small child:py-small brutalist-shadow px-small">
         <h1 class="font-extrabold">Terms of Use Agreement:</h1>
 
         <div>Use of Website: By using this website, you agree to be bound by these terms of use. You may not use this website if you do not agree to these terms.</div>
@@ -27,12 +27,12 @@
 
 <script setup>
 useHead({
-    title: "Pretty Body Mass Index (BMI) Calculator - Terms of use",
+    title: "Pretty Calculators - Terms of use",
     meta: [
-        { hid: "title", name: "title", content: "Pretty Body Mass Index (BMI) Calculator - Terms of use" },
-        { hid: "description", name: "description", content: "Pretty Body Mass Index (BMI) Calculator - Terms of use" },
-        { hid: "og-title", property: "og:title", content: "Pretty Body Mass Index (BMI) Calculator - Terms of use" },
-        { hid: "og:description", property: "og:description", content: "Pretty Body Mass Index (BMI) Calculator - Terms of use" },
+        { hid: "title", name: "title", content: "Pretty Calculators - Terms of use" },
+        { hid: "description", name: "description", content: "Pretty Calculators - Terms of use" },
+        { hid: "og-title", property: "og:title", content: "Pretty Calculators - Terms of use" },
+        { hid: "og:description", property: "og:description", content: "Pretty Calculators - Terms of use" },
     ],
 });
 </script>

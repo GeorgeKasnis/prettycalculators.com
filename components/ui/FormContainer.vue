@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-small relative w-full max-w-lg ">
+    <div class="flex flex-col gap-small relative w-full max-w-3xl ">
         <h1 class="text-big lg:text-huge leading-none">{{title}}</h1>
         <div class="flex flex-col gap-small relative">
             <slot />
