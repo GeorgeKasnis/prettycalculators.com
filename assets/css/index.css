@@ -73,6 +73,10 @@ input:focus {
   min-height: -webkit-fill-available;
 }
 
+p{
+    margin-bottom: 1rem;
+}
+
 
 
 .brutalist-shadow{

@@ -1,7 +1,9 @@
 <template>
     <div class="flex flex-col gap-small relative w-full max-w-lg ">
-        <div>{{title}}</div>
-        <slot />
+        <h1 class="text-big lg:text-huge leading-none">{{title}}</h1>
+        <div class="flex flex-col gap-small relative">
+            <slot />
+        </div>
     </div>
 </template>
 

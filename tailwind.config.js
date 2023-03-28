@@ -10,6 +10,7 @@ module.exports = {
       fontSize:{
         small:"1rem",
         big:"2rem",
+        huge:"4rem",
       },
       colors: {
         lightblue: "#6A5ACD",
