@@ -16,17 +16,6 @@ export default defineNuxtConfig({
     },
 
 
-
-    // modules: ["nuxt-gtag"],
-
-    // gtag: {
-    //     id: 'GTM-TP4P927'
-    //   },
-
-    // sitemap: {
-    //   siteUrl: 'https://www.prettybmicalculator.com/',
-    // },
-
     css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass"],
 
     app: {
