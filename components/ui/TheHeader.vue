@@ -1,5 +1,5 @@
 <template>
-    <header class="p-small w-full fixed top-0 left-0 z-50 h-16 flex justify-between items-center bg-[#fafad2] border-b mb-huge">
+    <header class="p-small w-full fixed top-0 left-0 z-50 h-16 flex justify-between items-center bg-[#fafad2] border-b-2 border-black mb-huge">
         <div class="flex justify-between w-full">
             <div>
                 <nuxt-link to="/">Pretty Calculators</nuxt-link>
