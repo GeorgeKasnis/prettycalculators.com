@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <div class="mb-big">
-            <h2 class="text-big">Description</h2>
+    <div class="brutalist-shadow p-huge">
+        <div class="mb-huge">
+            <h2 class="text-big leading-5 mb-small">Description</h2>
             <slot name="description" />
         </div>
         <div>
-            <h3 class="text-big">Example</h3>
+            <h3 class="text-big leading-5 mb-small">Example</h3>
             <slot name="example" />
         </div>
     </div>

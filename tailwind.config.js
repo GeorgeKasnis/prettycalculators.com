@@ -6,6 +6,7 @@ module.exports = {
       spacing: {
         small: "1rem",
         big: "2rem",
+        huge: "4rem",
       },
       fontSize:{
         small:"1rem",
