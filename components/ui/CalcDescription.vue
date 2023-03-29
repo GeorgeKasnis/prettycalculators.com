@@ -1,5 +1,5 @@
 <template>
-    <div class="brutalist-shadow p-huge">
+    <div class="brutalist-shadow p-huge mt-big">
         <div class="mb-huge">
             <h2 class="text-big leading-5 mb-small">Description</h2>
             <slot name="description" />
