@@ -7,14 +7,17 @@ export default defineNuxtConfig({
         },
     },
 
-    modules: ["nuxt-simple-sitemap"],
+    modules: ["nuxt-simple-sitemap", "@nuxtjs/device"],
+
+    device: {
+        refreshOnResize: true,
+    },
 
     runtimeConfig: {
         public: {
             siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://www.prettycalculators.com/",
         },
     },
-
 
     css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass"],
 
