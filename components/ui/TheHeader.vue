@@ -1,8 +1,8 @@
 <template>
-    <header class="p-small w-full fixed top-0 left-0 z-50 h-16 flex justify-between items-center bg-[#fafad2] border-b-2 border-transparent mb-huge transition-all" :class="isScrolled ? '!border-black' : ''">
-        <div class="flex justify-between w-full">
+    <header class="p-small w-full fixed top-0 left-0 z-50 h-16 flex justify-between mobile:h-auto items-center bg-[#fafad2] border-b-2 border-transparent mb-huge transition-all" :class="isScrolled ? '!border-black' : ''">
+        <div class="flex justify-between w-full items-center mobile:flex-col">
             <div>
-                <nuxt-link to="/">Pretty Calculators</nuxt-link>
+                <nuxt-link class="text-big" to="/">Pretty Calculators</nuxt-link>
             </div>
             <nav class="child:mx-2">
                 <NuxtLink activeClass="active-link" to="/fitness">Fitness</NuxtLink>
