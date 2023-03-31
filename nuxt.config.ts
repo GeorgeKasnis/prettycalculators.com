@@ -7,7 +7,7 @@ export default defineNuxtConfig({
         },
     },
 
-    modules: ["nuxt-simple-sitemap", "@nuxtjs/device"],
+    modules: ["@nuxtjs/device"],
 
     device: {
         refreshOnResize: true,
@@ -37,6 +37,7 @@ export default defineNuxtConfig({
                 lang: "en",
             },
             link: [
+                { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
                 { rel: "icon", href: "/favicon.ico" },
                 { rel: "icon", href: "/android-icon-36x36.png", sizes: "36x36" },
                 { rel: "icon", href: "/android-icon-42x42.png", sizes: "42x42" },
