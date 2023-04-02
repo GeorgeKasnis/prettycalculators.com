@@ -3,7 +3,6 @@
         <UiFormErrorContainer :errors="form.errors">
             <UiFormContainer title="Body Fat Calculator">
                 <InputsBaseRadioButtonGroup v-model:gender="form.gender" :options="genderOptions" />
-                <!-- <InputsTextInput aria-label="Age" placeholder="Age" v-model="age"  /> -->
                 <InputsTextInput type="number" aria-label="Weight in kg" placeholder="Weight" v-model="form.weight" measurementUnit="Kg" />
                 <InputsTextInput type="number" aria-label="Height in cm" placeholder="Height" v-model="form.height" measurementUnit="Cm" />
                 <InputsTextInput type="number" aria-label="Neck circumference" placeholder="Neck circumference" v-model="form.neck" measurementUnit="Cm" />
@@ -58,7 +57,7 @@ export default {
 
                 this.form.result = 495 / (1.0324 - 0.19077 * Math.log10(this.form.waist - this.form.neck) + 0.15456 * Math.log10(this.form.height)) - 450;
             } else if (this.form.gender === "female") {
-                if (!this.form.height || !this.form.weight || !this.form.waist || !this.form.neck || this.form.hip) {
+                if (!this.form.height || !this.form.weight || !this.form.waist || !this.form.neck || !this.form.hip) {
                     this.form.errors = "All fields is required";
                     return;
                 }
