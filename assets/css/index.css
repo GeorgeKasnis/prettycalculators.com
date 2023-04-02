@@ -24,6 +24,16 @@
     display: none;
 }
 
+::-moz-selection { /* Code for Firefox */
+    color: #fafad2;
+    background: black;
+  }
+  
+  ::selection {
+    color: #fafad2;
+    background: black;
+  }
+
 body {
     font-family: "Unnamed", sans-serif;
     scrollbar-width: none;

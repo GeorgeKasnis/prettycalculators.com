@@ -1,9 +1,14 @@
 <template>
-    <h2 class="text-big brutalist-shadow p-big my-huge">Fitness</h2>
+    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h2>
     <UiCategoryContainer link="/fitness/bmi-calculator">
         <CalculatorsFitnessBmiCalc />
     </UiCategoryContainer>
-    <h2 class="text-big brutalist-shadow p-big my-huge">Fitness</h2>
+    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h2>
+    <UiCategoryContainer link="/fitness/body-fat-calculator">
+        <CalculatorsFitnessBodyFatCalc />
+    </UiCategoryContainer>
+
+    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h2>
 </template>
 
 <script setup>
