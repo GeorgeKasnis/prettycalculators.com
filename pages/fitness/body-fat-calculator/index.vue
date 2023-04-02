@@ -1,0 +1,3 @@
+<template>
+    <CalculatorsFitnessBodyFatCalc />
+</template>

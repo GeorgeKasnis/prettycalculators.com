@@ -3,7 +3,12 @@
         <div class="border-2 border-b brutalist-shadow p-big">
             <div class="text-big font-bold">Fitness</div>
             <div class="p-small">
-                <nuxt-link to="/fitness/bmi-calculator" class="hover:font-bold">BMI Calculator</nuxt-link>
+                <div>
+                    <nuxt-link to="/fitness/bmi-calculator" class="hover:font-bold">BMI Calculator</nuxt-link>
+                </div>
+                <div>
+                    <nuxt-link to="/fitness/body-fat-calculator" class="hover:font-bold">Body Fat Calculator</nuxt-link>
+                </div>
             </div>
         </div>
         <div class="border-2 border-b brutalist-shadow p-big">

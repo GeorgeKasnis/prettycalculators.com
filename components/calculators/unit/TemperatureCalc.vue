@@ -5,7 +5,7 @@
                 <InputsTextInput aria-label="Temperature in Celsius" placeholder="Temperature in Celsius" v-model="form.celsius" measurementUnit="℃" />
                 <ButtonsCalcBtn @click="calculate" @keyup.enter="calculate" />
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="{ active: form.result }">
-                    <p v-if="form.result">Fahrenheit: {{ form.result }} &#8457;</p>
+                    <UiBaseResult v-if="form.result" text="Fahrenheit:" :result="`${form.result}&#8457;`" />
                     <button @click="clearEverything" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
                 </div>
             </UiFormContainer>
@@ -16,7 +16,7 @@
                 <InputsTextInput aria-label="Temperature in Fahrenheit" placeholder="Temperature in Fahrenheit" v-model="form.fahrenheit" measurementUnit="&#8457;" />
                 <ButtonsCalcBtn @click="calculateFahrenheit" @keyup.enter="calculateFahrenheit" />
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="{ active: form.fahrenheitResult }">
-                    <p v-if="form.fahrenheitResult">Celsius: {{ form.fahrenheitResult }} ℃</p>
+                    <UiBaseResult v-if="form.fahrenheitResult" text="Celsius:" :result="`${form.fahrenheitResult}℃;`" />
                     <button @click="clearEverything" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
                 </div>
             </UiFormContainer>
@@ -45,7 +45,7 @@ export default {
                 this.form.errors = "All fields is required";
                 return;
             }
-            this.form.result =( (this.form.celsius * 9) / 5 + 32).toFixed(1);
+            this.form.result = ((this.form.celsius * 9) / 5 + 32).toFixed(1);
         },
         calculateFahrenheit() {
             this.form.fahrenheitError = "";
