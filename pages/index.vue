@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="w-full h-full grid grid-cols-1 lg:grid-cols-3 gap-big">
+        <div class="w-full h-full grid grid-cols-1 lg:grid-cols-4 gap-big">
             <div class="border-2 border-b brutalist-shadow p-big min-h-[20rem] tablet:min-h-[none]">
                 <h1 class="text-big font-bold">Fitness</h1>
                 <div class="p-small">
@@ -22,6 +22,12 @@
                 <h2 class="text-big font-bold">Unit</h2>
                 <div class="p-small">
                     <nuxt-link to="/unit/temperature-converter" class="hover:font-bold">Temperature Converter</nuxt-link>
+                </div>
+            </div>
+            <div class="border-2 border-b brutalist-shadow p-big min-h-[20rem]">
+                <h2 class="text-big font-bold">Other</h2>
+                <div class="p-small">
+                    <nuxt-link to="/other/aqua-calculator" class="hover:font-bold">Aqua Calculator</nuxt-link>
                 </div>
             </div>
         </div>

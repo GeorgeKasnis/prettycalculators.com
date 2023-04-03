@@ -8,6 +8,7 @@
                 <NuxtLink activeClass="active-link" to="/fitness">Fitness</NuxtLink>
                 <NuxtLink activeClass="active-link" to="/math">Math</NuxtLink>
                 <NuxtLink activeClass="active-link" to="/unit">Unit</NuxtLink>
+                <NuxtLink activeClass="active-link" to="/other">Other</NuxtLink>
             </nav>
         </div>
     </header>
