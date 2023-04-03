@@ -1,8 +1,10 @@
 <template>
     <h1 class="text-big brutalist-shadow px-big py-small my-huge">Other</h1>
-    <UiCategoryContainer link="/other/aqua-calculator">
-        <CalculatorsOtherAquaCalc />
-    </UiCategoryContainer>
+    <div class="brutalist-shadow p-huge">
+        <UiCategoryContainer link="/other/aqua-calculator">
+            <CalculatorsOtherAquaCalc />
+        </UiCategoryContainer>
+    </div>
     <h2 class="text-big brutalist-shadow px-big py-small my-huge">Other</h2>
 </template>
 
