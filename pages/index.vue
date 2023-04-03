@@ -1,7 +1,7 @@
 <template>
     <div class="w-full p-small h-full grid grid-cols-1 lg:grid-cols-3 gap-big">
         <div class="border-2 border-b brutalist-shadow p-big">
-            <div class="text-big font-bold">Fitness</div>
+            <h1 class="text-big font-bold">Fitness</h1>
             <div class="p-small">
                 <div>
                     <nuxt-link to="/fitness/bmi-calculator" class="hover:font-bold">BMI Calculator</nuxt-link>
@@ -12,13 +12,13 @@
             </div>
         </div>
         <div class="border-2 border-b brutalist-shadow p-big">
-            <div class="text-big font-bold">Math</div>
+            <h2 class="text-big font-bold">Math</h2>
             <div class="p-small">
                 <nuxt-link to="/math/percentage-calculator" class="hover:font-bold">Percentage Calculator</nuxt-link>
             </div>
         </div>
         <div class="border-2 border-b brutalist-shadow p-big">
-            <div class="text-big font-bold">Unit</div>
+            <h2 class="text-big font-bold">Unit</h2>
             <div class="p-small">
                 <nuxt-link to="/unit/temperature-converter" class="hover:font-bold">Temperature Converter</nuxt-link>
             </div>
