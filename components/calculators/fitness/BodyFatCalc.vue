@@ -51,26 +51,49 @@ export default {
             this.form.result = "";
 
             if (!this.form.gender) {
+                this.form.weight = null;
+
+                this.form.height = null;
+
+                this.form.neck = null;
+
+                this.form.waist = null;
+
+                this.form.hip = null;
+
                 this.form.errors = "All fields is required";
                 return;
             }
 
             if (this.form.gender === "male") {
                 if (!this.form.height || !this.form.weight || !this.form.waist || !this.form.neck) {
+                    this.form.weight = null;
+                    this.form.height = null;
+                    this.form.neck = null;
+                    this.form.waist = null;
+                    this.form.hip = null;
                     this.form.errors = "All fields is required";
                     return;
                 }
 
                 this.form.result = 495 / (1.0324 - 0.19077 * Math.log10(this.form.waist - this.form.neck) + 0.15456 * Math.log10(this.form.height)) - 450;
-
             } else if (this.form.gender === "female") {
                 if (!this.form.height || !this.form.weight || !this.form.waist || !this.form.neck || !this.form.hip) {
+                    this.form.weight = null;
+
+                    this.form.height = null;
+
+                    this.form.neck = null;
+
+                    this.form.waist = null;
+
+                    this.form.hip = null;
+
                     this.form.errors = "All fields is required";
                     return;
                 }
                 this.form.result = 495 / (1.29579 - 0.35004 * Math.log10(this.form.waist + this.form.hip - this.form.neck) + 0.221 * Math.log10(this.form.height)) - 450;
                 console.log(this.form.weight, this.form.height, this.form.neck, this.form.waist, this.form.hip);
-   
             }
             this.form.result = this.form.result.toFixed(1);
         },
