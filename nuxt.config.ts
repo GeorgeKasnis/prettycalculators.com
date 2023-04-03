@@ -32,6 +32,26 @@ export default defineNuxtConfig({
                     charset: "utf-8",
                 },
                 { name: "google-site-verification", content: "zF5qj09ziYy_arXAmoNcsI7R4HKtGaiDVXA6jJbxqOA" },
+                {
+                    property: "og:image",
+                    content: "~/public/og-image.png",
+                },
+                {
+                    property: "og:image:type",
+                    content: "image/jpeg",
+                },
+                {
+                    property: "og:image:width",
+                    content: "1200",
+                },
+                {
+                    property: "og:image:height",
+                    content: "630",
+                },
+                {
+                    property: "og:image:alt",
+                    content: "www.prettycalculators.com",
+                },
             ],
             htmlAttrs: {
                 lang: "en",
