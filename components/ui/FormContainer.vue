@@ -1,10 +1,10 @@
 <template>
-    <div class="flex flex-col gap-small relative w-full max-w-3xl ">
-        <h2 class="text-big lg:text-huge leading-none my-big">{{title}}</h2>
+    <section class="flex flex-col gap-small relative w-full max-w-3xl ">
+        <h1 class="text-big lg:text-huge leading-none my-big">{{title}}</h1>
         <div class="flex flex-col gap-small relative">
             <slot />
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
