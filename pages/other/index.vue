@@ -1,9 +1,9 @@
 <template>
-    <h1 class="text-big brutalist-shadow px-big py-small my-huge">Math</h1>
+    <h1 class="text-big brutalist-shadow px-big py-small my-huge">Other</h1>
     <UiCategoryContainer link="/other/aqua-calculator">
         <CalculatorsOtherAquaCalc />
     </UiCategoryContainer>
-    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Math</h2>
+    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Other</h2>
 </template>
 
 <script setup>
