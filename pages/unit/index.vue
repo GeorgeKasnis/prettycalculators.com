@@ -1,7 +1,9 @@
 <template>
+    <h1 class="text-big brutalist-shadow px-big py-small my-huge">Unit</h1>
     <UiCategoryContainer link="/unit/temperature-converter">
-          <CalculatorsUnitTemperatureCalc />
+        <CalculatorsUnitTemperatureCalc />
     </UiCategoryContainer>
+    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Unit</h2>
 </template>
 
 <script setup>

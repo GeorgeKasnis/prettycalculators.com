@@ -1,9 +1,10 @@
 <template>
+    <h1 class="text-big brutalist-shadow px-big py-small my-huge">Math</h1>
     <UiCategoryContainer link="/math/percentage-calculator">
-          <CalculatorsMathPercentageCalc />
+        <CalculatorsMathPercentageCalc />
     </UiCategoryContainer>
+    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Math</h2>
 </template>
-
 
 <script setup>
 useHead({

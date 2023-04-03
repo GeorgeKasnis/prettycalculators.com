@@ -1,5 +1,5 @@
 <template>
-    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h2>
+    <h1 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h1>
     <UiCategoryContainer link="/fitness/bmi-calculator">
         <CalculatorsFitnessBmiCalc />
     </UiCategoryContainer>

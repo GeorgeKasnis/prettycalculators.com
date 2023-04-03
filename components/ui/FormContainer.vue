@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col gap-small relative w-full max-w-3xl ">
-        <h1 class="text-big lg:text-huge leading-none my-big">{{title}}</h1>
+        <h2 class="text-big lg:text-huge leading-none my-big">{{title}}</h2>
         <div class="flex flex-col gap-small relative">
             <slot />
         </div>
