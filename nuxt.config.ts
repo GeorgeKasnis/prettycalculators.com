@@ -20,6 +20,14 @@ export default defineNuxtConfig({
     },
 
     serverMiddleware: [{ path: "/", handler: "~/middleware/x-content-type-options.js" }],
+    security: {
+        headers: {
+            frameguard: {
+                value: "deny",
+            },
+        },
+    },
+
     css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass"],
 
     app: {
