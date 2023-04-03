@@ -7,7 +7,7 @@ export default defineNuxtConfig({
         },
     },
 
-    modules: ["@nuxtjs/device"],
+    modules: ["@nuxtjs/device", "nuxt-security"],
 
     device: {
         refreshOnResize: true,
@@ -19,6 +19,7 @@ export default defineNuxtConfig({
         },
     },
 
+    serverMiddleware: [{ path: "/", handler: "~/middleware/x-content-type-options.js" }],
     css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass"],
 
     app: {
