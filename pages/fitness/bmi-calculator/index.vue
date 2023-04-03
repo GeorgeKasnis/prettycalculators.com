@@ -31,9 +31,9 @@ useHead({
     title: "Pretty Calculators - BMI (Body Mass Index Calculator)",
     meta: [
         { hid: "title", name: "title", content: "Pretty Calculators - BMI (Body Mass Index Calculator)" },
-        { hid: "description", name: "description", content: "Pretty Calculators - BMI (Body Mass Index Calculator)" },
+        { hid: "description", name: "description", content: "Find out your Body Mass Index (BMI) and track your weight loss progress with Pretty Calculators' beautifully designed BMI calculator. Our easy-to-use tool helps you understand your body composition and set realistic health goals. Whether you're starting a new fitness routine or just looking to monitor your weight, our BMI calculator is perfect for anyone interested in improving their health. Try it out today on Pretty Calculators)" },
         { hid: "og-title", property: "og:title", content: "Pretty Calculators - BMI (Body Mass Index Calculator)" },
-        { hid: "og:description", property: "og:description", content: "Pretty Calculators - BMI (Body Mass Index Calculator)" },
+        { hid: "og:description", property: "og:description", content: "Find out your Body Mass Index (BMI) and track your weight loss progress with Pretty Calculators' beautifully designed BMI calculator. Our easy-to-use tool helps you understand your body composition and set realistic health goals. Whether you're starting a new fitness routine or just looking to monitor your weight, our BMI calculator is perfect for anyone interested in improving their health. Try it out today on Pretty Calculators" },
     ],
 });
 </script>

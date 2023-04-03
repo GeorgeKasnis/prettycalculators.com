@@ -19,9 +19,9 @@ useHead({
     title: "Pretty Calculators - Temperature Converter",
     meta: [
         { hid: "title", name: "title", content: "Pretty Calculators - Temperature Converter" },
-        { hid: "description", name: "description", content: "Pretty Calculators - Temperature Converter" },
+        { hid: "description", name: "description", content: "Easily convert between Celsius and Fahrenheit with Pretty Calculators' beautifully designed temperature converter calculator. Our tool makes it simple to convert temperatures accurately, helping you to plan for weather conditions, travel to different countries, or work with temperature-sensitive materials. Whether you're a scientist, traveler, or just looking to learn more about temperature conversions, our temperature converter calculator is perfect for anyone interested in making quick and accurate temperature conversions. Try it out today on Pretty Calculators." },
         { hid: "og-title", property: "og:title", content: "Pretty Calculators - Temperature Converter" },
-        { hid: "og:description", property: "og:description", content: "Pretty Calculators - Temperature Converter" },
+        { hid: "og:description", property: "og:description", content: "Easily convert between Celsius and Fahrenheit with Pretty Calculators' beautifully designed temperature converter calculator. Our tool makes it simple to convert temperatures accurately, helping you to plan for weather conditions, travel to different countries, or work with temperature-sensitive materials. Whether you're a scientist, traveler, or just looking to learn more about temperature conversions, our temperature converter calculator is perfect for anyone interested in making quick and accurate temperature conversions. Try it out today on Pretty Calculators." },
     ],
 });
 </script>

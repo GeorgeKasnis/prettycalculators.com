@@ -46,9 +46,19 @@ useHead({
     title: "Pretty Calculators - Body Fat Calculator",
     meta: [
         { hid: "title", name: "title", content: "Pretty Calculators - Body Fat Calculator" },
-        { hid: "description", name: "description", content: "Pretty Calculators - Body Fat Calculator" },
+        {
+            hid: "description",
+            name: "description",
+            content:
+                "Track your body composition and monitor your fitness progress with Pretty Calculators' beautifully designed Body Fat Calculator. Our easy-to-use tool provides an accurate estimate of your body fat percentage, helping you to set realistic health goals and achieve them with confidence. Whether you're an athlete, bodybuilder, or just looking to improve your overall fitness, our Body Fat Calculator is perfect for anyone interested in achieving a healthy lifestyle. Try it out today on Pretty Calculators.",
+        },
         { hid: "og-title", property: "og:title", content: "Pretty Calculators - Body Fat Calculator" },
-        { hid: "og:description", property: "og:description", content: "Pretty Calculators - Body Fat Calculator" },
+        {
+            hid: "og:description",
+            property: "og:description",
+            content:
+                "Track your body composition and monitor your fitness progress with Pretty Calculators' beautifully designed Body Fat Calculator. Our easy-to-use tool provides an accurate estimate of your body fat percentage, helping you to set realistic health goals and achieve them with confidence. Whether you're an athlete, bodybuilder, or just looking to improve your overall fitness, our Body Fat Calculator is perfect for anyone interested in achieving a healthy lifestyle. Try it out today on Pretty Calculators.",
+        },
     ],
 });
 </script>

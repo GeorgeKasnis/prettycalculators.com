@@ -19,9 +19,9 @@ useHead({
     title: "Pretty Calculators - Percentage Calculator",
     meta: [
         { hid: "title", name: "title", content: "Pretty Calculators - Percentage Calculator" },
-        { hid: "description", name: "description", content: "Pretty Calculators - Percentage Calculator" },
+        { hid: "description", name: "description", content: "Calculate percentages with ease using Pretty Calculators' beautifully designed Percentage Calculator. Our easy-to-use tool makes it simple to figure out percentages for sales, discounts, and tips, helping you to save money and make smart financial decisions. Whether you're a shopper, restaurant-goer, or just looking to brush up on your math skills, our Percentage Calculator is perfect for anyone interested in making quick and accurate percentage calculations. Try it out today on Pretty Calculators." },
         { hid: "og-title", property: "og:title", content: "Pretty Calculators - Percentage Calculator" },
-        { hid: "og:description", property: "og:description", content: "Pretty Calculators - Percentage Calculator" },
+        { hid: "og:description", property: "og:description", content: "Calculate percentages with ease using Pretty Calculators' beautifully designed Percentage Calculator. Our easy-to-use tool makes it simple to figure out percentages for sales, discounts, and tips, helping you to save money and make smart financial decisions. Whether you're a shopper, restaurant-goer, or just looking to brush up on your math skills, our Percentage Calculator is perfect for anyone interested in making quick and accurate percentage calculations. Try it out today on Pretty Calculators." },
     ],
 });
 </script>
