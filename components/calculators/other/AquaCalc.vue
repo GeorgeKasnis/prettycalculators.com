@@ -1,6 +1,6 @@
 <template>
     <UiFormErrorContainer :errors="form.errors">
-        <UiFormContainer title="BMI Calculator">
+        <UiFormContainer title="Aqua Calculator">
             <InputsTextInput aria-label="Weight in kg input to calculate Body Mass Index (BMI)" placeholder="Weight" v-model="form.weight" measurementUnit="Kg" />
             <ButtonsCalcBtn @click="calculate" @keyup.enter="calculate" />
             <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="form.waterIntake ? 'active' : ''">
