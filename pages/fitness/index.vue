@@ -1,12 +1,12 @@
 <template>
     <h1 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h1>
-    <div class="brutalist-shadow p-huge">
+    <div class="brutalist-shadow p-huge mobile:p-small">
         <UiCategoryContainer link="/fitness/bmi-calculator">
             <CalculatorsFitnessBmiCalc />
         </UiCategoryContainer>
     </div>
     <h2 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h2>
-    <div class="brutalist-shadow p-huge">
+    <div class="brutalist-shadow p-huge mobile:p-small">
         <UiCategoryContainer link="/fitness/body-fat-calculator">
             <CalculatorsFitnessBodyFatCalc />
         </UiCategoryContainer>

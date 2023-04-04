@@ -1,6 +1,6 @@
 <template>
     <h1 class="text-big brutalist-shadow px-big py-small my-huge">Math</h1>
-    <div class="brutalist-shadow p-huge">
+    <div class="brutalist-shadow p-huge mobile:p-small">
         <UiCategoryContainer link="/math/percentage-calculator">
             <CalculatorsMathPercentageCalc />
         </UiCategoryContainer>

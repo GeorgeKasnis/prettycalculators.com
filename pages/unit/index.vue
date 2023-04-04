@@ -1,6 +1,6 @@
 <template>
     <h1 class="text-big brutalist-shadow px-big py-small my-huge">Unit</h1>
-    <div class="brutalist-shadow p-huge">
+    <div class="brutalist-shadow p-huge mobile:p-small">
         <UiCategoryContainer link="/unit/temperature-converter">
             <CalculatorsUnitTemperatureCalc />
         </UiCategoryContainer>
