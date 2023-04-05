@@ -1,18 +1,20 @@
 <template>
-    <h1 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h1>
-    <div class="brutalist-shadow p-huge mobile:p-small">
-        <UiCategoryContainer link="/fitness/bmi-calculator">
-            <CalculatorsFitnessBmiCalc />
-        </UiCategoryContainer>
-    </div>
-    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h2>
-    <div class="brutalist-shadow p-huge mobile:p-small">
-        <UiCategoryContainer link="/fitness/body-fat-calculator">
-            <CalculatorsFitnessBodyFatCalc />
-        </UiCategoryContainer>
-    </div>
-
-    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Fitness</h2>
+    <UiCategoryContainer>
+        <template v-slot:main>
+            <CategoryCardsFitness hasH1="true" class="mb-big" />
+            <p>
+                Looking to take your fitness routine to the next level? Our fitness calculator tools can help you achieve your goals! Whether you're looking to track your progress, set new goals, or determine the number of calories you need to consume, our calculators can provide you with accurate
+                and reliable results. Our BMI calculator can help you determine your body mass index, which is a measure of body fat based on your height and weight. Our body fat calculator uses your age, gender, height, and weight to determine your body fat percentage, which can be an important
+                indicator of overall health. In addition, our calorie counter can help you track the number of calories you consume each day, while our heart rate monitor can help you optimize your workouts. Our calculators are easy to use, free, and accessible from anywhere. Start using our fitness
+                calculator tools today and take the first step towards achieving your fitness goals!
+            </p>
+        </template>
+        <template v-slot:recommended>
+            <CategoryCardsMath class="mb-big" />
+            <CategoryCardsUnit class="mb-big" />
+            <CategoryCardsOther class="mb-big" />
+        </template>
+    </UiCategoryContainer>
 </template>
 
 <script setup>
@@ -35,5 +37,4 @@ useHead({
         },
     ],
 });
-
 </script>

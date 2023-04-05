@@ -1,14 +1,18 @@
 <template>
-    <div class="max-w-3xl w-full">
-        <slot />
-        <div class="text-center">
-            <nuxt-link :to="link" class="text-big  font-extralight group-hover:font-medium group mobile:text-small"><span v-if="$device.isDesktop" class="group-hover:opacity-100 transition-all duration-300 opacity-0">&#x2192;</span>Details</nuxt-link>
+    <div class="w-full">
+        <div class="grid grid-cols-3 tablet:grid-cols-1 gap-big">
+            <div class="col-span-2 tablet:col-span-3">
+                <div class="sticky top-20 tablet:static">
+                    <slot name="main"></slot>
+                </div>
+            </div>
+            <div class="col-span-1 tablet:col-span-3">
+                <h2 class="font-bold text-small mb-small">Recommended</h2>
+                <div>
+                    <slot name="recommended"></slot>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
-<script>
-export default {
-    props:['link']
-}
-</script>

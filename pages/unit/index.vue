@@ -1,11 +1,19 @@
 <template>
-    <h1 class="text-big brutalist-shadow px-big py-small my-huge">Unit</h1>
-    <div class="brutalist-shadow p-huge mobile:p-small">
-        <UiCategoryContainer link="/unit/temperature-converter">
-            <CalculatorsUnitTemperatureCalc />
-        </UiCategoryContainer>
-    </div>
-    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Unit</h2>
+    <UiCategoryContainer>
+        <template v-slot:main>
+            <CategoryCardsUnit hasH1="true" class="mb-big" />
+            <p>
+                Converting between units can be a tricky task, but with our free unit converter tools, it's easy to convert between Celsius and Fahrenheit, as well as many other common unit conversions. Our unit converter tools allow you to quickly and easily convert between different units of
+                measurement, including length, volume, weight, temperature, and more. With our Celsius to Fahrenheit and Fahrenheit to Celsius calculators, you can easily convert temperatures between these two units with accuracy and ease. Whether you're a student, a scientist, or just looking to
+                make everyday life easier, our unit converter tools are perfect for all your conversion needs. Start using our unit converter tools today to take the first step towards effortless conversions!
+            </p>
+        </template>
+        <template v-slot:recommended>
+            <CategoryCardsFitness class="mb-big" />
+            <CategoryCardsMath class="mb-big" />
+            <CategoryCardsOther class="mb-big" />
+        </template>
+    </UiCategoryContainer>
 </template>
 
 <script setup>

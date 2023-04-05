@@ -1,11 +1,19 @@
 <template>
-    <h1 class="text-big brutalist-shadow px-big py-small my-huge">Math</h1>
-    <div class="brutalist-shadow p-huge mobile:p-small">
-        <UiCategoryContainer link="/math/percentage-calculator">
-            <CalculatorsMathPercentageCalc />
-        </UiCategoryContainer>
-    </div>
-    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Math</h2>
+    <UiCategoryContainer>
+        <template v-slot:main>
+            <CategoryCardsMath hasH1="true" class="mb-big" />
+            <p>
+                Looking for a reliable way to calculate percentages, ratios, or other mathematical equations? Our free math calculator tools can help you solve equations quickly and accurately. Whether you need to calculate percentages, convert units of measurement, or determine the area of a shape,
+                our calculators can provide you with precise results. Our percentage calculator is just one example of the many tools we offer, allowing you to quickly calculate percentages for any number or value. With our user-friendly interface, you can easily input your data and receive accurate
+                calculations in seconds. Start using our math calculator tools today to take the first step towards solving complex equations with ease!
+            </p>
+        </template>
+        <template v-slot:recommended>
+            <CategoryCardsFitness class="mb-big" />
+            <CategoryCardsUnit class="mb-big" />
+            <CategoryCardsOther class="mb-big" />
+        </template>
+    </UiCategoryContainer>
 </template>
 
 <script setup>

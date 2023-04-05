@@ -1,11 +1,20 @@
 <template>
-    <h1 class="text-big brutalist-shadow px-big py-small my-huge">Other</h1>
-    <div class="brutalist-shadow p-huge mobile:p-small">
-        <UiCategoryContainer link="/other/aqua-calculator">
-            <CalculatorsOtherAquaCalc />
-        </UiCategoryContainer>
-    </div>
-    <h2 class="text-big brutalist-shadow px-big py-small my-huge">Other</h2>
+    <UiCategoryContainer>
+        <template v-slot:main>
+            <CategoryCardsOther hasH1="true" class="mb-big" />
+            <p>
+                Are you looking for a more specialized calculator? Our collection of free and reliable calculators can help you with a variety of tasks, from tracking your water intake to calculating complex equations. Our Aqua Calculator, for example, can help you determine the optimal amount of
+                water to drink each day based on your weight. Additionally, we offer a variety of other calculators to meet your unique needs, such as financial calculators for budgeting, engineering calculators for precise calculations, and health calculators for monitoring
+                various aspects of your physical well-being. With our easy-to-use interface and accurate calculations, you can trust our calculators to deliver precise results every time. Start using our uncommon calculator tools today and take the first step towards solving specialized equations
+                with ease!
+            </p>
+        </template>
+        <template v-slot:recommended>
+            <CategoryCardsFitness class="mb-big" />
+            <CategoryCardsMath class="mb-big" />
+            <CategoryCardsUnit class="mb-big" />
+        </template>
+    </UiCategoryContainer>
 </template>
 
 <script setup>

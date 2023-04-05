@@ -1,5 +1,5 @@
 <template>
-    <p> {{text}} <span class="text-big  text-center text-black bg-white p-small ml-small">{{ result }}</span></p>
+    <p class="mobile:text-center"> {{text}} <span class="text-big  text-center   ml-small mobile:block ml-0">{{ result }}</span></p>
 </template>
 
 <script>

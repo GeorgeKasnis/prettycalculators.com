@@ -19,6 +19,28 @@
     font-stretch: 50% 200%;
 }
 
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('@/assets/fonts/SpaceGrotesk-Light.woff2') format('woff2'),
+        url('@/assets/fonts/SpaceGrotesk-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("@/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300 700;
+}
+
+
+
+
+
+
 /* Hide scrollbar for all elements */
 ::-webkit-scrollbar {
     display: none;
@@ -35,7 +57,7 @@
   }
 
 body {
-    font-family: "Unnamed", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     scrollbar-width: none;
     -ms-overflow-style: none;
     background: #fafad2;
@@ -114,6 +136,11 @@ p{
     right:-8px;
     bottom:-8px;
     z-index:-1;
+  }
+
+
+  input{
+    font-family: Arial, Helvetica, sans-serif !important;
   }
   
   

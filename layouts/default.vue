@@ -1,7 +1,7 @@
 <template>
-    <div class="w-screen full-height flex items-center flex-col  pt-16">
+    <div class="w-screen full-height flex items-center flex-col pt-12">
         <UiTheHeader />
-        <div class="flex-1 grid place-items-center w-full p-small mt-big">
+        <div class="flex-1 grid place-items-center w-full p-small py-big ">
             <slot />
         </div>
         <UiTheFooter />
