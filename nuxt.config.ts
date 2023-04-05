@@ -7,7 +7,7 @@ export default defineNuxtConfig({
         },
     },
 
-    modules: ["@nuxtjs/device", "nuxt-security"],
+    modules: ["@nuxtjs/device"],
 
     device: {
         refreshOnResize: true,
@@ -16,15 +16,6 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://www.prettycalculators.com/",
-        },
-    },
-
-    serverMiddleware: [{ path: "/", handler: "~/middleware/x-content-type-options.js" }],
-    security: {
-        headers: {
-            frameguard: {
-                value: "deny",
-            },
         },
     },
 
