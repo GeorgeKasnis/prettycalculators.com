@@ -9,6 +9,9 @@
             <div>
                 <nuxt-link to="/fitness/body-fat-calculator" class="hover:font-bold">Body Fat Calculator</nuxt-link>
             </div>
+            <div>
+                <nuxt-link to="/fitness/bmr-calculator" class="hover:font-bold">BMR Calculator</nuxt-link>
+            </div>
         </div>
     </div>
 </template>
