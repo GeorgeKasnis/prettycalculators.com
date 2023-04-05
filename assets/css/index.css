@@ -47,12 +47,12 @@
 }
 
 ::-moz-selection { /* Code for Firefox */
-    color: #fafad2;
+    color: #e3d2fa;
     background: black;
   }
   
   ::selection {
-    color: #fafad2;
+    color: #e3d2fa;
     background: black;
   }
 
@@ -60,7 +60,7 @@ body {
     font-family: "Space Grotesk", sans-serif;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    background: #fafad2;
+    background: #e3d2fa;
 }
 
 input *{

@@ -1,5 +1,5 @@
 <template>
-    <header class="p-small w-full fixed top-0 left-0 z-50 h-16 flex justify-between mobile:h-auto items-center bg-[#fafad2] border-b-2 border-transparent mb-huge transition-all" :class="isScrolled ? '!border-black' : ''">
+    <header class="p-small w-full fixed top-0 left-0 z-50 h-16 flex justify-between mobile:h-auto items-center bg-[#e3d2fa] border-b-2 border-transparent mb-huge transition-all" :class="isScrolled ? '!border-black' : ''">
         <div class="flex justify-between w-full items-center mobile:flex-col">
             <div>
                 <nuxt-link class="text-big" to="/">Pretty Calculators</nuxt-link>
