@@ -1,7 +1,7 @@
 <template>
     <UiCategoryContainer>
         <template v-slot:main>
-            <CategoryCardsOther hasH1="true" class="mb-big" />
+            <CategoryCardsOther :hasH1="true" class="mb-big" />
             <p>
                 Are you looking for a more specialized calculator? Our collection of free and reliable calculators can help you with a variety of tasks, from tracking your water intake to calculating complex equations. Our Aqua Calculator, for example, can help you determine the optimal amount of
                 water to drink each day based on your weight. Additionally, we offer a variety of other calculators to meet your unique needs, such as financial calculators for budgeting, engineering calculators for precise calculations, and health calculators for monitoring

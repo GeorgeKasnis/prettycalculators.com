@@ -1,7 +1,7 @@
 <template>
     <UiCategoryContainer>
         <template v-slot:main>
-            <CategoryCardsMath hasH1="true" class="mb-big" />
+            <CategoryCardsMath :hasH1="true" class="mb-big" />
             <p>
                 Looking for a reliable way to calculate percentages, ratios, or other mathematical equations? Our free math calculator tools can help you solve equations quickly and accurately. Whether you need to calculate percentages, convert units of measurement, or determine the area of a shape,
                 our calculators can provide you with precise results. Our percentage calculator is just one example of the many tools we offer, allowing you to quickly calculate percentages for any number or value. With our user-friendly interface, you can easily input your data and receive accurate

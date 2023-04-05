@@ -1,7 +1,7 @@
 <template>
     <UiCategoryContainer>
         <template v-slot:main>
-            <CategoryCardsUnit hasH1="true" class="mb-big" />
+            <CategoryCardsUnit :hasH1="true" class="mb-big" />
             <p>
                 Converting between units can be a tricky task, but with our free unit converter tools, it's easy to convert between Celsius and Fahrenheit, as well as many other common unit conversions. Our unit converter tools allow you to quickly and easily convert between different units of
                 measurement, including length, volume, weight, temperature, and more. With our Celsius to Fahrenheit and Fahrenheit to Celsius calculators, you can easily convert temperatures between these two units with accuracy and ease. Whether you're a student, a scientist, or just looking to

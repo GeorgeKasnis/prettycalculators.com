@@ -1,7 +1,7 @@
 <template>
     <UiCategoryContainer>
         <template v-slot:main>
-            <CategoryCardsFitness hasH1="true" class="mb-big" />
+            <CategoryCardsFitness :hasH1="true" class="mb-big" />
             <p>
                 Looking to take your fitness routine to the next level? Our fitness calculator tools can help you achieve your goals! Whether you're looking to track your progress, set new goals, or determine the number of calories you need to consume, our calculators can provide you with accurate
                 and reliable results. Our BMI calculator can help you determine your body mass index, which is a measure of body fat based on your height and weight. Our body fat calculator uses your age, gender, height, and weight to determine your body fat percentage, which can be an important
