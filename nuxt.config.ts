@@ -7,6 +7,10 @@ export default defineNuxtConfig({
         },
     },
 
+    plugins: [
+        '~/plugins/vue-toast',
+      ],
+
     modules: ["@nuxtjs/device"],
 
     device: {
@@ -92,5 +96,11 @@ export default defineNuxtConfig({
         define: {
             "process.env.DEBUG": false,
         },
+    },
+
+    build: {
+        transpile: [
+            "vue-toastification"
+        ],
     },
 });

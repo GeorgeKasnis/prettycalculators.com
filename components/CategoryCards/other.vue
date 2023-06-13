@@ -8,6 +8,9 @@
         <div class="">
             <nuxt-link to="/other/age-calculator" class="hover:font-bold">Age Calculator</nuxt-link>
         </div>
+        <div class="">
+            <nuxt-link to="/other/px-to-rem-calculator" class="hover:font-bold">Px to Rem Calculator</nuxt-link>
+        </div>
     </div>
 </template>
 
