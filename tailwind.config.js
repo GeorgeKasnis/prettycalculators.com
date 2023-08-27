@@ -25,6 +25,7 @@ module.exports = {
                 darkmagenta: "#8B008B",
                 Indigo: "#4B0082",
                 Purple: "#800080",
+                grey:"#A0A0A0"
             },
         },
     },
