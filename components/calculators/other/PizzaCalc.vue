@@ -2,9 +2,9 @@
     <UiFormErrorContainer :errors="form.errors">
         <UiFormContainer title="Pizza Calculator">
             <TabGroup>
-                <TabList class="flex gap-big max-w-[15rem] justify-between mt-big">
-                    <Tab  @click="clearEverything(form)" class="focus:!outline-none aria-selected:font-bold transition-all text-start tracking-wider">Italian</Tab>
-                    <Tab  @click="clearEverything(form)" class="focus:!outline-none aria-selected:font-bold transition-all text-start tracking-wider">American</Tab>
+                <TabList class="flex gap-big  mt-big">
+                    <Tab  @click="clearEverything(form)" class="!outline-none wf aria-selected:font-bold transition-all text-start tracking-wider">Italian</Tab>
+                    <Tab  @click="clearEverything(form)" class="!outline-none wf aria-selected:font-bold transition-all text-start tracking-wider">American</Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel>
