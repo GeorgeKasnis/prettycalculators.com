@@ -11,7 +11,14 @@ export default defineNuxtConfig({
         '~/plugins/vue-toast',
       ],
 
-    modules: ["@nuxtjs/device"],
+    modules: [
+        "@nuxtjs/device",
+        "@nuxtjs/google-adsense"
+    ],
+
+    'google-adsense': {
+        id: 'ca-pub-3096386860979568'
+      },
 
     device: {
         refreshOnResize: true,
