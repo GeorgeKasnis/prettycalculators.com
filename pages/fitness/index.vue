@@ -11,7 +11,7 @@
         </template>
         <template v-slot:recommended>
             <CategoryCardsMath class="mb-big" />
-            <adsbygoogle ad-slot="1026555560" ad-format="fluid" ad-style="display:block !important; text-align:center !important; width:300px !important" ad-layout="in-article" />
+            <adsbygoogle class="mb-big" ad-slot="1026555560" ad-format="fluid" ad-style="display:block !important; text-align:center !important; width:300px !important; margin-left:auto;margin-right:auto;" ad-layout="in-article" />
             <CategoryCardsUnit class="mb-big" />
             <CategoryCardsOther class="mb-big" />
         </template>
