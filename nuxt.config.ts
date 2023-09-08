@@ -45,7 +45,7 @@ export default defineNuxtConfig({
                 { name: "google-site-verification", content: "zF5qj09ziYy_arXAmoNcsI7R4HKtGaiDVXA6jJbxqOA" },
                 {
                     property: "og:image",
-                    content: "https://www.prettycalculators.com/og-image.png",
+                    content: "/og-image.png",
                 },
                 {
                     property: "og:image:type",
