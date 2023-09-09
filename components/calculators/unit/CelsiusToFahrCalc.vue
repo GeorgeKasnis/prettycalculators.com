@@ -1,7 +1,7 @@
 <template>
     <div>
         <UiFormErrorContainer :errors="form.errors">
-            <UiFormContainer title="Temperature Converter">
+            <UiFormContainer title="Celcius to Fahrenheit ">
                 <InputsTextInput aria-label="Temperature in Celsius" placeholder="Temperature in Celsius" v-model="form.celsius" measurementUnit="℃" />
                 <ButtonsCalcBtn @click="calculate" @keyup.enter="calculate" />
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="{ active: form.result }">

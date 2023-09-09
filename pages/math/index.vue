@@ -3,9 +3,28 @@
         <template v-slot:main>
             <CategoryCardsMath :hasH1="true" class="mb-big" />
             <p>
-                Looking for a reliable way to calculate percentages, ratios, or other mathematical equations? Our free math calculator tools can help you solve equations quickly and accurately. Whether you need to calculate percentages, convert units of measurement, or determine the area of a shape,
-                our calculators can provide you with precise results. Our percentage calculator is just one example of the many tools we offer, allowing you to quickly calculate percentages for any number or value. With our user-friendly interface, you can easily input your data and receive accurate
-                calculations in seconds. Start using our math calculator tools today to take the first step towards solving complex equations with ease!
+                Are you ready to simplify your mathematical challenges and computations? Look no further! Our math calculator page offers a diverse range of mathematical tools to help you conquer complex problems with ease. Two of our standout calculators are the Percentage Calculator and Manhattan
+                Distance Calculator, designed to provide you with accurate solutions to common mathematical hurdles.
+            </p>
+
+            <p>
+                <nuxt-link to="/math/percentage-calculator" class="font-bold">Percentage Calculator</nuxt-link>: Mastering percentages is a breeze with our versatile Percentage Calculator. Whether you need to calculate discounts, markups, tax amounts, or determine the ratio of one quantity to
+                another, our tool simplifies the process. Say goodbye to manual percentage calculations; let our calculator handle it for you!
+            </p>
+
+            <p>
+                <nuxt-link to="/math/manhattan-distance-calculator" class="font-bold">Manhattan Distance Calculator</nuxt-link>: If you're grappling with spatial problems in a city grid, our Manhattan Distance Calculator is your go-to solution. Simplify distance calculations for route planning,
+                logistics, and more. Whether you're navigating city streets or designing efficient transportation routes, this calculator streamlines the process, saving you time and effort.
+            </p>
+
+            <p>
+                Our user-friendly calculators are entirely free and accessible from any device with an internet connection. Whether you're a student, a professional, or anyone who encounters mathematical challenges, our math calculator tools are designed to empower you. Start using our math
+                calculators today to tackle math-related tasks with confidence and precision. Taking the first step toward mathematical proficiency is now easier than ever. With our powerful and easy-to-use math calculators, success is just a click away!
+            </p>
+
+            <p>
+                Don't let mathematical complexities hold you back. Whether you're calculating percentages for financial planning or determining Manhattan distances for logistical efficiency, our calculators are your trusty companions. Join countless users who have harnessed the power of our math
+                tools to streamline their work and studies. With our comprehensive suite of mathematical calculators, we're here to help you excel in your math-related endeavors.
             </p>
         </template>
         <template v-slot:recommended>
