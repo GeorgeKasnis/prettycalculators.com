@@ -42,21 +42,21 @@
 
 <script setup>
 useHead({
-    title: "Pretty Calculators - Fitness",
+    title: "Pretty Calculators - Simplify Your Daily Calculations with Beautifully Designed Tools",
     meta: [
-        { hid: "title", name: "title", content: "Pretty Calculators - Fitness" },
+        { hid: "title", name: "title", content: "Pretty Calculators - Simplify Your Daily Calculations with Beautifully Designed Tools" },
         {
             hid: "description",
             name: "description",
             content:
-                "Achieve your fitness goals with ease using Pretty Calculators' collection of beautifully designed fitness calculators. From tracking your calorie intake to determining your BMI and ideal weight, our tools are perfect for anyone looking to improve their health and wellness. Browse our selection of easy-to-use fitness calculators today and start your journey to a healthier you",
+                "Discover a stunning collection of calculators for fitness, health, math, and conversions at Pretty Calculators. Our easy-to-use tools are designed to simplify your daily calculations and make your life easier. Explore our selection now and find the perfect calculator for your needs!",
         },
-        { hid: "og-title", property: "og:title", content: "Pretty Calculators - Fitness" },
+        { hid: "og-title", property: "og:title", content: "Pretty Calculators - Simplify Your Daily Calculations with Beautifully Designed Tools" },
         {
             hid: "og:description",
             property: "og:description",
             content:
-                "Achieve your fitness goals with ease using Pretty Calculators' collection of beautifully designed fitness calculators. From tracking your calorie intake to determining your BMI and ideal weight, our tools are perfect for anyone looking to improve their health and wellness. Browse our selection of easy-to-use fitness calculators today and start your journey to a healthier you",
+                "Discover a stunning collection of calculators for fitness, health, math, and conversions at Pretty Calculators. Our easy-to-use tools are designed to simplify your daily calculations and make your life easier. Explore our selection now and find the perfect calculator for your needs!",
         },
     ],
 });
