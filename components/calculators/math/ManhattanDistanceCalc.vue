@@ -11,7 +11,7 @@
                     </TabList>
                     <TabPanels>
                         <TabPanel>
-                            <UiFormContainer>
+                            <div class="flex flex-col gap-small relative">
                                 <InputsTextInput label="First Point X" aria-label="First Point" v-model="form.firstPointX" measurementUnit="x" />
                                 <InputsTextInput label="Second Point X" aria-label="First Point" v-model="form.secondPointX" measurementUnit="x" />
                                 <ButtonsCalcBtn @click="calculate('1D')" @keyup.enter="calculate" />
@@ -21,10 +21,10 @@
                                     </UiBaseResult>
                                     <button @click="clearEverything(form)" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
                                 </div>
-                            </UiFormContainer>
+                            </div>
                         </TabPanel>
                         <TabPanel>
-                            <UiFormContainer>
+                            <div class="flex flex-col gap-small relative">
                                 <InputsTextInput label="First Point X" aria-label="First Point" v-model="form.firstPointX" measurementUnit="x" />
                                 <InputsTextInput aria-label="First Point Y" v-model="form.firstPointY" measurementUnit="y" />
                                 <InputsTextInput label="Second Point X" aria-label="First Point" v-model="form.secondPointX" measurementUnit="x" />
@@ -36,10 +36,10 @@
                                     </UiBaseResult>
                                     <button @click="clearEverything(form)" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
                                 </div>
-                            </UiFormContainer>
+                            </div>
                         </TabPanel>
                         <TabPanel>
-                            <UiFormContainer>
+                            <div class="flex flex-col gap-small relative">
                                 <InputsTextInput label="First Point X" aria-label="First Point" v-model="form.firstPointX" measurementUnit="x" />
                                 <InputsTextInput aria-label="First Point Y" v-model="form.firstPointY" measurementUnit="y" />
                                 <InputsTextInput aria-label="First Point Z" v-model="form.firstPointZ" measurementUnit="z" />
@@ -53,10 +53,10 @@
                                     </UiBaseResult>
                                     <button @click="clearEverything(form)" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
                                 </div>
-                            </UiFormContainer>
+                            </div>
                         </TabPanel>
                         <TabPanel>
-                            <UiFormContainer>
+                            <div class="flex flex-col gap-small relative">
                                 <InputsTextInput label="First Point X" aria-label="First Point" v-model="form.firstPointX" measurementUnit="x" />
                                 <InputsTextInput aria-label="First Point Y" v-model="form.firstPointY" measurementUnit="y" />
                                 <InputsTextInput aria-label="First Point Z" v-model="form.firstPointZ" measurementUnit="z" />
@@ -72,7 +72,7 @@
                                     </UiBaseResult>
                                     <button @click="clearEverything(form)" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
                                 </div>
-                            </UiFormContainer>
+                            </div>
                         </TabPanel>
                     </TabPanels>
                 </TabGroup>

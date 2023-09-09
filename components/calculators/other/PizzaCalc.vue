@@ -8,7 +8,7 @@
                 </TabList>
                 <TabPanels>
                     <TabPanel>
-                        <UiFormContainer>
+                        <div class="flex flex-col gap-small relative">
                             <InputsTextInput label="Number of pizzas" aria-label="Number of pizzas" v-model="numberOfPizza" />
                             <InputsTextInput aria-label="Weight of Doughball" v-model="weightOrDoughball" label="Weight of Doughball" measurementUnit="g" />
                             <InputsTextInput aria-label="Amount Of Water (%)" v-model="amountOfWater" label="Amount Of Water (%)" measurementUnit="ml" />
@@ -27,10 +27,10 @@
                                 </UiBaseResult>
                                 <button @click="clearEverything(form)" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
                             </div>
-                        </UiFormContainer>
+                        </div>
                     </TabPanel>
                     <TabPanel>
-                        <UiFormContainer>
+                        <div class="flex flex-col gap-small relative">
                             <InputsTextInput label="Number of pizzas" aria-label="Number of pizzas" v-model="numberOfPizza" />
                             <InputsTextInput aria-label="Weight of Doughball" v-model="weightOrDoughball" label="Weight of Doughball" measurementUnit="g" />
                             <InputsTextInput aria-label="Amount Of Water (%)" v-model="americanAmountOfWater" label="Amount Of Water (%)" measurementUnit="ml" />
@@ -52,7 +52,7 @@
                                 </UiBaseResult>
                                 <button @click="clearEverything(form)" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
                             </div>
-                        </UiFormContainer>
+                        </div>
                     </TabPanel>
                 </TabPanels>
             </TabGroup>
