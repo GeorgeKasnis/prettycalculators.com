@@ -14,7 +14,7 @@ useHead(() => ({
   link: [
     {
       rel: 'canonical',
-      href: 'https://www.prettycalculators.com/' + route.path,
+      href: 'https://www.prettycalculators.com' + route.path,
     },
   ],
 }))
