@@ -8,17 +8,14 @@
     </div>
 </template>
 
-<script>
-export default {
- head() {
-    return {
-      link: [
-        {
-          rel: 'canonical',
-          href: 'https://www.prettycalculators.com' + this.$route.path
-        }
-      ]
-    }
-  }
-};
+<script setup>
+const route = useRoute()
+useHead(() => ({
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://www.prettycalculators.com/' + route.path,
+    },
+  ],
+}))
 </script>
