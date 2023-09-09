@@ -3,11 +3,13 @@
         <CalculatorsOtherAquaCalc />
         <UiCalcDescription>
             <template v-slot:description>
-                <p>A Water Intake Calculator is a tool that allows you to calculate how much water you should be drinking each day based on your weight.</p>
-                <p>Proper hydration is essential for maintaining good health, and this calculator can help you determine how much water you need to drink to stay hydrated. The calculator takes your weight in kilograms as input and calculates your recommended daily water intake in liters.</p>
-                <p>It's important to note that this is just a general guideline, and other factors like activity level, climate, and health conditions can also affect your daily water needs.</p>
+                <p>Discover the importance of proper hydration with our Water Intake Calculator. This invaluable tool empowers you to determine your daily water consumption requirements based on your weight, contributing to your overall health and well-being.</p>
+                <p>Hydration is a cornerstone of good health, and our calculator simplifies the process of establishing your daily water intake goal. By inputting your weight in kilograms, the calculator swiftly calculates your recommended daily water consumption in liters.</p>
+                <p>It's crucial to remember that this calculation serves as a general guideline. Your individual hydration needs may vary based on factors such as activity level, climate, and health conditions.</p>
+                <p>Proper hydration is essential for various bodily functions, including regulating body temperature, supporting digestion, and maintaining healthy skin. It also aids in cognitive performance and overall well-being.</p>
+                <p>By using our Water Intake Calculator, you can take a proactive step toward staying adequately hydrated and optimizing your health.</p>
             </template>
-            <template v-slot:example>A person who weighs 70 kg should drink approximately 2.1 liters of water per day.</template>
+            <template v-slot:example>For instance, a person with a weight of 70 kg should aim to consume approximately 2.1 liters of water per day to meet their hydration needs.</template>
         </UiCalcDescription>
     </UiBaseContainer>
 </template>

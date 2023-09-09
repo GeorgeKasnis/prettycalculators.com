@@ -1,6 +1,6 @@
 <template>
     <div class="h-full flex flex-col">
-        <h1 class="text-small font-bold mb-small">Pretty Calculators - Find the calculator you need</h1>
+        <h1 class="text-small font-bold mb-small mobile:text-center">Find the calculator you need</h1>
         <div class="w-full h-full grid grid-cols-1 lg:grid-cols-4 gap-big flex-1">
             <CategoryCardsFitness />
             <CategoryCardsMath />

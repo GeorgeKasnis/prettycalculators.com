@@ -3,14 +3,16 @@
         <CalculatorsOtherAgeCalc />
         <UiCalcDescription>
             <template v-slot:description>
-                <p>An Age Calculator is a tool that allows you to calculate your age based on your date of birth.</p>
-                <p>Knowing your age is important for various purposes, such as planning events, tracking milestones, or determining eligibility for certain activities or benefits.</p>
-                <p>Simply enter your date of birth, and the Age Calculator will calculate your current age accurately. It takes into account the current date and subtracts your birthdate to provide you with your age in years.</p>
+                <p>Calculate your age effortlessly with our Age Calculator. This handy tool is designed to determine your precise age based on your date of birth.</p>
+                <p>Knowing your age is crucial for a variety of purposes, whether you're planning milestone celebrations, ensuring eligibility for certain activities or benefits, or simply keeping track of your life journey.</p>
+                <p>Using our Age Calculator is a breeze. All you need to do is enter your date of birth, and the calculator will do the rest. It considers the current date and subtracts your birthdate to provide you with your age in years, ensuring an accurate and up-to-date result.</p>
+                <p>For example, if you were born on January 1, 1990, our calculator will display your current age, such as 32 years, enabling you to effortlessly keep track of your life's milestones.</p>
+                <p>Whether you're planning a birthday celebration, confirming eligibility for an event, or simply satisfying your curiosity, our Age Calculator is a reliable tool to determine your age with ease.</p>
             </template>
-            <template v-slot:example>If you were born on January 1, 1990, the calculator will display your current age, such as 32 years.</template>
         </UiCalcDescription>
     </UiBaseContainer>
 </template>
+
 
 <script setup>
 useHead({

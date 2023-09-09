@@ -4,7 +4,7 @@
             <h2 class="text-big leading-5 mb-small">Description</h2>
             <slot name="description" />
         </div>
-        <div>
+        <div v-if="$slots.example">
             <h3 class="text-big leading-5 mb-small">Example</h3>
             <slot name="example" />
         </div>
