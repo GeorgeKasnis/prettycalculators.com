@@ -21,19 +21,19 @@
 
 <script setup>
 useHead({
-    title: "Pretty Calculators - Simplify Your Daily Calculations with Beautifully Designed Tools",
+    title: "Pretty Calculators - Simplify with Elegance | Fitness, Health, Math & More",
     meta: [
-        { hid: "title", name: "title", content: "Pretty Calculators - Simplify Your Daily Calculations with Beautifully Designed Tools" },
+        { hid: "title", name: "title", content: "Pretty Calculators - Simplify with Elegance | Fitness, Health, Math & More" },
         {
             hid: "description",
             name: "description",
-            content: "Discover a stunning collection of calculators for fitness, health, math, and conversions at Pretty Calculators. Our easy-to-use tools are designed to simplify your daily calculations and make your life easier. Explore our selection now!",
+            content: "Discover a stunning collection of calculators at Pretty Calculators, designed to simplify daily tasks elegantly. Explore fitness, health, math, and conversion calculators now!",
         },
-        { hid: "og-title", property: "og:title", content: "Pretty Calculators - Simplify Your Daily Calculations with Beautifully Designed Tools" },
+        { hid: "og-title", property: "og:title", content: "Pretty Calculators - Simplify with Elegance | Fitness, Health, Math & More" },
         {
             hid: "og:description",
             property: "og:description",
-            content: "Discover a stunning collection of calculators for fitness, health, math, and conversions at Pretty Calculators. Our easy-to-use tools are designed to simplify your daily calculations and make your life easier. Explore our selection now!",
+            content: "Discover a stunning collection of calculators at Pretty Calculators, designed to simplify daily tasks elegantly. Explore fitness, health, math, and conversion calculators now!",
         },
     ],
 });
