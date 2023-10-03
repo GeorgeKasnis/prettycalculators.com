@@ -9,6 +9,12 @@
             <div>
                 <nuxt-link to="/unit/fahrenheit-to-celsius-converter" class="hover:font-bold">Fahrenheit to Celsius Converter</nuxt-link>
             </div>
+            <div>
+                <nuxt-link to="/unit/miles-to-kilometers" class="hover:font-bold">Miles to Kilometers</nuxt-link>
+            </div>
+            <div>
+                <nuxt-link to="/unit/kilometers-to-miles" class="hover:font-bold">Kilometers to Miles</nuxt-link>
+            </div>
         </div>
     </div>
 </template>

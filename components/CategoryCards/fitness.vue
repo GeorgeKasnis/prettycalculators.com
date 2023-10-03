@@ -2,7 +2,7 @@
     <div class="border-2 border-b brutalist-shadow p-big min-h-[20rem]">
         <h1 v-if="hasH1"><nuxt-link class="text-big font-bold" to="/fitness">Fitness</nuxt-link></h1>
         <h2 v-else><nuxt-link class="text-big font-bold" to="/fitness">Fitness</nuxt-link></h2>
-        <div class="p-small">
+        <div class="">
             <div>
                 <nuxt-link to="/fitness/bmi-calculator" class="hover:font-bold">BMI Calculator</nuxt-link>
             </div>
