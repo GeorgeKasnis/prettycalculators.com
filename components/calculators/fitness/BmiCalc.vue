@@ -5,12 +5,12 @@
         <UiBaseResult text="Result" :result="result" />
         <ButtonsClearBtn @click="clearEverything(form)" />
     </UiFormContainer>
-    <div class="brutalist-shadow mt-small w-full h-8 bg-white overflow-hidden flex">
-        <div class="w-8 font-bold grid place-items-center bg-black text-white border-2 border-main">0</div>
+    <div class="brutalist-shadow mt-small w-full h-10 bg-white overflow-hidden flex">
+        <div class="w-10 font-bold grid place-items-center bg-black text-white border-2 border-main">0</div>
         <div class="flex-1 border-t-2 border-b-2 border-main">
-            <div v-if="result" :style="{ width: barResult * 3.3333 + '%' }" class="bg-black h-full flex-1 flex items-center pl-small text transition-all"><span class="mix-blend-difference">{{ barText }}</span></div>
+            <div v-if="result" :style="{ width: barResult * 3.3333 + '%' }" class="bg-black h-full flex-1 flex items-center pl-small text transition-all"><span class="mix-blend-difference whitespace-nowrap">{{ barText }}</span></div>
         </div>
-        <div class="w-8 font-bold grid place-items-center bg-black text-white border-2 border-main">30</div>
+        <div class="w-10 font-bold grid place-items-center bg-black text-white border-2 border-main">30</div>
     </div>
 </template>
 
