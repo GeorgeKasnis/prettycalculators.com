@@ -7,8 +7,11 @@
                     A <span class="font-bold">Basal Metabolic Rate (BMR) calculator</span> is a valuable tool that helps estimate the number of calories your body burns while at rest. It's a fundamental component in understanding your overall energy expenditure. By taking into account essential
                     factors like <span class="font-bold">age, weight, height, and gender</span>, this calculator provides insights into your body's fundamental caloric needs. The calculation method for <span class="font-bold">BMR</span> depends on your gender.
                 </p>
-                <p>If you identify as <span class="font-bold">male</span>, the BMR calculation is as follows: \[<span class="font-bold">BMR</span> = 88.362 + (13.397 * \text{weight in kg}) + (4.799 * \text{height in cm}) - (5.677 * \text{age in years})\]</p>
-                <p>If you identify as <span class="font-bold">female</span>, the BMR calculation is slightly different: \[<span class="font-bold">BMR</span> = 447.593 + (9.247 * \text{weight in kg}) + (3.098 * \text{height in cm}) - (4.33 * \text{age in years})\]</p>
+                <p>If you are a <span class="font-bold">male</span>, the BMR is calculated as follows:</p>
+                <p>[<span class="font-bold">BMR</span> = 88.362 + (13.397 * weight in kilograms) + (4.799 * height in centimeters) - (5.677 * age in years)]</p>
+                <p>If you are a <span class="font-bold">female</span>, the BMR calculation is slightly different:</p>
+                <p>[<span class="font-bold">BMR</span> = 447.593 + (9.247 * weight in kilograms) + (3.098 * height in centimeters) - (4.33 * age in years)]</p>
+
                 <p>
                     Whether you're male or female, it's essential to note that <span class="font-bold">BMR</span> is an estimate and may vary among individuals due to factors like muscle mass, body composition, genetics, and more. It serves as a valuable starting point, best used alongside guidance
                     from a healthcare professional to gain a more accurate understanding of your specific calorie requirements and health objectives.
