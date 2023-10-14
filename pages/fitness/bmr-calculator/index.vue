@@ -4,20 +4,29 @@
         <UiCalcDescription>
             <template v-slot:description>
                 <p>
-                    A BMR calculator is a tool that can help you estimate the number of calories your body burns at rest, also known as your basal metabolic rate. It works by taking into account your age, weight, height, and gender. The Harris-Benedict equation is commonly used to calculate BMR for
-                    adults.
+                    A <span class="font-bold">Basal Metabolic Rate (BMR) calculator</span> is a valuable tool that helps estimate the number of calories your body burns while at rest. It's a fundamental component in understanding your overall energy expenditure. By taking into account essential
+                    factors like <span class="font-bold">age, weight, height, and gender</span>, this calculator provides insights into your body's fundamental caloric needs. The calculation method for <span class="font-bold">BMR</span> depends on your gender.
                 </p>
+                <p>If you identify as <span class="font-bold">male</span>, the BMR calculation is as follows: \[<span class="font-bold">BMR</span> = 88.362 + (13.397 * \text{weight in kg}) + (4.799 * \text{height in cm}) - (5.677 * \text{age in years})\]</p>
+                <p>If you identify as <span class="font-bold">female</span>, the BMR calculation is slightly different: \[<span class="font-bold">BMR</span> = 447.593 + (9.247 * \text{weight in kg}) + (3.098 * \text{height in cm}) - (4.33 * \text{age in years})\]</p>
                 <p>
-                    Keep in mind that BMR is just an estimate of the number of calories your body burns at rest, and it may not be accurate for everyone. Factors such as muscle mass, body composition, and genetics can affect your BMR, so it's best to use it as a starting point for discussing your
-                    calorie needs and health with a healthcare professional.
+                    Whether you're male or female, it's essential to note that <span class="font-bold">BMR</span> is an estimate and may vary among individuals due to factors like muscle mass, body composition, genetics, and more. It serves as a valuable starting point, best used alongside guidance
+                    from a healthcare professional to gain a more accurate understanding of your specific calorie requirements and health objectives.
                 </p>
+                <p><span class="font-bold">BMR</span> represents the number of calories your body requires to maintain essential physiological functions, such as breathing, circulation, and cell production, when at rest. It signifies the energy needed to sustain life in a state of complete rest.</p>
             </template>
             <template v-slot:example>
-                <p>Let's say you are a 30-year-old female who weighs 65 kilograms and is 1.65 meters tall.</p>
-                <p>To calculate your BMR, you would use the following formula: BMR = 655 + (9.6 x weight in kg) + (1.8 x height in cm) - (4.7 x age in years)</p>
-                <p>Substituting the values, you get: BMR = 655 + (9.6 x 65) + (1.8 x 165) - (4.7 x 30)</p>
-                <p>Simplifying, you get: BMR = 1430</p>
-                <p>So, your estimated BMR is 1430 calories per day.</p>
+                <p>For example, let's consider a <span class="font-bold">30-year-old female</span> who <span class="font-bold">weighs 65 kilograms</span> and is <span class="font-bold">1.65 meters tall</span>. Substituting these values into the formula for a female:</p>
+                <p>[<span class="font-bold">BMR</span> = 447.593 + (9.247 * 65) + (3.098 * 165) - (4.33 * 30)]</p>
+                <p>Simplifying this equation:</p>
+                <p>[<span class="font-bold">BMR</span> = 447.593 + 601.055 + 511.77 - 129.9]</p>
+                <p>[<span class="font-bold">BMR</span> = 1430]</p>
+                <p>Therefore, this individual's estimated <span class="font-bold">BMR</span> is approximately <span class="font-bold">1430 calories per day</span>. This represents the number of calories her body requires to maintain essential functions in a state of complete rest.</p>
+                <p>
+                    Understanding your <span class="font-bold">BMR</span> serves as a foundational step in determining your daily calorie needs. To maintain, gain, or lose weight, you must take into account your activity level and total daily energy expenditure (TDEE). By factoring in physical
+                    activity, you can calculate the number of calories needed to maintain your current weight or reach your desired objectives. Nonetheless, it's crucial to bear in mind that <span class="font-bold">BMR</span> is a starting point, and consulting with a healthcare professional or
+                    registered dietitian is highly recommended for personalized guidance on your nutritional and health journey.
+                </p>
             </template>
         </UiCalcDescription>
     </UiBaseContainer>
