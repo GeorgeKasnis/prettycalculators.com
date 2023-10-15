@@ -1,5 +1,5 @@
 <template>
-    <UiFormContainer title="Pizza Calculator" :result="result" @clear-form="clearEverything(form)" :hide-result="true">
+    <UiFormContainer title="Pizza Calculator"  :hide-result="true">
         <TabGroup :selectedIndex="selectedTab" @change="changeTab">
             <TabList class="flex gap-big mt-big">
                 <Tab @click="clearEverything(form)" class="!outline-none wf aria-selected:font-bold transition-all text-start tracking-wider">Italian</Tab>
@@ -22,6 +22,7 @@
                             <li class="text-sm mb-small" v-if="yeast">Dry Yeast : {{ yeast }} g</li>
                         </ul>
                     </div>
+                   <button class="mt-small" @click="clearEverything(form)" v-if="result">Clear</button>
                 </TabPanel>
                 <TabPanel>
                     <div class="flex flex-col gap-small relative">
@@ -41,6 +42,7 @@
                             <li class="text-sm mb-small" v-if="starter">Starter : {{ starter }} g</li>
                         </ul>
                     </div>
+                   <button class="mt-small" @click="clearEverything(form)" v-if="result">Clear</button>
                 </TabPanel>
             </TabPanels>
         </TabGroup>
