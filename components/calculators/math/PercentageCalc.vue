@@ -1,18 +1,10 @@
 <template>
     <div>
-        <UiFormErrorContainer :errors="form.errors">
-            <UiFormContainer title="Percentage Calculator">
-                <InputsTextInput aria-label="Percentage" placeholder="Percentage" v-model="form.percent" measurementUnit="%" />
-                <div>of</div>
-                <InputsTextInput aria-label="Number" placeholder="Number" v-model="form.number" />
-
-                <ButtonsCalcBtn @click="calculate" @keyup.enter="calculate" />
-                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="form.result ? 'active' : ''">
-                  <UiBaseResult v-if="form.result || form.result == 0" :text="` ${form.percent}% of ${form.number} =`" :result="form.result" />
-                    <button @click="clearEverything" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
-                </div>
-            </UiFormContainer>
-        </UiFormErrorContainer>
+        <UiFormContainer title="Percentage Calculator" :result="result" @clear-form="clearEverything(form)">
+            <InputsTextInput aria-label="Percentage" placeholder="Percentage" v-model="form.percent" measurementUnit="%" />
+            <div>of</div>
+            <InputsTextInput aria-label="Number" placeholder="Number" v-model="form.number" />
+        </UiFormContainer>
     </div>
 </template>
 
@@ -23,8 +15,6 @@ export default {
             form: {
                 percent: null,
                 number: null,
-                result: null,
-                errors: "",
             },
         };
     },
@@ -44,6 +34,14 @@ export default {
         clearEverything() {
             for (let key in this.form) {
                 this.form[key] = null;
+            }
+        },
+    },
+    computed: {
+        result() {
+            let result = (this.form.percent / 100) * this.form.number;
+            if (globalAllKeysAreNotNull(this.form) && !isNaN(result) && result > 0) {
+                return result;
             }
         },
     },

@@ -1,6 +1,9 @@
-export const globalAllKeysAreNotNull = (obj, keyToExclude) => {
+export const globalAllKeysAreNotNull = (obj, keysToExclude) => {
     for (const key in obj) {
-        if (key !== keyToExclude && (obj[key] === null || obj[key] <= 0 || obj[key] === "")) {
+        if (
+            (!keysToExclude || !keysToExclude.includes(key)) && // Check if the key should not be excluded
+            (obj[key] === null || obj[key] <= 0 || obj[key] === "")
+        ) {
             return false;
         }
     }
