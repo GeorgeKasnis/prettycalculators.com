@@ -1,12 +1,10 @@
 <template>
-    <UiFormErrorContainer :errors="form.errors">
-        <UiFormContainer title="Px to Rem">
-            <div class="flex child:w-full mobile:flex-col">
-                <InputsTextInput aria-label="Pixels" v-model="form.px" measurementUnit="Px" :measurementWidthBig="true" />
-                <InputsTextInput class="copy-text" @click="copyToClipBoard" aria-label="Rem" v-model="remResult" :measurementWidthBig="true" measurementUnit="Rem" />
-            </div>
-        </UiFormContainer>
-    </UiFormErrorContainer>
+    <UiFormContainer title="Px to Rem" :hide-result="true">
+        <div class="flex child:w-full mobile:flex-col">
+            <InputsTextInput aria-label="Pixels" v-model="form.px" measurementUnit="Px" :measurementWidthBig="true" />
+            <InputsTextInput class="copy-text" @click="copyToClipBoard" aria-label="Rem" v-model="remResult" :measurementWidthBig="true" measurementUnit="Rem" />
+        </div>
+    </UiFormContainer>
 </template>
 
 <script>
@@ -27,10 +25,10 @@ export default {
             toast.success("Text copied to clipboard");
         },
     },
-    computed:{
-        remResult(){
-           return this.form.px ? this.form.px / 16 : '';
-        }
-    }
+    computed: {
+        remResult() {
+            return this.form.px ? this.form.px / 16 : "";
+        },
+    },
 };
 </script>

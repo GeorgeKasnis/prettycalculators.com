@@ -1,17 +1,10 @@
 <template>
     <div>
-        <UiFormErrorContainer :errors="form.errors">
-            <UiFormContainer title="Age Calculator">
-                <InputsTextInput aria-label="Day" placeholder="Day" v-model="form.day" />
-                <InputsTextInput aria-label="Month" placeholder="Month" v-model="form.month" />
-                <InputsTextInput aria-label="Year" placeholder="Year" v-model="form.year" />
-                <ButtonsCalcBtn @click="calculate" @keyup.enter="calculate" />
-                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white bg-black w-full h-full grid place-content-center clip-path-circle" :class="age ? 'active' : ''">
-                    <UiBaseResult v-if="age" text="Age:" :result="`${age.years} years ${age.months} months ${age.days} days`" />
-                    <button @click="clearEverything" class="absolute right-2 top-2 h-4 w-4 z-10" aria-label="Close Results Button">x</button>
-                </div>
-            </UiFormContainer>
-        </UiFormErrorContainer>
+        <UiFormContainer title="Age Calculator" :result="result" @clear-form="clearEverything(form)">
+            <InputsTextInput aria-label="Day" placeholder="Day" v-model="form.day" measurementUnit="Day" :measurementWidthBig="true" />
+            <InputsTextInput aria-label="Month" placeholder="Month" v-model="form.month" measurementUnit="Month" :measurementWidthBig="true" />
+            <InputsTextInput aria-label="Year" placeholder="Year" v-model="form.year" measurementUnit="Year" :measurementWidthBig="true" />
+        </UiFormContainer>
     </div>
 </template>
 
@@ -23,13 +16,12 @@ export default {
                 day: "",
                 month: "",
                 year: "",
-                errors: null,
             },
-            age: null,
         };
     },
-    methods: {
-        calculate() {
+
+    computed: {
+        result() {
             const { day, month, year } = this.form;
             const birthdate = new Date(`${year}-${month}-${day}`);
             if (isNaN(birthdate)) {
@@ -52,23 +44,13 @@ export default {
             const totalMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
             const totalSeconds = Math.floor(diffInMilliseconds / 1000);
 
-            this.age = {
+            let result = {
                 years,
                 months,
                 days,
-                totalMonths,
-                totalWeeks,
-                totalDays,
-                totalHours,
-                totalMinutes,
-                totalSeconds,
             };
-        },
-        clearEverything() {
-            this.form.day = "";
-            this.form.month = "";
-            this.form.year = "";
-            this.age = null;
+            console.log(result);
+            return globalAllKeysAreNotNull(this.form)   ? `${result.years} Years ${result.months} Months ${result.days} Days` : "";
         },
     },
 };

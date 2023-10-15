@@ -3,7 +3,7 @@
         <h1 class="text-big leading-none">{{ title }}</h1>
         <div class="flex flex-col gap-small relative">
             <slot />
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center mobile:flex-wrap gap-x-8" v-if="!hideResult">
                 <UiBaseResult text="Result" :result="result" />
                 <transition name="fade"> 
                     <button v-if="result" @click="clearEverything(form)">Clear</button>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    props: ["title", "result"],
+    props: ["title", "result","hideResult"],
     methods: {
         clearEverything() {
             this.$emit("clear-form"); // Emit a custom event
