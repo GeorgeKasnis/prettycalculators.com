@@ -7,18 +7,13 @@ export default defineNuxtConfig({
         },
     },
 
-    plugins: [
-        '~/plugins/vue-toast',
-      ],
+    plugins: ["~/plugins/vue-toast"],
 
-    modules: [
-        "@nuxtjs/device",
-        "@nuxtjs/google-adsense"
-    ],
+    modules: ["@nuxtjs/device", "@nuxtjs/google-adsense", "@nuxtjs/strapi"],
 
-    'google-adsense': {
-        id: 'ca-pub-3096386860979568'
-      },
+    "google-adsense": {
+        id: "ca-pub-3096386860979568",
+    },
 
     device: {
         refreshOnResize: true,
@@ -106,8 +101,6 @@ export default defineNuxtConfig({
     },
 
     build: {
-        transpile: [
-            "vue-toastification"
-        ],
+        transpile: ["vue-toastification"],
     },
 });
