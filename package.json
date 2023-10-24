@@ -24,7 +24,6 @@
     "@headlessui/vue": "^1.7.16",
     "@nuxtjs/google-adsense": "^2.1.0",
     "@vueuse/core": "^9.13.0",
-    "strapi-plugin-netlify-deployments": "^2.0.1",
     "vue-gtag-next": "^1.14.0",
     "vue-router": "^4.0.13",
     "vue-toastification": "^2.0.0-rc.5",
