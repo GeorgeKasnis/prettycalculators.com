@@ -1,13 +1,13 @@
 <template>
     <div class="h-full flex flex-col">
-        <h1 class="text-small font-bold mb-small mobile:text-center">Find the calculator you need</h1>
+        <h1 class="text-small font-bold mb-small mobile:text-center bg-black text-main p-small">Find the calculator you need</h1>
         <div class="w-full h-full grid grid-cols-1 lg:grid-cols-4 gap-big flex-1">
             <CategoryCardsFitness />
             <CategoryCardsMath />
             <CategoryCardsUnit />
             <CategoryCardsOther />
         </div>
-        <div class="border-b brutalist-shadow p-big mt-big">
+        <div class="border-b bg-black text-main p-big mt-big max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-main ">
             <p>
                 Welcome to Pretty Calculators, your gateway to a world of versatile and user-friendly tools. Dive into our extensive collection, offering tools for tracking your health with our
                 <a href="/fitness/bmi-calculator" aria-label="BMI Calculator" class="font-bold"><strong>BMI calculator</strong></a
@@ -106,6 +106,9 @@
             </p>
             <p>Welcome to Pretty Calculators—where precision meets productivity, and where your success is just a calculation away.</p>
         </div>
+
+        <BlogPostList />
+ 
     </div>
 </template>
 
@@ -127,4 +130,6 @@ useHead({
         },
     ],
 });
+
+
 </script>

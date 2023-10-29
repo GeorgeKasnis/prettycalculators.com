@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+    .main-link{
+        @apply px-big py-small border border-black text-black hover:text-main hover:bg-black transition-all
+    }
+}
+
 @font-face {
     font-family: "Unnamed";
     src: url("@/assets/fonts/Unnamed-Light.woff2") format("woff2"), url("@/assets/fonts/Unnamed-Light.woff") format("woff"), url("@/assets/fonts/Unnamed-Light.ttf") format("truetype");

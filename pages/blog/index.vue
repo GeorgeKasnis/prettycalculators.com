@@ -1,0 +1,3 @@
+<template>
+  <BlogPostList />
+</template>
