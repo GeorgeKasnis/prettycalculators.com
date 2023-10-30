@@ -91,13 +91,13 @@ export default {
 
             let result = manhattanDistance;
             if (dimension == 1) {
-                return globalAllKeysAreNotNull(this.form, ["firstPointY", "firstPointZ", "firstPointT", "secondPointY", "secondPointZ", "secondPointT"]) && !isNaN(result) && result > 0 ? result.toFixed() : "";
+                return globalAllKeysAreNotNull(this.form, ["firstPointY", "firstPointZ", "firstPointT", "secondPointY", "secondPointZ", "secondPointT"]) && !isNaN(result) && result >= 0 ? result.toFixed() : "";
             } else if (dimension == 2) {
-                return globalAllKeysAreNotNull(this.form, ["firstPointZ", "firstPointT", "secondPointZ", "secondPointT"]) && !isNaN(result) && result > 0 ? result.toFixed() : "";
+                return globalAllKeysAreNotNull(this.form, ["firstPointZ", "firstPointT", "secondPointZ", "secondPointT"]) && !isNaN(result) && result >= 0 ? result.toFixed() : "";
             } else if (dimension == 3) {
-                return globalAllKeysAreNotNull(this.form, ["firstPointT", "secondPointT"]) && !isNaN(result) && result > 0 ? result.toFixed() : "";
+                return globalAllKeysAreNotNull(this.form, ["firstPointT", "secondPointT"]) && !isNaN(result) && result >= 0 ? result.toFixed() : "";
             } else if (dimension == 4) {
-                return globalAllKeysAreNotNull(this.form) && !isNaN(result) && result > 0 ? result.toFixed() : "";
+                return globalAllKeysAreNotNull(this.form) && !isNaN(result) && result >= 0 ? result.toFixed() : "";
             }
         },
     },
