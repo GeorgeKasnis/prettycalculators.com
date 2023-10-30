@@ -9,7 +9,7 @@ export default defineNuxtConfig({
 
     plugins: ["~/plugins/vue-toast"],
 
-    modules: ["@nuxtjs/device", "@nuxtjs/google-adsense", "@nuxtjs/strapi"],
+    modules: ["@nuxtjs/device", "@nuxtjs/google-adsense"],
 
     "google-adsense": {
         id: "ca-pub-3096386860979568",
