@@ -1,0 +1,9 @@
+[build]
+  command = "nuxt build" # Customize this as needed
+  publish = "dist" # Customize this as needed
+
+[context.production.environment]
+API_URL = "https://cdn.contentful.com/spaces/480jcgpwnf1k/environments/master/entries?access_token=Px_rMxWrrpuROM5sQB4xWZtLiHfnCPnvti1vC_1jUvg"
+
+[context.development.environment]
+API_URL = "https://cdn.contentful.com/spaces/480jcgpwnf1k/environments/master/entries?access_token=Px_rMxWrrpuROM5sQB4xWZtLiHfnCPnvti1vC_1jUvg"
