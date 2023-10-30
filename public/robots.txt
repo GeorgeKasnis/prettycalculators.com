@@ -1,5 +1,2 @@
 User-agent: *
-Disallow: /private/
-Disallow: /restricted/
-Disallow: /admin/
 Allow: /ads.txt

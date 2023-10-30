@@ -1,17 +1,38 @@
 <template>
     <div class="max-w-4xl w-full">
-        <h1 class="text-big font-bold mb-small">{{post.items[0].fields.title}}</h1>
-        <img class="w-full aspect-video object-cover" :src="`https://${post.includes.Asset[0].fields.file.url}`" alt="">
-        <div>
-            <p v-for="i,index in post.items[0].fields.content.content" :key="index" v-html="i.content[0].value"></p>
+        <h1 class="text-big font-bold mb-small">{{ post.items[0].fields.title }}</h1>
+        <img class="w-full aspect-video object-cover" :src="`https://${post.includes.Asset[0].fields.file.url}`" :alt="post.includes.Asset[0].fields.title" />
+        <div class="mt-big">
+            <ClientOnly>
+                <p v-if="documentToHtmlString(post.items[0].fields.content)" v-html="documentToHtmlString(post.items[0].fields.content)"></p>
+            </ClientOnly>
         </div>
     </div>
 </template>
 
 <script setup>
-    const runtimeConfig = useRuntimeConfig();
-    const route = useRoute();
-    const { data: post } = await useFetch(`${runtimeConfig.public.API_URL}&content_type=blog&fields.slug=${route.params.slug}`);
-    console.log(post);
-</script>
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
+const runtimeConfig = useRuntimeConfig();
+const route = useRoute();
+const { data: post } = await useFetch(`${runtimeConfig.public.API_URL}&content_type=blog&fields.slug=${route.params.slug}`);
+console.log(post);
+
+useHead({
+    title: `Pretty Calculators - ${post.value.items[0].fields.metaTitle}`,
+    meta: [
+        { hid: "title", name: "title", content: `Pretty Calculators - ${post.value.items[0].fields.metaTitle}` },
+        {
+            hid: "description",
+            name: "description",
+            content: `${post.value.items[0].fields.metaDescription}`,
+        },
+        { hid: "og-title", property: "og:title", content: `Pretty Calculators - ${post.value.items[0].fields.metaTitle}` },
+        {
+            hid: "og:description",
+            property: "og:description",
+            content: `${post.value.items[0].fields.metaDescription}`,
+        },
+    ],
+});
+</script>
