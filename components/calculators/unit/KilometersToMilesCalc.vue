@@ -18,7 +18,7 @@ export default {
     computed: {
         result() {
             let result = (this.form.kilometers / 1.60934).toFixed(2);
-            console.log(result);
+ 
             return globalAllKeysAreNotNull(this.form) && !isNaN(result) && result > 0 ? `${result} Miles` : "";
         },
     },

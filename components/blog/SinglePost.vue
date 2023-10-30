@@ -27,6 +27,4 @@ const props = defineProps({
 const fixUrl = (url) => {
     return url.replace(/^\/+/, "");
 };
-
-console.log("aaa", props.imgUrl);
 </script>

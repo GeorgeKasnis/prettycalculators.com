@@ -49,7 +49,7 @@ export default {
                 months,
                 days,
             };
-            console.log(result);
+        
             return globalAllKeysAreNotNull(this.form)   ? `${result.years} Years ${result.months} Months ${result.days} Days` : "";
         },
     },

@@ -19,7 +19,6 @@ export default {
     computed: {
         result() {
             let result = ((this.form.celsius * 9) / 5 + 32).toFixed(1);
-            console.log(result);
             return globalAllKeysAreNotNull(this.form) && !isNaN(result) && result > 0 ? `${result} °F` : "";
         },
     },
