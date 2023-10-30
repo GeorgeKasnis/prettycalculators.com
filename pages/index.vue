@@ -107,7 +107,7 @@
             <p>Welcome to Pretty Calculators—where precision meets productivity, and where your success is just a calculation away.</p>
         </div>
 
-        <BlogPostList />
+        <BlogPostList class="mt-big pt-big" />
  
     </div>
 </template>

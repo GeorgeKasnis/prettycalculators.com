@@ -16,7 +16,7 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
 const { data: post } = await useFetch(`${runtimeConfig.public.API_URL}&content_type=blog&fields.slug=${route.params.slug}`);
-console.log(post);
+
 
 useHead({
     title: `Pretty Calculators - ${post.value.items[0].fields.metaTitle}`,

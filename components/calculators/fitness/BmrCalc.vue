@@ -26,7 +26,7 @@ export default {
         result() {
             if (this.form.gender === "male") {
                 let result = 88.362 + 13.397 * this.form.weight + 4.799 * this.form.height - 5.677 * this.form.age;
-                console.log(globalAllKeysAreNotNull(this.form));
+              
                 return globalAllKeysAreNotNull(this.form) && !isNaN(result)  && result > 0 ? result.toFixed() : "";
             } else {
                 let result = 447.593 + 9.247 * this.form.weight + 3.098 * this.form.height - 4.33 * this.form.age;

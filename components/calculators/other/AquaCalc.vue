@@ -16,7 +16,7 @@ export default {
     computed: {
         result() {
             let result = (this.form.weight * 30) / 1000;
-            console.log(result);
+         
             return globalAllKeysAreNotNull(this.form) && !isNaN(result) && result > 0 ? `${result} ml` : "";
         },
     },
