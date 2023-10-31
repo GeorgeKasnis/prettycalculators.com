@@ -2,127 +2,133 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.prettycalculators.com/</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/blog/body-mass-index-bmi-what-it-is-and-how-to-calculate-it</loc>
-    <lastmod>2023-10-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.prettycalculators.com/unit</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/fitness</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/math</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/fitness/bmi-calculator</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/other/px-to-rem-calculator</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/fitness/body-fat-calculator</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.prettycalculators.com/unit/miles-to-kilometers</loc>
-    <lastmod>2023-10-30</lastmod>
+    <loc>https://www.prettycalculators.com/unit</loc>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/other/pizza-calculator</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.prettycalculators.com/unit/miles-to-kilometers</loc>
+    <lastmod>2023-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.prettycalculators.com/blog/understanding-body-fat-percentage-a-comprehensive-guide-to-health-and-fitness</loc>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/unit/fahrenheit-to-celsius-converter</loc>
-    <lastmod>2023-10-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.prettycalculators.com/unit/celsius-to-fahrenheit-converter</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/blog</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.prettycalculators.com/unit/celsius-to-fahrenheit-converter</loc>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/terms-of-use</loc>
-    <lastmod>2023-10-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.prettycalculators.com/other/age-calculator</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/math/manhattan-distance-calculator</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.prettycalculators.com/other/age-calculator</loc>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/other</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/unit/kilometers-to-miles</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/math/percentage-calculator</loc>
-    <lastmod>2023-10-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.prettycalculators.com/fitness/bmr-calculator</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.prettycalculators.com/other/aqua-calculator</loc>
-    <lastmod>2023-10-30</lastmod>
+    <lastmod>2023-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.prettycalculators.com/fitness/bmr-calculator</loc>
+    <lastmod>2023-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
