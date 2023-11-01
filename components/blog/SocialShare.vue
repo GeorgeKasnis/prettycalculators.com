@@ -26,6 +26,10 @@ const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
 
 const props = defineProps({
+    image: {
+        type: String,
+        required: true,
+    },
     title: {
         type: String,
         required: true,
