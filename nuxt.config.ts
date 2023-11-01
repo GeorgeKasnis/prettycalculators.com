@@ -21,12 +21,12 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://www.prettycalculators.com/",
+            SITE_URL: process.env.SITE_URL || "https://www.prettycalculators.com/",
             API_URL: process.env.API_URL,
         },
     },
 
-    css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass"],
+    css: ["~/assets/css/index.css", "vuetify/lib/styles/main.sass", "@fortawesome/fontawesome-svg-core/styles.css"],
 
     app: {
         head: {
@@ -102,6 +102,6 @@ export default defineNuxtConfig({
     },
 
     build: {
-        transpile: ["vue-toastification"],
+        transpile: ["vue-toastification", "vuesocialsharing"],
     },
 });

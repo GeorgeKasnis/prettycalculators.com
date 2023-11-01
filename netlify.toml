@@ -4,6 +4,8 @@
 
 [context.production.environment]
 API_URL = "https://cdn.contentful.com/spaces/480jcgpwnf1k/environments/master/entries?access_token=Px_rMxWrrpuROM5sQB4xWZtLiHfnCPnvti1vC_1jUvg"
+SITE_URL = "https://www.prettycalculators.com/"
 
 [context.development.environment]
 API_URL = "https://cdn.contentful.com/spaces/480jcgpwnf1k/environments/master/entries?access_token=Px_rMxWrrpuROM5sQB4xWZtLiHfnCPnvti1vC_1jUvg"
+SITE_URL = "https://www.prettycalculators.com/"
