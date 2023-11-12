@@ -3,9 +3,11 @@
         <nuxt-link to="/blog">
             <h2 class="text-small font-bold p-small bg-black text-main">Blog</h2>
         </nuxt-link>
-        <nuxt-link v-if="imgAreReady" to="#" class="grid grid-cols-4 gap-big mt-big tablet:grid-cols-3 mobile:grid-cols-1">
-            <BlogSinglePost v-for="(post, index) in posts.items" :key="index" :post-data="post" :img-url="imagesUrls[index]" />
-        </nuxt-link>
+        <transition-group name="fade" tag="div">
+            <nuxt-link v-if="imgAreReady" to="#" class="grid grid-cols-4 gap-big mt-big tablet:grid-cols-3 mobile:grid-cols-1">
+                <BlogSinglePost v-for="(post, index) in posts.items" :key="index" :post-data="post" :img-url="imagesUrls[index]" />
+            </nuxt-link>
+        </transition-group>
     </div>
 </template>
 
@@ -20,7 +22,7 @@ const matchImageUrls = () => {
     imgAreReady.value = false;
     imagesUrls.value = [];
 
-    const assetMap = new Map(posts.value.includes.Asset.map(asset => [asset.sys.id, asset.fields.file.url]));
+    const assetMap = new Map(posts.value.includes.Asset.map((asset) => [asset.sys.id, asset.fields.file.url]));
 
     for (const item of posts.value.items) {
         const imageId = item.fields.featuredImage.sys.id;
