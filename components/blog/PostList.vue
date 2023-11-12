@@ -19,16 +19,19 @@ const imagesUrls = ref([]);
 const matchImageUrls = () => {
     imgAreReady.value = false;
     imagesUrls.value = [];
-    for (let i in posts.value.items) {
-        for (let y in posts.value.includes.Asset) {
-            if ((posts.value.items[i].fields.featuredImage.sys.id == posts.value.includes.Asset[y].sys.id)) {
-                imagesUrls.value.push(posts.value.includes.Asset[y].fields.file.url);
-            }
+
+    const assetMap = new Map(posts.value.includes.Asset.map(asset => [asset.sys.id, asset.fields.file.url]));
+
+    for (const item of posts.value.items) {
+        const imageId = item.fields.featuredImage.sys.id;
+        const imageUrl = assetMap.get(imageId);
+
+        if (imageUrl) {
+            imagesUrls.value.push(imageUrl);
         }
     }
 
-    imagesUrls.value = imagesUrls.value.slice(0, posts.value.items.length);
-     imagesUrls.value ?  imgAreReady.value = true : imgAreReady.value = false ;
+    imgAreReady.value = imagesUrls.value.length > 0;
 };
 
 onMounted(() => {
