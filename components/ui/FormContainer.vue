@@ -10,12 +10,17 @@
                 </transition>
             </div>
         </div>
+        <button class="ml-auto bg-main px-4 py-2 text-sm" v-if="embed" @click="globalCopyEmbed(embed)">Copy Embed</button>
     </section>
 </template>
 
 <script>
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
+
 export default {
-    props: ["title", "result","hideResult"],
+    props: ["title", "result","hideResult",'embed'],
     methods: {
         clearEverything() {
             this.$emit("clear-form"); // Emit a custom event

@@ -1,5 +1,5 @@
 <template>
-    <UiFormContainer title="BMI Calculator" :result="result" @clear-form="clearEverything(form)">
+    <UiFormContainer :embed="embed" title="BMI Calculator" :result="result" @clear-form="clearEverything(form)">
         <InputsTextInput aria-label="Height in cm input to calculate Body Mass Index (BMI)" placeholder="Height" v-model="form.height" measurementUnit="Cm" />
         <InputsTextInput aria-label="Weight in kg input to calculate Body Mass Index (BMI)" placeholder="Weight" v-model="form.weight" measurementUnit="Kg" />
     </UiFormContainer>
@@ -10,6 +10,7 @@
                 <span class="mix-blend-difference whitespace-nowrap">{{ barText }}</span>
             </div>
         </div>
+
         <div class="w-10 font-bold grid place-items-center bg-black text-white border-2 border-main">30</div>
     </div>
 </template>
@@ -24,6 +25,7 @@ export default {
             },
             barResult: null,
             barText: null,
+            embed: `<iframe src="https://www.prettycalculators.com/fitness/bmi-calculator" style="border: 3px solid #000000; height: 510px; width: 350px; padding: 0.5rem" name="myiFrame" scrolling="no" frameborder="1" allowfullscreen> </iframe>`,
         };
     },
     computed: {
