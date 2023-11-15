@@ -157,3 +157,11 @@ input {
 .fade-leave-to {
   opacity: 0;
 }
+
+.blog-content ul{
+    list-style-type: disc;
+}
+
+.blog-content li{
+    margin-left: 2.5rem;
+}

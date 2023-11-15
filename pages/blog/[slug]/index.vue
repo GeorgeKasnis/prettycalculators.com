@@ -6,7 +6,7 @@
         <div class="mt-small block">
             <BlogSocialShare class="" :image="`https://${post.includes.Asset[0].fields.file.url}`" :title="post.items[0].fields.metaTitle" :description="post.items[0].fields.metaTitle" :slug="route.params.slug" />
         </div>
-        <div class="mt-big" v-html="documentToHtmlString(post.items[0].fields.content)"></div>
+        <div class="mt-big blog-content" v-html="documentToHtmlString(post.items[0].fields.content)"></div>
     </div>
 </template>
 
