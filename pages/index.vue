@@ -7,7 +7,7 @@
             <CategoryCardsUnit />
             <CategoryCardsOther />
         </div>
-        <div class="border-b bg-black text-main p-big mt-big max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-main ">
+        <div class="border-b bg-black text-main p-big mt-big max-h-80 overflow-y-auto scrollbar-track-black scrollbar-thin scrollbar-thumb-main ">
             <p>
                 Welcome to Pretty Calculators, your gateway to a world of versatile and user-friendly tools. Dive into our extensive collection, offering tools for tracking your health with our
                 <a href="/fitness/bmi-calculator" aria-label="BMI Calculator" class="font-bold"><strong>BMI calculator</strong></a
