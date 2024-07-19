@@ -1,19 +1,18 @@
 <template>
-    <UiFormContainer :embed="embed" title="BMI Calculator" :result="result" @clear-form="clearEverything(form)">
+    <UiFormContainer  title="BMI Calculator" :result="result" @clear-form="clearEverything(form)">
         <InputsTextInput aria-label="Height in cm input to calculate Body Mass Index (BMI)" placeholder="Height" v-model="form.height" measurementUnit="Cm" />
         <InputsTextInput aria-label="Weight in kg input to calculate Body Mass Index (BMI)" placeholder="Weight" v-model="form.weight" measurementUnit="Kg" />
-            <div class="brutalist-shadow mt-small w-full h-10 bg-white overflow-hidden flex">
-        <div class="w-10 font-bold grid place-items-center bg-black text-white border-2 border-main">0</div>
-        <div class="flex-1 border-t-2 border-b-2 border-main">
-            <div v-if="result" :style="{ width: barResult * 3.3333 + '%' }" class="bg-black h-full flex-1 flex items-center pl-small text transition-all">
-                <span class="mix-blend-difference whitespace-nowrap">{{ barText }}</span>
+        <div class="brutalist-shadow mt-small w-full h-10 bg-white overflow-hidden flex">
+            <div class="w-10 font-bold grid place-items-center bg-black text-white border-2 border-main">0</div>
+            <div class="flex-1 border-t-2 border-b-2 border-main">
+                <div v-if="result" :style="{ width: barResult * 3.3333 + '%' }" class="bg-black h-full flex-1 flex items-center pl-small text transition-all">
+                    <span class="mix-blend-difference whitespace-nowrap">{{ barText }}</span>
+                </div>
             </div>
+
+            <div class="w-10 font-bold grid place-items-center bg-black text-white border-2 border-main">30</div>
         </div>
-
-        <div class="w-10 font-bold grid place-items-center bg-black text-white border-2 border-main">30</div>
-    </div>
     </UiFormContainer>
-
 </template>
 
 <script>
