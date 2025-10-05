@@ -5,7 +5,7 @@
             <CategoryCardsFitness />
             <CategoryCardsMath />
             <CategoryCardsUnit />
-            <CategoryCardsOther />
+            <CategoryCardsOther /> 
         </div>
         <div class="border-b bg-black text-main p-big mt-big max-h-80 overflow-y-auto scrollbar-track-black scrollbar-thin scrollbar-thumb-main ">
             <p>
