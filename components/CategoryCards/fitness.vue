@@ -12,6 +12,12 @@
             <div>
                 <nuxt-link to="/fitness/bmr-calculator" class="hover:font-bold">BMR Calculator</nuxt-link>
             </div>
+            <div>
+                <nuxt-link to="/fitness/tdee-calculator" class="hover:font-bold">TDEE Calculator</nuxt-link>
+            </div>
+            <div>
+                <nuxt-link to="/fitness/ideal-weight-calculator" class="hover:font-bold">Ideal Weight Calculator</nuxt-link>
+            </div>
         </div>
     </div>
 </template>

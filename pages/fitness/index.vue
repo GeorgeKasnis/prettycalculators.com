@@ -24,6 +24,16 @@
             </p>
 
             <p>
+                <nuxt-link to="/fitness/tdee-calculator" class="font-bold">TDEE Calculator</nuxt-link>: Calculate your Total Daily Energy Expenditure (TDEE) — the total number of calories you burn each day. By combining your BMR with your activity level, TDEE gives you the most accurate
+                picture of your daily calorie needs, making it the go-to tool for weight loss, maintenance, or muscle gain.
+            </p>
+
+            <p>
+                <nuxt-link to="/fitness/ideal-weight-calculator" class="font-bold">Ideal Weight Calculator</nuxt-link>: Find out what a healthy weight looks like for your height and gender using the Hamwi formula. A great companion to our BMI calculator, it gives you a simple and clear target
+                to work towards on your fitness journey.
+            </p>
+
+            <p>
                 Our user-friendly calculators are completely free and accessible from any device with an internet connection. Start using our fitness calculator tools today to embark on your fitness journey with confidence and purpose. Take the first step towards achieving your fitness goals and
                 enhancing your overall well-being. With our powerful and easy-to-use fitness calculators, success is within your reach!
             </p>
