@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gunzip -c homepage_design.bin)",
+      "Bash(tar -xO prettycalculators/project/nuxt/components/AdSlot.vue)",
+      "Bash(tar -xO prettycalculators/project/nuxt/components/AppFooter.vue)",
+      "Bash(curl -s -L \"https://api.anthropic.com/v1/design/h/jXyxrXC-DdxbqQPM_OEPwQ?open_file=bmi-calculator.html\" -o /tmp/design.tar.gz)",
+      "Bash(tar -tzf /tmp/design.tar.gz)",
+      "Bash(tar -xzf /tmp/design.tar.gz -O --wildcards \"*/bmi-calculator.html\")",
+      "Bash(tar -xzf /tmp/design.tar.gz -O --wildcards \"*/README*\")",
+      "Bash(curl -s -L \"https://api.anthropic.com/v1/design/h/jXyxrXC-DdxbqQPM_OEPwQ?open_file=bmi-calculator.html\" -o /tmp/design2.tar.gz)",
+      "Bash(tar -tzf /tmp/design2.tar.gz)"
+    ]
+  }
+}

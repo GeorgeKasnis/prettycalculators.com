@@ -1,9 +1,9 @@
 <template>
     <div class="min-h-screen flex flex-col bg-lavender">
         <UiTheHeader />
-        <div class="flex-1 flex flex-col items-center p-small py-big tablet:py-huge">
+        <main class="flex-1">
             <slot />
-        </div>
+        </main>
         <UiTheFooter />
     </div>
 </template>

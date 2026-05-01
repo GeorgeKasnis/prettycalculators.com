@@ -1,36 +1,37 @@
 <template>
-    <header class="p-small w-full fixed top-0 left-0 z-50 h-16 flex justify-between mobile:h-auto items-center bg-[#e3d2fa] border-b-2 border-transparent mb-huge transition-all" :class="isScrolled ? '!border-black' : ''">
-        <div class="flex justify-between w-full items-center mobile:flex-col">
-            <div>
-                <nuxt-link class="text-big" to="/">Pretty Calculators</nuxt-link>
-            </div>
-            <nav class="child:mx-2">
-                <NuxtLink activeClass="active-link" to="/fitness">Fitness</NuxtLink>
-                <NuxtLink activeClass="active-link" to="/math">Math</NuxtLink>
-                <NuxtLink activeClass="active-link" to="/unit">Unit</NuxtLink>
-                <NuxtLink activeClass="active-link" to="/other">Other</NuxtLink>
-            </nav>
-        </div>
-    </header>
+    <nav class="border-b-3 border-brut bg-brut flex items-stretch h-16 sticky top-0 z-50">
+        <NuxtLink to="/" class="text-xl font-bold text-lavender tracking-[-0.03em] px-7 flex items-center border-r border-[#333] whitespace-nowrap no-underline font-grotesk">
+            Pretty<span class="text-brut-yellow">&nbsp;Calculators</span>
+        </NuxtLink>
+        <ul class="flex items-stretch ml-auto list-none">
+            <li>
+                <NuxtLink
+                    to="/fitness"
+                    class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
+                    :class="$route.path.startsWith('/fitness') ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
+                >Fitness</NuxtLink>
+            </li>
+            <li>
+                <NuxtLink
+                    to="/math"
+                    class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
+                    :class="$route.path.startsWith('/math') ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
+                >Math</NuxtLink>
+            </li>
+            <li>
+                <NuxtLink
+                    to="/unit"
+                    class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
+                    :class="$route.path.startsWith('/unit') ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
+                >Unit</NuxtLink>
+            </li>
+            <li>
+                <NuxtLink
+                    to="/other"
+                    class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
+                    :class="$route.path.startsWith('/other') ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
+                >Other</NuxtLink>
+            </li>
+        </ul>
+    </nav>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            isScrolled: false,
-        };
-    },
-    mounted() {
-        window.addEventListener("scroll", this.handleScroll);
-    },
-    methods: {
-        handleScroll() {
-            this.isScrolled = window.scrollY > 10 ? true : false;
-        },
-    },
-    beforeUnmount() {
-        window.removeEventListener("scroll", this.handleScroll);
-    },
-};
-</script>

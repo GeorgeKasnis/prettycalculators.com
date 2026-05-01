@@ -65,6 +65,9 @@ export default defineNuxtConfig({
             },
             link: [
                 { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
+                { rel: "preconnect", href: "https://fonts.googleapis.com" },
+                { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
+                { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" },
                 { rel: "icon", href: "/favicon.ico" },
                 { rel: "icon", href: "/android-icon-36x36.png", sizes: "36x36" },
                 { rel: "icon", href: "/android-icon-42x42.png", sizes: "42x42" },
