@@ -1,37 +1,107 @@
 <template>
-    <nav class="border-b-3 border-brut bg-brut flex items-stretch h-16 sticky top-0 z-50">
-        <NuxtLink to="/" class="text-xl font-bold text-lavender tracking-[-0.03em] px-7 flex items-center border-r border-[#333] whitespace-nowrap no-underline font-grotesk">
-            Pretty<span class="text-brut-yellow">&nbsp;Calculators</span>
-        </NuxtLink>
-        <ul class="flex items-stretch ml-auto list-none">
-            <li>
+    <header>
+        <nav class="border-b-3 border-brut bg-brut flex items-stretch h-16 sticky top-0 z-50">
+            <NuxtLink to="/" class="text-xl font-bold text-lavender tracking-[-0.03em] px-7 flex items-center border-r border-[#333] whitespace-nowrap no-underline font-grotesk">
+                Pretty<span class="text-brut-yellow">&nbsp;Calculators</span>
+            </NuxtLink>
+
+            <!-- Desktop nav -->
+            <ul class="flex items-stretch ml-auto list-none mobile:hidden">
+                <li v-for="link in navLinks" :key="link.to">
+                    <NuxtLink
+                        :to="link.to"
+                        class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
+                        :class="$route.path.startsWith(link.to) ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
+                    >{{ link.label }}</NuxtLink>
+                </li>
+            </ul>
+
+            <!-- Mobile hamburger -->
+            <button
+                class="hamburger-btn hidden mobile:flex ml-auto"
+                :class="{ 'is-open': menuOpen }"
+                :aria-expanded="menuOpen"
+                aria-label="Toggle navigation menu"
+                @click="menuOpen = !menuOpen"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+
+        <!-- Mobile dropdown menu -->
+        <ul v-show="menuOpen" class="mobile-menu hidden mobile:block fixed z-40 list-none bg-brut w-full border-b-3 border-brut">
+            <li v-for="link in navLinks" :key="link.to">
                 <NuxtLink
-                    to="/fitness"
-                    class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
-                    :class="$route.path.startsWith('/fitness') ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
-                >Fitness</NuxtLink>
-            </li>
-            <li>
-                <NuxtLink
-                    to="/math"
-                    class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
-                    :class="$route.path.startsWith('/math') ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
-                >Math</NuxtLink>
-            </li>
-            <li>
-                <NuxtLink
-                    to="/unit"
-                    class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
-                    :class="$route.path.startsWith('/unit') ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
-                >Unit</NuxtLink>
-            </li>
-            <li>
-                <NuxtLink
-                    to="/other"
-                    class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
-                    :class="$route.path.startsWith('/other') ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
-                >Other</NuxtLink>
+                    :to="link.to"
+                    class="flex items-center justify-between px-5 py-[18px] font-mono text-[13px] font-bold uppercase tracking-[0.1em] text-cream no-underline border-b border-[#222]"
+                    active-class="bg-lavender !text-brut"
+                    @click="menuOpen = false"
+                >
+                    {{ link.label }}
+                    <span class="text-brut-yellow opacity-60 text-base">→</span>
+                </NuxtLink>
             </li>
         </ul>
-    </nav>
+    </header>
 </template>
+
+<script setup>
+const menuOpen = ref(false)
+const route = useRoute()
+watch(() => route.path, () => { menuOpen.value = false })
+
+const navLinks = [
+    { to: '/fitness', label: 'Fitness' },
+    { to: '/math',    label: 'Math' },
+    { to: '/unit',    label: 'Unit' },
+    { to: '/other',   label: 'Other' },
+    { to: '/blog',    label: 'Blog' },
+]
+</script>
+
+<style scoped>
+/* Hamburger button */
+.hamburger-btn {
+    width: 64px;
+    height: 64px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: #f5e642;
+    border: none;
+    border-left: 1px solid #333;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 22px;
+    height: 3px;
+    background: #0a0a0a;
+    transition: transform 0.18s, opacity 0.18s;
+}
+
+.hamburger-btn.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger-btn.is-open span:nth-child(2) { opacity: 0; }
+.hamburger-btn.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* Mobile menu — positioned below the sticky nav */
+.mobile-menu {
+    top: 64px; /* nav height */
+    left: 0;
+    right: 0;
+}
+
+.mobile-menu li:last-child a {
+    border-bottom: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hamburger-btn span { transition: none; }
+}
+</style>

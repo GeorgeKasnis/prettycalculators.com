@@ -1,33 +1,35 @@
 <template>
     <!-- Hero band -->
-    <div class="border-b-3 border-ink bg-yellow flex items-center gap-8 px-7 h-[52px] overflow-hidden">
+    <div class="border-b-3 border-ink bg-yellow flex items-center gap-8 px-7 h-[52px] overflow-hidden relative
+                mobile:flex-col mobile:items-start mobile:h-auto mobile:px-4 mobile:py-[14px] mobile:gap-1">
         <span class="font-mono text-[11px] font-bold uppercase tracking-[0.12em] opacity-50 whitespace-nowrap">Collection</span>
-        <span class="text-base font-bold tracking-tight">Find the calculator you need</span>
-        <span class="ml-auto font-mono text-[11px] font-bold bg-ink text-yellow px-3 py-1 tracking-widest whitespace-nowrap">15 TOOLS</span>
+        <span class="text-base font-bold tracking-tight mobile:max-w-[65%]">Find the calculator you need</span>
+        <span class="ml-auto font-mono text-[11px] font-bold bg-ink text-yellow px-3 py-1 tracking-widest whitespace-nowrap
+                     mobile:ml-0 mobile:absolute mobile:top-[14px] mobile:right-4">{{ totalTools }} TOOLS</span>
     </div>
 
     <!-- Ad slot: leaderboard -->
-    <div class="mx-7 my-5">
+    <div class="mx-7 my-5 mobile:mx-4">
         <UiAdSlot variant="leaderboard" />
     </div>
 
     <!-- Category cards grid -->
-    <div class="px-7 pb-7 grid grid-cols-4 tablet:grid-cols-2 mobile:grid-cols-1 border-b-3 border-ink">
+    <div class="px-7 pb-7 grid grid-cols-4 tablet:grid-cols-2 mobile:grid-cols-1 mobile:px-4 mobile:pb-4 border-b-3 border-ink">
         <div
             v-for="(cat, i) in categories"
             :key="cat.slug"
             class="cat-card border-3 border-ink -m-[1.5px] bg-cream flex flex-col"
         >
-            <NuxtLink :to="`/${cat.slug}`" class="px-6 py-5 border-b-3 border-ink flex items-start justify-between gap-2 no-underline text-ink" :style="{ background: cat.color }">
-                <div class="text-[32px] font-bold tracking-[-0.04em] leading-none">{{ cat.title }}</div>
+            <NuxtLink :to="`/${cat.slug}`" class="px-6 py-5 border-b-3 border-ink flex items-start justify-between gap-2 no-underline text-ink mobile:px-4 mobile:py-4" :style="{ background: cat.color }">
+                <div class="text-[32px] font-bold tracking-[-0.04em] leading-none mobile:text-[28px]">{{ cat.title }}</div>
                 <div class="font-mono text-[11px] font-bold opacity-35 pt-1 tracking-wide">{{ String(i + 1).padStart(2, '0') }}</div>
             </NuxtLink>
-            <div class="px-6 py-5 flex flex-col flex-1">
+            <div class="px-6 py-4 flex flex-col flex-1 mobile:px-4 mobile:py-3">
                 <NuxtLink
                     v-for="tool in cat.tools"
                     :key="tool.label"
                     :to="tool.to"
-                    class="tool-link text-sm font-medium py-2 border-b border-ink/10 last:border-b-0 flex items-center justify-between no-underline text-ink"
+                    class="tool-link text-sm font-medium py-[11px] border-b border-ink/10 last:border-b-0 flex items-center justify-between no-underline text-ink"
                 >
                     {{ tool.label }}
                     <span class="tool-link-arrow text-xs opacity-0">→</span>
@@ -40,12 +42,12 @@
     <div class="bottom-row grid border-b-3 border-ink">
 
         <!-- Feature block -->
-        <div class="px-7 py-8 border-r-3 border-ink mobile:border-r-0 mobile:border-b-3">
+        <div class="px-7 py-8 border-r-3 border-ink mobile:border-r-0 mobile:border-b-3 mobile:px-4 mobile:py-6">
             <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-40 mb-3">About Pretty Calculators</div>
             <div class="text-[42px] font-bold tracking-[-0.04em] leading-[1.05] max-w-lg mobile:text-[30px]">
                 Every tool<br>you need.<br><em class="not-italic text-[#5c3bef]">Right here.</em>
             </div>
-            <p class="mt-4 text-[15px] opacity-60 max-w-sm leading-relaxed">
+            <p class="mt-4 text-[15px] opacity-60 max-w-sm leading-relaxed mobile:text-sm">
                 Fast, focused calculators for fitness, math, conversions and more. Built to get you the answer quickly.
             </p>
 
@@ -60,14 +62,14 @@
                         v-for="post in blogPosts"
                         :key="post.slug"
                         :to="`/blog/${post.slug}`"
-                        class="blog-card border-3 border-ink -m-[1.5px] bg-ink flex flex-col no-underline"
+                        class="blog-card border-3 border-ink -m-[1.5px] no-underline"
                     >
-                        <div class="h-[90px] bg-ink flex items-center justify-center px-4 border-b-3 border-ink">
+                        <div class="blog-card-thumb bg-ink flex items-center justify-center px-4">
                             <span class="text-[13px] font-bold text-cream text-center tracking-[-0.02em] leading-snug whitespace-pre-line">{{ post.thumb }}</span>
                         </div>
-                        <div class="bg-cream px-4 py-3 flex-1">
+                        <div class="bg-cream px-4 py-3 flex flex-col justify-between gap-2">
                             <div class="text-xs font-semibold leading-snug text-ink">{{ post.title }}</div>
-                            <div class="mt-2 font-mono text-[9px] font-bold uppercase tracking-[0.1em] opacity-30">{{ post.tag }}</div>
+                            <div class="font-mono text-[9px] font-bold uppercase tracking-[0.1em] opacity-30">{{ post.tag }}</div>
                         </div>
                     </NuxtLink>
                 </div>
@@ -75,12 +77,26 @@
         </div>
 
         <!-- CTA block -->
-        <div class="bg-ink px-7 py-8 flex flex-col justify-between gap-5">
+        <div class="bg-ink px-7 py-8 flex flex-col gap-5 mobile:px-4 mobile:py-7">
             <div>
                 <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-1">Total tools</div>
-                <div class="text-[96px] font-bold tracking-[-0.06em] text-lavender leading-none">15</div>
+                <div class="text-[96px] font-bold tracking-[-0.06em] text-lavender leading-none mobile:text-[80px]">{{ totalTools }}</div>
                 <div class="font-mono text-xs text-white/50 tracking-wide">& growing</div>
             </div>
+
+            <!-- Category breakdown grid -->
+            <div class="cta-cats border-3 border-white/20">
+                <div
+                    v-for="cat in categories"
+                    :key="cat.slug"
+                    class="cta-cat-cell"
+                    :style="{ background: cat.color }"
+                >
+                    <span class="text-[28px] font-bold tracking-[-0.05em] leading-none text-ink">{{ cat.tools.length }}</span>
+                    <span class="font-mono text-[9px] font-bold uppercase tracking-[0.1em] opacity-50 text-ink">{{ cat.title }}</span>
+                </div>
+            </div>
+
             <UiAdSlot variant="rectangle" :dark="true" />
         </div>
     </div>
@@ -90,6 +106,8 @@
 definePageMeta({ layout: 'brutalist' })
 
 const { otherCategories: categories } = useCategoryConfig('_')
+
+const totalTools = computed(() => categories.reduce((sum, c) => sum + c.tools.length, 0))
 
 const runtimeConfig = useRuntimeConfig()
 const { data: blogData } = await useFetch(
@@ -131,6 +149,7 @@ useHead({
 </script>
 
 <style scoped>
+/* ── Category cards ── */
 .cat-card {
     transition: transform 0.08s, box-shadow 0.08s;
     position: relative;
@@ -148,6 +167,7 @@ useHead({
     opacity: 0.5;
 }
 
+/* ── Blog grid ── */
 .blog-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -155,8 +175,11 @@ useHead({
 }
 
 .blog-card {
+    display: flex;
+    flex-direction: column;
     transition: transform 0.08s, box-shadow 0.08s;
     position: relative;
+    color: #0a0a0a;
 }
 .blog-card:hover {
     transform: translate(-3px, -3px);
@@ -164,22 +187,94 @@ useHead({
     z-index: 10;
 }
 
+.blog-card-thumb {
+    height: 90px;
+    border-bottom: 3px solid #0a0a0a;
+}
+
+/* ── CTA breakdown grid ── */
+.cta-cats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cta-cat-cell {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border-right: 3px solid #0a0a0a;
+    border-bottom: 3px solid #0a0a0a;
+}
+.cta-cat-cell:nth-child(2) { border-right: none; }
+.cta-cat-cell:nth-child(3) { border-bottom: none; }
+.cta-cat-cell:nth-child(4) { border-right: none; border-bottom: none; }
+
+/* ── Browse all button ── */
+.cta-browse-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5e642;
+    color: #0a0a0a;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 20px;
+    border: 3px solid #0a0a0a;
+    box-shadow: 4px 4px 0 #0a0a0a;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: transform 0.08s, box-shadow 0.08s;
+}
+.cta-browse-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #0a0a0a;
+}
+
+/* ── Bottom row layout ── */
 .bottom-row {
     grid-template-columns: 2fr 1fr;
+}
+
+/* ── Tablet (768–1199px) ── */
+@media (max-width: 1199px) {
+    .blog-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 900px) {
     .bottom-row {
         grid-template-columns: 1fr;
     }
-    .blog-grid {
-        grid-template-columns: 1fr 1fr;
-    }
 }
 
-@media (max-width: 560px) {
+/* ── Mobile (≤767px) ── */
+@media (max-width: 767px) {
     .blog-grid {
         grid-template-columns: 1fr;
+        margin: 0;
+    }
+
+    /* Horizontal blog card on mobile */
+    .blog-card {
+        flex-direction: row;
+        min-height: 96px;
+        margin: -1.5px;
+    }
+
+    .blog-card-thumb {
+        width: 110px;
+        height: auto;
+        flex-shrink: 0;
+        border-bottom: none;
+        border-right: 3px solid #0a0a0a;
+    }
+
+    .cat-card:hover {
+        transform: none;
+        box-shadow: none;
     }
 }
 </style>
