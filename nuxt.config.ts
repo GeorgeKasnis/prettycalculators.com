@@ -110,6 +110,12 @@ export default defineNuxtConfig({
         define: {
             "process.env.DEBUG": false,
         },
+        server: {
+            fs: {
+                strict: true,
+                allow: ['.'],
+            },
+        },
     },
 
     build: {
