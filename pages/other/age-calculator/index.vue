@@ -27,7 +27,12 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - Age Calculator",
-    "Calculate your age accurately using Pretty Calculators' Age Calculator. Our simple tool takes your date of birth and calculates your current age based on the current date. It's useful for various purposes, such as planning events or determining eligibility for certain activities or benefits. Try it now!"
+    "Age Calculator — Calculate Your Exact Age Online",
+    "Calculate your exact age in years, months, and days from your date of birth. Free age calculator — accurate, instant, accounts for leap years. No sign-up.",
+    [
+        { q: "How is age calculated?", a: "Age is calculated by finding the difference between your date of birth and today's date, accounting for whether your birthday has occurred yet in the current year." },
+        { q: "Does the age calculator account for leap years?", a: "Yes. The calculator accurately accounts for leap years when calculating your exact age in days." },
+        { q: "How many days old am I?", a: "Use the age calculator — it shows your exact age in years, months, and days so you can see precisely how many days old you are." },
+    ]
 )
 </script>

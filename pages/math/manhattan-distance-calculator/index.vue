@@ -39,7 +39,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Manhattan Distance Calculator - Calculate L1 Distance Online",
-    "Calculate Manhattan distance (L1 distance) between two points in a grid-like space online. Use our free Manhattan Distance Calculator for quick and accurate distance calculations in one, two, three, or four dimensions."
+    "Manhattan Distance Calculator — L1 Distance Online",
+    "Calculate Manhattan distance (L1 norm) between two points. Supports 2D, 3D, and 4D coordinates. Free online calculator — instant results, no sign-up needed.",
+    [
+        { q: "What is Manhattan distance?", a: "Manhattan distance (also called L1 distance or taxicab distance) is the sum of the absolute differences between coordinates of two points. It measures distance along grid-like paths." },
+        { q: "What is the formula for Manhattan distance?", a: "For 2D points (x1, y1) and (x2, y2): |x1 − x2| + |y1 − y2|. In 3D: |x1 − x2| + |y1 − y2| + |z1 − z2|." },
+        { q: "When is Manhattan distance used?", a: "Manhattan distance is used in machine learning (k-nearest neighbors), route planning on grid maps, robotics, and image processing algorithms." },
+        { q: "What is the difference between Manhattan and Euclidean distance?", a: "Euclidean distance is the straight-line distance between two points. Manhattan distance follows grid paths and is always greater than or equal to Euclidean distance." },
+    ]
 )
 </script>

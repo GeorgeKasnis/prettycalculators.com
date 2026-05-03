@@ -39,7 +39,12 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - Ideal Weight Calculator",
-    "Find your ideal weight based on your height and gender with Pretty Calculators' free Ideal Weight Calculator. Using the Hamwi formula, our easy-to-use tool gives you a healthy weight target in seconds. Perfect for anyone tracking their fitness goals or starting a new health journey."
+    "Ideal Weight Calculator — Find Your Healthy Weight by Height",
+    "Find your ideal weight by height and gender using four formulas: Hamwi, Devine, Robinson, and Miller. Free ideal weight calculator — results in seconds.",
+    [
+        { q: "How is ideal weight calculated?", a: "This calculator uses four formulas: Hamwi, Devine, Robinson, and Miller. Each produces slightly different results based on height and gender, giving you a range to aim for." },
+        { q: "Is ideal weight the same as healthy weight?", a: "Ideal weight formulas provide a general target. Your doctor may recommend a different range based on your body composition, age, muscle mass, and personal health history." },
+        { q: "Does ideal weight differ for men and women?", a: "Yes. Most ideal weight formulas produce different results for men and women at the same height, because men typically have more muscle mass and bone density." },
+    ]
 )
 </script>

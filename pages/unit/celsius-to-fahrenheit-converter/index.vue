@@ -26,7 +26,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - Celsius to Fahrenheit Converter",
-    "Easily convert Celsius to Fahrenheit with Pretty Calculators' beautifully designed temperature converter calculator. Our tool makes it simple to convert temperatures accurately, helping you to plan for weather conditions, travel to different countries, or work with temperature-sensitive materials. Whether you're a scientist, traveler, or just looking to learn more about temperature conversions, our Celsius to Fahrenheit converter calculator is perfect for anyone interested in making quick and accurate temperature conversions. Try it out today on Pretty Calculators."
+    "Celsius to Fahrenheit Converter — °C to °F Free",
+    "Convert Celsius to Fahrenheit instantly. Enter °C to get °F using the formula (°C × 9/5) + 32. Free temperature converter — no sign-up, no ads, just results.",
+    [
+        { q: "How do I convert Celsius to Fahrenheit?", a: "Multiply by 9/5 then add 32: °F = (°C × 9/5) + 32. For example, 100°C = (100 × 1.8) + 32 = 212°F." },
+        { q: "What is 0°C in Fahrenheit?", a: "0°C is 32°F — the freezing point of water." },
+        { q: "What is 100°C in Fahrenheit?", a: "100°C is 212°F — the boiling point of water at sea level." },
+        { q: "At what temperature are Celsius and Fahrenheit equal?", a: "Celsius and Fahrenheit are equal at −40°. Both scales read −40 at this point." },
+    ]
 )
 </script>

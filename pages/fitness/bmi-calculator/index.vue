@@ -53,7 +53,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - BMI (Body Mass Index Calculator)",
-    "Find out your Body Mass Index (BMI) and track your weight loss progress with Pretty Calculators' beautifully designed BMI calculator. Our easy-to-use tool helps you understand your body composition and set realistic health goals. Whether you're starting a new fitness routine or just looking to monitor your weight, our BMI calculator is perfect for anyone interested in improving their health. Try it out today on Pretty Calculators"
+    "BMI Calculator — Free Body Mass Index Calculator",
+    "Free BMI calculator. Enter height and weight to see your BMI score, category (underweight to obese), and healthy weight range. Metric, instant results.",
+    [
+        { q: "What is a normal BMI?", a: "A normal BMI is between 18.5 and 24.9. Below 18.5 is underweight, 25–29.9 is overweight, and 30 or above is obese." },
+        { q: "How is BMI calculated?", a: "BMI = weight (kg) ÷ height (m)². For example, a person weighing 70 kg at 1.75 m has a BMI of 70 ÷ (1.75²) ≈ 22.9." },
+        { q: "Is BMI accurate for athletes?", a: "BMI may not be accurate for athletes with high muscle mass, as muscle weighs more than fat. A body fat percentage test gives a more accurate picture." },
+        { q: "What BMI is considered obese?", a: "A BMI of 30 or higher is considered obese. A BMI of 40 or above is classified as severely obese." },
+    ]
 )
 </script>

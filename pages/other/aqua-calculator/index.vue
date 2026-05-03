@@ -33,7 +33,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - Aqua Calculator",
-    "Calculate your daily water intake with ease using Pretty Calculators' Aqua Calculator. Our simple tool takes into account your weight, activity level, and climate to provide you with a personalized recommendation for how much water you should drink each day. Stay hydrated and healthy with our easy-to-use water intake calculator. Try it now!"
+    "Daily Water Intake Calculator — How Much Water Per Day",
+    "Find out how much water you should drink per day based on your body weight. Free daily water intake calculator — results shown in ml and liters. Instant.",
+    [
+        { q: "How much water should I drink per day?", a: "A general guideline is 30 ml of water per kilogram of body weight per day. A 70 kg person should aim for about 2.1 liters (2,100 ml) daily." },
+        { q: "Does body weight affect how much water you need?", a: "Yes. Heavier people have more body mass to hydrate and generally need more water. Physical activity level, climate, and health conditions also affect daily water needs." },
+        { q: "What are signs of dehydration?", a: "Common signs include dark urine, dry mouth, fatigue, headaches, and dizziness. Aim for pale yellow urine as a sign of good hydration." },
+        { q: "Can you drink too much water?", a: "Yes, in rare cases excessive water intake can cause hyponatremia (low sodium). For most people, drinking to thirst and following weight-based guidelines is safe." },
+    ]
 )
 </script>

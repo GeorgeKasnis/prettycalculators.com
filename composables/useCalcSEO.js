@@ -7,7 +7,7 @@ const APP_CATEGORY_MAP = {
     other:   'UtilitiesApplication',
 }
 
-export const useCalcSEO = (title, description) => {
+export const useCalcSEO = (title, description, faqs = []) => {
     const route = useRoute()
     const canonical = `${SITE}${route.path}`
 
@@ -17,37 +17,54 @@ export const useCalcSEO = (title, description) => {
     const appCategory = APP_CATEGORY_MAP[categorySlug] ?? 'UtilitiesApplication'
     const shortName = title.replace(/^Pretty Calculators\s*[-—]\s*/i, '')
 
-    const webAppLd = {
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: shortName,
-        description,
-        url: canonical,
-        applicationCategory: appCategory,
-        operatingSystem: 'Web',
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-        provider: { '@type': 'Organization', name: 'Pretty Calculators', url: SITE },
-    }
+    const scripts = [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'WebApplication',
+                name: shortName,
+                description,
+                url: canonical,
+                applicationCategory: appCategory,
+                operatingSystem: 'Web',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                provider: { '@type': 'Organization', name: 'Pretty Calculators', url: SITE },
+            }),
+        },
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home',        item: `${SITE}/` },
+                    { '@type': 'ListItem', position: 2, name: categoryLabel, item: `${SITE}/${categorySlug}` },
+                    { '@type': 'ListItem', position: 3, name: shortName,     item: canonical },
+                ],
+            }),
+        },
+    ]
 
-    const breadcrumbLd = {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home',        item: `${SITE}/` },
-            { '@type': 'ListItem', position: 2, name: categoryLabel, item: `${SITE}/${categorySlug}` },
-            { '@type': 'ListItem', position: 3, name: shortName,     item: canonical },
-        ],
+    if (faqs.length) {
+        scripts.push({
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: faqs.map(faq => ({
+                    '@type': 'Question',
+                    name: faq.q,
+                    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+                })),
+            }),
+        })
     }
 
     useHead({
         title,
-        link: [
-            { rel: 'canonical', href: canonical },
-        ],
-        script: [
-            { type: 'application/ld+json', innerHTML: JSON.stringify(webAppLd) },
-            { type: 'application/ld+json', innerHTML: JSON.stringify(breadcrumbLd) },
-        ],
+        link: [{ rel: 'canonical', href: canonical }],
+        script: scripts,
         meta: [
             { hid: 'title',               name: 'title',               content: title },
             { hid: 'description',         name: 'description',         content: description },

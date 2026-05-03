@@ -51,7 +51,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - Body Fat Calculator",
-    "Track your body composition and monitor your fitness progress with Pretty Calculators' beautifully designed Body Fat Calculator. Our easy-to-use tool provides an accurate estimate of your body fat percentage, helping you to set realistic health goals and achieve them with confidence. Whether you're an athlete, bodybuilder, or just looking to improve your overall fitness, our Body Fat Calculator is perfect for anyone interested in achieving a healthy lifestyle. Try it out today on Pretty Calculators."
+    "Body Fat Calculator — Free Body Fat Percentage Calculator",
+    "Free body fat percentage calculator using the Navy formula. Enter neck, waist, and hip measurements to estimate body fat for men and women. Instant results.",
+    [
+        { q: "What is a healthy body fat percentage for men?", a: "A healthy body fat percentage for men is typically 10–20%. Athletes may be 6–13%, fit individuals 14–17%, and the average range is 18–24%." },
+        { q: "What is a healthy body fat percentage for women?", a: "A healthy body fat percentage for women is typically 20–30%. Athletes may be 14–20%, fit individuals 21–24%, and the average range is 25–31%." },
+        { q: "How is body fat percentage calculated?", a: "This calculator uses the U.S. Navy formula, which uses neck, waist, and hip circumference (women only) along with height to estimate body fat percentage." },
+        { q: "What is the difference between BMI and body fat percentage?", a: "BMI measures weight relative to height and doesn't distinguish fat from muscle. Body fat percentage directly measures how much of your body weight is fat tissue." },
+    ]
 )
 </script>

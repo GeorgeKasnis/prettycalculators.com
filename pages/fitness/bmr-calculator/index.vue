@@ -42,7 +42,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - BMR (Basal Metabolic Rate Calculator)",
-    "Find out your Basal Metabolic Rate (BMR) and estimate the number of calories your body burns at rest with Pretty Calculators' beautifully designed BMR calculator. Our easy-to-use tool helps you understand your calorie needs and set realistic health goals. Whether you're looking to lose weight, gain muscle, or maintain your current weight, our BMR calculator is perfect for anyone interested in improving their health. Try it out today on Pretty Calculators"
+    "BMR Calculator — Free Basal Metabolic Rate Calculator",
+    "Calculate your Basal Metabolic Rate (BMR) — calories burned at rest. Uses the Mifflin-St Jeor formula. Enter age, weight, height, and gender. Free & instant.",
+    [
+        { q: "What is BMR?", a: "BMR (Basal Metabolic Rate) is the number of calories your body burns at complete rest to maintain basic functions like breathing, circulation, and cell production." },
+        { q: "How is BMR calculated?", a: "This calculator uses the Mifflin-St Jeor equation: (10 × weight kg) + (6.25 × height cm) − (5 × age) + 5 for men, or −161 for women. It is considered the most accurate formula for most adults." },
+        { q: "What is the average BMR?", a: "The average BMR for adults is roughly 1,400–1,800 calories per day, though it varies based on age, weight, height, and sex." },
+        { q: "Does BMR decrease with age?", a: "Yes, BMR typically decreases by about 1–2% per decade after age 20 as muscle mass naturally declines." },
+    ]
 )
 </script>

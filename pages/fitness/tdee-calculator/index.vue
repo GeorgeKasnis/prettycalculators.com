@@ -44,7 +44,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - TDEE (Total Daily Energy Expenditure) Calculator",
-    "Calculate your Total Daily Energy Expenditure (TDEE) with Pretty Calculators' free TDEE calculator. Find out exactly how many calories you burn each day based on your weight, height, age, gender, and activity level. Use your TDEE to lose weight, build muscle, or maintain your current weight."
+    "TDEE Calculator — Total Daily Energy Expenditure",
+    "Calculate your TDEE — total daily calories burned based on weight, height, age, and activity level. Set the right calorie goal for weight loss or muscle gain.",
+    [
+        { q: "What is TDEE?", a: "TDEE (Total Daily Energy Expenditure) is the total number of calories you burn in a day, including your BMR plus calories burned through physical activity and digestion." },
+        { q: "How do I use TDEE to lose weight?", a: "To lose weight, eat 300–500 calories below your TDEE per day. A 500-calorie daily deficit leads to approximately 0.5 kg (1 lb) of fat loss per week." },
+        { q: "What is the difference between BMR and TDEE?", a: "BMR is the calories you burn at complete rest. TDEE is your BMR multiplied by an activity factor — it represents your total daily calorie burn including all movement and exercise." },
+        { q: "How accurate is a TDEE calculator?", a: "TDEE calculators provide a good estimate, but individual metabolism varies. Use it as a starting point and adjust your intake based on real results over 2–4 weeks." },
+    ]
 )
 </script>

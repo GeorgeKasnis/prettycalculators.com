@@ -32,7 +32,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - PX to REM Calculator",
-    "Convert pixel (px) values to rem units easily with Pretty Calculators' PX to REM Calculator. Ensure responsive and scalable designs by using rem units in your web development projects. Simply input the pixel value and base font size to get the corresponding rem value. Try it now!"
+    "PX to REM Calculator — Convert Pixels to REM Free",
+    "Convert px to rem instantly with a 16px base font size. Free px to rem calculator for web developers — essential for responsive, accessible CSS. Copy result.",
+    [
+        { q: "What is the default base font size for rem?", a: "Most browsers use 16px as the default base font size, so 1rem = 16px by default." },
+        { q: "Why use rem instead of px in CSS?", a: "Rem units scale with the user's browser font-size setting, making layouts more accessible and responsive. Px is absolute and ignores user preferences." },
+        { q: "How do I convert 24px to rem?", a: "Divide by the base font size: 24 ÷ 16 = 1.5rem. If your base size is different, divide by that value instead." },
+        { q: "What does rem stand for?", a: "Rem stands for 'root em'. It's relative to the font size of the root HTML element, unlike em which is relative to the parent element." },
+    ]
 )
 </script>

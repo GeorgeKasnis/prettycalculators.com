@@ -36,7 +36,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators - Percentage Calculator",
-    "Calculate percentages with ease using Pretty Calculators' beautifully designed Percentage Calculator. Our easy-to-use tool makes it simple to figure out percentages for sales, discounts, and tips, helping you to save money and make smart financial decisions. Whether you're a shopper, restaurant-goer, or just looking to brush up on your math skills, our Percentage Calculator is perfect for anyone interested in making quick and accurate percentage calculations. Try it out today on Pretty Calculators."
+    "Percentage Calculator — Calculate % Online Free",
+    "Free percentage calculator. Find what % one number is of another, calculate percentage increase/decrease, or work out X% of a number. Fast and accurate.",
+    [
+        { q: "How do I calculate a percentage?", a: "To find what percentage A is of B: (A ÷ B) × 100. For example, 30 out of 150 is (30 ÷ 150) × 100 = 20%." },
+        { q: "How do I calculate a percentage increase?", a: "Percentage increase = ((New Value − Old Value) ÷ Old Value) × 100. For example, going from 80 to 100 is ((100 − 80) ÷ 80) × 100 = 25% increase." },
+        { q: "How do I find X% of a number?", a: "Multiply the number by the percentage, then divide by 100. For example, 15% of 200 = (200 × 15) ÷ 100 = 30." },
+        { q: "How do I calculate a percentage decrease?", a: "Percentage decrease = ((Old Value − New Value) ÷ Old Value) × 100. For example, from 100 to 75 is ((100 − 75) ÷ 100) × 100 = 25% decrease." },
+    ]
 )
 </script>

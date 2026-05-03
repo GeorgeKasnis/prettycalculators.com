@@ -39,7 +39,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pretty Calculators | Kilometers to Miles Converter - Quick and Accurate Distance Conversion",
-    "Easily convert between Kilometers and Miles with Pretty Calculators' beautifully designed distance converter calculator. Our tool makes it simple to convert distances accurately, helping you to plan road trips, travel to different countries, or work with distance-sensitive projects. Whether you're a traveler, engineer, or just looking to learn more about unit conversions, our Kilometers to Miles converter is perfect for anyone interested in making quick and accurate distance conversions. Try it out today on Pretty Calculators."
+    "Kilometers to Miles Converter — Free Distance Calculator",
+    "Convert kilometers to miles instantly. 1 km = 0.62137 miles. Free distance converter — enter km and get miles in one click. No sign-up required.",
+    [
+        { q: "How many miles are in a kilometer?", a: "1 kilometer equals 0.62137 miles." },
+        { q: "How do I convert kilometers to miles?", a: "Multiply the number of kilometers by 0.62137. For example, 10 km × 0.62137 = 6.214 miles." },
+        { q: "How many miles is 5 km?", a: "5 km is approximately 3.107 miles." },
+        { q: "How many miles is 42.195 km (a marathon)?", a: "42.195 km is approximately 26.2 miles — the standard marathon distance." },
+    ]
 )
 </script>

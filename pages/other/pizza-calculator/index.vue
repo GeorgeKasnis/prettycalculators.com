@@ -36,7 +36,13 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Pizza Ingredient Calculator - Create Your Perfect Pizza",
-    "Calculate the ingredients and quantities you need for your perfect pizza with our Pizza Ingredient Calculator. Customize your pizza size, toppings, and number of servings to get precise ingredient lists. Enjoy delicious homemade pizza hassle-free. Try it now!"
+    "Pizza Calculator — How Many Pizzas Should I Order?",
+    "Calculate how many pizzas to order for your group. Enter the number of guests and appetite level — get the exact number of pizzas and slices. Free & instant.",
+    [
+        { q: "How many pizzas should I order for 10 people?", a: "For 10 people with average appetite, order about 4 large pizzas, assuming 2–3 slices per person." },
+        { q: "How many slices are in a pizza?", a: "A large pizza typically has 8 slices, a medium has 6–8 slices, and a small has 6 slices." },
+        { q: "How many slices of pizza per person?", a: "The average person eats 2–3 slices. For hungry adults or a main meal, plan for 3 slices each." },
+        { q: "How many pizzas for 20 people?", a: "For 20 people with average appetite, order about 7–8 large pizzas (3 slices × 20 people ÷ 8 slices per pizza)." },
+    ]
 )
 </script>
