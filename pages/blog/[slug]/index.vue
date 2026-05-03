@@ -5,14 +5,14 @@
     <!-- Breadcrumb band -->
     <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: 'Blog', to: '/blog' }, { label: fields.title }]" />
 
-    <!-- Article header (black) -->
-    <div class="bg-brut border-b-3 border-brut px-7 pt-8 pb-7 mobile:px-5">
-        <div class="flex items-center gap-4 mb-5 flex-wrap">
+    <!-- Article header -->
+    <div class="bg-brut border-b-3 border-brut px-8 pt-8 pb-7 mobile:px-5">
+        <div class="flex items-center gap-3 mb-5 flex-wrap">
             <span v-if="fields.category" class="font-mono text-[9px] font-bold uppercase tracking-[0.14em] bg-brut-yellow text-brut px-[10px] py-[4px]">{{ fields.category }}</span>
             <span class="font-mono text-[10px] text-lavender opacity-60 tracking-[0.08em]">{{ formatDate(postSys.createdAt, true) }}</span>
             <span class="font-mono text-[10px] text-cream opacity-30 tracking-[0.08em]">{{ readTime }} min read</span>
         </div>
-        <h1 class="text-[48px] font-bold tracking-[-0.05em] leading-[1.1] text-cream mobile:text-[32px] max-w-3xl">
+        <h1 class="text-[48px] font-bold tracking-[-0.05em] leading-[1.1] text-cream mobile:text-[30px] max-w-3xl">
             {{ titleStart }}<em class="not-italic text-lavender">{{ titleEnd }}</em>
         </h1>
     </div>
@@ -22,15 +22,6 @@
 
         <!-- Main content -->
         <div class="post-main border-brut">
-
-            <!-- Hero area -->
-            <div class="hero-area border-b-3 border-brut">
-                <div class="hero-grid"></div>
-                <div class="hero-title">
-                    {{ titleStart }}<em class="not-italic" style="color: #ddd6ff">{{ titleEnd }}</em>
-                </div>
-                <div class="hero-watermark">prettycalculators.com</div>
-            </div>
 
             <!-- Share bar -->
             <div class="border-b-3 border-brut h-[52px] flex items-stretch bg-cream">
@@ -65,7 +56,15 @@
             <UiAdSlot bordered />
 
             <!-- Article body -->
-            <div class="px-9 py-8 blog-content mobile:px-5" v-html="bodyHtml" />
+            <div class="article-section">
+                <div class="article-card">
+                    <div class="article-card-head">
+                        <div class="article-eyebrow">Article</div>
+                        <h2 class="article-headline">{{ fields.title }}</h2>
+                    </div>
+                    <div class="article-body blog-content" v-html="bodyHtml" />
+                </div>
+            </div>
 
             <!-- Related Calculators -->
             <div class="border-t-3 border-brut">
@@ -102,7 +101,6 @@
                 <span class="text-sm opacity-25 shrink-0 sa-arrow">→</span>
             </NuxtLink>
             <div v-if="!sidebarPosts.length" class="px-5 py-4 text-[13px] opacity-40">No other posts yet.</div>
-            <!-- 300×250 ad -->
             <UiAdSlot variant="rectangle" bordered class="flex-1" />
         </div>
     </div>
@@ -126,17 +124,6 @@ const { data: allBlogData } = await useFetch(
 const fields = computed(() => post.value?.items?.[0]?.fields ?? {})
 const postSys = computed(() => post.value?.items?.[0]?.sys ?? {})
 
-const imageUrl = computed(() => {
-    try {
-        const assetId = fields.value.featuredImage?.sys?.id
-        if (!assetId) return ''
-        const asset = post.value?.includes?.Asset?.find(a => a.sys.id === assetId)
-        return asset?.fields?.file?.url ?? ''
-    } catch {
-        return ''
-    }
-})
-
 const titleStart = computed(() => {
     const t = fields.value.title ?? ''
     const words = t.split(' ')
@@ -156,17 +143,12 @@ const readTime = computed(() => {
         if (!content) return 1
         const wordCount = JSON.stringify(content).split(/\s+/).length
         return Math.max(1, Math.ceil(wordCount / 200))
-    } catch {
-        return 1
-    }
+    } catch { return 1 }
 })
 
 const bodyHtml = computed(() => {
-    try {
-        return documentToHtmlString(fields.value.content)
-    } catch {
-        return ''
-    }
+    try { return documentToHtmlString(fields.value.content) }
+    catch { return '' }
 })
 
 const sidebarPosts = computed(() => (allBlogData.value?.items ?? []).slice(0, 8))
@@ -176,7 +158,6 @@ const relatedCalcs = allCats.flatMap(cat => cat.tools.slice(0, 2).map(t => ({ la
 
 const { formatDate } = useBlogUtils()
 
-// Reading progress
 const readProgress = ref(0)
 const updateProgress = () => {
     const el = document.documentElement
@@ -187,7 +168,6 @@ const updateProgress = () => {
 onMounted(() => window.addEventListener('scroll', updateProgress, { passive: true }))
 onUnmounted(() => window.removeEventListener('scroll', updateProgress))
 
-// Copy link
 const copied = ref(false)
 const copyLink = async () => {
     try {
@@ -197,14 +177,23 @@ const copyLink = async () => {
     } catch {}
 }
 
+const imageUrl = computed(() => {
+    try {
+        const assetId = fields.value.featuredImage?.sys?.id
+        if (!assetId) return ''
+        const asset = post.value?.includes?.Asset?.find(a => a.sys.id === assetId)
+        return asset?.fields?.file?.url ?? ''
+    } catch { return '' }
+})
+
 useHead({
     title: `Pretty Calculators - ${fields.value.metaTitle || fields.value.title}`,
     meta: [
-        { hid: "title", name: "title", content: `Pretty Calculators - ${fields.value.metaTitle || fields.value.title}` },
-        { hid: "description", name: "description", content: fields.value.metaDescription ?? '' },
-        { hid: "og-title", property: "og:title", content: `Pretty Calculators - ${fields.value.metaTitle || fields.value.title}` },
-        { hid: "og:description", property: "og:description", content: fields.value.metaDescription ?? '' },
-        ...(imageUrl.value ? [{ hid: "og-image", property: "og:image", content: `https://${imageUrl.value}` }] : []),
+        { hid: 'title',          name: 'title',          content: `Pretty Calculators - ${fields.value.metaTitle || fields.value.title}` },
+        { hid: 'description',    name: 'description',    content: fields.value.metaDescription ?? '' },
+        { hid: 'og-title',       property: 'og:title',   content: `Pretty Calculators - ${fields.value.metaTitle || fields.value.title}` },
+        { hid: 'og:description', property: 'og:description', content: fields.value.metaDescription ?? '' },
+        ...(imageUrl.value ? [{ hid: 'og-image', property: 'og:image', content: `https://${imageUrl.value}` }] : []),
     ],
 })
 </script>
@@ -213,11 +202,11 @@ useHead({
 /* Reading progress bar */
 .progress-bar {
     position: fixed;
-    top: 64px;
+    top: 0;
     left: 0;
     height: 3px;
-    background: #0a0a0a;
-    z-index: 100;
+    background: #ddd6ff;
+    z-index: 200;
     transition: width 0.1s linear;
     pointer-events: none;
 }
@@ -230,53 +219,6 @@ useHead({
 
 .post-main {
     border-right: 3px solid #0a0a0a;
-}
-
-/* Hero */
-.hero-area {
-    background: #0a0a0a;
-    height: 360px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    overflow: hidden;
-}
-
-.hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-    background-size: 12.5% 20%;
-    pointer-events: none;
-}
-
-.hero-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #fafafa;
-    text-align: center;
-    letter-spacing: -0.04em;
-    line-height: 1.2;
-    position: relative;
-    z-index: 1;
-    max-width: 560px;
-}
-
-.hero-watermark {
-    position: absolute;
-    bottom: 16px;
-    right: 20px;
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.15);
-    z-index: 1;
 }
 
 /* Share bar */
@@ -292,7 +234,6 @@ useHead({
     background: none;
     cursor: pointer;
     transition: opacity 0.1s, background 0.1s;
-    border-radius: 2px;
     text-decoration: none;
 }
 
@@ -301,65 +242,48 @@ useHead({
     background: rgba(10, 10, 10, 0.06);
 }
 
-/* Related calcs */
-.related-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* Article card */
+.article-section {
+    padding: 28px 32px;
+    background: #ddd6ff;
+    border-bottom: 3px solid #0a0a0a;
 }
 
-.related-calc {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 18px;
-    border: 1.5px solid rgba(10, 10, 10, 0.08);
-    margin: -0.75px;
-    text-decoration: none;
-    color: #0a0a0a;
-    background: #fafafa;
-    transition: background 0.08s, color 0.08s;
-    gap: 8px;
+.article-card {
+    background: #fff;
+    border: 3px solid #0a0a0a;
+    box-shadow: 5px 5px 0 #0a0a0a;
 }
 
-.related-calc:hover {
-    background: #0a0a0a;
-    color: #fafafa;
+.article-card-head {
+    background: #f5e642;
+    border-bottom: 3px solid #0a0a0a;
+    padding: 22px 28px 20px;
 }
 
-.related-calc:hover .related-arrow {
-    opacity: 0.7;
+.article-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.55;
+    margin-bottom: 6px;
 }
 
-/* Sidebar articles */
-.sidebar-article {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 20px 14px 15px;
-    border-left: 5px solid transparent;
-    text-decoration: none;
-    color: #0a0a0a;
-    background: #fafafa;
-    transition: background 0.08s, border-color 0.08s;
+.article-headline {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+    max-width: 620px;
 }
 
-.sidebar-article:hover {
-    border-left-color: #ddd6ff;
-    background: rgba(221, 214, 255, 0.2);
+.article-body {
+    padding: 28px 32px;
 }
 
-.sidebar-article.active {
-    border-left-color: #0a0a0a;
-    background: rgba(10, 10, 10, 0.04);
-    font-weight: 600;
-}
-
-.sidebar-article:hover .sa-arrow,
-.sidebar-article.active .sa-arrow {
-    opacity: 0.6;
-}
-
-/* Blog article prose */
+/* Blog prose */
 .blog-content :deep(h1),
 .blog-content :deep(h2),
 .blog-content :deep(h3) {
@@ -383,12 +307,12 @@ useHead({
 }
 
 .blog-content :deep(p:first-child) {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 500;
-    opacity: 1;
-    border-bottom: 3px solid #0a0a0a;
-    padding-bottom: 28px;
+    opacity: 0.85;
+    padding-bottom: 24px;
     margin-bottom: 1.5rem;
+    border-bottom: 3px solid #0a0a0a;
 }
 
 .blog-content :deep(ul),
@@ -443,6 +367,8 @@ useHead({
     opacity: 1;
     margin-bottom: 0;
     max-width: none;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .blog-content :deep(pre),
@@ -452,7 +378,6 @@ useHead({
     background: #0a0a0a;
     color: #ddd6ff;
     padding: 2px 6px;
-    border-radius: 2px;
 }
 
 .blog-content :deep(pre) {
@@ -466,13 +391,70 @@ useHead({
     padding: 0;
 }
 
+/* Related calcs */
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.related-calc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    border: 1.5px solid rgba(10, 10, 10, 0.08);
+    margin: -0.75px;
+    text-decoration: none;
+    color: #0a0a0a;
+    background: #fafafa;
+    transition: background 0.08s, color 0.08s;
+    gap: 8px;
+}
+
+.related-calc:hover {
+    background: #0a0a0a;
+    color: #fafafa;
+}
+
+.related-calc:hover .related-arrow { opacity: 0.7; }
+
+/* Sidebar */
+.sidebar-article {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px 14px 15px;
+    border-left: 5px solid transparent;
+    text-decoration: none;
+    color: #0a0a0a;
+    background: #fafafa;
+    transition: background 0.08s, border-color 0.08s;
+}
+
+.sidebar-article:hover {
+    border-left-color: #ddd6ff;
+    background: rgba(221, 214, 255, 0.2);
+}
+
+.sidebar-article.active {
+    border-left-color: #0a0a0a;
+    background: rgba(10, 10, 10, 0.04);
+    font-weight: 600;
+}
+
+.sidebar-article:hover .sa-arrow,
+.sidebar-article.active .sa-arrow { opacity: 0.6; }
+
+/* Responsive */
 @media (max-width: 900px) {
     .post-grid { grid-template-columns: 1fr; }
     .post-main { border-right: none; }
     .post-sidebar { border-top: 3px solid #0a0a0a; }
     .related-grid { grid-template-columns: 1fr 1fr; }
-    .hero-area { height: 240px; }
-    .hero-title { font-size: 26px; }
+    .article-section { padding: 16px; }
+    .article-body { padding: 20px; }
+    .article-card-head { padding: 18px 20px; }
+    .article-headline { font-size: 20px; }
 }
 
 @media (max-width: 560px) {

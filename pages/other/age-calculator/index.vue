@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Age Calculator" category="other">
+    <UiCalcPage title="Age Calculator" category="other" description-title="Your exact age in years, months, and days">
         <template #calc>
             <CalculatorsOtherAgeCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Output" value="Years, months, days" />
+            <CalcFact label="Calendar" value="Gregorian" />
+            <CalcFact label="Precision" value="Exact to the day" />
         </template>
         <template #description>
             <p>Effortlessly Calculate Your Age with Precision</p>
@@ -15,8 +20,6 @@
                 But our Age Calculator is more than just a tool for party planning or curiosity. Age plays a significant role in various aspects of life, including health, education, and social opportunities. It helps determine when you can vote, retire, or qualify for certain discounts or
                 benefits. Knowing your age with precision is essential for making informed decisions.
             </p>
-            <p>Whether you're planning a birthday celebration, confirming eligibility for an event, or satisfying your curiosity about your age, our Age Calculator is a reliable and efficient tool at your disposal. Say hello to accurate age determination and goodbye to guesswork.</p>
-            <p>Make age calculations a thing of the past and embrace the ease and precision of our Age Calculator. Celebrate your milestones with confidence, knowing your age is calculated with accuracy.</p>
         </template>
     </UiCalcPage>
 </template>

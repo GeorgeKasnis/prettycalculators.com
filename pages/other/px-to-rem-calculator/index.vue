@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Px to Rem Calculator" category="other">
+    <UiCalcPage title="Px to Rem Calculator" category="other" description-title="Convert pixels to rem for responsive design">
         <template #calc>
             <CalculatorsOtherPxToRemCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Base font size" value="16" unit="px" />
+            <CalcFact label="1 rem" value="16 px" />
+            <CalcFact label="320px equals" value="20 rem" />
         </template>
         <template #description>
             <p>A <span class="font-bold">PX to REM Calculator</span> is an indispensable tool in the world of web development, offering the flexibility and adaptability needed for modern responsive design.</p>
@@ -14,16 +19,8 @@
                 different screen sizes and resolutions, enhancing user experience and ensuring your website remains visually appealing.
             </p>
             <p>
-                Imagine you have an element with a width of 320px, but you want it to scale gracefully across devices. By using our calculator, you can quickly determine that it should be approximately 20rem based on a <span class="font-bold">base font size</span> of 16px. This level of
-                precision ensures that your web content maintains its proportions and readability on screens of all sizes.
-            </p>
-            <p>
                 So, why should you consider using rem units and our PX to REM Calculator? It's all about <span class="font-bold">consistency</span> and <span class="font-bold">efficiency</span>. Rem units allow you to define measurements in relation to the base font size, reducing the need for
-                complex calculations and providing a <span class="font-bold">more maintainable</span> and <span class="font-bold">readable</span> codebase. Additionally, using rem units can improve accessibility, making your content more user-friendly for individuals with disabilities.
-            </p>
-            <p>
-                As you embark on your web development journey, our PX to REM Calculator will become your trusted companion, ensuring that your designs remain <span class="font-bold">consistent</span>, <span class="font-bold">responsive</span>, and <span class="font-bold">accessible</span> across
-                the digital landscape. Say goodbye to the complexities of pixel-based design and welcome the <span class="font-bold">flexibility</span> and <span class="font-bold">precision</span> of rem units.
+                complex calculations and providing a <span class="font-bold">more maintainable</span> and <span class="font-bold">readable</span> codebase.
             </p>
         </template>
         <template #example>

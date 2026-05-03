@@ -1,48 +1,94 @@
 <template>
-    <UiFormContainer title="TDEE Calculator" :result="result" @clear-form="clearEverything(form)">
-        <InputsBaseRadioButtonGroup v-model:gender="form.gender" :options="genderOptions" />
-        <InputsTextInput aria-label="Weight in kg input to calculate Total Daily Energy Expenditure (TDEE)" placeholder="Weight" v-model="form.weight" measurementUnit="Kg" :measurementWidthBig="true" />
-        <InputsTextInput aria-label="Height in cm input to calculate Total Daily Energy Expenditure (TDEE)" placeholder="Height" v-model="form.height" measurementUnit="Cm" :measurementWidthBig="true" />
-        <InputsTextInput aria-label="Age input to calculate Total Daily Energy Expenditure (TDEE)" placeholder="Age" v-model="form.age" measurementUnit="Years" :measurementWidthBig="true" />
-        <select aria-label="Activity level" v-model="form.activityLevel" class="w-full border border-black p-small bg-white text-sm tracking-wide">
-            <option :value="null" disabled>Select activity level</option>
-            <option value="1.2">Sedentary (little or no exercise)</option>
-            <option value="1.375">Lightly active (1–3 days/week)</option>
-            <option value="1.55">Moderately active (3–5 days/week)</option>
-            <option value="1.725">Very active (6–7 days/week)</option>
-            <option value="1.9">Extra active (very hard exercise / physical job)</option>
-        </select>
-    </UiFormContainer>
+    <div>
+        <CalcGenderToggle v-model="gender" />
+        <CalcInputStack>
+            <CalcInputRow label="Weight" unit="kg" v-model="weight" placeholder="e.g. 70" type="number" />
+            <CalcInputRow label="Height" unit="cm" v-model="height" placeholder="e.g. 175" type="number" />
+            <CalcInputRow label="Age" unit="yrs" v-model="age" placeholder="e.g. 25" type="number" />
+            <div class="ci-row tdee-select-row">
+                <span class="tdee-select-label">Activity Level</span>
+                <select v-model="activity" class="tdee-select">
+                    <option value="" disabled>Select activity level</option>
+                    <option value="1.2">Sedentary (little or no exercise)</option>
+                    <option value="1.375">Lightly active (1–3 days/week)</option>
+                    <option value="1.55">Moderately active (3–5 days/week)</option>
+                    <option value="1.725">Very active (6–7 days/week)</option>
+                    <option value="1.9">Extra active (very hard exercise / physical job)</option>
+                </select>
+            </div>
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate →</CalcBtn>
+        <CalcOutput :show="calculated" title="TDEE" single>
+            <CalcOutputCell label="Total Daily Energy Expenditure" :value="tdee" unit="kcal/day" />
+        </CalcOutput>
+    </div>
 </template>
-<script>
-export default {
-    data() {
-        return {
-            genderOptions: [
-                { label: "Male", value: "male" },
-                { label: "Female", value: "female" },
-            ],
-            form: {
-                gender: null,
-                weight: null,
-                height: null,
-                age: null,
-                activityLevel: null,
-            },
-        };
-    },
-    computed: {
-        result() {
-            if (!globalAllKeysAreNotNull(this.form)) return "";
-            let bmr;
-            if (this.form.gender === "male") {
-                bmr = 88.362 + 13.397 * this.form.weight + 4.799 * this.form.height - 5.677 * this.form.age;
-            } else {
-                bmr = 447.593 + 9.247 * this.form.weight + 3.098 * this.form.height - 4.33 * this.form.age;
-            }
-            const tdee = bmr * parseFloat(this.form.activityLevel);
-            return !isNaN(tdee) && tdee > 0 ? `${tdee.toFixed()} kcal` : "";
-        },
-    },
-};
+
+<script setup>
+import { ref } from 'vue'
+
+const gender = ref('male')
+const weight = ref('')
+const height = ref('')
+const age = ref('')
+const activity = ref('')
+const calculated = ref(false)
+const tdee = ref('')
+
+function calculate() {
+    const w = parseFloat(weight.value)
+    const h = parseFloat(height.value)
+    const a = parseFloat(age.value)
+    const act = parseFloat(activity.value)
+    if (isNaN(w) || isNaN(h) || isNaN(a) || isNaN(act) || w <= 0 || h <= 0 || a <= 0) return
+    const bmr = gender.value === 'male'
+        ? 88.362 + 13.397 * w + 4.799 * h - 5.677 * a
+        : 447.593 + 9.247 * w + 3.098 * h - 4.33 * a
+    tdee.value = (bmr * act).toFixed(0)
+    calculated.value = true
+}
+
+function clear() {
+    weight.value = ''
+    height.value = ''
+    age.value = ''
+    activity.value = ''
+    calculated.value = false
+}
 </script>
+
+<style scoped>
+.tdee-select-row {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tdee-select-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    opacity: 0.45;
+}
+
+.tdee-select {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0a0a0a;
+    cursor: pointer;
+    padding: 0;
+    width: 100%;
+    appearance: none;
+}
+
+.tdee-select option {
+    font-weight: 400;
+}
+</style>

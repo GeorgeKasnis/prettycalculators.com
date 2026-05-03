@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Kilometers to Miles" category="unit">
+    <UiCalcPage title="Kilometers to Miles" category="unit" description-title="Convert kilometers to miles with precision">
         <template #calc>
             <CalculatorsUnitKilometersToMilesCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="1 km equals" value="0.62137" unit="mi" />
+            <CalcFact label="10 km equals" value="~6.2" unit="miles" />
+            <CalcFact label="100 km equals" value="~62.1" unit="miles" />
         </template>
         <template #description>
             <p>
@@ -20,17 +25,6 @@
             <p>
                 <span class="font-bold">Engineering and Construction:</span> In the world of engineering and construction, precision is paramount. Professionals in these fields often work with plans and measurements in both Kilometers and Miles. Our calculator simplifies the conversion process,
                 eliminating the risk of errors and ensuring that your projects proceed smoothly.
-            </p>
-            <p>
-                <span class="font-bold">Scientific Research:</span> Scientists and researchers across various disciplines frequently encounter data in different units. Our calculator offers an efficient solution for converting distance measurements, making cross-referencing and data analysis much more straightforward.
-            </p>
-            <h2>The Metric System vs. Imperial System</h2>
-            <p>
-                <span class="font-bold">The Metric System</span> is the international standard for measurement and is widely used in most countries worldwide. It employs a decimal-based system that makes conversions between units relatively simple. The base unit of length in the Metric System is
-                the meter, and the Kilometer is a common unit for expressing longer distances.
-            </p>
-            <p>
-                In contrast, <span class="font-bold">the Imperial System</span> is used in a few countries, including the United States. It features units like inches, feet, yards, and Miles used for different types of measurements. Our Kilometers to Miles Calculator provides a seamless way to bridge the gap between these systems.
             </p>
         </template>
         <template #example>

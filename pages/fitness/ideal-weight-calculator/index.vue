@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Ideal Weight Calculator" category="fitness">
+    <UiCalcPage title="Ideal Weight Calculator" category="fitness" description-title="Find a healthy weight target for your height">
         <template #calc>
             <CalculatorsFitnessIdealWeightCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Formula" value="Hamwi" />
+            <CalcFact label="Base (male)" value="48 kg" unit="at 5 ft" />
+            <CalcFact label="Base (female)" value="45.5 kg" unit="at 5 ft" />
         </template>
         <template #description>
             <p>

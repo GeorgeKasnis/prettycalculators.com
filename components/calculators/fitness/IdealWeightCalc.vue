@@ -1,35 +1,37 @@
 <template>
-    <UiFormContainer title="Ideal Weight Calculator" :result="result" @clear-form="clearEverything(form)">
-        <InputsBaseRadioButtonGroup v-model:gender="form.gender" :options="genderOptions" />
-        <InputsTextInput aria-label="Height in cm input to calculate ideal weight" placeholder="Height" v-model="form.height" measurementUnit="Cm" :measurementWidthBig="true" />
-    </UiFormContainer>
+    <div>
+        <CalcGenderToggle v-model="gender" />
+        <CalcInputStack>
+            <CalcInputRow label="Height" unit="cm" v-model="height" placeholder="e.g. 175" type="number" />
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate →</CalcBtn>
+        <CalcOutput :show="calculated" title="Ideal Weight" single>
+            <CalcOutputCell label="Ideal Body Weight" :value="weight" unit="kg" />
+        </CalcOutput>
+    </div>
 </template>
-<script>
-export default {
-    data() {
-        return {
-            genderOptions: [
-                { label: "Male", value: "male" },
-                { label: "Female", value: "female" },
-            ],
-            form: {
-                gender: null,
-                height: null,
-            },
-        };
-    },
-    computed: {
-        result() {
-            if (!globalAllKeysAreNotNull(this.form)) return "";
-            const inchesOver5Feet = Math.max(0, (this.form.height - 152.4) / 2.54);
-            let idealWeight;
-            if (this.form.gender === "male") {
-                idealWeight = 48 + 2.7 * inchesOver5Feet;
-            } else {
-                idealWeight = 45.5 + 2.2 * inchesOver5Feet;
-            }
-            return !isNaN(idealWeight) && idealWeight > 0 ? `${idealWeight.toFixed(1)} kg` : "";
-        },
-    },
-};
+
+<script setup>
+import { ref } from 'vue'
+
+const gender = ref('male')
+const height = ref('')
+const calculated = ref(false)
+const weight = ref('')
+
+function calculate() {
+    const h = parseFloat(height.value)
+    if (!height.value || isNaN(h) || h <= 0) return
+    const inchesOver5Feet = Math.max(0, (h - 152.4) / 2.54)
+    const w = gender.value === 'male'
+        ? 48 + 2.7 * inchesOver5Feet
+        : 45.5 + 2.2 * inchesOver5Feet
+    weight.value = w.toFixed(1)
+    calculated.value = true
+}
+
+function clear() {
+    height.value = ''
+    calculated.value = false
+}
 </script>

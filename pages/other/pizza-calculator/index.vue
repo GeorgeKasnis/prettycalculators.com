@@ -1,10 +1,14 @@
 <template>
-    <UiCalcPage title="Pizza Calculator" category="other">
+    <UiCalcPage title="Pizza Calculator" category="other" description-title="Master the perfect pizza dough every time">
         <template #calc>
             <CalculatorsOtherPizzaCalc />
         </template>
+        <template #facts>
+            <CalcFact label="Flour ratio" value="~59.5%" unit="of dough weight" />
+            <CalcFact label="Hydration (Italian)" value="60 – 70%" />
+            <CalcFact label="Salt" value="~1.8%" />
+        </template>
         <template #description>
-            <p>Create the <span class="font-bold">Perfect Pizza</span> with Precision</p>
             <p>
                 Unlock the art of pizza making with our Pizza Ingredient Calculator. This exceptional tool empowers you to craft the pizza of your dreams, tailored to your preferences and serving sizes. Say goodbye to guesswork and culinary experiments, and say hello to a
                 <span class="font-bold">perfectly balanced pizza</span> every time.

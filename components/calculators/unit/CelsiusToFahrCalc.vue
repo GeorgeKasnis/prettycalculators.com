@@ -1,26 +1,31 @@
 <template>
     <div>
-        <UiFormContainer title="Celcius to Fahrenheit " :result="result" @clear-form="clearEverything(form)">
-            <InputsTextInput aria-label="Temperature in Celsius" placeholder="Temperature in Celsius" v-model="form.celsius" measurementUnit="℃" />
-        </UiFormContainer>
+        <CalcInputStack>
+            <CalcInputRow label="Celsius" unit="°C" v-model="celsius" placeholder="e.g. 100" type="number" />
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate →</CalcBtn>
+        <CalcOutput :show="calculated" title="Result" single>
+            <CalcOutputCell label="Fahrenheit" :value="result" unit="°F" />
+        </CalcOutput>
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            form: {
-                celsius: null,
-            },
-        };
-    },
+<script setup>
+import { ref } from 'vue'
 
-    computed: {
-        result() {
-            let result = ((this.form.celsius * 9) / 5 + 32).toFixed(1);
-            return globalAllKeysAreNotNull(this.form) && !isNaN(result) && result > 0 ? `${result} °F` : "";
-        },
-    },
-};
+const celsius = ref('')
+const calculated = ref(false)
+const result = ref('')
+
+function calculate() {
+    const c = parseFloat(celsius.value)
+    if (celsius.value === '' || isNaN(c)) return
+    result.value = ((c * 9) / 5 + 32).toFixed(1)
+    calculated.value = true
+}
+
+function clear() {
+    celsius.value = ''
+    calculated.value = false
+}
 </script>

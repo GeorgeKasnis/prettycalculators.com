@@ -1,44 +1,58 @@
 <template>
     <div>
-        <UiFormContainer title="Body Fat Calculator" :result="result" @clear-form="clearEverything(form)">
-            <InputsBaseRadioButtonGroup v-model:gender="form.gender" :options="genderOptions" />
-            <InputsTextInput aria-label="Weight in kg" placeholder="Weight" v-model="form.weight" measurementUnit="Kg" />
-            <InputsTextInput aria-label="Height in cm" placeholder="Height" v-model="form.height" measurementUnit="Cm" />
-            <InputsTextInput aria-label="Neck circumference" placeholder="Neck circumference" v-model="form.neck" measurementUnit="Cm" />
-            <InputsTextInput aria-label="Waist circumference" placeholder="Waist circumference" v-model="form.waist" measurementUnit="Cm" />
-            <InputsTextInput aria-label="Hip circumference" placeholder="Hip circumference" v-if="form.gender === 'female'" v-model="form.hip" measurementUnit="Cm" />
-        </UiFormContainer>
+        <CalcGenderToggle v-model="gender" />
+        <CalcInputStack>
+            <CalcInputRow label="Height" unit="cm" v-model="height" placeholder="e.g. 175" type="number" />
+            <CalcInputRow label="Neck Circumference" unit="cm" v-model="neck" placeholder="e.g. 38" type="number" />
+            <CalcInputRow label="Waist Circumference" unit="cm" v-model="waist" placeholder="e.g. 80" type="number" />
+            <CalcInputRow v-if="gender === 'female'" label="Hip Circumference" unit="cm" v-model="hip" placeholder="e.g. 95" type="number" />
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate →</CalcBtn>
+        <CalcOutput :show="calculated" title="Body Fat" single>
+            <CalcOutputCell label="Body Fat Percentage" :value="bodyFat" unit="%" />
+        </CalcOutput>
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            form: {
-                gender: null,
-                weight: null,
-                height: null,
-                neck: null,
-                waist: null,
-                hip: null,
-            },
-            genderOptions: [
-                { label: "Male", value: "male" },
-                { label: "Female", value: "female" },
-            ],
-        };
-    },
-    computed: {
-        result() {
-            if (this.form.gender === "male") {
-                let result = 495 / (1.0324 - 0.19077 * Math.log10(this.form.waist - this.form.neck) + 0.15456 * Math.log10(this.form.height)) - 450;
-                return globalAllKeysAreNotNull(this.form, "hip") && !isNaN(result) && result > 0 ? `${result.toFixed()} %` : "";
-            } else {
-                let result = 495 / (1.29579 - 0.35004 * Math.log10(this.form.waist + this.form.hip - this.form.neck) + 0.221 * Math.log10(this.form.height)) - 450;
-                return globalAllKeysAreNotNull(this.form) && !isNaN(result) && result > 0 ? `${result.toFixed()} %` : "";
-            }
-        },
-    },
-};
+<script setup>
+import { ref, watch } from 'vue'
+
+const gender = ref('male')
+const height = ref('')
+const neck = ref('')
+const waist = ref('')
+const hip = ref('')
+const calculated = ref(false)
+const bodyFat = ref('')
+
+watch(gender, () => {
+    calculated.value = false
+    hip.value = ''
+})
+
+function calculate() {
+    const h = parseFloat(height.value)
+    const n = parseFloat(neck.value)
+    const w = parseFloat(waist.value)
+    if (isNaN(h) || isNaN(n) || isNaN(w) || h <= 0 || n <= 0 || w <= 0) return
+    let result
+    if (gender.value === 'male') {
+        result = 495 / (1.0324 - 0.19077 * Math.log10(w - n) + 0.15456 * Math.log10(h)) - 450
+    } else {
+        const hp = parseFloat(hip.value)
+        if (isNaN(hp) || hp <= 0) return
+        result = 495 / (1.29579 - 0.35004 * Math.log10(w + hp - n) + 0.221 * Math.log10(h)) - 450
+    }
+    if (isNaN(result) || result <= 0) return
+    bodyFat.value = result.toFixed(1)
+    calculated.value = true
+}
+
+function clear() {
+    height.value = ''
+    neck.value = ''
+    waist.value = ''
+    hip.value = ''
+    calculated.value = false
+}
 </script>

@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Percentage Calculator" category="math">
+    <UiCalcPage title="Percentage Calculator" category="math" description-title="Calculate any percentage in seconds">
         <template #calc>
             <CalculatorsMathPercentageCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Formula" value="(P ÷ 100) × N" />
+            <CalcFact label="Example" value="15% of 200 = 30" />
+            <CalcFact label="Common uses" value="Discounts, tax, tips" />
         </template>
         <template #description>
             <p>Unlock the convenience of rapid percentage calculations with our Percentage Calculator. This versatile tool simplifies the process of determining percentages for a wide range of applications.</p>

@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Body Fat Calculator" category="fitness">
+    <UiCalcPage title="Body Fat Calculator" category="fitness" description-title="Estimate your body fat with body measurements">
         <template #calc>
             <CalculatorsFitnessBodyFatCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Method" value="U.S. Navy" />
+            <CalcFact label="Healthy (male)" value="10 – 20%" />
+            <CalcFact label="Healthy (female)" value="18 – 28%" />
         </template>
         <template #description>
             <p>

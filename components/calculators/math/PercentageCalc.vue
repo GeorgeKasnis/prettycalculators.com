@@ -1,49 +1,37 @@
 <template>
     <div>
-        <UiFormContainer title="Percentage Calculator" :result="result" @clear-form="clearEverything(form)">
-            <InputsTextInput aria-label="Percentage" placeholder="Percentage" v-model="form.percent" measurementUnit="%" />
-            <div>of</div>
-            <InputsTextInput aria-label="Number" placeholder="Number" v-model="form.number" />
-        </UiFormContainer>
+        <CalcInputStack>
+            <CalcInputRow label="Percentage" unit="%" v-model="percent" placeholder="e.g. 15" type="number" />
+            <CalcInputRow label="Of Number" v-model="number" placeholder="e.g. 200" type="number" />
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate →</CalcBtn>
+        <CalcOutput :show="calculated" title="Result" single>
+            <CalcOutputCell label="Result" :value="result" />
+        </CalcOutput>
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            form: {
-                percent: null,
-                number: null,
-            },
-        };
-    },
-    methods: {
-        calculate() {
-            this.form.errors = "";
-            if (this.form.number == 0 || this.form.percent == 0) {
-                this.form.result = "0";
-                this.errors = "";
-                return;
-            }
-            if (!this.form.number || !this.form.percent) {
-                this.form.errors = "All fields is required";
-            }
-            this.form.result = (this.form.percent / 100) * this.form.number;
-        },
-        clearEverything() {
-            for (let key in this.form) {
-                this.form[key] = null;
-            }
-        },
-    },
-    computed: {
-        result() {
-            let result = (this.form.percent / 100) * this.form.number;
-            if (globalAllKeysAreNotNull(this.form) && !isNaN(result) && result > 0) {
-                return result;
-            }
-        },
-    },
-};
+<script setup>
+import { ref } from 'vue'
+
+const percent = ref('')
+const number = ref('')
+const calculated = ref(false)
+const result = ref('')
+
+function calculate() {
+    if (percent.value === '' || number.value === '') return
+    const p = parseFloat(percent.value)
+    const n = parseFloat(number.value)
+    if (isNaN(p) || isNaN(n)) return
+    const r = (p / 100) * n
+    result.value = isNaN(r) ? '' : +r.toFixed(6) + ''
+    calculated.value = true
+}
+
+function clear() {
+    percent.value = ''
+    number.value = ''
+    calculated.value = false
+}
 </script>

@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Aqua Calculator" category="other">
+    <UiCalcPage title="Aqua Calculator" category="other" description-title="Discover the vital importance of proper hydration">
         <template #calc>
             <CalculatorsOtherAquaCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Daily guideline" value="30" unit="ml / kg" />
+            <CalcFact label="Typical adult" value="2 – 3" unit="L / day" />
+            <CalcFact label="Influenced by" value="Activity, climate, health" />
         </template>
         <template #description>
             <p>Discover the Vital Importance of Proper Hydration</p>
@@ -18,11 +23,6 @@
                 Factors influencing your hydration requirements include your activity level, climate, and underlying health conditions. Hot and humid weather, strenuous physical activity, or certain medical conditions may necessitate increased fluid intake. Our calculator offers a starting point
                 for your hydration journey, but staying in tune with your body's signals is equally crucial.
             </p>
-            <p>
-                Proper hydration is more than just a health goal; it's a daily practice. By using our Water Intake Calculator, you take a proactive step toward staying adequately hydrated and optimizing your health. You'll be better equipped to meet your body's needs and enjoy the numerous
-                benefits of optimal hydration.
-            </p>
-            <p>Remember, your health and well-being deserve your attention. Use our calculator as a valuable tool on your path to a healthier and more vibrant life.</p>
         </template>
         <template #example>
             <p>For instance, a person with a weight of 70 kg should aim to consume approximately 2.1 liters of water per day to meet their hydration needs.</p>

@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="BMR Calculator" category="fitness">
+    <UiCalcPage title="BMR Calculator" category="fitness" description-title="How many calories your body burns at rest">
         <template #calc>
             <CalculatorsFitnessBmrCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Formula" value="Harris-Benedict" />
+            <CalcFact label="Accuracy" value="± 10%" />
+            <CalcFact label="Inputs" value="Gender, age, weight, height" />
         </template>
         <template #description>
             <p>

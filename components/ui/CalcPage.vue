@@ -8,13 +8,17 @@
         <!-- Main column -->
         <div class="main-col border-brut">
 
-            <!-- Calc header — always lavender so the focus stays on the tool -->
-            <div class="border-b-3 border-brut px-8 pt-7 pb-6 flex items-end justify-between gap-4 mobile:px-5 bg-lavender">
-                <div>
-                    <div class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] opacity-40 mb-[6px]">{{ config.title }}</div>
-                    <h1 class="text-[44px] font-bold tracking-[-0.05em] leading-none mobile:text-[32px]">{{ title }}</h1>
+            <!-- Calc header -->
+            <slot name="header">
+                <div class="border-b-3 border-brut bg-brut px-8 py-8 mobile:px-4 mobile:py-6 flex items-start justify-between gap-5">
+                    <div class="min-w-0">
+                        <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-lavender/50 mb-2">{{ config.title }}</div>
+                        <h1 class="font-grotesk text-[52px] font-bold tracking-[-0.05em] leading-none text-cream mobile:text-[36px]">{{ title }}</h1>
+                        <p v-if="description" class="mt-3 text-[14px] text-white/45 leading-relaxed max-w-xs">{{ description }}</p>
+                    </div>
+                    <div v-if="badge" class="bg-lavender text-brut font-mono text-[10px] font-bold uppercase tracking-[0.12em] px-3 py-[5px] whitespace-nowrap flex-shrink-0 mt-1">{{ badge }}</div>
                 </div>
-            </div>
+            </slot>
 
             <!-- Calculator slot -->
             <div class="calc-wrapper px-8 py-7 border-b-3 border-brut mobile:px-5">
@@ -25,14 +29,24 @@
             <UiAdSlot bordered />
 
             <!-- Description & example prose -->
-            <div v-if="$slots.description || $slots.example" class="px-8 py-7 border-b-3 border-brut mobile:px-5">
-                <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-35 mb-[14px]">About this tool</div>
-                <div class="prose-brut">
-                    <slot name="description" />
-                    <template v-if="$slots.example">
-                        <h2>Example</h2>
-                        <slot name="example" />
-                    </template>
+            <div v-if="$slots.description || $slots.example" class="about-section">
+                <div class="about-card">
+                    <div class="about-card-head">
+                        <div class="about-eyebrow">About this tool</div>
+                        <h2 v-if="descriptionTitle" class="about-headline">{{ descriptionTitle }}</h2>
+                    </div>
+                    <div class="about-card-body" :class="{ 'has-facts': $slots.facts }">
+                        <div class="about-prose prose-brut">
+                            <slot name="description" />
+                            <template v-if="$slots.example">
+                                <h2>Example</h2>
+                                <slot name="example" />
+                            </template>
+                        </div>
+                        <aside v-if="$slots.facts" class="about-facts">
+                            <slot name="facts" />
+                        </aside>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,8 +101,11 @@
 
 <script setup>
 const props = defineProps({
-    title: { type: String, required: true },
-    category: { type: String, required: true },
+    title:            { type: String, required: true },
+    category:         { type: String, required: true },
+    description:      { type: String, default: '' },
+    badge:            { type: String, default: '' },
+    descriptionTitle: { type: String, default: '' },
 })
 
 const { config, otherCategories } = useCategoryConfig(props.category)
@@ -114,7 +131,7 @@ const { config, otherCategories } = useCategoryConfig(props.category)
     display: none;
 }
 
-/* Tool links — design uses thin separators between items, not thick brut borders */
+/* Tool links */
 .tool-link {
     display: flex;
     align-items: center;
@@ -147,6 +164,68 @@ const { config, otherCategories } = useCategoryConfig(props.category)
 .tool-arrow {
     flex-shrink: 0;
     transition: opacity 0.08s;
+}
+
+/* About section */
+.about-section {
+    padding: 28px 32px;
+    border-bottom: 3px solid #0a0a0a;
+    background: #ddd6ff;
+}
+
+.about-card {
+    background: #fff;
+    border: 3px solid #0a0a0a;
+    box-shadow: 5px 5px 0 #0a0a0a;
+}
+
+.about-card-head {
+    background: #f5e642;
+    border-bottom: 3px solid #0a0a0a;
+    padding: 22px 28px 20px;
+}
+
+.about-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.55;
+    margin-bottom: 6px;
+}
+
+.about-headline {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    max-width: 580px;
+}
+
+.about-card-body {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.about-card-body.has-facts {
+    grid-template-columns: 1fr 220px;
+}
+
+.about-prose {
+    padding: 24px 28px;
+}
+
+.about-card-body.has-facts .about-prose {
+    border-right: 3px solid #0a0a0a;
+}
+
+.about-facts {
+    padding: 22px 24px;
+    background: #ddd6ff;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 /* Prose */
@@ -227,6 +306,22 @@ const { config, otherCategories } = useCategoryConfig(props.category)
     }
     .sidebar {
         border-top: 3px solid #0a0a0a;
+    }
+    .about-section {
+        padding: 20px;
+    }
+    .about-card-body.has-facts {
+        grid-template-columns: 1fr;
+    }
+    .about-card-body.has-facts .about-prose {
+        border-right: none;
+        border-bottom: 3px solid #0a0a0a;
+    }
+    .about-prose {
+        padding: 20px;
+    }
+    .about-facts {
+        padding: 20px;
     }
 }
 </style>

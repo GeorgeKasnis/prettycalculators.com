@@ -1,105 +1,65 @@
 <template>
     <div>
-        <UiFormContainer title="Manhattan Distance Calculator" :result="result" @clear-form="clearEverything(form)">
-            <TabGroup :selectedIndex="selectedTab" @change="changeTab">
-                <TabList class="flex gap-big mt-big">
-                    <Tab @click="clearEverything(form)" class="!outline-none wf aria-selected:font-bold transition-all text-start tracking-wider">1D</Tab>
-                    <Tab @click="clearEverything(form)" class="!outline-none wf aria-selected:font-bold transition-all text-start tracking-wider">2D</Tab>
-                    <Tab @click="clearEverything(form)" class="!outline-none wf aria-selected:font-bold transition-all text-start tracking-wider">3D</Tab>
-                    <Tab @click="clearEverything(form)" class="!outline-none wf aria-selected:font-bold transition-all text-start tracking-wider">4D</Tab>
-                </TabList>
-                <TabPanels>
-                    <TabPanel>
-                        <div class="flex flex-col gap-small relative">
-                            <InputsTextInput label="First Point X" aria-label="First Point" v-model="form.firstPointX" measurementUnit="x" />
-                            <InputsTextInput label="Second Point X" aria-label="First Point" v-model="form.secondPointX" measurementUnit="x" />
-                        </div>
-                    </TabPanel>
-                    <TabPanel>
-                        <div class="flex flex-col gap-small relative">
-                            <InputsTextInput label="First Point X" aria-label="First Point" v-model="form.firstPointX" measurementUnit="x" />
-                            <InputsTextInput aria-label="First Point Y" v-model="form.firstPointY" measurementUnit="y" />
-                            <InputsTextInput label="Second Point X" aria-label="First Point" v-model="form.secondPointX" measurementUnit="x" />
-                            <InputsTextInput aria-label="Second Point Y" v-model="form.secondPointY" measurementUnit="y" />
-                        </div>
-                    </TabPanel>
-                    <TabPanel>
-                        <div class="flex flex-col gap-small relative">
-                            <InputsTextInput label="First Point X" aria-label="First Point" v-model="form.firstPointX" measurementUnit="x" />
-                            <InputsTextInput aria-label="First Point Y" v-model="form.firstPointY" measurementUnit="y" />
-                            <InputsTextInput aria-label="First Point Z" v-model="form.firstPointZ" measurementUnit="z" />
-                            <InputsTextInput label="Second Point X" aria-label="First Point" v-model="form.secondPointX" measurementUnit="x" />
-                            <InputsTextInput aria-label="Second Point Y" v-model="form.secondPointY" measurementUnit="y" />
-                            <InputsTextInput aria-label="Second Point Z" v-model="form.secondPointZ" measurementUnit="z" />
-                        </div>
-                    </TabPanel>
-                    <TabPanel>
-                        <div class="flex flex-col gap-small relative">
-                            <InputsTextInput label="First Point X" aria-label="First Point" v-model="form.firstPointX" measurementUnit="x" />
-                            <InputsTextInput aria-label="First Point Y" v-model="form.firstPointY" measurementUnit="y" />
-                            <InputsTextInput aria-label="First Point Z" v-model="form.firstPointZ" measurementUnit="z" />
-                            <InputsTextInput aria-label="First Point T" v-model="form.firstPointT" measurementUnit="t" />
-                            <InputsTextInput label="Second Point X" aria-label="First Point" v-model="form.secondPointX" measurementUnit="x" />
-                            <InputsTextInput aria-label="Second Point Y" v-model="form.secondPointY" measurementUnit="y" />
-                            <InputsTextInput aria-label="Second Point Z" v-model="form.secondPointZ" measurementUnit="z" />
-                            <InputsTextInput aria-label="Second Point T" v-model="form.secondPointT" measurementUnit="t" />
-                        </div>
-                    </TabPanel>
-                </TabPanels>
-            </TabGroup>
-        </UiFormContainer>
+        <CalcTabs
+            :tabs="[{ value: '1', label: '1D' }, { value: '2', label: '2D' }, { value: '3', label: '3D' }, { value: '4', label: '4D' }]"
+            v-model="dimension"
+        />
+        <CalcInputStack>
+            <CalcInputRow
+                v-for="axis in axes"
+                :key="'a' + axis"
+                :label="`Point A — ${axis.toUpperCase()}`"
+                :unit="axis"
+                v-model="pointA[axis]"
+                placeholder="0"
+                type="number"
+            />
+            <CalcInputRow
+                v-for="axis in axes"
+                :key="'b' + axis"
+                :label="`Point B — ${axis.toUpperCase()}`"
+                :unit="axis"
+                v-model="pointB[axis]"
+                placeholder="0"
+                type="number"
+            />
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate Distance →</CalcBtn>
+        <CalcOutput :show="calculated" title="Manhattan Distance" single>
+            <CalcOutputCell label="Distance" :value="distance" />
+        </CalcOutput>
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
-</script>
+import { ref, computed, watch } from 'vue'
 
-<script>
-export default {
-    data() {
-        return {
-            form: {
-                firstPointX: null,
-                firstPointY: null,
-                firstPointZ: null,
-                firstPointT: null,
-                secondPointX: null,
-                secondPointY: null,
-                secondPointZ: null,
-                secondPointT: null,
-            },
-            selectedTab: 0,
-        };
-    },
-    methods: {
-        changeTab(index) {
-            this.selectedTab = index;
-        },
-    },
-    computed: {
-        result() {
-            const dimension = this.selectedTab + 1;
-            const fields = Array.from({ length: dimension }, (_, i) => `firstPoint${"XYZT"[i]}`);
+const ALL_AXES = ['x', 'y', 'z', 't']
+const dimension = ref('2')
+const axes = computed(() => ALL_AXES.slice(0, parseInt(dimension.value)))
+const pointA = ref({ x: '', y: '', z: '', t: '' })
+const pointB = ref({ x: '', y: '', z: '', t: '' })
+const calculated = ref(false)
+const distance = ref('0')
 
-            // Calculate Manhattan distance
-            let manhattanDistance = 0;
-            for (const field of fields) {
-                manhattanDistance += Math.abs(this.form[field] - this.form[field.replace("first", "second")]);
-            }
+watch(dimension, () => { calculated.value = false })
 
-            let result = manhattanDistance;
-            if (dimension == 1) {
-                return globalAllKeysAreNotNull(this.form, ["firstPointY", "firstPointZ", "firstPointT", "secondPointY", "secondPointZ", "secondPointT"]) && !isNaN(result) && result >= 0 ? result.toFixed() : "";
-            } else if (dimension == 2) {
-                return globalAllKeysAreNotNull(this.form, ["firstPointZ", "firstPointT", "secondPointZ", "secondPointT"]) && !isNaN(result) && result >= 0 ? result.toFixed() : "";
-            } else if (dimension == 3) {
-                return globalAllKeysAreNotNull(this.form, ["firstPointT", "secondPointT"]) && !isNaN(result) && result >= 0 ? result.toFixed() : "";
-            } else if (dimension == 4) {
-                return globalAllKeysAreNotNull(this.form) && !isNaN(result) && result >= 0 ? result.toFixed() : "";
-            }
-        },
-    },
-};
+function calculate() {
+    let d = 0
+    for (const axis of axes.value) {
+        const a = parseFloat(pointA.value[axis]) || 0
+        const b = parseFloat(pointB.value[axis]) || 0
+        d += Math.abs(a - b)
+    }
+    distance.value = d.toFixed(2).replace(/\.?0+$/, '') || '0'
+    calculated.value = true
+}
+
+function clear() {
+    ALL_AXES.forEach(k => {
+        pointA.value[k] = ''
+        pointB.value[k] = ''
+    })
+    calculated.value = false
+}
 </script>

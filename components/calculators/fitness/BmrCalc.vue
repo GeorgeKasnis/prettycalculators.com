@@ -1,38 +1,44 @@
 <template>
-    <UiFormContainer title="BMR Calculator" :result="result" @clear-form="clearEverything(form)">
-        <InputsBaseRadioButtonGroup v-model:gender="form.gender" :options="genderOptions" />
-        <InputsTextInput aria-label="Weight in kg input to calculate Basal Metabolic Rate (BMR)" placeholder="Weight" v-model="form.weight" measurementUnit="Kg" :measurementWidthBig="true"  />
-        <InputsTextInput aria-label="Height in cm input to calculate Basal Metabolic Rate (BMR)" placeholder="Height" v-model="form.height" measurementUnit="Cm" :measurementWidthBig="true"  />
-        <InputsTextInput aria-label="Age input to calculate Basal Metabolic Rate (BMR)" placeholder="Age" v-model="form.age" measurementUnit="Years" :measurementWidthBig="true"  />
-    </UiFormContainer>
+    <div>
+        <CalcGenderToggle v-model="gender" />
+        <CalcInputStack>
+            <CalcInputRow label="Weight" unit="kg" v-model="weight" placeholder="e.g. 70" type="number" />
+            <CalcInputRow label="Height" unit="cm" v-model="height" placeholder="e.g. 175" type="number" />
+            <CalcInputRow label="Age" unit="yrs" v-model="age" placeholder="e.g. 25" type="number" />
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate →</CalcBtn>
+        <CalcOutput :show="calculated" title="BMR" single>
+            <CalcOutputCell label="Basal Metabolic Rate" :value="bmr" unit="kcal/day" />
+        </CalcOutput>
+    </div>
 </template>
-<script>
-export default {
-    data() {
-        return {
-            genderOptions: [
-                { label: "Male", value: "male" },
-                { label: "Female", value: "female" },
-            ],
-            form: {
-                weight: null,
-                height: null,
-                age: null,
-                gender: null,
-            },
-        };
-    },
-    computed: {
-        result() {
-            if (this.form.gender === "male") {
-                let result = 88.362 + 13.397 * this.form.weight + 4.799 * this.form.height - 5.677 * this.form.age;
-              
-                return globalAllKeysAreNotNull(this.form) && !isNaN(result)  && result > 0 ? result.toFixed() : "";
-            } else {
-                let result = 447.593 + 9.247 * this.form.weight + 3.098 * this.form.height - 4.33 * this.form.age;
-                  return globalAllKeysAreNotNull(this.form) && !isNaN(result)  && result > 0 ? result.toFixed() : "";
-            }
-        },
-    },
-};
+
+<script setup>
+import { ref } from 'vue'
+
+const gender = ref('male')
+const weight = ref('')
+const height = ref('')
+const age = ref('')
+const calculated = ref(false)
+const bmr = ref('')
+
+function calculate() {
+    const w = parseFloat(weight.value)
+    const h = parseFloat(height.value)
+    const a = parseFloat(age.value)
+    if (isNaN(w) || isNaN(h) || isNaN(a) || w <= 0 || h <= 0 || a <= 0) return
+    const result = gender.value === 'male'
+        ? 88.362 + 13.397 * w + 4.799 * h - 5.677 * a
+        : 447.593 + 9.247 * w + 3.098 * h - 4.33 * a
+    bmr.value = result.toFixed(0)
+    calculated.value = true
+}
+
+function clear() {
+    weight.value = ''
+    height.value = ''
+    age.value = ''
+    calculated.value = false
+}
 </script>

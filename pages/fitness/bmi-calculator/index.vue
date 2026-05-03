@@ -1,7 +1,13 @@
 <template>
-    <UiCalcPage title="BMI Calculator" category="fitness">
+    <UiCalcPage title="BMI Calculator" category="fitness" description-title="Your weight relative to height, measured">
         <template #calc>
             <CalculatorsFitnessBmiCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Formula" value="weight / height²" />
+            <CalcFact label="Healthy range" value="18.5 – 24.9" />
+            <CalcFact label="Overweight" value="25 – 29.9" />
+            <CalcFact label="Obese" value="≥ 30" />
         </template>
         <template #description>
             <p>

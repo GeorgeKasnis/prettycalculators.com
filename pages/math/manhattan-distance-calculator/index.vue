@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Manhattan Distance Calculator" category="math">
+    <UiCalcPage title="Manhattan Distance Calculator" category="math" description-title="Compute the taxicab distance between two points">
         <template #calc>
             <CalculatorsMathManhattanDistanceCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Also known as" value="L1 / Taxicab distance" />
+            <CalcFact label="Formula" value="Σ |aᵢ − bᵢ|" />
+            <CalcFact label="Dimensions" value="1D to 4D" />
         </template>
         <template #description>
             <p>Unlock the world of precise distance calculations with our Manhattan Distance Calculator. This invaluable tool enables you to compute the Manhattan distance between two points in a grid-like space effortlessly.</p>
@@ -21,8 +26,6 @@
 
             <h4>4D (Four-Dimensional):</h4>
             <p>Extending the concept to 4D space involves considering the absolute differences in four coordinates. Think of it as navigating a 4D space-time continuum. With our calculator, you can effortlessly determine the Manhattan distance between two points in this complex space.</p>
-
-            <p>Whether you're tackling geometric problems, optimizing routes, or delving into the world of multidimensional mathematics, our Manhattan Distance Calculator is your trusted companion. Harness its power to simplify distance calculations across various dimensions.</p>
         </template>
         <template #example>
             <p><span class="font-bold">Example 1D:</span> If you're at address 5 and need to reach address 8, the Manhattan distance is 3 steps.</p>

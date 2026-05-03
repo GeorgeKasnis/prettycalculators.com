@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Fahrenheit to Celsius" category="unit">
+    <UiCalcPage title="Fahrenheit to Celsius" category="unit" description-title="Convert Fahrenheit to Celsius instantly">
         <template #calc>
             <CalculatorsUnitFahrToCelsiusCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Formula" value="(°F − 32) × 5/9" />
+            <CalcFact label="Body temperature" value="98.6°F = 37°C" />
+            <CalcFact label="Freezing point" value="32°F = 0°C" />
         </template>
         <template #description>
             <p>Easily convert temperatures from Fahrenheit (°F) to Celsius (°C) with our Fahrenheit to Celsius Calculator. This versatile tool streamlines temperature conversion, providing you with precise Celsius values from Fahrenheit inputs.</p>
@@ -10,7 +15,6 @@
                 temperature in Celsius.
             </p>
             <p>Imagine you're traveling abroad and need to interpret temperature forecasts in Celsius, but you're more familiar with Fahrenheit. With our calculator, you can effortlessly convert the provided Celsius temperatures to Fahrenheit, making travel planning a breeze.</p>
-            <p>Here's how it works: input the temperature in Fahrenheit, click "Calculate," and you'll instantly receive the corresponding Celsius temperature.</p>
             <p>Whether you're a globetrotter preparing for international adventures, a researcher working with diverse temperature scales, or simply curious about temperature conversions, our Fahrenheit to Celsius Calculator is an invaluable tool.</p>
         </template>
         <template #example>

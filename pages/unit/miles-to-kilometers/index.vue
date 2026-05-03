@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="Miles to Kilometers" category="unit">
+    <UiCalcPage title="Miles to Kilometers" category="unit" description-title="Convert miles to kilometers with precision">
         <template #calc>
             <CalculatorsUnitMilesToKilometersCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="1 mile equals" value="1.60934" unit="km" />
+            <CalcFact label="10 miles equals" value="~16.1" unit="km" />
+            <CalcFact label="Used in" value="USA, UK" />
         </template>
         <template #description>
             <p>
@@ -20,16 +25,6 @@
             <p>
                 <span class="font-bold">Engineering and Construction:</span> In the world of engineering and construction, precision is paramount. Professionals in these fields often work with plans and measurements in both Miles and Kilometers. Our calculator simplifies the conversion process,
                 eliminating the risk of errors and ensuring that your projects proceed smoothly.
-            </p>
-            <p>
-                <span class="font-bold">Scientific Research:</span> Scientists and researchers across various disciplines frequently encounter data in different units. Our calculator offers an efficient solution for converting distance measurements, making cross-referencing and data analysis much more straightforward.
-            </p>
-            <h2>The Metric System vs. Imperial System</h2>
-            <p>
-                <span class="font-bold">The Metric System</span> is the international standard for measurement and is widely used in most countries worldwide. It employs a decimal-based system that makes conversions between units relatively simple. The Kilometer is a common unit for expressing longer distances.
-            </p>
-            <p>
-                In contrast, <span class="font-bold">the Imperial System</span> is used in a few countries, including the United States, with units like inches, feet, yards, and Miles. Our Miles to Kilometers Calculator provides a seamless way to bridge the gap between these systems.
             </p>
         </template>
         <template #example>

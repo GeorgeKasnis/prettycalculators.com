@@ -1,101 +1,72 @@
 <template>
-    <UiFormContainer title="Pizza Calculator"  :hide-result="true">
-        <TabGroup :selectedIndex="selectedTab" @change="changeTab">
-            <TabList class="flex gap-big mt-big">
-                <Tab @click="clearEverything(form)" class="!outline-none wf aria-selected:font-bold transition-all text-start tracking-wider">Italian</Tab>
-                <Tab @click="clearEverything(form)" class="!outline-none wf aria-selected:font-bold transition-all text-start tracking-wider">American</Tab>
-            </TabList>
-            <TabPanels>
-                <TabPanel>
-                    <div class="flex flex-col gap-small relative">
-                        <InputsTextInput label="Number of pizzas" aria-label="Number of pizzas" v-model="form.numberOfPizza" placeholder="1" />
-                        <InputsTextInput aria-label="Weight of Doughball" v-model="form.weightOrDoughball" label="Weight of Doughball" placeholder="400" measurementUnit="g" />
-                        <InputsTextInput aria-label="Amount Of Water (%)" v-model="form.amountOfWater" label="Amount Of Water (%)" placeholder="65" measurementUnit="ml" />
-                    </div>
-
-                    <div class="mt-big" v-if="result">
-                        <div class="mb-small text-big">Ingredients</div>
-                        <ul class="columns-2">
-                            <li class="text-sm mb-small" v-if="flour">Flour : {{ flour }} g</li>
-                            <li class="text-sm mb-small" v-if="water">Water : {{ water }} ml</li>
-                            <li class="text-sm mb-small" v-if="salt">Salt : {{ salt }} g</li>
-                            <li class="text-sm mb-small" v-if="yeast">Dry Yeast : {{ yeast }} g</li>
-                        </ul>
-                    </div>
-                   <button class="mt-small" @click="clearEverything(form)" v-if="result">Clear</button>
-                </TabPanel>
-                <TabPanel>
-                    <div class="flex flex-col gap-small relative">
-                        <InputsTextInput label="Number of pizzas" aria-label="Number of pizzas" v-model="form.numberOfPizza" placeholder="1" />
-                        <InputsTextInput aria-label="Weight of Doughball" v-model="form.weightOrDoughball" label="Weight of Doughball" placeholder="400" measurementUnit="g" />
-                        <InputsTextInput aria-label="Amount Of Water (%)" v-model="form.amountOfWater" label="Amount Of Water (%)" placeholder="62" measurementUnit="ml" />
-                    </div>
-                    <div class="mt-big" v-if="result">
-                        <div class="mb-small text-big">Ingredients</div>
-                        <ul class="columns-2">
-                            <li class="text-sm mb-small" v-if="flour">Flour : {{ flour }} g</li>
-                            <li class="text-sm mb-small" v-if="water">Water : {{ water }} ml</li>
-                            <li class="text-sm mb-small" v-if="salt">Salt : {{ salt }} g</li>
-                            <li class="text-sm mb-small" v-if="yeast">Dry Yeast : {{ yeast }} g</li>
-                            <li class="text-sm mb-small" v-if="oil">Oil : {{ oil }} ml</li>
-                            <li class="text-sm mb-small" v-if="sugar">Sugar : {{ sugar }} g</li>
-                            <li class="text-sm mb-small" v-if="starter">Starter : {{ starter }} g</li>
-                        </ul>
-                    </div>
-                   <button class="mt-small" @click="clearEverything(form)" v-if="result">Clear</button>
-                </TabPanel>
-            </TabPanels>
-        </TabGroup>
-    </UiFormContainer>
+    <div>
+        <CalcTabs
+            :tabs="[{ value: 'italian', label: 'Italian' }, { value: 'american', label: 'American' }]"
+            v-model="style"
+        />
+        <CalcInputStack>
+            <CalcInputRow label="Number of Pizzas" v-model="numPizzas" placeholder="e.g. 2" type="number" min="1" />
+            <CalcInputRow label="Dough Ball Weight" unit="g" v-model="doughWeight" placeholder="e.g. 400" type="number" />
+            <CalcInputRow label="Hydration" unit="%" v-model="hydration" :placeholder="style === 'italian' ? '65' : '62'" type="number" />
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate →</CalcBtn>
+        <CalcOutput :show="calculated" title="Ingredients" :meta="`${numPizzas} pizza${numPizzas > 1 ? 's' : ''}`">
+            <CalcOutputCell label="Flour" :value="flour" unit="g" />
+            <CalcOutputCell label="Water" :value="water" unit="ml" />
+            <CalcOutputCell label="Salt" :value="salt" unit="g" />
+            <CalcOutputCell label="Dry Yeast" :value="yeast" unit="g" />
+            <template v-if="style === 'american'">
+                <CalcOutputCell label="Oil" :value="oil" unit="ml" />
+                <CalcOutputCell label="Sugar" :value="sugar" unit="g" />
+            </template>
+        </CalcOutput>
+    </div>
 </template>
 
 <script setup>
-import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
-</script>
+import { ref, watch } from 'vue'
 
-<script>
-export default {
-    data() {
-        return {
-            form: {
-                numberOfPizza: null,
-                weightOrDoughball: null,
-                amountOfWater: null,
-            },
-            flour: "",
-            water: "",
-            salt: "",
-            yeast: "",
-            oil: "",
-            sugar: "",
-            starter: "",
-            selectedTab: 0,
-        };
-    },
-    methods: {
-        changeTab(index) {
-            this.selectedTab = index;
-        },
-    },
-    computed: {
-        result() {
-            if (this.selectedTab == 0) {
-                this.flour = parseInt((this.form.weightOrDoughball * 59.5) / 100) * this.form.numberOfPizza;
-                this.water = ((this.flour * this.form.amountOfWater) / 100).toFixed(0);
-                this.salt = (((this.form.weightOrDoughball * 1.8) / 100) * this.form.numberOfPizza).toFixed(1);
-                this.yeast = (((this.form.weightOrDoughball * 0.05) / 100) * this.form.numberOfPizza).toFixed(1);
+const style = ref('italian')
+const numPizzas = ref('')
+const doughWeight = ref('')
+const hydration = ref('')
+const calculated = ref(false)
+const flour = ref('')
+const water = ref('')
+const salt = ref('')
+const yeast = ref('')
+const oil = ref('')
+const sugar = ref('')
 
-                return globalAllKeysAreNotNull(this.form) ? true : "";
-            } else {
-                this.flour = parseInt((this.form.weightOrDoughball * 58) / 100) * this.form.numberOfPizza;
-                this.water = ((this.flour * this.form.amountOfWater) / 100).toFixed(0);
-                this.salt = (((this.form.weightOrDoughball * 1.15) / 100) * this.form.numberOfPizza).toFixed(1);
-                this.yeast = (((this.form.weightOrDoughball * 0.235) / 100) * this.form.numberOfPizza).toFixed(1);
-                this.oil = (((this.form.weightOrDoughball * 1.8) / 100) * this.form.numberOfPizza).toFixed(1);
-                this.sugar = (((this.form.weightOrDoughball * 0.6) / 100) * this.form.numberOfPizza).toFixed(1);
-                return globalAllKeysAreNotNull(this.form) ? true : "";
-            }
-        },
-    },
-};
+watch(style, () => { calculated.value = false })
+
+function calculate() {
+    const n = parseInt(numPizzas.value)
+    const d = parseFloat(doughWeight.value)
+    const h = parseFloat(hydration.value)
+    if (!n || !d || !h || isNaN(n) || isNaN(d) || isNaN(h)) return
+    if (style.value === 'italian') {
+        const f = parseInt((d * 59.5) / 100) * n
+        flour.value = String(f)
+        water.value = ((f * h) / 100).toFixed(0)
+        salt.value = (((d * 1.8) / 100) * n).toFixed(1)
+        yeast.value = (((d * 0.05) / 100) * n).toFixed(1)
+    } else {
+        const f = parseInt((d * 58) / 100) * n
+        flour.value = String(f)
+        water.value = ((f * h) / 100).toFixed(0)
+        salt.value = (((d * 1.15) / 100) * n).toFixed(1)
+        yeast.value = (((d * 0.235) / 100) * n).toFixed(1)
+        oil.value = (((d * 1.8) / 100) * n).toFixed(1)
+        sugar.value = (((d * 0.6) / 100) * n).toFixed(1)
+    }
+    calculated.value = true
+}
+
+function clear() {
+    numPizzas.value = ''
+    doughWeight.value = ''
+    hydration.value = ''
+    calculated.value = false
+}
 </script>

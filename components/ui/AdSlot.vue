@@ -1,5 +1,5 @@
 <template>
-    <div
+    <div v-if="false"
         class="flex flex-col items-center justify-center gap-1"
         :class="[sizeClass, bordered ? 'border-b-3 border-brut' : '', dark ? 'bg-white/[0.04]' : 'bg-ink/[0.03]']"
         :style="bordered ? '' : (dark ? 'border: 2px dashed rgba(255,255,255,0.15);' : 'border: 2px dashed rgba(10,10,10,0.2);')"

@@ -1,7 +1,12 @@
 <template>
-    <UiCalcPage title="TDEE Calculator" category="fitness">
+    <UiCalcPage title="TDEE Calculator" category="fitness" description-title="Your total daily calorie burn, calculated">
         <template #calc>
             <CalculatorsFitnessTdeeCalc />
+        </template>
+        <template #facts>
+            <CalcFact label="Formula" value="BMR × Activity" />
+            <CalcFact label="Activity range" value="1.2 – 1.9×" />
+            <CalcFact label="Used for" value="Weight management" />
         </template>
         <template #description>
             <p>
