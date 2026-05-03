@@ -114,13 +114,41 @@ const blogPosts = computed(() => {
     })
 })
 
+const SITE = 'https://www.prettycalculators.com'
 const route = useRoute()
-const canonical = `https://www.prettycalculators.com${route.path}`
+const canonical = `${SITE}${route.path}`
+
+const itemListLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: config.seo.title,
+    description: config.seo.description,
+    url: canonical,
+    itemListElement: config.tools.map((tool, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: tool.label,
+        url: `${SITE}${tool.to}`,
+    })),
+}
+
+const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home',         item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: config.title,   item: canonical },
+    ],
+}
 
 useHead({
     title: config.seo.title,
     link: [
         { rel: 'canonical', href: canonical },
+    ],
+    script: [
+        { type: 'application/ld+json', innerHTML: JSON.stringify(itemListLd) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(breadcrumbLd) },
     ],
     meta: [
         { hid: 'title',               name: 'title',               content: config.seo.title },

@@ -151,6 +151,28 @@ useHead({
     link: [
         { rel: 'canonical', href: 'https://www.prettycalculators.com/' },
     ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                name: 'Pretty Calculators',
+                url: 'https://www.prettycalculators.com',
+                description: 'Fast, focused calculators for fitness, math, conversions and more. Free and beautifully designed.',
+            }),
+        },
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'Organization',
+                name: 'Pretty Calculators',
+                url: 'https://www.prettycalculators.com',
+                logo: 'https://www.prettycalculators.com/android-icon-192x192.png',
+            }),
+        },
+    ],
     meta: [
         { hid: "title",               name: "title",               content: "Pretty Calculators — Find the calculator you need" },
         { hid: "description",         name: "description",         content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed." },

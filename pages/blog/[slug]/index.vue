@@ -190,10 +190,37 @@ const postTitle = `Pretty Calculators — ${fields.value.metaTitle || fields.val
 const postDesc = fields.value.metaDescription ?? ''
 const canonical = `https://www.prettycalculators.com${route.path}`
 
+const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: fields.value.title ?? '',
+    description: postDesc,
+    url: canonical,
+    datePublished: postSys.value.createdAt ?? '',
+    dateModified: postSys.value.updatedAt ?? '',
+    author: { '@type': 'Organization', name: 'Pretty Calculators', url: 'https://www.prettycalculators.com' },
+    publisher: { '@type': 'Organization', name: 'Pretty Calculators', url: 'https://www.prettycalculators.com' },
+    ...(imageUrl.value ? { image: `https:${imageUrl.value}` } : {}),
+}
+
+const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.prettycalculators.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.prettycalculators.com/blog' },
+        { '@type': 'ListItem', position: 3, name: fields.value.title ?? '', item: canonical },
+    ],
+}
+
 useHead({
     title: postTitle,
     link: [
         { rel: 'canonical', href: canonical },
+    ],
+    script: [
+        { type: 'application/ld+json', innerHTML: JSON.stringify(articleLd) },
+        { type: 'application/ld+json', innerHTML: JSON.stringify(breadcrumbLd) },
     ],
     meta: [
         { hid: 'title',               name: 'title',               content: postTitle },
@@ -206,8 +233,8 @@ useHead({
         { hid: 'twitter:title',       name: 'twitter:title',       content: postTitle },
         { hid: 'twitter:description', name: 'twitter:description', content: postDesc },
         ...(imageUrl.value ? [
-            { hid: 'og-image',     property: 'og:image',         content: `https:${imageUrl.value}` },
-            { hid: 'twitter:image', name: 'twitter:image',       content: `https:${imageUrl.value}` },
+            { hid: 'og-image',      property: 'og:image',   content: `https:${imageUrl.value}` },
+            { hid: 'twitter:image', name: 'twitter:image',  content: `https:${imageUrl.value}` },
         ] : []),
     ],
 })
