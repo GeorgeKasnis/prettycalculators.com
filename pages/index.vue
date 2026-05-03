@@ -1,4 +1,6 @@
 <template>
+    <UiWelcomeModal />
+
     <!-- Hero band -->
     <div class="border-b-3 border-ink bg-yellow flex items-center gap-8 px-7 h-[52px] overflow-hidden relative mobile:flex-col mobile:items-start mobile:h-auto mobile:px-4 mobile:py-[14px] mobile:gap-1">
         <span class="font-mono text-[11px] font-bold uppercase tracking-[0.12em] opacity-50 whitespace-nowrap">Collection</span>
