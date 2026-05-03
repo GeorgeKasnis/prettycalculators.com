@@ -186,14 +186,29 @@ const imageUrl = computed(() => {
     } catch { return '' }
 })
 
+const postTitle = `Pretty Calculators — ${fields.value.metaTitle || fields.value.title}`
+const postDesc = fields.value.metaDescription ?? ''
+const canonical = `https://www.prettycalculators.com${route.path}`
+
 useHead({
-    title: `Pretty Calculators - ${fields.value.metaTitle || fields.value.title}`,
+    title: postTitle,
+    link: [
+        { rel: 'canonical', href: canonical },
+    ],
     meta: [
-        { hid: 'title',          name: 'title',          content: `Pretty Calculators - ${fields.value.metaTitle || fields.value.title}` },
-        { hid: 'description',    name: 'description',    content: fields.value.metaDescription ?? '' },
-        { hid: 'og-title',       property: 'og:title',   content: `Pretty Calculators - ${fields.value.metaTitle || fields.value.title}` },
-        { hid: 'og:description', property: 'og:description', content: fields.value.metaDescription ?? '' },
-        ...(imageUrl.value ? [{ hid: 'og-image', property: 'og:image', content: `https://${imageUrl.value}` }] : []),
+        { hid: 'title',               name: 'title',               content: postTitle },
+        { hid: 'description',         name: 'description',         content: postDesc },
+        { hid: 'og:type',             property: 'og:type',         content: 'article' },
+        { hid: 'og:url',              property: 'og:url',          content: canonical },
+        { hid: 'og-title',            property: 'og:title',        content: postTitle },
+        { hid: 'og:description',      property: 'og:description',  content: postDesc },
+        { hid: 'twitter:card',        name: 'twitter:card',        content: 'summary_large_image' },
+        { hid: 'twitter:title',       name: 'twitter:title',       content: postTitle },
+        { hid: 'twitter:description', name: 'twitter:description', content: postDesc },
+        ...(imageUrl.value ? [
+            { hid: 'og-image',     property: 'og:image',         content: `https:${imageUrl.value}` },
+            { hid: 'twitter:image', name: 'twitter:image',       content: `https:${imageUrl.value}` },
+        ] : []),
     ],
 })
 </script>

@@ -148,19 +148,18 @@ const blogPosts = computed(() => {
 
 useHead({
     title: "Pretty Calculators — Find the calculator you need",
+    link: [
+        { rel: 'canonical', href: 'https://www.prettycalculators.com/' },
+    ],
     meta: [
-        { hid: "title", name: "title", content: "Pretty Calculators — Find the calculator you need" },
-        {
-            hid: "description",
-            name: "description",
-            content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed.",
-        },
-        { hid: "og-title", property: "og:title", content: "Pretty Calculators — Find the calculator you need" },
-        {
-            hid: "og:description",
-            property: "og:description",
-            content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed.",
-        },
+        { hid: "title",               name: "title",               content: "Pretty Calculators — Find the calculator you need" },
+        { hid: "description",         name: "description",         content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed." },
+        { hid: "og:url",              property: "og:url",          content: "https://www.prettycalculators.com/" },
+        { hid: "og-title",            property: "og:title",        content: "Pretty Calculators — Find the calculator you need" },
+        { hid: "og:description",      property: "og:description",  content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed." },
+        { hid: "twitter:card",        name: "twitter:card",        content: "summary_large_image" },
+        { hid: "twitter:title",       name: "twitter:title",       content: "Pretty Calculators — Find the calculator you need" },
+        { hid: "twitter:description", name: "twitter:description", content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed." },
     ],
 });
 </script>

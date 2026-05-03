@@ -114,13 +114,23 @@ const blogPosts = computed(() => {
     })
 })
 
+const route = useRoute()
+const canonical = `https://www.prettycalculators.com${route.path}`
+
 useHead({
     title: config.seo.title,
+    link: [
+        { rel: 'canonical', href: canonical },
+    ],
     meta: [
-        { hid: 'title',          name: 'title',          content: config.seo.title },
-        { hid: 'description',    name: 'description',    content: config.seo.description },
-        { hid: 'og-title',       property: 'og:title',   content: config.seo.title },
-        { hid: 'og:description', property: 'og:description', content: config.seo.description },
+        { hid: 'title',               name: 'title',               content: config.seo.title },
+        { hid: 'description',         name: 'description',         content: config.seo.description },
+        { hid: 'og:url',              property: 'og:url',          content: canonical },
+        { hid: 'og-title',            property: 'og:title',        content: config.seo.title },
+        { hid: 'og:description',      property: 'og:description',  content: config.seo.description },
+        { hid: 'twitter:card',        name: 'twitter:card',        content: 'summary_large_image' },
+        { hid: 'twitter:title',       name: 'twitter:title',       content: config.seo.title },
+        { hid: 'twitter:description', name: 'twitter:description', content: config.seo.description },
     ],
 })
 </script>

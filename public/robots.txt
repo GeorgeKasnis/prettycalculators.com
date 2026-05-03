@@ -1,1 +1,4 @@
-Allow: /ads.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://www.prettycalculators.com/sitemap.xml

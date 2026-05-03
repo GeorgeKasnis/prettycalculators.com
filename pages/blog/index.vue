@@ -122,13 +122,23 @@ const filteredPosts = computed(() => {
 const featuredPost = computed(() => filteredPosts.value[0] ?? null)
 const gridPosts = computed(() => filteredPosts.value.slice(1))
 
+const BLOG_TITLE = 'Pretty Calculators — Blog'
+const BLOG_DESC = 'Tips, guides and insights on fitness, math, unit conversions and more — from the Pretty Calculators team.'
+
 useHead({
-    title: "Pretty Calculators - Blog",
+    title: BLOG_TITLE,
+    link: [
+        { rel: 'canonical', href: 'https://www.prettycalculators.com/blog' },
+    ],
     meta: [
-        { hid: "title", name: "title", content: "Pretty Calculators - Blog" },
-        { hid: "description", name: "description", content: "Explore our stunning collection of calculators at Pretty Calculators, meticulously designed to simplify your daily tasks with elegance. From fitness and health to math and conversion calculators, discover effortless solutions now!" },
-        { hid: "og-title", property: "og:title", content: "Pretty Calculators - Simplify with Elegance | Fitness, Health, Math & More" },
-        { hid: "og:description", property: "og:description", content: "Experience the elegance of Pretty Calculators with our wide array of tools designed to simplify your daily tasks. Explore fitness, health, math, and conversion calculators today!" },
+        { hid: 'title',               name: 'title',               content: BLOG_TITLE },
+        { hid: 'description',         name: 'description',         content: BLOG_DESC },
+        { hid: 'og:url',              property: 'og:url',          content: 'https://www.prettycalculators.com/blog' },
+        { hid: 'og-title',            property: 'og:title',        content: BLOG_TITLE },
+        { hid: 'og:description',      property: 'og:description',  content: BLOG_DESC },
+        { hid: 'twitter:card',        name: 'twitter:card',        content: 'summary_large_image' },
+        { hid: 'twitter:title',       name: 'twitter:title',       content: BLOG_TITLE },
+        { hid: 'twitter:description', name: 'twitter:description', content: BLOG_DESC },
     ],
 })
 </script>
