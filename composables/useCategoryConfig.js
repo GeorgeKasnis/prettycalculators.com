@@ -25,6 +25,10 @@ const CATEGORIES = {
         },
         tools: [
             { label: 'Percentage Calculator',         to: '/math/percentage-calculator' },
+            { label: 'Fraction Calculator',          to: '/math/fraction-calculator' },
+            { label: 'Average Calculator',           to: '/math/average-calculator' },
+            { label: 'Quadratic Formula Calculator', to: '/math/quadratic-formula-calculator' },
+            { label: 'Ratio Calculator',             to: '/math/ratio-calculator' },
             { label: 'Manhattan Distance Calculator', to: '/math/manhattan-distance-calculator' },
         ],
     },
