@@ -11,7 +11,9 @@ const CATEGORIES = {
             { label: 'Body Fat Calculator',     to: '/fitness/body-fat-calculator' },
             { label: 'BMR Calculator',          to: '/fitness/bmr-calculator' },
             { label: 'TDEE Calculator',         to: '/fitness/tdee-calculator' },
-            { label: 'Ideal Weight Calculator', to: '/fitness/ideal-weight-calculator' },
+            { label: 'Ideal Weight Calculator',  to: '/fitness/ideal-weight-calculator' },
+            { label: 'One Rep Max Calculator',   to: '/fitness/one-rep-max-calculator' },
+            { label: 'Protein Calculator',       to: '/fitness/protein-calculator' },
         ],
     },
     math: {
