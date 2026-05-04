@@ -44,6 +44,8 @@ const CATEGORIES = {
             { label: 'Fahrenheit to Celsius', to: '/unit/fahrenheit-to-celsius-converter' },
             { label: 'Miles to Kilometers',   to: '/unit/miles-to-kilometers' },
             { label: 'Kilometers to Miles',   to: '/unit/kilometers-to-miles' },
+            { label: 'Inches to CM',          to: '/unit/inches-to-cm-converter' },
+            { label: 'KG to LBS',             to: '/unit/kg-to-lbs-converter' },
         ],
     },
     other: {
@@ -58,6 +60,8 @@ const CATEGORIES = {
             { label: 'Age Calculator',       to: '/other/age-calculator' },
             { label: 'Px to Rem Calculator', to: '/other/px-to-rem-calculator' },
             { label: 'Pizza Calculator',     to: '/other/pizza-calculator' },
+            { label: 'Tip Calculator',       to: '/other/tip-calculator' },
+            { label: 'Sleep Calculator',     to: '/other/sleep-calculator' },
         ],
     },
 }
