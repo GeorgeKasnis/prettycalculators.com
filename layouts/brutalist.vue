@@ -5,6 +5,7 @@
             <slot />
         </main>
         <UiTheFooter />
+        <UiCookieBanner />
     </div>
 </template>
 
