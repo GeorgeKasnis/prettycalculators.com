@@ -1,27 +1,16 @@
 <template>
     <CalcInputStack>
         <CalcInputRow label="Body Weight" unit="kg" v-model="weight" placeholder="e.g. 75" type="number" />
-        <div class="ci-row prot-select-row">
-            <span class="prot-select-label">Activity Level</span>
-            <select v-model="activity" class="prot-select">
-                <option value="" disabled>Select activity level</option>
-                <option value="sedentary">Sedentary (desk job, little exercise)</option>
-                <option value="light">Lightly active (1–3 days/week)</option>
-                <option value="moderate">Moderately active (3–5 days/week)</option>
-                <option value="active">Very active (6–7 days/week)</option>
-                <option value="very_active">Extra active (athlete / physical job)</option>
-            </select>
-        </div>
-        <div class="ci-row prot-select-row">
-            <span class="prot-select-label">Goal</span>
-            <select v-model="goal" class="prot-select">
-                <option value="" disabled>Select your goal</option>
-                <option value="lose">Lose fat (preserve muscle)</option>
-                <option value="maintain">Maintain weight & muscle</option>
-                <option value="build">Build muscle (lean bulk)</option>
-                <option value="athlete">Athletic performance</option>
-            </select>
-        </div>
+        <CalcSelectRow
+            label="Activity Level"
+            v-model="activity"
+            :options="ACTIVITY_OPTIONS"
+        />
+        <CalcSelectRow
+            label="Goal"
+            v-model="goal"
+            :options="GOAL_OPTIONS"
+        />
     </CalcInputStack>
     <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate Protein →</CalcBtn>
     <CalcOutput :show="calculated" title="Daily Protein Target">
@@ -55,7 +44,21 @@ const calculated    = ref(false)
 const proteinTarget = ref('')
 const perKg         = ref('')
 
-// g of protein per kg body weight multipliers by activity × goal
+const ACTIVITY_OPTIONS = [
+    { value: 'sedentary',   label: 'Sedentary (desk job, little exercise)' },
+    { value: 'light',       label: 'Lightly active (1–3 days/week)' },
+    { value: 'moderate',    label: 'Moderately active (3–5 days/week)' },
+    { value: 'active',      label: 'Very active (6–7 days/week)' },
+    { value: 'very_active', label: 'Extra active (athlete / physical job)' },
+]
+
+const GOAL_OPTIONS = [
+    { value: 'lose',     label: 'Lose fat (preserve muscle)' },
+    { value: 'maintain', label: 'Maintain weight & muscle' },
+    { value: 'build',    label: 'Build muscle (lean bulk)' },
+    { value: 'athlete',  label: 'Athletic performance' },
+]
+
 const MULTIPLIERS = {
     sedentary:   { lose: 1.6, maintain: 1.2, build: 1.8, athlete: 1.8 },
     light:       { lose: 1.8, maintain: 1.4, build: 2.0, athlete: 2.0 },
@@ -103,38 +106,6 @@ function clear() {
 </script>
 
 <style scoped>
-.prot-select-row {
-    padding: 14px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.prot-select-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    opacity: 0.45;
-}
-
-.prot-select {
-    background: none;
-    border: none;
-    outline: none;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: #0a0a0a;
-    cursor: pointer;
-    padding: 0;
-    width: 100%;
-    appearance: none;
-}
-
-.prot-select option { font-weight: 400; }
-
 .prot-table {
     margin-top: 16px;
     border: 3px solid #0a0a0a;
