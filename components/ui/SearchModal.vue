@@ -42,7 +42,7 @@
                                 :to="item.to"
                                 class="sm-result"
                                 :class="{ 'sm-result--active': activeIndex === i }"
-                                @click="close"
+                                @click="() => { trackResultSelect(item); close() }"
                                 @mouseenter="activeIndex = i"
                             >
                                 <span class="sm-result-name">{{ item.label }}</span>
@@ -95,6 +95,31 @@ watch(() => props.modelValue, val => {
 
 watch(results, () => { activeIndex.value = 0 })
 
+// Fire GA4 'search' event after user stops typing — shows in GA's built-in search report
+let searchTimer = null
+watch(query, (val) => {
+    clearTimeout(searchTimer)
+    const trimmed = val.trim()
+    if (!trimmed) return
+    searchTimer = setTimeout(() => {
+        if (typeof window.gtag !== 'function') return
+        window.gtag('event', 'search', {
+            search_term: trimmed,
+            search_results_count: results.value.length,
+        })
+    }, 800)
+})
+
+function trackResultSelect(item) {
+    if (typeof window.gtag !== 'function') return
+    window.gtag('event', 'select_search_result', {
+        search_term: query.value.trim(),
+        result_name: item.label,
+        result_category: item.category,
+        result_url: item.to,
+    })
+}
+
 function moveActive(dir) {
     if (!results.value.length) return
     activeIndex.value = (activeIndex.value + dir + results.value.length) % results.value.length
@@ -103,6 +128,7 @@ function moveActive(dir) {
 function go() {
     const target = results.value[activeIndex.value]
     if (target) {
+        trackResultSelect(target)
         router.push(target.to)
         close()
     }
