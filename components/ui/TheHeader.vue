@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header class="sticky top-0 z-50">
         <nav class="border-b-3 border-brut bg-brut flex items-stretch h-16 sticky top-0 z-50">
             <NuxtLink to="/" class="text-xl font-bold text-lavender tracking-[-0.03em] px-7 flex items-center border-r border-[#333] whitespace-nowrap no-underline font-grotesk">
                 Pretty<span class="text-brut-yellow">&nbsp;Calculators</span>
