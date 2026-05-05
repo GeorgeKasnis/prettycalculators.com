@@ -62,7 +62,7 @@
             <!-- Tool links — thin separators, lavender active -->
             <div class="border-b-3 border-brut bg-cream">
                 <NuxtLink
-                    v-for="tool in config.tools"
+                    v-for="tool in config.tools.slice(0, 8)"
                     :key="tool.to"
                     :to="tool.to"
                     class="tool-link"
@@ -70,6 +70,13 @@
                 >
                     <span class="text-[14px] font-medium">{{ tool.label }}</span>
                     <span class="text-xs opacity-25 tool-arrow">→</span>
+                </NuxtLink>
+                <NuxtLink
+                    v-if="config.tools.length > 8"
+                    :to="`/${category}`"
+                    class="tool-link view-all"
+                >
+                    <span class="text-[12px] font-mono font-bold uppercase tracking-[0.08em] opacity-50">View all {{ config.tools.length }} →</span>
                 </NuxtLink>
             </div>
 

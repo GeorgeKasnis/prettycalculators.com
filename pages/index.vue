@@ -22,9 +22,12 @@
                 <div class="font-mono text-[11px] font-bold opacity-35 pt-1 tracking-wide">{{ String(i + 1).padStart(2, "0") }}</div>
             </NuxtLink>
             <div class="px-6 py-4 flex flex-col flex-1 mobile:px-4 mobile:py-3">
-                <NuxtLink v-for="tool in cat.tools" :key="tool.label" :to="tool.to" class="tool-link text-sm font-medium py-[11px] border-b border-ink/10 last:border-b-0 flex items-center justify-between no-underline text-ink">
+                <NuxtLink v-for="tool in cat.tools.slice(0, 6)" :key="tool.label" :to="tool.to" class="tool-link text-sm font-medium py-[11px] border-b border-ink/10 flex items-center justify-between no-underline text-ink">
                     {{ tool.label }}
                     <span class="tool-link-arrow text-xs opacity-0">→</span>
+                </NuxtLink>
+                <NuxtLink v-if="cat.tools.length > 6" :to="`/${cat.slug}`" class="view-all-link font-mono text-[10px] font-bold uppercase tracking-[0.1em] pt-[10px] mt-1 no-underline text-ink/40 hover:text-ink flex items-center justify-between transition-colors">
+                    View all {{ cat.tools.length }} →
                 </NuxtLink>
             </div>
         </div>

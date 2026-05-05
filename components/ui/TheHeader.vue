@@ -16,6 +16,12 @@
                 </li>
             </ul>
 
+            <!-- Search button -->
+            <button class="search-btn mobile:hidden" @click="searchOpen = true" aria-label="Search calculators">
+                <span class="search-btn-icon">⌕</span>
+                <span class="search-btn-text">Search</span>
+            </button>
+
             <!-- Mobile hamburger -->
             <button
                 class="hamburger-btn hidden mobile:flex ml-auto"
@@ -44,12 +50,22 @@
                 </NuxtLink>
             </li>
         </ul>
+
+        <!-- Mobile search FAB -->
+        <button class="search-fab hidden mobile:flex" @click="searchOpen = true" aria-label="Search calculators">
+            <span style="font-size:22px;line-height:1">⌕</span>
+        </button>
+
+        <!-- Search modal -->
+        <UiSearchModal v-model="searchOpen" />
     </header>
 </template>
 
 <script setup>
-const menuOpen = ref(false)
+const menuOpen  = ref(false)
+const searchOpen = ref(false)
 const route = useRoute()
+
 watch(() => route.path, () => { menuOpen.value = false })
 
 const navLinks = [
@@ -59,9 +75,69 @@ const navLinks = [
     { to: '/other',   label: 'Other' },
     { to: '/blog',    label: 'Blog' },
 ]
+
+onMounted(() => {
+    window.addEventListener('keydown', onKey)
+})
+onUnmounted(() => {
+    window.removeEventListener('keydown', onKey)
+})
+
+function onKey(e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        searchOpen.value = true
+    }
+}
 </script>
 
 <style scoped>
+/* Search button */
+.search-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    background: #0a0a0a;
+    border: none;
+    border-left: 3px solid #f5e642;
+    cursor: pointer;
+    color: #f5e642;
+    transition: background 0.1s, color 0.1s;
+    height: 100%;
+    flex-shrink: 0;
+}
+.search-btn:hover { background: #1a1a1a; }
+
+.search-btn-icon { font-size: 18px; line-height: 1; }
+
+.search-btn-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Mobile search FAB */
+.search-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 90;
+    width: 52px;
+    height: 52px;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    border: 3px solid #f5e642;
+    box-shadow: 4px 4px 0 #f5e642;
+    color: #f5e642;
+    cursor: pointer;
+    transition: box-shadow 0.08s, transform 0.08s;
+}
+.search-fab:active { box-shadow: 2px 2px 0 #f5e642; transform: translate(2px, 2px); }
+
 /* Hamburger button */
 .hamburger-btn {
     width: 64px;
@@ -99,6 +175,10 @@ const navLinks = [
 
 .mobile-menu li:last-child a {
     border-bottom: none;
+}
+
+@media (max-width: 767px) {
+    .search-btn { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

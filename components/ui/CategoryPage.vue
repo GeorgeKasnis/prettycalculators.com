@@ -16,10 +16,22 @@
 
             <!-- Tools section -->
             <div class="px-8 py-7 border-b-3 border-brut mobile:px-5">
-                <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-35 mb-4">Calculators</div>
-                <div class="tools-grid">
+                <!-- Filter bar — only shown when there are enough tools -->
+                <div v-if="config.tools.length > 6" class="cat-search-wrap">
+                    <span class="cat-search-icon">⌕</span>
+                    <input
+                        v-model="toolSearch"
+                        class="cat-search-input"
+                        :placeholder="`Filter ${config.tools.length} calculators…`"
+                        autocomplete="off"
+                        spellcheck="false"
+                    />
+                    <button v-if="toolSearch" class="cat-search-clear" @click="toolSearch = ''">✕</button>
+                </div>
+
+                <div v-if="filteredTools.length" class="tools-grid">
                     <NuxtLink
-                        v-for="tool in config.tools"
+                        v-for="tool in filteredTools"
                         :key="tool.to"
                         :to="tool.to"
                         class="tool-card"
@@ -27,6 +39,9 @@
                         <span class="text-base font-bold tracking-[-0.02em]">{{ tool.label }}</span>
                         <span class="tool-arrow text-lg flex-shrink-0 opacity-30">→</span>
                     </NuxtLink>
+                </div>
+                <div v-else class="cat-no-results">
+                    No results for "{{ toolSearch }}"
                 </div>
             </div>
 
@@ -94,6 +109,13 @@ const props = defineProps({
 })
 
 const { config, otherCategories } = useCategoryConfig(props.slug)
+
+const toolSearch   = ref('')
+const filteredTools = computed(() => {
+    const q = toolSearch.value.trim().toLowerCase()
+    if (!q) return config.tools
+    return config.tools.filter(t => t.label.toLowerCase().includes(q))
+})
 
 const runtimeConfig = useRuntimeConfig()
 const { data: blogData } = await useFetch(
@@ -175,6 +197,62 @@ useHead({
 
 .sidebar {
     border-top: 0;
+}
+
+/* Filter bar */
+.cat-search-wrap {
+    display: flex;
+    align-items: center;
+    border: 3px solid #0a0a0a;
+    background: #fff;
+    margin-bottom: 16px;
+    gap: 0;
+}
+
+.cat-search-icon {
+    padding: 0 12px;
+    font-size: 18px;
+    color: rgba(10, 10, 10, 0.3);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.cat-search-input {
+    flex: 1;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0a0a0a;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 12px 0;
+    letter-spacing: -0.01em;
+    min-width: 0;
+}
+.cat-search-input::placeholder { color: rgba(10, 10, 10, 0.25); font-weight: 400; }
+.cat-search-input:focus { color: #5c3bef; }
+
+.cat-search-clear {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    border-left: 2px solid rgba(10, 10, 10, 0.1);
+    cursor: pointer;
+    font-size: 11px;
+    color: rgba(10, 10, 10, 0.35);
+    transition: color 0.08s, background 0.08s;
+}
+.cat-search-clear:hover { background: rgba(10, 10, 10, 0.05); color: #0a0a0a; }
+
+.cat-no-results {
+    padding: 24px 0;
+    font-size: 14px;
+    color: rgba(10, 10, 10, 0.4);
+    text-align: center;
+    font-family: 'Space Mono', monospace;
 }
 
 .tools-grid {
