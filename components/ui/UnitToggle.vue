@@ -1,6 +1,6 @@
 <template>
     <Transition name="ut-fade">
-        <div v-if="ready" class="unit-toggle" :class="{ 'unit-toggle--hidden': nearBottom }" role="group" aria-label="Unit system">
+        <div v-if="ready" class="unit-toggle" :class="{ 'unit-toggle--hidden': nearBottom || menuOpen }" role="group" aria-label="Unit system">
             <button
                 v-for="tab in UNIT_TABS"
                 :key="tab.value"
@@ -14,7 +14,8 @@
 
 <script setup>
 const { unit, UNIT_TABS } = useUnit()
-const ready = ref(false)
+const menuOpen  = useState('mobileMenuOpen', () => false)
+const ready     = ref(false)
 const nearBottom = ref(false)
 
 let ticking = false

@@ -261,6 +261,7 @@ useHead({
 
 .post-main {
     border-right: 3px solid #0a0a0a;
+    min-width: 0;
 }
 
 /* Share bar */
@@ -323,6 +324,8 @@ useHead({
 
 .article-body {
     padding: 28px 32px;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* Blog prose */
@@ -431,6 +434,40 @@ useHead({
 .blog-content :deep(pre code) {
     background: none;
     padding: 0;
+}
+
+.blog-content :deep(table) {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    width: max-content;
+    max-width: 100%;
+    margin-bottom: 1.25rem;
+    font-size: 14px;
+}
+
+.blog-content :deep(th),
+.blog-content :deep(td) {
+    border: 1.5px solid rgba(10,10,10,0.15);
+    padding: 9px 14px;
+    text-align: left;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.blog-content :deep(th) {
+    background: #0a0a0a;
+    color: #fafafa;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+}
+
+.blog-content :deep(tr:nth-child(even) td) {
+    background: rgba(10,10,10,0.03);
 }
 
 /* Related calcs */

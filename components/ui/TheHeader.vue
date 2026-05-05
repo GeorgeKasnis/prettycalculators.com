@@ -51,8 +51,13 @@
             </li>
         </ul>
 
+        <!-- Mobile menu overlay -->
+        <Transition name="menu-overlay">
+            <div v-if="menuOpen" class="menu-overlay-layer" @click="menuOpen = false" />
+        </Transition>
+
         <!-- Mobile search FAB -->
-        <button class="search-fab hidden mobile:flex" :class="{ 'search-fab--hidden': fabNearBottom }" @click="searchOpen = true" aria-label="Search calculators">
+        <button class="search-fab hidden mobile:flex" :class="{ 'search-fab--hidden': fabNearBottom || menuOpen }" @click="searchOpen = true" aria-label="Search calculators">
             <span style="font-size:22px;line-height:1">⌕</span>
         </button>
 
@@ -62,11 +67,27 @@
 </template>
 
 <script setup>
-const menuOpen  = ref(false)
+const menuOpen   = useState('mobileMenuOpen', () => false)
 const searchOpen = ref(false)
 const route = useRoute()
 
 watch(() => route.path, () => { menuOpen.value = false })
+
+let savedScrollY = 0
+watch(menuOpen, (val) => {
+    if (!process.client) return
+    if (val) {
+        savedScrollY = window.scrollY
+        document.body.style.position = 'fixed'
+        document.body.style.top      = `-${savedScrollY}px`
+        document.body.style.width    = '100%'
+    } else {
+        document.body.style.position = ''
+        document.body.style.top      = ''
+        document.body.style.width    = ''
+        window.scrollTo(0, savedScrollY)
+    }
+})
 
 const navLinks = [
     { to: '/fitness', label: 'Fitness' },
@@ -95,6 +116,9 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('keydown', onKey)
     window.removeEventListener('scroll', onFabScroll)
+    document.body.style.position = ''
+    document.body.style.top      = ''
+    document.body.style.width    = ''
 })
 
 function onKey(e) {
@@ -180,6 +204,20 @@ function onKey(e) {
 .hamburger-btn.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .hamburger-btn.is-open span:nth-child(2) { opacity: 0; }
 .hamburger-btn.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* Mobile menu overlay */
+.menu-overlay-layer {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.55);
+    z-index: 35;
+    cursor: pointer;
+}
+
+.menu-overlay-enter-active,
+.menu-overlay-leave-active { transition: opacity 0.25s ease; }
+.menu-overlay-enter-from,
+.menu-overlay-leave-to { opacity: 0; }
 
 /* Mobile menu — positioned below the sticky nav */
 .mobile-menu {
