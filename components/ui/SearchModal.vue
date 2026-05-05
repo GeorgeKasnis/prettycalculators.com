@@ -64,6 +64,8 @@
 </template>
 
 <script setup>
+import { useAllCalculators } from '~/composables/useAllCalculators'
+
 const props = defineProps({ modelValue: Boolean })
 const emit  = defineEmits(['update:modelValue'])
 

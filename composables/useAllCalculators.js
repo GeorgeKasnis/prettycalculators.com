@@ -1,3 +1,5 @@
+import { useCategoryConfig } from './useCategoryConfig'
+
 export const useAllCalculators = () => {
     const { otherCategories } = useCategoryConfig('_')
     return otherCategories.flatMap(cat =>

@@ -51,7 +51,7 @@
             <!-- Blog section -->
             <div v-if="blogPosts.length" class="px-8 py-7 mobile:px-5">
                 <div class="flex items-baseline justify-between mb-[18px]">
-                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-35">Related articles</span>
+                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-35">Suggested articles</span>
                     <NuxtLink to="/blog" class="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-brut no-underline opacity-45 hover:opacity-100 transition-opacity">All posts →</NuxtLink>
                 </div>
                 <div class="blog-grid">
