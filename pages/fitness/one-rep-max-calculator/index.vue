@@ -53,13 +53,32 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "One Rep Max Calculator — Estimate Your 1RM Instantly",
-    "Free one rep max calculator using the Epley formula. Enter weight and reps to find your 1RM and get a full training weight guide for all rep ranges.",
+    "One Rep Max Calculator — kg & lbs | Epley Formula",
+    "Free 1RM calculator in kg or lbs using the Epley formula. Enter weight lifted and reps to estimate your one rep max and get a full training weight guide.",
     [
-        { q: "What is a one rep max (1RM)?", a: "A one rep max is the maximum weight you can lift for a single repetition with proper form. It's the standard measure of absolute strength in strength sports." },
-        { q: "How is one rep max calculated?", a: "The most common formula is the Epley formula: 1RM = weight × (1 + reps ÷ 30). For example, lifting 80 kg for 5 reps gives an estimated 1RM of about 93 kg." },
+        { q: "What is a one rep max (1RM)?", a: "A one rep max is the maximum weight you can lift for a single repetition with proper form. It's the standard measure of absolute strength in powerlifting and weightlifting." },
+        { q: "How is one rep max calculated?", a: "This calculator uses the Epley formula: 1RM = weight × (1 + reps ÷ 30). For example, lifting 80 kg for 5 reps gives an estimated 1RM of 80 × 1.167 ≈ 93 kg. The formula works identically in lbs." },
+        { q: "How do I calculate 1RM in pounds?", a: "Select Imperial using the toggle at the bottom-left of the screen. Enter your working weight in lbs and the reps performed — your 1RM and the entire training weight table will display in lbs." },
         { q: "How accurate is the 1RM calculator?", a: "The Epley formula is most accurate between 2 and 10 reps. Results from sets over 12 reps are less reliable as fatigue plays a bigger role. Always treat the result as an estimate." },
         { q: "What percentage of 1RM should I train at?", a: "For strength (1–5 reps), use 85–95% of your 1RM. For hypertrophy (6–12 reps), use 65–85%. For muscular endurance (12+ reps), use 50–65% of your 1RM." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate Your One Rep Max (1RM)',
+            description: 'Estimate your one rep max using the Epley formula in kg or lbs.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Choose your unit system', text: 'Use the Metric / Imperial toggle at the bottom-left of the screen. The result table will show kg or lbs to match.' },
+                { '@type': 'HowToStep', position: 2, name: 'Enter the weight you lifted', text: 'Enter the load from your working set in kg or lbs.' },
+                { '@type': 'HowToStep', position: 3, name: 'Enter the number of reps', text: 'Enter how many reps you performed. The Epley formula is most accurate between 2 and 10 reps.' },
+                { '@type': 'HowToStep', position: 4, name: 'Click Calculate 1RM', text: 'Your estimated one rep max appears along with a training weight guide for all rep ranges.' },
+            ],
+        }),
+    }],
+})
 </script>

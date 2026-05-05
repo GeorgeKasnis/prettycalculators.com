@@ -44,13 +44,33 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "TDEE Calculator — Total Daily Energy Expenditure",
-    "Calculate your TDEE — total daily calories burned based on weight, height, age, and activity level. Set the right calorie goal for weight loss or muscle gain.",
+    "TDEE Calculator — Metric & Imperial | Total Daily Calories",
+    "Calculate your TDEE in metric (kg, cm) or imperial (lbs, ft, in). Find your total daily calorie burn and set the right goal for weight loss or muscle gain.",
     [
         { q: "What is TDEE?", a: "TDEE (Total Daily Energy Expenditure) is the total number of calories you burn in a day, including your BMR plus calories burned through physical activity and digestion." },
         { q: "How do I use TDEE to lose weight?", a: "To lose weight, eat 300–500 calories below your TDEE per day. A 500-calorie daily deficit leads to approximately 0.5 kg (1 lb) of fat loss per week." },
+        { q: "Can I calculate TDEE using pounds and inches?", a: "Yes — select Imperial using the toggle at the bottom-left of the screen. Enter weight in lbs and height in feet/inches. The calculator converts to metric internally before applying the Harris-Benedict formula." },
         { q: "What is the difference between BMR and TDEE?", a: "BMR is the calories you burn at complete rest. TDEE is your BMR multiplied by an activity factor — it represents your total daily calorie burn including all movement and exercise." },
         { q: "How accurate is a TDEE calculator?", a: "TDEE calculators provide a good estimate, but individual metabolism varies. Use it as a starting point and adjust your intake based on real results over 2–4 weeks." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate Your TDEE',
+            description: 'Calculate total daily energy expenditure using BMR × activity multiplier.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Choose your unit system', text: 'Use the Metric / Imperial toggle at the bottom-left of the screen.' },
+                { '@type': 'HowToStep', position: 2, name: 'Enter gender, weight, height, and age', text: 'Metric: kg and cm. Imperial: lbs and ft/in. These calculate your BMR.' },
+                { '@type': 'HowToStep', position: 3, name: 'Select your activity level', text: 'Choose from Sedentary (×1.2) to Extra Active (×1.9) based on your typical weekly exercise.' },
+                { '@type': 'HowToStep', position: 4, name: 'Click Calculate', text: 'Your TDEE in kcal/day appears — this is your maintenance calorie level.' },
+                { '@type': 'HowToStep', position: 5, name: 'Set your calorie goal', text: 'Eat 300–500 kcal below TDEE to lose fat, or 200–300 above TDEE to build muscle.' },
+            ],
+        }),
+    }],
+})
 </script>

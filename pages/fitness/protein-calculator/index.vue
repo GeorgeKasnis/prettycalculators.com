@@ -53,13 +53,33 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Protein Intake Calculator — How Much Protein Do You Need?",
-    "Free protein calculator. Find your daily protein target based on body weight, activity level and goal — fat loss, muscle gain or maintenance. Instant results.",
+    "Protein Calculator — Daily Protein Target in kg or lbs",
+    "Free protein intake calculator supporting metric (kg) and imperial (lbs). Find your daily protein target based on body weight, activity level, and goal.",
     [
         { q: "How much protein do I need per day?", a: "It depends on your goals. Sedentary adults need about 0.8 g/kg. Active people building muscle should aim for 1.6–2.2 g/kg. Those cutting fat benefit from 2.0–2.4 g/kg to preserve muscle mass." },
+        { q: "How much protein do I need per pound of body weight?", a: "A common guideline is 0.7–1 gram of protein per pound of body weight (1.5–2.2 g/kg). For muscle building, aim for around 1 g per pound. Enter your weight in lbs using the Imperial toggle for an instant result." },
         { q: "Does high protein intake damage kidneys?", a: "For healthy individuals with no pre-existing kidney disease, high protein intake (up to 2.6 g/kg) is safe. The kidney-damage claim stems from studies on people with existing kidney problems." },
         { q: "Can I eat too much protein?", a: "Protein above roughly 2.8 g/kg of body weight provides no additional muscle-building benefit and the excess is used for energy. It won't cause harm but is a waste of calories and money." },
         { q: "When should I eat protein to build muscle?", a: "Total daily protein intake matters most. Spreading it across 3–5 meals is optimal. Having 20–40g of protein near your workouts (before or after) can support muscle protein synthesis." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate Your Daily Protein Target',
+            description: 'Find your daily protein intake in grams based on body weight, activity, and goal.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Choose your unit system', text: 'Use the Metric / Imperial toggle at the bottom-left of the screen for kg or lbs body weight input.' },
+                { '@type': 'HowToStep', position: 2, name: 'Enter your body weight', text: 'Enter weight in kg (metric) or lbs (imperial). The calculator converts to kg internally.' },
+                { '@type': 'HowToStep', position: 3, name: 'Select activity level', text: 'Choose from Sedentary to Extra Active based on your weekly exercise frequency.' },
+                { '@type': 'HowToStep', position: 4, name: 'Select your goal', text: 'Choose fat loss, maintenance, muscle building, or athletic performance.' },
+                { '@type': 'HowToStep', position: 5, name: 'Click Calculate Protein', text: 'Your daily protein target in grams appears, plus a food source guide showing how to hit that target.' },
+            ],
+        }),
+    }],
+})
 </script>

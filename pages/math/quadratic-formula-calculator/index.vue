@@ -63,4 +63,22 @@ useCalcSEO(
         { q: "What does it mean when a quadratic has complex roots?", a: "Complex roots occur when the discriminant D < 0. The roots contain the imaginary unit i (√−1). This means the parabola y = ax² + bx + c never crosses the x-axis." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Solve a Quadratic Equation',
+            description: 'Use the quadratic formula to find the roots of ax² + bx + c = 0.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Identify the coefficients', text: 'Write your equation in the form ax² + bx + c = 0 and identify the values of a, b, and c.' },
+                { '@type': 'HowToStep', position: 2, name: 'Enter coefficient a', text: 'Type the value of a (the coefficient of x²) into the first field. a cannot be zero.' },
+                { '@type': 'HowToStep', position: 3, name: 'Enter coefficients b and c', text: 'Type b (coefficient of x) and c (the constant term). Use negative values where needed.' },
+                { '@type': 'HowToStep', position: 4, name: 'Click Solve', text: 'Both roots appear along with the discriminant value and step-by-step working.' },
+            ],
+        }),
+    }],
+})
 </script>

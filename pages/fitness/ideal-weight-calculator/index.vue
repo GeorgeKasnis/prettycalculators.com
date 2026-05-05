@@ -39,12 +39,33 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Ideal Weight Calculator — Find Your Healthy Weight by Height",
-    "Find your ideal weight by height and gender using four formulas: Hamwi, Devine, Robinson, and Miller. Free ideal weight calculator — results in seconds.",
+    "Ideal Weight Calculator — Metric & Imperial | Hamwi Formula",
+    "Find your ideal body weight by height and gender using the Hamwi formula. Supports metric (cm → kg) and imperial (ft/in → lbs). Free & instant.",
     [
-        { q: "How is ideal weight calculated?", a: "This calculator uses four formulas: Hamwi, Devine, Robinson, and Miller. Each produces slightly different results based on height and gender, giving you a range to aim for." },
-        { q: "Is ideal weight the same as healthy weight?", a: "Ideal weight formulas provide a general target. Your doctor may recommend a different range based on your body composition, age, muscle mass, and personal health history." },
-        { q: "Does ideal weight differ for men and women?", a: "Yes. Most ideal weight formulas produce different results for men and women at the same height, because men typically have more muscle mass and bone density." },
+        { q: "How is ideal weight calculated?", a: "This calculator uses the Hamwi formula: for men, 48 kg + 2.7 kg per inch over 5 feet; for women, 45.5 kg + 2.2 kg per inch over 5 feet. Height in cm is automatically converted to feet and inches." },
+        { q: "How do I get my ideal weight in pounds?", a: "Select Imperial using the toggle at the bottom-left of the screen. Enter your height in feet and inches, and your ideal weight result will be shown in lbs instead of kg." },
+        { q: "Is ideal weight the same as healthy weight?", a: "Ideal weight formulas provide a general guideline. Your doctor may recommend a different range based on your body composition, age, muscle mass, and personal health history." },
+        { q: "Does ideal weight differ for men and women?", a: "Yes. The Hamwi formula uses different base weights and per-inch additions for men and women, because men typically carry more muscle mass and bone density." },
+        { q: "What if I am shorter than 5 feet?", a: "The Hamwi formula bases ideal weight at exactly 5 feet (152.4 cm). For heights below 5 feet, the calculator uses the base weight (48 kg for men, 45.5 kg for women) without subtracting, providing a floor estimate." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Find Your Ideal Weight',
+            description: 'Calculate ideal body weight by height and gender using the Hamwi formula.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Choose your unit system', text: 'Use the Metric / Imperial toggle at the bottom-left. Metric gives result in kg, Imperial gives result in lbs.' },
+                { '@type': 'HowToStep', position: 2, name: 'Select gender', text: 'Ideal weight differs for men and women at the same height.' },
+                { '@type': 'HowToStep', position: 3, name: 'Enter your height', text: 'Metric: height in centimetres. Imperial: feet and inches separately.' },
+                { '@type': 'HowToStep', position: 4, name: 'Click Calculate', text: 'Your estimated ideal body weight appears in kg (metric) or lbs (imperial).' },
+                { '@type': 'HowToStep', position: 5, name: 'Interpret your result', text: 'Use this as a guideline alongside your BMI and body fat percentage — not as a strict target.' },
+            ],
+        }),
+    }],
+})
 </script>

@@ -48,4 +48,20 @@ useCalcSEO(
         { q: "How many kilometers is 100 miles?", a: "100 miles is 160.934 kilometers." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Convert Miles to Kilometers',
+            description: 'Convert any distance from miles to km using the exact conversion factor.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter the distance in miles', text: 'Type the miles value into the input field.' },
+                { '@type': 'HowToStep', position: 2, name: 'Click Calculate', text: 'Your distance in kilometers appears instantly. 1 mile = 1.60934 km.' },
+            ],
+        }),
+    }],
+})
 </script>

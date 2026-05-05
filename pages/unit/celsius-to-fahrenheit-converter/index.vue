@@ -35,4 +35,20 @@ useCalcSEO(
         { q: "At what temperature are Celsius and Fahrenheit equal?", a: "Celsius and Fahrenheit are equal at −40°. Both scales read −40 at this point." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Convert Celsius to Fahrenheit',
+            description: 'Convert any temperature from °C to °F using the standard formula.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter the temperature in Celsius', text: 'Type the °C value you want to convert into the input field.' },
+                { '@type': 'HowToStep', position: 2, name: 'Get your Fahrenheit result', text: 'The equivalent temperature in °F appears instantly using the formula (°C × 9/5) + 32.' },
+            ],
+        }),
+    }],
+})
 </script>

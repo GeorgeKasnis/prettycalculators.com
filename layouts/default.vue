@@ -6,6 +6,7 @@
         </div>
         <UiTheFooter />
         <UiCookieBanner />
+        <UiUnitToggle />
     </div>
 </template>
 

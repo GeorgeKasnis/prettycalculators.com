@@ -35,4 +35,21 @@ useCalcSEO(
         { q: "How many days old am I?", a: "Use the age calculator — it shows your exact age in years, months, and days so you can see precisely how many days old you are." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate Your Exact Age',
+            description: 'Find your precise age in years, months, and days from your date of birth.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter your date of birth', text: 'Select or type your birth date using the date picker.' },
+                { '@type': 'HowToStep', position: 2, name: 'Click Calculate', text: 'Press calculate to find the difference between your birth date and today.' },
+                { '@type': 'HowToStep', position: 3, name: 'Read your result', text: 'Your exact age appears in years, months, and days — accounting for leap years.' },
+            ],
+        }),
+    }],
+})
 </script>

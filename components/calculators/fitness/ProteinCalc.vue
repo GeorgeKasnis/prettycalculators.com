@@ -1,42 +1,44 @@
 <template>
-    <CalcInputStack>
-        <CalcInputRow label="Body Weight" unit="kg" v-model="weight" placeholder="e.g. 75" type="number" />
-        <CalcSelectRow
-            label="Activity Level"
-            v-model="activity"
-            :options="ACTIVITY_OPTIONS"
-        />
-        <CalcSelectRow
-            label="Goal"
-            v-model="goal"
-            :options="GOAL_OPTIONS"
-        />
-    </CalcInputStack>
-    <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate Protein →</CalcBtn>
-    <CalcOutput :show="calculated" title="Daily Protein Target">
-        <CalcOutputCell label="Protein Target" :value="proteinTarget" unit="g/day" />
-        <CalcOutputCell label="Per kg body weight" :value="perKg" unit="g/kg" />
-    </CalcOutput>
+    <div>
+        <CalcInputStack>
+            <CalcInputRow
+                label="Body Weight"
+                :unit="unit === 'metric' ? 'kg' : 'lbs'"
+                v-model="weight"
+                :placeholder="unit === 'metric' ? 'e.g. 75' : 'e.g. 165'"
+                type="number"
+            />
+            <CalcSelectRow label="Activity Level" v-model="activity" :options="ACTIVITY_OPTIONS" />
+            <CalcSelectRow label="Goal"           v-model="goal"     :options="GOAL_OPTIONS" />
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate Protein →</CalcBtn>
+        <CalcOutput :show="calculated" title="Daily Protein Target">
+            <CalcOutputCell label="Protein Target"      :value="proteinTarget" unit="g/day" />
+            <CalcOutputCell label="Per kg body weight"  :value="perKg"         unit="g/kg" />
+        </CalcOutput>
 
-    <!-- High-protein food sources -->
-    <div v-if="calculated" class="prot-table">
-        <div class="prot-head">
-            <span>High-Protein Food Sources</span>
-        </div>
-        <div class="prot-row prot-row--header">
-            <span>Food</span>
-            <span>Per 100g</span>
-            <span>Amount needed</span>
-        </div>
-        <div v-for="food in foodTable" :key="food.name" class="prot-row">
-            <span class="prot-food">{{ food.name }}</span>
-            <span class="prot-per">{{ food.per100g }}g protein</span>
-            <span class="prot-amount">{{ food.amount }}</span>
+        <!-- High-protein food sources -->
+        <div v-if="calculated" class="prot-table">
+            <div class="prot-head">
+                <span>High-Protein Food Sources</span>
+            </div>
+            <div class="prot-row prot-row--header">
+                <span>Food</span>
+                <span>Per 100g</span>
+                <span>Amount needed</span>
+            </div>
+            <div v-for="food in foodTable" :key="food.name" class="prot-row">
+                <span class="prot-food">{{ food.name }}</span>
+                <span class="prot-per">{{ food.per100g }}g protein</span>
+                <span class="prot-amount">{{ food.amount }}</span>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
+const { unit, lbsToKg } = useUnit()
+
 const weight   = ref('')
 const activity = ref('')
 const goal     = ref('')
@@ -68,12 +70,12 @@ const MULTIPLIERS = {
 }
 
 const FOODS = [
-    { name: 'Chicken breast',  per100g: 31 },
-    { name: 'Canned tuna',     per100g: 26 },
-    { name: 'Eggs (whole)',    per100g: 13 },
-    { name: 'Greek yogurt',    per100g: 10 },
-    { name: 'Cottage cheese',  per100g: 11 },
-    { name: 'Whey protein',    per100g: 80 },
+    { name: 'Chicken breast', per100g: 31 },
+    { name: 'Canned tuna',    per100g: 26 },
+    { name: 'Eggs (whole)',   per100g: 13 },
+    { name: 'Greek yogurt',   per100g: 10 },
+    { name: 'Cottage cheese', per100g: 11 },
+    { name: 'Whey protein',   per100g: 80 },
 ]
 
 const foodTable = computed(() => {
@@ -85,22 +87,24 @@ const foodTable = computed(() => {
     }))
 })
 
+let mounted = false
+onMounted(() => { mounted = true })
+watch(unit, () => { if (mounted) clear() })
+
 function calculate() {
-    const w = parseFloat(weight.value)
-    if (!w || w < 1 || !activity.value || !goal.value) return
+    const wKg = unit.value === 'metric'
+        ? parseFloat(weight.value)
+        : lbsToKg(weight.value)
+    if (!wKg || wKg < 1 || !activity.value || !goal.value) return
     const multiplier = MULTIPLIERS[activity.value]?.[goal.value] ?? 1.6
-    const total = Math.round(w * multiplier)
-    proteinTarget.value = String(total)
+    proteinTarget.value = String(Math.round(wKg * multiplier))
     perKg.value = multiplier.toFixed(1)
     calculated.value = true
 }
 
 function clear() {
-    weight.value = ''
-    activity.value = ''
-    goal.value = ''
-    proteinTarget.value = ''
-    perKg.value = ''
+    weight.value = activity.value = goal.value = ''
+    proteinTarget.value = perKg.value = ''
     calculated.value = false
 }
 </script>

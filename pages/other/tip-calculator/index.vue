@@ -58,4 +58,22 @@ useCalcSEO(
         { q: "How do I split the tip between multiple people?", a: "Add the tip to the total bill, then divide by the number of people. Our calculator does this automatically — just set the number of people." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate a Tip and Split the Bill',
+            description: 'Find the tip amount, total bill, and per-person cost for any group.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter the bill total', text: 'Type the total bill amount before tip.' },
+                { '@type': 'HowToStep', position: 2, name: 'Choose a tip percentage', text: 'Select a preset percentage (10%, 15%, 18%, 20%, 25%) or enter a custom tip percentage.' },
+                { '@type': 'HowToStep', position: 3, name: 'Enter the number of people', text: 'Set how many people are splitting the bill. Default is 1.' },
+                { '@type': 'HowToStep', position: 4, name: 'Read the results', text: 'The calculator shows tip amount, total bill with tip, and the amount each person owes.' },
+            ],
+        }),
+    }],
+})
 </script>

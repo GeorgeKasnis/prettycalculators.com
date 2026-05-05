@@ -45,4 +45,21 @@ useCalcSEO(
         { q: "How do I calculate a percentage decrease?", a: "Percentage decrease = ((Old Value − New Value) ÷ Old Value) × 100. For example, from 100 to 75 is ((100 − 75) ÷ 100) × 100 = 25% decrease." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate a Percentage',
+            description: 'Find what percentage one number is of another, or calculate a percentage increase or decrease.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Choose the calculation type', text: 'Select whether you want to find X% of a number, what % one number is of another, or a percentage change.' },
+                { '@type': 'HowToStep', position: 2, name: 'Enter your values', text: 'Input the relevant numbers into the fields provided.' },
+                { '@type': 'HowToStep', position: 3, name: 'Click Calculate', text: 'Your percentage result appears instantly.' },
+            ],
+        }),
+    }],
+})
 </script>

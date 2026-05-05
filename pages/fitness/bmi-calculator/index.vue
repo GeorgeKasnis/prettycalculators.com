@@ -4,62 +4,145 @@
             <CalculatorsFitnessBmiCalc />
         </template>
         <template #facts>
-            <CalcFact label="Formula" value="weight / height²" />
+            <CalcFact label="Formula (metric)" value="kg / m²" />
+            <CalcFact label="Formula (imperial)" value="(lbs × 703) / in²" />
             <CalcFact label="Healthy range" value="18.5 – 24.9" />
             <CalcFact label="Overweight" value="25 – 29.9" />
             <CalcFact label="Obese" value="≥ 30" />
         </template>
         <template #description>
             <p>
-                The Body Mass Index (BMI) calculator is a powerful tool that can provide valuable insights into your overall health and body composition. Understanding your BMI is essential for assessing your weight relative to your height. This simple yet effective measurement is widely used by
-                healthcare professionals to gauge your health status.
+                The <strong>BMI calculator</strong> (Body Mass Index calculator) estimates your body fat based on your height and weight. It works in both <strong>metric (kg, cm)</strong> and <strong>imperial (lbs, feet, inches)</strong> units and instantly tells you whether you fall in the underweight, normal, overweight, or obese range.
+            </p>
+
+            <h3>BMI categories — reference chart</h3>
+            <table class="bmi-table">
+                <thead>
+                    <tr><th>BMI Range</th><th>Category</th><th>Health Risk</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Below 18.5</td><td><strong>Underweight</strong></td><td>Nutritional deficiency risk</td></tr>
+                    <tr><td>18.5 – 24.9</td><td><strong>Normal weight</strong></td><td>Lowest risk</td></tr>
+                    <tr><td>25.0 – 29.9</td><td><strong>Overweight</strong></td><td>Moderate risk</td></tr>
+                    <tr><td>30.0 – 34.9</td><td><strong>Obese (Class I)</strong></td><td>High risk</td></tr>
+                    <tr><td>35.0 – 39.9</td><td><strong>Obese (Class II)</strong></td><td>Very high risk</td></tr>
+                    <tr><td>40 or above</td><td><strong>Obese (Class III)</strong></td><td>Extremely high risk</td></tr>
+                </tbody>
+            </table>
+
+            <h3>BMI formula</h3>
+            <p>
+                <strong>Metric:</strong> BMI = weight (kg) ÷ height (m)²<br>
+                <strong>Imperial:</strong> BMI = (weight (lbs) × 703) ÷ height (inches)²
             </p>
             <p>
-                The <span class="font-bold">BMI formula</span> is a straightforward equation: it divides your weight in kilograms by your height in meters squared. This results in a numerical value, which falls into one of several categories. These categories offer a quick assessment of your
-                weight, serving as a starting point for understanding your health.
+                Example (metric): a person weighing 70 kg at 175 cm has a BMI of 70 ÷ (1.75)² = <strong>22.9 — Normal</strong>.<br>
+                Example (imperial): a person weighing 154 lbs at 5 ft 9 in (69 inches) has a BMI of (154 × 703) ÷ 69² = <strong>22.7 — Normal</strong>.
             </p>
-            <p>Your BMI can be classified into different ranges:</p>
-            <ul>
-                <li><b>Below 18.5</b> - This category indicates that you are <span class="font-bold">underweight</span>, which may warrant further attention for your nutritional health. Being underweight can lead to various health issues, and it's crucial to address this concern.</li>
-                <li><b>18.5 to 24.9</b> - Falling within this range means you have a <span class="font-bold">healthy weight</span>, which is a desirable zone for many individuals. Maintaining a healthy weight can reduce the risk of chronic diseases and promote overall well-being.</li>
-                <li><b>25 to 29.9</b> - A BMI in this range suggests that you are <span class="font-bold">overweight</span>, which may signal the need for lifestyle adjustments. Being overweight can increase the risk of health issues, including heart disease and diabetes.</li>
-                <li>
-                    <b>30 or higher</b> - A BMI of 30 or higher points to <span class="font-bold">obesity</span>. This is a critical indicator where proactive health measures are crucial. Obesity is associated with a higher risk of various health problems, and addressing it is essential for your
-                    well-being.
-                </li>
-            </ul>
+
+            <h3>Limitations of BMI</h3>
             <p>
-                While BMI provides a useful estimate of body fat, it's important to note that it may not account for variations in <span class="font-bold">muscle mass</span> and body composition. For example, athletes with high muscle mass may have a higher BMI that does not accurately reflect
-                their health status. Therefore, it is advisable to consult with a healthcare professional to interpret your BMI results accurately, especially if you have concerns about your body composition or overall health.
+                BMI does not distinguish between muscle and fat, so it can be misleading for <strong>athletes</strong> (who may show "overweight" BMI due to muscle mass) and <strong>older adults</strong> (who may show "normal" BMI despite excess body fat). For a fuller picture, use BMI alongside <NuxtLink to="/fitness/body-fat-calculator">body fat percentage</NuxtLink> and <NuxtLink to="/fitness/tdee-calculator">daily calorie needs (TDEE)</NuxtLink>.
             </p>
-            <p>Your BMI is a starting point for assessing your health, but it should be complemented with other measurements and evaluations to get a comprehensive understanding of your well-being.</p>
+            <p>
+                BMI also applies the same thresholds across sexes, though research suggests women naturally carry more body fat than men at the same BMI. The standard WHO thresholds above apply to adults aged 18–65.
+            </p>
         </template>
         <template #example>
-            <p>Let's walk through an example to understand how to calculate your BMI. Suppose your <span class="font-bold">weight</span> is 70 kilograms, and your <span class="font-bold">height</span> is 1.75 meters.</p>
-            <p>To calculate your BMI, you can use the <span class="font-bold">BMI formula</span>: BMI = weight (kg) / height (m)<sup>2</sup>. Plugging in the numbers, it looks like this: BMI = 70 / (1.75)<sup>2</sup>.</p>
-            <p>Simplifying the equation further, we arrive at: BMI = 70 / (1.75 * 1.75) = 70 / 3.0625 ≈ 22.9.</p>
-            <p>
-                In this case, your BMI is approximately 22.86. This numerical value places you in the <span class="font-bold">healthy weight range (18.5 to 24.9)</span>, which is desirable for many individuals. However, it's important to remember that BMI is just one piece of the puzzle, and a
-                comprehensive health assessment considers various factors, including your diet, physical activity, and overall well-being.
-            </p>
-            <p>
-                Your BMI is a valuable reference point for understanding your weight relative to your height, but it should not be the sole determinant of your health. It's essential to use it in conjunction with other health metrics and consult with a healthcare professional for a holistic
-                evaluation of your well-being.
-            </p>
+            <p>Let's walk through an example using <strong>imperial units</strong>. You weigh <strong>180 lbs</strong> and are <strong>5 ft 11 in</strong> tall (71 inches total).</p>
+            <p>BMI = (180 × 703) ÷ 71² = 126,540 ÷ 5,041 = <strong>25.1 — Overweight</strong>.</p>
+            <p>Now the same person in <strong>metric</strong>: 81.6 kg at 180 cm. BMI = 81.6 ÷ (1.80)² = 81.6 ÷ 3.24 = <strong>25.2 — Overweight</strong>. Minor rounding difference, same category.</p>
+            <p>To move to the top of the "Normal" range (BMI 24.9), this person would need to weigh about 178 lbs (80.7 kg). Small targets like this are more motivating than abstract BMI numbers.</p>
         </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
 useCalcSEO(
-    "BMI Calculator — Free Body Mass Index Calculator",
-    "Free BMI calculator. Enter height and weight to see your BMI score, category (underweight to obese), and healthy weight range. Metric, instant results.",
+    "BMI Calculator — Metric & Imperial (kg/lbs)",
+    "Free BMI calculator supporting metric (kg, cm) and imperial (lbs, ft, in). Get your BMI score, category, and healthy weight range instantly.",
     [
-        { q: "What is a normal BMI?", a: "A normal BMI is between 18.5 and 24.9. Below 18.5 is underweight, 25–29.9 is overweight, and 30 or above is obese." },
-        { q: "How is BMI calculated?", a: "BMI = weight (kg) ÷ height (m)². For example, a person weighing 70 kg at 1.75 m has a BMI of 70 ÷ (1.75²) ≈ 22.9." },
-        { q: "Is BMI accurate for athletes?", a: "BMI may not be accurate for athletes with high muscle mass, as muscle weighs more than fat. A body fat percentage test gives a more accurate picture." },
-        { q: "What BMI is considered obese?", a: "A BMI of 30 or higher is considered obese. A BMI of 40 or above is classified as severely obese." },
+        { q: "What is a normal BMI?", a: "A normal (healthy) BMI is between 18.5 and 24.9. Below 18.5 is underweight, 25–29.9 is overweight, and 30 or above is obese according to WHO guidelines." },
+        { q: "How is BMI calculated in metric units?", a: "BMI = weight (kg) ÷ height (m)². For example, a person weighing 70 kg at 1.75 m has a BMI of 70 ÷ (1.75²) ≈ 22.9, which is in the normal range." },
+        { q: "How do I calculate BMI in pounds and inches?", a: "BMI = (weight in lbs × 703) ÷ height in inches². For example, 154 lbs at 5 ft 9 in (69 inches): (154 × 703) ÷ 69² = 108,262 ÷ 4,761 ≈ 22.7." },
+        { q: "Is BMI accurate for athletes?", a: "BMI may overestimate body fat in athletes because muscle weighs more than fat. A 200 lb athlete could show an 'overweight' BMI despite having very low body fat. Body fat percentage is a more accurate measure for athletes." },
+        { q: "What BMI is considered obese?", a: "A BMI of 30 or higher is classified as obese. 30–34.9 is Class I obesity, 35–39.9 is Class II, and 40+ is Class III (severe obesity)." },
+        { q: "Is BMI the same for men and women?", a: "The same BMI thresholds are used for both sexes, but women naturally carry more body fat than men at any given BMI. A BMI of 22 in a woman represents a higher body fat percentage than in a man of the same BMI." },
+        { q: "What is a healthy BMI for seniors over 65?", a: "Some research suggests a slightly higher BMI of 23–27 may be healthier for adults over 65, as modest body reserves can help during illness. Always consult a doctor for age-specific guidance." },
     ]
 )
+
+useHead({
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'HowTo',
+                name: 'How to Calculate BMI',
+                description: 'Calculate your Body Mass Index using weight and height in metric or imperial units.',
+                step: [
+                    {
+                        '@type': 'HowToStep',
+                        position: 1,
+                        name: 'Choose your unit system',
+                        text: 'Select Metric (kg and cm) or Imperial (lbs and feet/inches) using the toggle at the top of the calculator.',
+                    },
+                    {
+                        '@type': 'HowToStep',
+                        position: 2,
+                        name: 'Enter your height',
+                        text: 'In metric mode, enter your height in centimetres. In imperial mode, enter feet and inches separately.',
+                    },
+                    {
+                        '@type': 'HowToStep',
+                        position: 3,
+                        name: 'Enter your weight',
+                        text: 'In metric mode, enter your weight in kilograms. In imperial mode, enter your weight in pounds.',
+                    },
+                    {
+                        '@type': 'HowToStep',
+                        position: 4,
+                        name: 'Click Calculate BMI',
+                        text: 'Press the Calculate BMI button. Your BMI score and category (Underweight, Normal, Overweight, or Obese) will appear instantly.',
+                    },
+                    {
+                        '@type': 'HowToStep',
+                        position: 5,
+                        name: 'Interpret your result',
+                        text: 'Use the BMI chart: below 18.5 is Underweight, 18.5–24.9 is Normal, 25–29.9 is Overweight, 30 or above is Obese.',
+                    },
+                ],
+            }),
+        },
+    ],
+})
 </script>
+
+<style scoped>
+.bmi-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px;
+    font-size: 14px;
+}
+.bmi-table th,
+.bmi-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1.5px solid rgba(10, 10, 10, 0.15);
+}
+.bmi-table thead th {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.bmi-table tbody tr:nth-child(even) {
+    background: rgba(10, 10, 10, 0.03);
+}
+</style>

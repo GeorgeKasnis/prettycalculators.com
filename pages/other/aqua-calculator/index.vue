@@ -42,4 +42,21 @@ useCalcSEO(
         { q: "Can you drink too much water?", a: "Yes, in rare cases excessive water intake can cause hyponatremia (low sodium). For most people, drinking to thirst and following weight-based guidelines is safe." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate Your Daily Water Intake',
+            description: 'Find how much water you should drink per day based on body weight.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter your body weight', text: 'Type your weight in kilograms into the input field.' },
+                { '@type': 'HowToStep', position: 2, name: 'Click Calculate', text: 'Press calculate to apply the 30 ml/kg guideline to your weight.' },
+                { '@type': 'HowToStep', position: 3, name: 'Read your daily water target', text: 'Your recommended daily water intake appears in both millilitres and litres.' },
+            ],
+        }),
+    }],
+})
 </script>

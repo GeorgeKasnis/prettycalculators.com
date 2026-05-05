@@ -42,13 +42,33 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "BMR Calculator — Free Basal Metabolic Rate Calculator",
-    "Calculate your Basal Metabolic Rate (BMR) — calories burned at rest. Uses the Mifflin-St Jeor formula. Enter age, weight, height, and gender. Free & instant.",
+    "BMR Calculator — Metric & Imperial | Basal Metabolic Rate",
+    "Free BMR calculator in metric (kg, cm) or imperial (lbs, ft, in). Uses the revised Harris-Benedict formula to estimate calories your body burns at rest.",
     [
         { q: "What is BMR?", a: "BMR (Basal Metabolic Rate) is the number of calories your body burns at complete rest to maintain basic functions like breathing, circulation, and cell production." },
-        { q: "How is BMR calculated?", a: "This calculator uses the Mifflin-St Jeor equation: (10 × weight kg) + (6.25 × height cm) − (5 × age) + 5 for men, or −161 for women. It is considered the most accurate formula for most adults." },
+        { q: "How is BMR calculated?", a: "This calculator uses the revised Harris-Benedict equation. For men: 88.362 + (13.397 × kg) + (4.799 × cm) − (5.677 × age). For women: 447.593 + (9.247 × kg) + (3.098 × cm) − (4.33 × age). Imperial inputs are converted to metric before the formula is applied." },
+        { q: "How do I calculate BMR in pounds and inches?", a: "Select Imperial using the toggle at the bottom-left of the screen. Enter your weight in lbs and height in feet and inches — the calculator converts to kg and cm automatically before applying the Harris-Benedict formula." },
         { q: "What is the average BMR?", a: "The average BMR for adults is roughly 1,400–1,800 calories per day, though it varies based on age, weight, height, and sex." },
-        { q: "Does BMR decrease with age?", a: "Yes, BMR typically decreases by about 1–2% per decade after age 20 as muscle mass naturally declines." },
+        { q: "Does BMR decrease with age?", a: "Yes, BMR typically decreases by about 1–2% per decade after age 20 as muscle mass naturally declines. This is mainly due to loss of lean muscle tissue." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate Your Basal Metabolic Rate (BMR)',
+            description: 'Calculate your BMR using the revised Harris-Benedict formula in metric or imperial units.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Choose your unit system', text: 'Use the Metric / Imperial toggle at the bottom-left of the screen to choose kg/cm or lbs/ft/in.' },
+                { '@type': 'HowToStep', position: 2, name: 'Select your gender', text: 'Choose Male or Female — the BMR formula differs between sexes.' },
+                { '@type': 'HowToStep', position: 3, name: 'Enter weight and height', text: 'Metric: weight in kg, height in cm. Imperial: weight in lbs, height in feet and inches separately.' },
+                { '@type': 'HowToStep', position: 4, name: 'Enter your age', text: 'Enter your age in years.' },
+                { '@type': 'HowToStep', position: 5, name: 'Click Calculate', text: 'Your estimated BMR in kcal/day appears instantly.' },
+            ],
+        }),
+    }],
+})
 </script>

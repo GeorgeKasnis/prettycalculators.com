@@ -53,4 +53,20 @@ useCalcSEO(
         { q: "What is 1 stone in kg?", a: "1 stone = 14 pounds = 6.35029 kg. For example, 11 stone = 69.85 kg." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Convert Kilograms to Pounds',
+            description: 'Convert between kg and lbs in either direction, with stones output included.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter kilograms or pounds', text: 'Type a value in kg to get pounds, or type pounds to get kg — the converter works in both directions.' },
+                { '@type': 'HowToStep', position: 2, name: 'Read your result', text: 'The converted weight appears instantly in lbs (and kg), with the stones equivalent also shown.' },
+            ],
+        }),
+    }],
+})
 </script>

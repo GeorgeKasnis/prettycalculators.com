@@ -53,4 +53,20 @@ useCalcSEO(
         { q: "What is 6 feet in cm?", a: "6 feet = 72 inches. 72 × 2.54 = 182.88 cm." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Convert Inches to Centimetres',
+            description: 'Convert between inches and centimetres in either direction instantly.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter inches or centimetres', text: 'Type a value in inches to get centimetres, or type centimetres to get inches — the converter works in both directions.' },
+                { '@type': 'HowToStep', position: 2, name: 'Read your result', text: 'The converted value appears instantly. 1 inch = 2.54 cm exactly.' },
+            ],
+        }),
+    }],
+})
 </script>

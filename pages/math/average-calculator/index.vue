@@ -55,4 +55,21 @@ useCalcSEO(
         { q: "How do you calculate the mean?", a: "Add all the numbers together and divide by how many numbers there are. For example, the mean of 2, 4, 6, 8 is (2+4+6+8)/4 = 20/4 = 5." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate Mean, Median, Mode and Range',
+            description: 'Find the average and key statistics from any list of numbers.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter your numbers', text: 'Type your numbers into the input field separated by commas, spaces, or new lines.' },
+                { '@type': 'HowToStep', position: 2, name: 'Click Calculate', text: 'Press the calculate button to process your data set.' },
+                { '@type': 'HowToStep', position: 3, name: 'Read your results', text: 'The calculator displays mean, median, mode, range, sum, and count for your data set.' },
+            ],
+        }),
+    }],
+})
 </script>

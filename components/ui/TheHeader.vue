@@ -52,7 +52,7 @@
         </ul>
 
         <!-- Mobile search FAB -->
-        <button class="search-fab hidden mobile:flex" @click="searchOpen = true" aria-label="Search calculators">
+        <button class="search-fab hidden mobile:flex" :class="{ 'search-fab--hidden': fabNearBottom }" @click="searchOpen = true" aria-label="Search calculators">
             <span style="font-size:22px;line-height:1">⌕</span>
         </button>
 
@@ -76,11 +76,25 @@ const navLinks = [
     { to: '/blog',    label: 'Blog' },
 ]
 
+const fabNearBottom = ref(false)
+let fabTicking = false
+function onFabScroll() {
+    if (fabTicking) return
+    fabTicking = true
+    requestAnimationFrame(() => {
+        const distFromBottom = document.documentElement.scrollHeight - window.scrollY - window.innerHeight
+        fabNearBottom.value = distFromBottom < 100
+        fabTicking = false
+    })
+}
+
 onMounted(() => {
     window.addEventListener('keydown', onKey)
+    window.addEventListener('scroll', onFabScroll, { passive: true })
 })
 onUnmounted(() => {
     window.removeEventListener('keydown', onKey)
+    window.removeEventListener('scroll', onFabScroll)
 })
 
 function onKey(e) {
@@ -125,6 +139,7 @@ function onKey(e) {
     bottom: 24px;
     right: 20px;
     z-index: 90;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     width: 52px;
     height: 52px;
     align-items: center;
@@ -134,9 +149,9 @@ function onKey(e) {
     box-shadow: 4px 4px 0 #f5e642;
     color: #f5e642;
     cursor: pointer;
-    transition: box-shadow 0.08s, transform 0.08s;
 }
 .search-fab:active { box-shadow: 2px 2px 0 #f5e642; transform: translate(2px, 2px); }
+.search-fab--hidden { opacity: 0; visibility: hidden; }
 
 /* Hamburger button */
 .hamburger-btn {

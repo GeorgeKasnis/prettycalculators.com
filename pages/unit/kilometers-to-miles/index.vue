@@ -48,4 +48,20 @@ useCalcSEO(
         { q: "How many miles is 42.195 km (a marathon)?", a: "42.195 km is approximately 26.2 miles — the standard marathon distance." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Convert Kilometers to Miles',
+            description: 'Convert any distance from km to miles using the exact conversion factor.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter the distance in kilometers', text: 'Type the km value into the input field.' },
+                { '@type': 'HowToStep', position: 2, name: 'Click Calculate', text: 'Your distance in miles appears instantly. 1 km = 0.62137 miles.' },
+            ],
+        }),
+    }],
+})
 </script>

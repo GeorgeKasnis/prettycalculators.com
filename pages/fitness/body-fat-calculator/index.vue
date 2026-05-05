@@ -51,13 +51,34 @@
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 useCalcSEO(
-    "Body Fat Calculator — Free Body Fat Percentage Calculator",
-    "Free body fat percentage calculator using the Navy formula. Enter neck, waist, and hip measurements to estimate body fat for men and women. Instant results.",
+    "Body Fat Calculator — Metric & Imperial | US Navy Method",
+    "Free body fat percentage calculator using the US Navy formula. Enter measurements in cm or inches for men and women. Supports metric and imperial units.",
     [
         { q: "What is a healthy body fat percentage for men?", a: "A healthy body fat percentage for men is typically 10–20%. Athletes may be 6–13%, fit individuals 14–17%, and the average range is 18–24%." },
         { q: "What is a healthy body fat percentage for women?", a: "A healthy body fat percentage for women is typically 20–30%. Athletes may be 14–20%, fit individuals 21–24%, and the average range is 25–31%." },
-        { q: "How is body fat percentage calculated?", a: "This calculator uses the U.S. Navy formula, which uses neck, waist, and hip circumference (women only) along with height to estimate body fat percentage." },
-        { q: "What is the difference between BMI and body fat percentage?", a: "BMI measures weight relative to height and doesn't distinguish fat from muscle. Body fat percentage directly measures how much of your body weight is fat tissue." },
+        { q: "How is body fat percentage calculated?", a: "This calculator uses the U.S. Navy formula, which uses height, neck, waist, and hip (women only) measurements to estimate body fat percentage. All measurements can be entered in cm or inches." },
+        { q: "How do I measure for the body fat calculator in inches?", a: "Select Imperial using the toggle at the bottom-left of the screen. Enter all measurements (height, neck, waist, and hip for women) in inches. Neck: below the larynx. Waist: at the navel for men, narrowest point for women. Hips: widest point." },
+        { q: "What is the difference between BMI and body fat percentage?", a: "BMI measures weight relative to height and doesn't distinguish fat from muscle. Body fat percentage directly measures how much of your body weight is fat tissue — more accurate for athletes." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate Body Fat Percentage',
+            description: 'Estimate body fat using the US Navy tape measurement method in cm or inches.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Choose your unit system', text: 'Use the Metric / Imperial toggle at the bottom-left of the screen for cm or inch measurements.' },
+                { '@type': 'HowToStep', position: 2, name: 'Select gender', text: 'Men need neck and waist measurements. Women also need hip measurement.' },
+                { '@type': 'HowToStep', position: 3, name: 'Measure and enter height', text: 'Stand straight and measure your height in cm or inches.' },
+                { '@type': 'HowToStep', position: 4, name: 'Measure and enter neck circumference', text: 'Measure just below the larynx, tape sloping slightly downward at the front.' },
+                { '@type': 'HowToStep', position: 5, name: 'Measure waist (and hips for women)', text: 'Men: at the navel. Women: at the narrowest point. Hips (women): at the widest point.' },
+                { '@type': 'HowToStep', position: 6, name: 'Click Calculate', text: 'Your estimated body fat percentage and category appear instantly.' },
+            ],
+        }),
+    }],
+})
 </script>

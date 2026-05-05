@@ -35,4 +35,20 @@ useCalcSEO(
         { q: "What is 212°F in Celsius?", a: "212°F is 100°C — the boiling point of water at sea level." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Convert Fahrenheit to Celsius',
+            description: 'Convert any temperature from °F to °C using the standard formula.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter the temperature in Fahrenheit', text: 'Type the °F value you want to convert into the input field.' },
+                { '@type': 'HowToStep', position: 2, name: 'Get your Celsius result', text: 'The equivalent temperature in °C appears instantly using the formula (°F − 32) × 5/9.' },
+            ],
+        }),
+    }],
+})
 </script>

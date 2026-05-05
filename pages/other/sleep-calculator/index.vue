@@ -55,4 +55,22 @@ useCalcSEO(
         { q: "How many sleep cycles do I need?", a: "Most adults need 5–6 sleep cycles (7.5–9 hours) per night. Fewer than 4 cycles (6 hours) consistently impairs cognitive function, mood, and physical recovery." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Find Your Ideal Bedtime or Wake-Up Time',
+            description: 'Calculate optimal sleep times based on 90-minute sleep cycles to wake up refreshed.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Choose your mode', text: 'Select "I want to wake up at" to find the best bedtime, or "I want to go to bed at" to find the best wake-up time.' },
+                { '@type': 'HowToStep', position: 2, name: 'Enter your time', text: 'Type your target wake-up or bedtime using the time picker.' },
+                { '@type': 'HowToStep', position: 3, name: 'Click Calculate', text: 'Four optimal times appear based on 4, 5, 6, and 7 complete 90-minute sleep cycles.' },
+                { '@type': 'HowToStep', position: 4, name: 'Choose your bedtime', text: 'Pick the time that gives you 5 or 6 cycles (7.5–9 hours) for the most restorative sleep.' },
+            ],
+        }),
+    }],
+})
 </script>

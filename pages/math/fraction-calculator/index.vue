@@ -55,4 +55,22 @@ useCalcSEO(
         { q: "What is a mixed number?", a: "A mixed number combines a whole number and a fraction, like 1½. To use it in calculations, convert it to an improper fraction: 1½ = 3/2." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Add, Subtract, Multiply or Divide Fractions',
+            description: 'Perform fraction arithmetic and get a simplified result with decimal equivalent.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter the first fraction', text: 'Type the numerator and denominator of the first fraction into the top input fields.' },
+                { '@type': 'HowToStep', position: 2, name: 'Select an operation', text: 'Choose addition (+), subtraction (−), multiplication (×), or division (÷).' },
+                { '@type': 'HowToStep', position: 3, name: 'Enter the second fraction', text: 'Type the numerator and denominator of the second fraction.' },
+                { '@type': 'HowToStep', position: 4, name: 'Click Calculate', text: 'The result appears in simplified form with the decimal equivalent shown.' },
+            ],
+        }),
+    }],
+})
 </script>

@@ -1,33 +1,43 @@
 <template>
-    <CalcInputStack>
-        <CalcInputRow label="Weight Lifted" unit="kg" v-model="weight" placeholder="e.g. 100" type="number" />
-        <CalcInputRow label="Reps Performed" unit="reps" v-model="reps" placeholder="e.g. 5" type="number" />
-    </CalcInputStack>
-    <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate 1RM →</CalcBtn>
-    <CalcOutput :show="calculated" title="One Rep Max">
-        <CalcOutputCell label="Estimated 1RM" :value="oneRepMax" unit="kg" />
-        <CalcOutputCell label="Method" value="Epley" />
-    </CalcOutput>
+    <div>
+        <CalcInputStack>
+            <CalcInputRow
+                label="Weight Lifted"
+                :unit="unit === 'metric' ? 'kg' : 'lbs'"
+                v-model="weight"
+                :placeholder="unit === 'metric' ? 'e.g. 100' : 'e.g. 225'"
+                type="number"
+            />
+            <CalcInputRow label="Reps Performed" unit="reps" v-model="reps" placeholder="e.g. 5" type="number" />
+        </CalcInputStack>
+        <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate 1RM →</CalcBtn>
+        <CalcOutput :show="calculated" title="One Rep Max">
+            <CalcOutputCell label="Estimated 1RM" :value="oneRepMax" :unit="unit === 'metric' ? 'kg' : 'lbs'" />
+            <CalcOutputCell label="Method" value="Epley" />
+        </CalcOutput>
 
-    <!-- Training percentage table -->
-    <div v-if="calculated" class="orm-table">
-        <div class="orm-head">
-            <span>Training Weight Guide</span>
-        </div>
-        <div class="orm-row orm-row--header">
-            <span>% of 1RM</span>
-            <span>~Reps</span>
-            <span>Weight (kg)</span>
-        </div>
-        <div v-for="row in trainingTable" :key="row.pct" class="orm-row">
-            <span class="orm-pct">{{ row.pct }}%</span>
-            <span class="orm-reps">{{ row.reps }}</span>
-            <span class="orm-weight">{{ row.weight }}</span>
+        <!-- Training percentage table -->
+        <div v-if="calculated" class="orm-table">
+            <div class="orm-head">
+                <span>Training Weight Guide</span>
+            </div>
+            <div class="orm-row orm-row--header">
+                <span>% of 1RM</span>
+                <span>~Reps</span>
+                <span>Weight ({{ unit === 'metric' ? 'kg' : 'lbs' }})</span>
+            </div>
+            <div v-for="row in trainingTable" :key="row.pct" class="orm-row">
+                <span class="orm-pct">{{ row.pct }}%</span>
+                <span class="orm-reps">{{ row.reps }}</span>
+                <span class="orm-weight">{{ row.weight }}</span>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
+const { unit } = useUnit()
+
 const weight = ref('')
 const reps   = ref('')
 const calculated = ref(false)
@@ -51,20 +61,21 @@ const trainingTable = computed(() =>
     }))
 )
 
+let mounted = false
+onMounted(() => { mounted = true })
+watch(unit, () => { if (mounted) clear() })
+
 function calculate() {
     const w = parseFloat(weight.value)
     const r = parseFloat(reps.value)
     if (!w || !r || r < 1) return
-    // Epley formula
-    const orm = r === 1 ? w : w * (1 + r / 30)
-    oneRepMax.value = orm.toFixed(1)
+    // Epley formula — unit-agnostic (lbs in = lbs out, kg in = kg out)
+    oneRepMax.value = (r === 1 ? w : w * (1 + r / 30)).toFixed(1)
     calculated.value = true
 }
 
 function clear() {
-    weight.value = ''
-    reps.value = ''
-    oneRepMax.value = ''
+    weight.value = reps.value = oneRepMax.value = ''
     calculated.value = false
 }
 </script>
@@ -105,6 +116,6 @@ function clear() {
     background: rgba(10,10,10,0.03);
 }
 
-.orm-pct  { font-weight: 700; }
+.orm-pct    { font-weight: 700; }
 .orm-weight { font-weight: 700; }
 </style>

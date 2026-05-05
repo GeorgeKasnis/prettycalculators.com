@@ -45,4 +45,21 @@ useCalcSEO(
         { q: "How many pizzas for 20 people?", a: "For 20 people with average appetite, order about 7–8 large pizzas (3 slices × 20 people ÷ 8 slices per pizza)." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate How Many Pizzas to Order',
+            description: 'Find the right number of pizzas for your group size and appetite.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter the number of people', text: 'Type how many guests you are ordering for.' },
+                { '@type': 'HowToStep', position: 2, name: 'Select appetite level', text: 'Choose light, medium, or hungry to reflect how much your guests are likely to eat.' },
+                { '@type': 'HowToStep', position: 3, name: 'Click Calculate', text: 'The recommended number of pizzas and total slices appears instantly.' },
+            ],
+        }),
+    }],
+})
 </script>

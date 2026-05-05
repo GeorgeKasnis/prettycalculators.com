@@ -48,4 +48,22 @@ useCalcSEO(
         { q: "What is the difference between Manhattan and Euclidean distance?", a: "Euclidean distance is the straight-line distance between two points. Manhattan distance follows grid paths and is always greater than or equal to Euclidean distance." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Calculate Manhattan Distance',
+            description: 'Find the L1 (taxicab) distance between two points in 2D, 3D, or 4D space.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Select dimensions', text: 'Choose the number of dimensions: 1D, 2D, 3D, or 4D depending on your coordinate space.' },
+                { '@type': 'HowToStep', position: 2, name: 'Enter coordinates for point A', text: 'Type the coordinate values for the first point (x, y, z, w as applicable).' },
+                { '@type': 'HowToStep', position: 3, name: 'Enter coordinates for point B', text: 'Type the coordinate values for the second point.' },
+                { '@type': 'HowToStep', position: 4, name: 'Click Calculate', text: 'The Manhattan distance (sum of absolute differences) appears instantly.' },
+            ],
+        }),
+    }],
+})
 </script>

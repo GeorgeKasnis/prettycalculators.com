@@ -56,4 +56,21 @@ useCalcSEO(
         { q: "Are 3:4 and 9:12 equivalent ratios?", a: "Yes. Dividing 9:12 by GCF(9,12) = 3 gives 3:4. Equivalent ratios have the same simplified form." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Simplify a Ratio or Solve a Proportion',
+            description: 'Reduce a ratio to lowest terms or find a missing value in a proportion.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Choose the mode', text: 'Select Simplify to reduce a ratio to lowest terms, or Proportion to solve for a missing value in A:B = C:D.' },
+                { '@type': 'HowToStep', position: 2, name: 'Enter the values', text: 'For Simplify: enter both parts of the ratio. For Proportion: enter three known values — the calculator finds the fourth.' },
+                { '@type': 'HowToStep', position: 3, name: 'Click Calculate', text: 'Your simplified ratio or missing proportion value appears instantly.' },
+            ],
+        }),
+    }],
+})
 </script>

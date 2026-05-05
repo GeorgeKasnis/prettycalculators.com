@@ -41,4 +41,21 @@ useCalcSEO(
         { q: "What does rem stand for?", a: "Rem stands for 'root em'. It's relative to the font size of the root HTML element, unlike em which is relative to the parent element." },
     ]
 )
+
+useHead({
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Convert PX to REM',
+            description: 'Convert pixel values to rem units for responsive CSS layouts.',
+            step: [
+                { '@type': 'HowToStep', position: 1, name: 'Enter your pixel value', text: 'Type the pixel value you want to convert into the px input field.' },
+                { '@type': 'HowToStep', position: 2, name: 'Adjust base font size if needed', text: 'The default is 16px (browser default). Change it if your project uses a different root font size.' },
+                { '@type': 'HowToStep', position: 3, name: 'Read the rem result', text: 'The equivalent rem value appears instantly. Copy it directly into your CSS.' },
+            ],
+        }),
+    }],
+})
 </script>

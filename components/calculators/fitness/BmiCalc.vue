@@ -1,8 +1,15 @@
 <template>
     <div>
         <CalcInputStack>
-            <CalcInputRow label="Height" unit="cm" v-model="heightCm" placeholder="e.g. 175" type="number" />
-            <CalcInputRow label="Weight" unit="kg" v-model="weightKg" placeholder="e.g. 70" type="number" />
+            <template v-if="unit === 'metric'">
+                <CalcInputRow label="Height" unit="cm" v-model="heightCm" placeholder="e.g. 175" type="number" />
+                <CalcInputRow label="Weight" unit="kg" v-model="weightKg" placeholder="e.g. 70" type="number" />
+            </template>
+            <template v-else>
+                <CalcInputRow label="Height (ft)" unit="ft" v-model="heightFt" placeholder="e.g. 5" type="number" />
+                <CalcInputRow label="Height (in)" unit="in" v-model="heightIn" placeholder="e.g. 9" type="number" />
+                <CalcInputRow label="Weight" unit="lbs" v-model="weightLbs" placeholder="e.g. 154" type="number" />
+            </template>
         </CalcInputStack>
 
         <CalcBtn :showClear="calculated" @click="calculate" @clear="clear">Calculate BMI →</CalcBtn>
@@ -29,11 +36,16 @@
 <script setup>
 import { ref } from 'vue'
 
-const heightCm = ref('')
-const weightKg = ref('')
-const calculated = ref(false)
-const bmi = ref('')
-const category = ref('')
+const { unit, ftInToCm, lbsToKg } = useUnit()
+
+const heightCm  = ref('')
+const weightKg  = ref('')
+const heightFt  = ref('')
+const heightIn  = ref('')
+const weightLbs = ref('')
+const calculated    = ref(false)
+const bmi           = ref('')
+const category      = ref('')
 const categoryColor = ref('#ddd6ff')
 const markerPercent = ref(0)
 
@@ -44,23 +56,35 @@ const CATEGORIES = [
     { max: Infinity, label: 'Obese',       color: '#FF8E7A' },
 ]
 
+let mounted = false
+onMounted(() => { mounted = true })
+watch(unit, () => { if (mounted) clear() })
+
 function calculate() {
-    const h = parseFloat(heightCm.value)
-    const w = parseFloat(weightKg.value)
-    if (!heightCm.value || !weightKg.value || isNaN(h) || isNaN(w) || h <= 0 || w <= 0) return
-    const score = w / ((h / 100) ** 2)
+    let score
+    if (unit.value === 'metric') {
+        const h = parseFloat(heightCm.value)
+        const w = parseFloat(weightKg.value)
+        if (!h || !w || h <= 0 || w <= 0) return
+        score = w / ((h / 100) ** 2)
+    } else {
+        const hCm  = ftInToCm(heightFt.value, heightIn.value)
+        const wKg  = lbsToKg(weightLbs.value)
+        if (!hCm || !wKg || hCm <= 0 || wKg <= 0) return
+        score = wKg / ((hCm / 100) ** 2)
+    }
     if (isNaN(score) || score <= 0) return
     bmi.value = score.toFixed(1)
     const cat = CATEGORIES.find(c => score < c.max)
-    category.value = cat.label
+    category.value      = cat.label
     categoryColor.value = cat.color
     markerPercent.value = Math.min(Math.max((score / 40) * 100, 2), 98)
-    calculated.value = true
+    calculated.value    = true
 }
 
 function clear() {
-    heightCm.value = ''
-    weightKg.value = ''
+    heightCm.value = heightFt.value = heightIn.value = ''
+    weightKg.value = weightLbs.value = ''
     calculated.value = false
 }
 </script>
