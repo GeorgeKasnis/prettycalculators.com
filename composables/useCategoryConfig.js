@@ -37,11 +37,15 @@ const CATEGORIES = {
         color: "#d4edda",
         seo: {
             title: "Pretty Calculators - Finance Calculators",
-            description: "Free finance calculators at Pretty Calculators. YouTube earnings, TikTok income, freelance tax — practical money tools, beautifully designed.",
+            description: "Free finance calculators at Pretty Calculators. YouTube earnings, TikTok income, compound interest, debt payoff, savings goals and take-home pay — practical money tools.",
         },
         tools: [
-            { label: "YouTube Earnings Calculator", to: "/finance/youtube-earnings-calculator" },
-            { label: "TikTok Earnings Calculator", to: "/finance/tiktok-earnings-calculator" },
+            { label: "YouTube Earnings Calculator",  to: "/finance/youtube-earnings-calculator" },
+            { label: "TikTok Earnings Calculator",   to: "/finance/tiktok-earnings-calculator" },
+            { label: "Compound Interest Calculator", to: "/finance/compound-interest-calculator" },
+            { label: "Debt Payoff Calculator",       to: "/finance/debt-payoff-calculator" },
+            { label: "Savings Goal Calculator",      to: "/finance/savings-goal-calculator" },
+            { label: "Take-Home Pay Calculator",     to: "/finance/take-home-pay-calculator" },
         ],
     },
     other: {
