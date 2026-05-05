@@ -47,6 +47,7 @@ const CATEGORIES = {
             { label: "Debt Payoff Calculator",       to: "/finance/debt-payoff-calculator" },
             { label: "Savings Goal Calculator",      to: "/finance/savings-goal-calculator" },
             { label: "Take-Home Pay Calculator",     to: "/finance/take-home-pay-calculator" },
+            { label: "Mortgage Calculator",          to: "/finance/mortgage-calculator" },
         ],
     },
     other: {
@@ -69,6 +70,8 @@ const CATEGORIES = {
             { label: "Kilometers to Miles", to: "/unit/kilometers-to-miles" },
             { label: "Inches to CM", to: "/unit/inches-to-cm-converter" },
             { label: "KG to LBS", to: "/unit/kg-to-lbs-converter" },
+            { label: "Pregnancy Due Date Calculator", to: "/other/pregnancy-due-date-calculator" },
+            { label: "Ovulation Calculator",          to: "/other/ovulation-calculator" },
         ],
     },
 };
