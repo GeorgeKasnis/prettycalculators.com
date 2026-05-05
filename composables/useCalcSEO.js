@@ -5,6 +5,7 @@ const APP_CATEGORY_MAP = {
     math:    'EducationalApplication',
     unit:    'UtilitiesApplication',
     other:   'UtilitiesApplication',
+    finance: 'FinancialApplication',
 }
 
 export const useCalcSEO = (title, description, faqs = []) => {

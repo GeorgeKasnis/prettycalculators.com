@@ -1,7 +1,3 @@
-<template>
-    <UiCategoryPage slug="unit" />
-</template>
-
 <script setup>
-definePageMeta({ layout: 'brutalist' })
+await navigateTo('/other', { redirectCode: 301 })
 </script>

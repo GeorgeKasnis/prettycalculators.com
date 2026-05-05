@@ -71,7 +71,7 @@ watch(() => route.path, () => { menuOpen.value = false })
 const navLinks = [
     { to: '/fitness', label: 'Fitness' },
     { to: '/math',    label: 'Math' },
-    { to: '/unit',    label: 'Unit' },
+    { to: '/finance', label: 'Finance' },
     { to: '/other',   label: 'Other' },
     { to: '/blog',    label: 'Blog' },
 ]
