@@ -89,11 +89,11 @@
                     <span class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-35">From the blog</span>
                     <NuxtLink to="/blog" class="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-ink opacity-45 hover:opacity-100 no-underline transition-opacity">All posts →</NuxtLink>
                 </div>
-                <div class="blog-grid">
+                <div class="blog-grid gap-4">
                     <NuxtLink v-for="post in blogPosts" :key="post.slug" :to="`/blog/${post.slug}`" class="blog-card border-3 border-ink -m-[1.5px] no-underline">
-                        <div class="blog-card-thumb bg-ink flex items-center justify-center px-4">
+                        <!-- <div class="blog-card-thumb mobile:hidden bg-ink flex items-center justify-center px-4">
                             <span class="text-[13px] font-bold text-cream text-center tracking-[-0.02em] leading-snug whitespace-pre-line">{{ post.thumb }}</span>
-                        </div>
+                        </div> -->
                         <div class="bg-cream px-4 py-3 flex flex-col justify-between gap-2 flex-1">
                             <div class="text-xs font-semibold leading-snug text-ink">{{ post.title }}</div>
                             <div class="font-mono text-[9px] font-bold uppercase tracking-[0.1em] opacity-30">{{ post.tag }}</div>
@@ -132,7 +132,7 @@ const { otherCategories: categories } = useCategoryConfig("_");
 const totalTools = computed(() => categories.reduce((sum, c) => sum + c.tools.length, 0));
 
 const runtimeConfig = useRuntimeConfig();
-const { data: blogData } = await useFetch(`${runtimeConfig.public.API_URL}&content_type=blog&limit=5`);
+const { data: blogData } = await useFetch(`${runtimeConfig.public.API_URL}&content_type=blog&limit=6`);
 
 const { thumbLines } = useBlogUtils();
 
