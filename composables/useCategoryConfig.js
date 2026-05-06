@@ -15,7 +15,8 @@ const CATEGORIES = {
             { label: "One Rep Max Calculator", to: "/fitness/one-rep-max-calculator" },
             { label: "Protein Calculator", to: "/fitness/protein-calculator" },
             { label: "Macro Calculator",   to: "/fitness/macro-calculator" },
-            { label: "Pace Calculator",    to: "/fitness/pace-calculator" },
+            { label: "Pace Calculator",            to: "/fitness/pace-calculator" },
+            { label: "Calories Burned Calculator", to: "/fitness/calories-burned-calculator" },
         ],
     },
     math: {
@@ -32,6 +33,7 @@ const CATEGORIES = {
             { label: "Quadratic Formula Calculator", to: "/math/quadratic-formula-calculator" },
             { label: "Ratio Calculator", to: "/math/ratio-calculator" },
             { label: "Manhattan Distance Calculator", to: "/math/manhattan-distance-calculator" },
+            { label: "GPA Calculator",               to: "/math/gpa-calculator" },
         ],
     },
     finance: {
@@ -49,6 +51,7 @@ const CATEGORIES = {
             { label: "Savings Goal Calculator",      to: "/finance/savings-goal-calculator" },
             { label: "Take-Home Pay Calculator",     to: "/finance/take-home-pay-calculator" },
             { label: "Mortgage Calculator",          to: "/finance/mortgage-calculator" },
+            { label: "Salary to Hourly Calculator", to: "/finance/salary-to-hourly-calculator" },
         ],
     },
     other: {

@@ -24,14 +24,16 @@ export default defineEventHandler(async (event) => {
         { loc: '/fitness/one-rep-max-calculator',   changefreq: 'monthly', priority: '0.85' },
         { loc: '/fitness/protein-calculator',       changefreq: 'monthly', priority: '0.85' },
         { loc: '/fitness/macro-calculator',         changefreq: 'monthly', priority: '0.85' },
-        { loc: '/fitness/pace-calculator',          changefreq: 'monthly', priority: '0.85' },
+        { loc: '/fitness/pace-calculator',           changefreq: 'monthly', priority: '0.85' },
+        { loc: '/fitness/calories-burned-calculator', changefreq: 'monthly', priority: '0.85' },
 
         { loc: '/math/percentage-calculator',       changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/fraction-calculator',         changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/average-calculator',          changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/quadratic-formula-calculator',changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/ratio-calculator',            changefreq: 'monthly', priority: '0.85' },
-        { loc: '/math/manhattan-distance-calculator',changefreq:'monthly', priority: '0.85' },
+        { loc: '/math/manhattan-distance-calculator', changefreq: 'monthly', priority: '0.85' },
+        { loc: '/math/gpa-calculator',               changefreq: 'monthly', priority: '0.85' },
 
         { loc: '/unit/celsius-to-fahrenheit-converter', changefreq: 'monthly', priority: '0.85' },
         { loc: '/unit/fahrenheit-to-celsius-converter', changefreq: 'monthly', priority: '0.85' },
@@ -41,7 +43,8 @@ export default defineEventHandler(async (event) => {
         { loc: '/unit/kg-to-lbs-converter',             changefreq: 'monthly', priority: '0.85' },
 
         { loc: '/finance/compound-interest-calculator', changefreq: 'monthly', priority: '0.85' },
-        { loc: '/finance/mortgage-calculator',          changefreq: 'monthly', priority: '0.85' },
+        { loc: '/finance/mortgage-calculator',           changefreq: 'monthly', priority: '0.85' },
+        { loc: '/finance/salary-to-hourly-calculator', changefreq: 'monthly', priority: '0.85' },
         { loc: '/finance/savings-goal-calculator',      changefreq: 'monthly', priority: '0.85' },
         { loc: '/finance/debt-payoff-calculator',       changefreq: 'monthly', priority: '0.85' },
         { loc: '/finance/take-home-pay-calculator',     changefreq: 'monthly', priority: '0.85' },
