@@ -14,7 +14,8 @@ const CATEGORIES = {
             { label: "Ideal Weight Calculator", to: "/fitness/ideal-weight-calculator" },
             { label: "One Rep Max Calculator", to: "/fitness/one-rep-max-calculator" },
             { label: "Protein Calculator", to: "/fitness/protein-calculator" },
-            { label: "Macro Calculator",  to: "/fitness/macro-calculator" },
+            { label: "Macro Calculator",   to: "/fitness/macro-calculator" },
+            { label: "Pace Calculator",    to: "/fitness/pace-calculator" },
         ],
     },
     math: {

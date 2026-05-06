@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
         { loc: '/fitness/one-rep-max-calculator',   changefreq: 'monthly', priority: '0.85' },
         { loc: '/fitness/protein-calculator',       changefreq: 'monthly', priority: '0.85' },
         { loc: '/fitness/macro-calculator',         changefreq: 'monthly', priority: '0.85' },
+        { loc: '/fitness/pace-calculator',          changefreq: 'monthly', priority: '0.85' },
 
         { loc: '/math/percentage-calculator',       changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/fraction-calculator',         changefreq: 'monthly', priority: '0.85' },
