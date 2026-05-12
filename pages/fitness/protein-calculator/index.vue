@@ -57,7 +57,7 @@
 definePageMeta({ layout: 'brutalist' })
 
 const faqs = [
-    { q: "How much protein do I need per day?", a: "It depends on your goals. Sedentary adults need about 0.8 g/kg. Active people building muscle should aim for 1.6–2.2 g/kg. Those cutting fat benefit from 2.0–2.4 g/kg to preserve muscle mass." },
+    { q: "How much protein do I need per day?", a: "It depends on your goals. Sedentary adults need about 0.8 g/kg. Active people building muscle should aim for 1.6–2.2 g/kg. Those cutting fat benefit from 2.0–2.4 g/kg to preserve muscle mass. To set your full protein, carb, and fat targets together, use our <a href=\"/fitness/macro-calculator\">macro calculator</a>." },
     { q: "How much protein do I need per pound of body weight?", a: "A common guideline is 0.7–1 gram of protein per pound of body weight (1.5–2.2 g/kg). For muscle building, aim for around 1 g per pound. Enter your weight in lbs using the Imperial toggle for an instant result." },
     { q: "Does high protein intake damage kidneys?", a: "For healthy individuals with no pre-existing kidney disease, high protein intake (up to 2.6 g/kg) is safe. The kidney-damage claim stems from studies on people with existing kidney problems." },
     { q: "Can I eat too much protein?", a: "Protein above roughly 2.8 g/kg of body weight provides no additional muscle-building benefit and the excess is used for energy. It won't cause harm but is a waste of calories and money." },
