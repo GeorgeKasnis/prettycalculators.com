@@ -30,20 +30,32 @@
             <p>Tax Amount = $500 x 0.075 = $37.50</p>
             <p>Thus, a 7.5% tax on a $500 purchase equals $37.50.</p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How do I calculate a percentage?", a: "To find what percentage A is of B: (A ÷ B) × 100. For example, 30 out of 150 is (30 ÷ 150) × 100 = 20%." },
+    { q: "How do I calculate a percentage increase?", a: "Percentage increase = ((New Value − Old Value) ÷ Old Value) × 100. For example, going from 80 to 100 is ((100 − 80) ÷ 80) × 100 = 25% increase." },
+    { q: "How do I find X% of a number?", a: "Multiply the number by the percentage, then divide by 100. For example, 15% of 200 = (200 × 15) ÷ 100 = 30." },
+    { q: "How do I calculate a percentage decrease?", a: "Percentage decrease = ((Old Value − New Value) ÷ Old Value) × 100. For example, from 100 to 75 is ((100 − 75) ÷ 100) × 100 = 25% decrease." },
+    { q: "What is 20% of 150?", a: "20% of 150 = (150 × 20) ÷ 100 = 30. Quick mental shortcut: 10% of 150 = 15, then double it = 30." },
+    { q: "What percentage is 45 out of 60?", a: "45 ÷ 60 × 100 = 75%. So 45 is 75% of 60." },
+    { q: "How do I calculate a 10% tip on a $47 bill?", a: "10% of $47 = $4.70. For 15%: $4.70 + half of $4.70 = $4.70 + $2.35 = $7.05. For 20%: double the 10% = $9.40. The 10% shortcut (move the decimal one place left) is the fastest mental calculation." },
+    { q: "What is a 30% discount on $200?", a: "30% of $200 = $60. So the discounted price is $200 − $60 = $140. Alternatively: the sale price is 70% of original = 0.70 × $200 = $140." },
+    { q: "How do I reverse a percentage to find the original price?", a: "If a price after a 20% discount is $80, find the original: $80 ÷ 0.80 = $100. The formula is: Original = Final ÷ (1 − discount%). Never make the mistake of adding 20% back: $80 × 1.20 = $96, which is wrong." },
+    { q: "What is 150% of 80?", a: "150% of 80 = (80 × 150) ÷ 100 = 120. Percentages above 100% simply mean more than the whole — 150% means 1.5 times the number. 200% of 80 = 160 (double)." },
+]
+
 useCalcSEO(
     "Percentage Calculator — Calculate % Online Free",
     "Free percentage calculator. Find what % one number is of another, calculate percentage increase/decrease, or work out X% of a number. Fast and accurate.",
-    [
-        { q: "How do I calculate a percentage?", a: "To find what percentage A is of B: (A ÷ B) × 100. For example, 30 out of 150 is (30 ÷ 150) × 100 = 20%." },
-        { q: "How do I calculate a percentage increase?", a: "Percentage increase = ((New Value − Old Value) ÷ Old Value) × 100. For example, going from 80 to 100 is ((100 − 80) ÷ 80) × 100 = 25% increase." },
-        { q: "How do I find X% of a number?", a: "Multiply the number by the percentage, then divide by 100. For example, 15% of 200 = (200 × 15) ÷ 100 = 30." },
-        { q: "How do I calculate a percentage decrease?", a: "Percentage decrease = ((Old Value − New Value) ÷ Old Value) × 100. For example, from 100 to 75 is ((100 − 75) ÷ 100) × 100 = 25% decrease." },
-    ]
+    faqs
 )
 
 useHead({

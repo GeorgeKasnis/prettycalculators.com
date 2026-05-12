@@ -26,20 +26,32 @@
         <template #example>
             <p>An element with a width of 320px would be approximately 20rem based on a <span class="font-bold">base font size</span> of 16px.</p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "What is the default base font size for rem?", a: "Most browsers use 16px as the default base font size, so 1rem = 16px by default." },
+    { q: "Why use rem instead of px in CSS?", a: "Rem units scale with the user's browser font-size setting, making layouts more accessible and responsive. Px is absolute and ignores user preferences." },
+    { q: "How do I convert 24px to rem?", a: "Divide by the base font size: 24 ÷ 16 = 1.5rem. If your base size is different, divide by that value instead." },
+    { q: "What does rem stand for?", a: "Rem stands for 'root em'. It's relative to the font size of the root HTML element, unlike em which is relative to the parent element." },
+    { q: "What is 16px in rem?", a: "16px ÷ 16 = 1rem. With the default 16px base, 16px is always 1rem. This is also the default paragraph text size in most browsers." },
+    { q: "What is the difference between rem and em in CSS?", a: "Rem is relative to the root HTML element's font size (usually 16px across the whole page). Em is relative to the font size of the current element's parent — which can cascade and compound unpredictably in nested elements. Rem is generally more predictable and easier to manage for layout and spacing." },
+    { q: "How do I convert 12px to rem?", a: "12 ÷ 16 = 0.75rem. If you set your root font to 10px (html { font-size: 62.5%; }) to make calculations easier, then 12px = 1.2rem." },
+    { q: "Should I use rem for font sizes or spacing?", a: "Both. Rem is recommended for font sizes so they scale with user browser preferences (important for accessibility). For spacing (padding, margin, gap), rem is also preferred by many developers because it keeps spacing proportional to text size. Some teams use rem for fonts and px for borders and shadows where exact pixel values matter more." },
+    { q: "What is the 62.5% trick for rem?", a: "Setting html { font-size: 62.5%; } makes 1rem = 10px (62.5% of 16px = 10px). This makes mental conversion trivial: 14px = 1.4rem, 20px = 2rem. However, this approach requires remembering to account for user browser settings, and some accessibility auditors flag it. It's popular but not universally recommended." },
+    { q: "How many px is 1.5rem?", a: "1.5rem × 16px = 24px (with a 16px base). If your base is 10px (using the 62.5% trick), 1.5rem = 15px. Always confirm what base font size your project uses before converting." },
+]
+
 useCalcSEO(
     "PX to REM Calculator — Convert Pixels to REM Free",
     "Convert px to rem instantly with a 16px base font size. Free px to rem calculator for web developers — essential for responsive, accessible CSS. Copy result.",
-    [
-        { q: "What is the default base font size for rem?", a: "Most browsers use 16px as the default base font size, so 1rem = 16px by default." },
-        { q: "Why use rem instead of px in CSS?", a: "Rem units scale with the user's browser font-size setting, making layouts more accessible and responsive. Px is absolute and ignores user preferences." },
-        { q: "How do I convert 24px to rem?", a: "Divide by the base font size: 24 ÷ 16 = 1.5rem. If your base size is different, divide by that value instead." },
-        { q: "What does rem stand for?", a: "Rem stands for 'root em'. It's relative to the font size of the root HTML element, unlike em which is relative to the parent element." },
-    ]
+    faqs
 )
 
 useHead({

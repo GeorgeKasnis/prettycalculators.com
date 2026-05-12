@@ -38,20 +38,32 @@
                 Going the other way: to convert 180 lbs to kg, divide by 2.20462: 180 ÷ 2.20462 ≈ <strong>81.65 kg</strong>.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How many lbs is 1 kg?", a: "1 kilogram equals 2.20462 pounds. For a quick estimate, multiply kg by 2.2." },
+    { q: "How do I convert kg to lbs?", a: "Multiply kilograms by 2.20462. For example, 70 kg × 2.20462 = 154.32 lbs." },
+    { q: "How many kg is 150 lbs?", a: "150 lbs ÷ 2.20462 = 68.04 kg." },
+    { q: "What is 1 stone in kg?", a: "1 stone = 14 pounds = 6.35029 kg. For example, 11 stone = 69.85 kg." },
+    { q: "How many lbs is 80 kg?", a: "80 kg × 2.20462 = 176.37 lbs." },
+    { q: "How many kg is 200 lbs?", a: "200 lbs ÷ 2.20462 = 90.72 kg." },
+    { q: "What is 10 stone in kg?", a: "10 stone = 140 pounds. 140 ÷ 2.20462 = 63.5 kg." },
+    { q: "What is 12 stone in lbs and kg?", a: "12 stone = 168 lbs. 168 ÷ 2.20462 = 76.2 kg. Stones are most commonly used in the UK and Ireland for body weight." },
+    { q: "How much is 100 kg in lbs?", a: "100 kg × 2.20462 = 220.46 lbs. A useful benchmark: 100 kg is just over 220 lbs or just under 15 stone 11 lbs." },
+    { q: "Why do gyms in the UK use both kg and lbs on equipment?", a: "Gym equipment in the UK is often imported from or designed for the US market, which uses pounds. UK gyms may label weights in both units to accommodate members familiar with either system. Barbell plates in competitive powerlifting and weightlifting are measured in kg internationally, but many commercial gym plates are marked in lbs or both." },
+]
+
 useCalcSEO(
     "KG to LBS Converter — Kilograms to Pounds",
     "Free kg to lbs converter. Type kilograms to get pounds or pounds to get kg — instant bidirectional conversion. Also shows stones and pounds.",
-    [
-        { q: "How many lbs is 1 kg?", a: "1 kilogram equals 2.20462 pounds. For a quick estimate, multiply kg by 2.2." },
-        { q: "How do I convert kg to lbs?", a: "Multiply kilograms by 2.20462. For example, 70 kg × 2.20462 = 154.32 lbs." },
-        { q: "How many kg is 150 lbs?", a: "150 lbs ÷ 2.20462 = 68.04 kg." },
-        { q: "What is 1 stone in kg?", a: "1 stone = 14 pounds = 6.35029 kg. For example, 11 stone = 69.85 kg." },
-    ]
+    faqs
 )
 
 useHead({

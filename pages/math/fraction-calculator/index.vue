@@ -40,20 +40,32 @@
                 Step 4: Simplify. GCF(10, 8) = 2. So 10/8 = <strong>5/4</strong> = 1.25.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How do you add fractions with different denominators?", a: "Multiply the denominators to find a common denominator: a/b + c/d = (a×d + c×b) / (b×d). Then simplify the result by dividing by the Greatest Common Factor." },
+    { q: "How do you divide fractions?", a: "To divide fractions, multiply the first fraction by the reciprocal of the second: a/b ÷ c/d = a/b × d/c = (a×d) / (b×c). Then simplify." },
+    { q: "How do you simplify a fraction?", a: "Divide both the numerator and denominator by their Greatest Common Factor (GCF). For example, 10/8: GCF(10,8) = 2, so 10/8 = 5/4." },
+    { q: "What is a mixed number?", a: "A mixed number combines a whole number and a fraction, like 1½. To use it in calculations, convert it to an improper fraction: 1½ = 3/2." },
+    { q: "What is 2/3 + 3/4?", a: "Find a common denominator: 2/3 + 3/4 = (2×4 + 3×3) / (3×4) = (8 + 9) / 12 = 17/12. Simplified: 17/12 (already in lowest terms) = 1 and 5/12 as a mixed number ≈ 1.417." },
+    { q: "What is 1/2 multiplied by 3/4?", a: "Multiply numerators and denominators: 1/2 × 3/4 = (1×3) / (2×4) = 3/8. As a decimal: 0.375. Fraction multiplication is the simplest operation — no common denominator needed." },
+    { q: "What is 3/4 minus 1/3?", a: "Find common denominator: 3/4 − 1/3 = (3×3 − 1×4) / (4×3) = (9 − 4) / 12 = 5/12. As a decimal: 0.4167." },
+    { q: "How do you convert a fraction to a decimal?", a: "Divide the numerator by the denominator. For 3/4: 3 ÷ 4 = 0.75. For 2/3: 2 ÷ 3 = 0.6667 (repeating). The calculator shows the decimal equivalent automatically alongside the fractional result." },
+    { q: "What is an improper fraction?", a: "An improper fraction has a numerator larger than or equal to the denominator, like 7/4 or 5/3. It represents a value ≥ 1. To convert to a mixed number: divide numerator by denominator. 7 ÷ 4 = 1 remainder 3, so 7/4 = 1 and 3/4." },
+    { q: "Why does the calculator simplify fractions automatically?", a: "Simplification (reducing to lowest terms) makes fractions easier to read and compare. For example, 12/16 simplified to 3/4 is much clearer. The calculator divides both the numerator and denominator by their GCF automatically. You can always convert back to the original scale by multiplying both parts by any common factor." },
+]
+
 useCalcSEO(
     "Fraction Calculator — Add, Subtract, Multiply & Divide Fractions",
     "Free fraction calculator. Add, subtract, multiply, or divide any two fractions. Shows the simplified result, decimal equivalent, and step-by-step solution.",
-    [
-        { q: "How do you add fractions with different denominators?", a: "Multiply the denominators to find a common denominator: a/b + c/d = (a×d + c×b) / (b×d). Then simplify the result by dividing by the Greatest Common Factor." },
-        { q: "How do you divide fractions?", a: "To divide fractions, multiply the first fraction by the reciprocal of the second: a/b ÷ c/d = a/b × d/c = (a×d) / (b×c). Then simplify." },
-        { q: "How do you simplify a fraction?", a: "Divide both the numerator and denominator by their Greatest Common Factor (GCF). For example, 10/8: GCF(10,8) = 2, so 10/8 = 5/4." },
-        { q: "What is a mixed number?", a: "A mixed number combines a whole number and a fraction, like 1½. To use it in calculations, convert it to an improper fraction: 1½ = 3/2." },
-    ]
+    faqs
 )
 
 useHead({

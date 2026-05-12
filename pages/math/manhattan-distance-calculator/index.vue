@@ -33,20 +33,31 @@
             <p><span class="font-bold">Example 3D:</span> In a building with multiple floors, traveling from the 3rd floor to the 7th floor while moving between streets results in an 8-floor Manhattan distance.</p>
             <p><span class="font-bold">Example 4D:</span> In the realm of time and date, the Manhattan distance between (2023, June, 15, 10:00 AM) and (2023, June, 15, 4:00 PM) is a 6-hour time difference.</p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "What is Manhattan distance?", a: "Manhattan distance (also called L1 distance or taxicab distance) is the sum of the absolute differences between coordinates of two points. It measures distance along grid-like paths." },
+    { q: "What is the formula for Manhattan distance?", a: "For 2D points (x1, y1) and (x2, y2): |x1 − x2| + |y1 − y2|. In 3D: |x1 − x2| + |y1 − y2| + |z1 − z2|." },
+    { q: "When is Manhattan distance used?", a: "Manhattan distance is used in machine learning (k-nearest neighbors), route planning on grid maps, robotics, and image processing algorithms." },
+    { q: "What is the difference between Manhattan and Euclidean distance?", a: "Euclidean distance is the straight-line distance between two points. Manhattan distance follows grid paths and is always greater than or equal to Euclidean distance." },
+    { q: "Why is it called Manhattan distance?", a: "The name comes from the grid-like street layout of Manhattan island in New York City. In a city grid, you can only travel along streets (horizontally or vertically) — not diagonally across blocks. The total distance walked in this grid-constrained way is the Manhattan distance." },
+    { q: "Is Manhattan distance always greater than Euclidean distance?", a: "Yes, always (or equal). Euclidean distance is the straight-line ('as the crow flies') distance, while Manhattan distance must follow axis-aligned paths. The ratio Manhattan/Euclidean is at minimum 1 (when moving in exactly one direction) and at maximum √2 (when moving diagonally at 45°)." },
+    { q: "How is Manhattan distance used in k-nearest neighbors (KNN)?", a: "In KNN, Manhattan distance is used as the metric to find the k closest points to a query point. It's preferred over Euclidean distance in high-dimensional spaces because it's less affected by the 'curse of dimensionality' — in high dimensions, all Euclidean distances tend to converge, making it harder to distinguish near and far points. Manhattan distance maintains more discriminative power." },
+    { q: "What is the Manhattan distance between (0,0) and (3,4)?", a: "|0−3| + |0−4| = 3 + 4 = 7. For comparison, the Euclidean distance is √(3² + 4²) = √25 = 5. The Manhattan distance (7) is larger because you cannot take the diagonal shortcut." },
+    { q: "What is the difference between L1 and L2 distance?", a: "L1 distance is Manhattan distance (sum of absolute differences). L2 distance is Euclidean distance (square root of sum of squared differences). In machine learning, L1 regularisation (Lasso) and L2 regularisation (Ridge) use these norms respectively to penalise large coefficients, with L1 producing sparse solutions and L2 producing smaller, more evenly distributed ones." },
+]
+
 useCalcSEO(
     "Manhattan Distance Calculator — L1 Distance Online",
     "Calculate Manhattan distance (L1 norm) between two points. Supports 2D, 3D, and 4D coordinates. Free online calculator — instant results, no sign-up needed.",
-    [
-        { q: "What is Manhattan distance?", a: "Manhattan distance (also called L1 distance or taxicab distance) is the sum of the absolute differences between coordinates of two points. It measures distance along grid-like paths." },
-        { q: "What is the formula for Manhattan distance?", a: "For 2D points (x1, y1) and (x2, y2): |x1 − x2| + |y1 − y2|. In 3D: |x1 − x2| + |y1 − y2| + |z1 − z2|." },
-        { q: "When is Manhattan distance used?", a: "Manhattan distance is used in machine learning (k-nearest neighbors), route planning on grid maps, robotics, and image processing algorithms." },
-        { q: "What is the difference between Manhattan and Euclidean distance?", a: "Euclidean distance is the straight-line distance between two points. Manhattan distance follows grid paths and is always greater than or equal to Euclidean distance." },
-    ]
+    faqs
 )
 
 useHead({

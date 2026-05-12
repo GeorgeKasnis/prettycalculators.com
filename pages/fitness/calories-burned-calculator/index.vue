@@ -69,25 +69,33 @@
                 The comparison table also shows that the same 45 minutes of cycling at the same intensity would burn the same 450 kcal — but yoga would only burn 141 kcal and jump rope would burn 619 kcal. Use this to choose the activity that fits your schedule and calorie target.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 
+const faqs = [
+    { q: "How many calories do you burn running for 30 minutes?", a: "It depends on your weight and pace. At 70 kg running at a moderate pace (8 km/h, MET 8.0): 8.0 × 70 × 0.5 = 280 kcal. At 80 kg: 320 kcal. At a faster 10 km/h pace (MET 9.8): 343 kcal at 70 kg. The calculator adjusts for your exact weight and chosen pace." },
+    { q: "How many calories do you burn walking 10,000 steps?", a: "10,000 steps is roughly 7–8 km depending on stride length, taking approximately 70–90 minutes of walking. At a moderate walking pace (MET 3.5) for 80 minutes at 70 kg: 3.5 × 70 × 1.33 = 326 kcal. Heavier walkers burn more; faster walkers burn slightly more per step." },
+    { q: "Does weight affect how many calories you burn exercising?", a: "Yes — significantly. A 90 kg person burns about 29% more calories than a 70 kg person doing the identical workout at the same intensity. Calories = MET × weight (kg) × hours. This is why gym machines that don't ask for your weight give inaccurate estimates." },
+    { q: "How many calories does 1 hour of cycling burn?", a: "At leisure pace (<16 km/h, MET 4.0) at 70 kg: 4.0 × 70 × 1 = 280 kcal. At moderate pace (16–19 km/h, MET 6.0): 420 kcal. At vigorous pace (20+ km/h, MET 8.0): 560 kcal per hour at 70 kg. Intensity makes a bigger difference than duration." },
+    { q: "How accurate are calorie burn calculators?", a: "MET-based calculators are accurate within ±15–20% for most people doing steady-state cardio. Factors like fitness level, terrain, heat, and individual metabolism can shift actual burn. HIIT and weight training estimates are less precise because these exercises create significant post-workout calorie burn (EPOC) that MET values don't capture." },
+    { q: "What activity burns the most calories?", a: "Per hour at 70 kg, the highest calorie burns are: jump rope (770 kcal), running very fast 12+ km/h (770 kcal), swimming vigorously (686 kcal), HIIT (560 kcal). High-intensity activities burn far more than steady-state cardio — a 20-minute HIIT session can burn more than 45 minutes of walking." },
+    { q: "How many calories does 30 minutes of HIIT burn?", a: "HIIT has a MET of approximately 8.0 during the session. At 70 kg for 30 minutes: 8.0 × 70 × 0.5 = 280 kcal. However, HIIT also creates excess post-exercise oxygen consumption (EPOC), potentially adding 60–200 additional calories burned over the following 12–24 hours — making its total burn significantly higher than steady cardio." },
+    { q: "How many calories does yoga burn in an hour?", a: "Yoga has a MET of approximately 2.5. At 70 kg for 60 minutes: 2.5 × 70 × 1 = 175 kcal. This is relatively low compared to cardio activities, but yoga's benefits in flexibility, stress reduction, and active recovery make it valuable as a complementary activity rather than a primary calorie-burning tool." },
+    { q: "How many calories do I burn swimming for 30 minutes?", a: "At a leisure pace (MET 5.8) for 30 minutes at 70 kg: 5.8 × 70 × 0.5 = 203 kcal. Swimming vigorously (MET 9.8): 343 kcal. Swimming is one of the best full-body calorie burners with minimal joint impact, making it ideal if you're managing knee or hip pain." },
+    { q: "Why does my Fitbit say I burned more calories than this calculator?", a: "Wearable devices estimate calories using heart rate and movement data, which can overestimate by 20–93% depending on the device and activity type. MET-based calculators are generally more accurate for steady-state cardio. Neither is perfect — use either as a planning estimate, not an exact count." },
+    { q: "How many calories do you burn hiking vs walking?", a: "Hiking (MET 5.3) burns significantly more than moderate walking (MET 3.5) at the same duration. At 70 kg for 60 minutes: hiking = 371 kcal vs flat walking = 245 kcal. Elevation gain, pack weight, and terrain difficulty push hiking's MET even higher in practice." },
+]
+
 useCalcSEO(
     "Calories Burned Calculator — Running, Walking, Cycling & 20+ Activities",
     "Free calories burned calculator using the MET formula. Supports 20+ activities including running, walking, cycling, swimming and HIIT. Enter your weight and duration for an accurate estimate.",
-    [
-        { q: "How many calories do you burn running for 30 minutes?", a: "It depends on your weight and pace. At 70 kg running at a moderate pace (8 km/h, MET 8.0): 8.0 × 70 × 0.5 = 280 kcal. At 80 kg: 320 kcal. At a faster 10 km/h pace (MET 9.8): 343 kcal at 70 kg. The calculator adjusts for your exact weight and chosen pace." },
-        { q: "How many calories do you burn walking 10,000 steps?", a: "10,000 steps is roughly 7–8 km depending on stride length, taking approximately 70–90 minutes of walking. At a moderate walking pace (MET 3.5) for 80 minutes at 70 kg: 3.5 × 70 × 1.33 = 326 kcal. Heavier walkers burn more; faster walkers burn slightly more per step." },
-        { q: "Does weight affect how many calories you burn exercising?", a: "Yes — significantly. A 90 kg person burns about 29% more calories than a 70 kg person doing the identical workout at the same intensity. Calories = MET × weight (kg) × hours. This is why gym machines that don't ask for your weight give inaccurate estimates." },
-        { q: "How many calories does 1 hour of cycling burn?", a: "At leisure pace (<16 km/h, MET 4.0) at 70 kg: 4.0 × 70 × 1 = 280 kcal. At moderate pace (16–19 km/h, MET 6.0): 420 kcal. At vigorous pace (20+ km/h, MET 8.0): 560 kcal per hour at 70 kg. Intensity makes a bigger difference than duration." },
-        { q: "How accurate are calorie burn calculators?", a: "MET-based calculators are accurate within ±15–20% for most people doing steady-state cardio. Factors like fitness level, terrain, heat, and individual metabolism can shift actual burn. HIIT and weight training estimates are less precise because these exercises create significant post-workout calorie burn (EPOC) that MET values don't capture." },
-        { q: "What activity burns the most calories?", a: "Per hour at 70 kg, the highest calorie burns are: jump rope (770 kcal), running very fast 12+ km/h (770 kcal), swimming vigorously (686 kcal), HIIT (560 kcal). High-intensity activities burn far more than steady-state cardio — a 20-minute HIIT session can burn more than 45 minutes of walking." },
-        { q: "How many calories does 30 minutes of HIIT burn?", a: "HIIT has a MET of approximately 8.0 during the session. At 70 kg for 30 minutes: 8.0 × 70 × 0.5 = 280 kcal. However, HIIT also creates excess post-exercise oxygen consumption (EPOC), potentially adding 60–200 additional calories burned over the following 12–24 hours — making its total burn significantly higher than steady cardio." },
-        { q: "How many calories does yoga burn in an hour?", a: "Yoga has a MET of approximately 2.5. At 70 kg for 60 minutes: 2.5 × 70 × 1 = 175 kcal. This is relatively low compared to cardio activities, but yoga's benefits in flexibility, stress reduction, and active recovery make it valuable as a complementary activity rather than a primary calorie-burning tool." },
-    ]
+    faqs
 )
 
 useHead({

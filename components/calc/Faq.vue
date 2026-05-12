@@ -12,7 +12,7 @@
                         <span class="faq-icon" aria-hidden="true">+</span>
                     </summary>
                     <div class="faq-answer">
-                        <p>{{ item.a }}</p>
+                        <p v-html="item.a" />
                     </div>
                 </details>
             </div>
@@ -128,6 +128,17 @@ defineProps({
 .faq-answer {
     padding: 16px 28px 20px;
     background: #fff;
+}
+
+.faq-answer :deep(a) {
+    color: #0a0a0a;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.faq-answer :deep(a:hover) {
+    color: #5b21b6;
 }
 
 .faq-answer p {

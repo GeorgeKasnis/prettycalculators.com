@@ -38,20 +38,32 @@
                 Going the other way: to convert 180 cm to inches, divide by 2.54: 180 ÷ 2.54 ≈ 70.87 inches = 5 feet 10.87 inches ≈ <strong>5'11"</strong>.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How many cm is 1 inch?", a: "1 inch is exactly 2.54 centimetres. This is an internationally defined conversion that has been exact since 1959." },
+    { q: "How do I convert inches to cm?", a: "Multiply the number of inches by 2.54. For example, 12 inches × 2.54 = 30.48 cm. To go from cm to inches, divide by 2.54." },
+    { q: "How many inches is 5 cm?", a: "5 cm ÷ 2.54 = 1.969 inches, or roughly 2 inches." },
+    { q: "What is 6 feet in cm?", a: "6 feet = 72 inches. 72 × 2.54 = 182.88 cm." },
+    { q: "How many cm is 5'7\"?", a: "5 feet 7 inches = 67 inches total. 67 × 2.54 = 170.18 cm." },
+    { q: "How many cm is 5'10\"?", a: "5 feet 10 inches = 70 inches total. 70 × 2.54 = 177.8 cm." },
+    { q: "How many inches is 160 cm?", a: "160 ÷ 2.54 = 62.99 inches = 5 feet 3 inches (rounded). 160 cm is approximately 5'3\"." },
+    { q: "How many inches is 170 cm?", a: "170 ÷ 2.54 = 66.93 inches = 5 feet 6.93 inches ≈ 5'7\". 170 cm is close to 5 feet 7 inches." },
+    { q: "How do I convert my TV screen size from inches to cm?", a: "Multiply the diagonal screen size in inches by 2.54. A 55-inch TV has a diagonal of 55 × 2.54 = 139.7 cm. A 65-inch TV is 165.1 cm diagonally. Note that screen size describes the diagonal, not the width or height of the display." },
+    { q: "Why does the US use inches while most of the world uses centimetres?", a: "The US retained the imperial system (inches, feet, yards) following independence, while the rest of the world progressively adopted the metric system through the 18th–20th centuries. The US has made voluntary efforts toward metrication but daily life remains imperial. This means conversions are commonly needed for international commerce, science, and travel." },
+]
+
 useCalcSEO(
     "Inches to CM Converter — Centimetres to Inches",
     "Free inches to cm converter. Type inches to get centimetres or cm to get inches — instant bidirectional conversion with a handy reference table.",
-    [
-        { q: "How many cm is 1 inch?", a: "1 inch is exactly 2.54 centimetres. This is an internationally defined conversion that has been exact since 1959." },
-        { q: "How do I convert inches to cm?", a: "Multiply the number of inches by 2.54. For example, 12 inches × 2.54 = 30.48 cm. To go from cm to inches, divide by 2.54." },
-        { q: "How many inches is 5 cm?", a: "5 cm ÷ 2.54 = 1.969 inches, or roughly 2 inches." },
-        { q: "What is 6 feet in cm?", a: "6 feet = 72 inches. 72 × 2.54 = 182.88 cm." },
-    ]
+    faqs
 )
 
 useHead({

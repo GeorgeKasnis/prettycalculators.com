@@ -33,20 +33,32 @@
                 <span class="font-bold">equivalent distance in kilometers is 160.93 km</span>.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How many kilometers are in a mile?", a: "1 mile equals exactly 1.60934 kilometers." },
+    { q: "How do I convert miles to kilometers?", a: "Multiply the number of miles by 1.60934. For example, 5 miles × 1.60934 = 8.047 km." },
+    { q: "How many km is a marathon (26.2 miles)?", a: "26.2 miles is approximately 42.195 km — the standard marathon distance." },
+    { q: "How many kilometers is 100 miles?", a: "100 miles is 160.934 kilometers." },
+    { q: "How many km is 5 miles?", a: "5 miles is 8.047 km. This is a common running race distance — a 5-mile run is just over 8 km." },
+    { q: "How many km is 10 miles?", a: "10 miles is 16.093 km. A 10-mile run is a popular training distance for marathon preparation." },
+    { q: "How many km is 1 mile?", a: "1 mile is 1.609 km. A quick mental estimate: multiply miles by 1.6 to get approximate kilometers." },
+    { q: "How many km is 3 miles?", a: "3 miles is 4.828 km. For comparison, the average person walks roughly 3 miles (5 km) in an hour." },
+    { q: "How do I convert mph to km/h?", a: "To convert miles per hour to kilometers per hour, multiply by 1.60934. For example, 60 mph × 1.60934 = 96.56 km/h. The US 65 mph highway limit is approximately 105 km/h." },
+    { q: "Is a mile longer than a kilometer?", a: "Yes. 1 mile = 1.609 km, so a mile is about 61% longer than a kilometer. When comparing running paces: a 6-minute mile is equivalent to a 3:44/km pace. Road races in the US use miles; most international races (including Olympics) use kilometers." },
+]
+
 useCalcSEO(
     "Miles to Kilometers Converter — Free Distance Calculator",
     "Convert miles to kilometers instantly. 1 mile = 1.60934 km. Free distance converter — enter miles and get km in one click. No sign-up required.",
-    [
-        { q: "How many kilometers are in a mile?", a: "1 mile equals exactly 1.60934 kilometers." },
-        { q: "How do I convert miles to kilometers?", a: "Multiply the number of miles by 1.60934. For example, 5 miles × 1.60934 = 8.047 km." },
-        { q: "How many km is a marathon (26.2 miles)?", a: "26.2 miles is approximately 42.195 km — the standard marathon distance." },
-        { q: "How many kilometers is 100 miles?", a: "100 miles is 160.934 kilometers." },
-    ]
+    faqs
 )
 
 useHead({

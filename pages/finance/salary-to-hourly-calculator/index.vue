@@ -62,24 +62,33 @@
                 Now switch to Hourly → Salary, enter $32, 40 hrs, 52 weeks: annual equivalent = <strong>$66,560</strong>. The salaried offer is worth $5,940 more annually — plus benefits. The salary wins.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 
+const faqs = [
+    { q: "How much is $50,000 a year per hour?", a: "$50,000 ÷ 2,080 hours (40 hrs/week × 52 weeks) = $24.04 per hour. If you work 37.5 hours per week: $50,000 ÷ 1,950 = $25.64/hr. The standard assumption is a 40-hour work week and 52 weeks per year = 2,080 total hours." },
+    { q: "How much is $100,000 a year per hour?", a: "$100,000 ÷ 2,080 hours = $48.08 per hour on a standard 40-hour, 52-week schedule. Working 45 hours per week: $100,000 ÷ 2,340 = $42.74/hr. The calculator adjusts for any combination of hours and weeks." },
+    { q: "How much is $15 an hour annually?", a: "$15/hr × 40 hrs/week × 52 weeks = $31,200 per year. Biweekly paycheck: $1,200. Monthly: $2,600. This assumes full-time work with no unpaid weeks. If you only work 48 weeks: $15 × 40 × 48 = $28,800." },
+    { q: "How many working hours are in a year?", a: "The standard is 2,080 hours (40 hours/week × 52 weeks). Some companies calculate on 50 weeks (excluding 2 weeks vacation), giving 2,000 hours. Dividing annual salary by 2,080 gives the standard hourly rate; dividing by 2,000 gives the 'paid working hours only' rate." },
+    { q: "How much is $25 an hour annually?", a: "$25/hr × 2,080 hours = $52,000 per year. Monthly gross: $4,333. Weekly gross: $1,000. Biweekly: $2,000. These are gross (before tax) figures — take-home pay will be lower depending on your tax situation." },
+    { q: "How do I convert a monthly salary to hourly?", a: "Multiply the monthly salary by 12 to get the annual figure, then divide by your total hours worked per year. Example: $5,000/month × 12 = $60,000/year. $60,000 ÷ 2,080 = $28.85/hr. Use the calculator: select Monthly, enter $5,000, set your hours per week." },
+    { q: "What is a biweekly paycheck on a $60,000 salary?", a: "$60,000 ÷ 26 biweekly pay periods = $2,307.69 gross per paycheck. The calculator shows this in the full breakdown alongside hourly, daily, weekly, monthly, and annual figures." },
+    { q: "How much is $20 an hour a year?", a: "$20/hr × 40 hrs/week × 52 weeks = $41,600 per year gross. Biweekly paycheck: $1,600. Monthly: $3,467. At 37.5 hours/week: $39,000/year. This is before any taxes or deductions." },
+    { q: "What is my hourly rate if I earn £35,000 a year in the UK?", a: "£35,000 ÷ 2,080 hours (40h/wk × 52wks) = £16.83/hr. The UK standard full-time week is often 37.5 hours, giving 1,950 hours/year: £35,000 ÷ 1,950 = £17.95/hr. Set the 'Hours per week' to 37.5 to see the accurate UK figure." },
+    { q: "How do I compare a salaried offer to a freelance day rate?", a: "Convert the freelance day rate to annual equivalent: day rate × working days per year (typically 220–235, accounting for holidays and weekdays). A £400/day rate at 220 days = £88,000. Then factor in that freelancers pay employer NI (or self-employment tax) and cover their own pension and benefits — effectively adding 15–25% to break even with a salaried role." },
+    { q: "Is overtime pay included in the salary to hourly calculation?", a: "No — this calculator converts your base salary only. Overtime is typically paid at 1.5× your regular hourly rate (in the US) or per agreement in the UK. If you receive regular overtime, calculate your average total hours worked per week (including overtime) and enter that number instead of 40." },
+]
+
 useCalcSEO(
     "Salary to Hourly Calculator — Annual, Monthly & Weekly Pay Converter",
     "Convert annual salary to hourly rate instantly. Enter your salary and working hours to get your hourly, daily, weekly, biweekly, monthly, and annual pay breakdown. Works in reverse too.",
-    [
-        { q: "How much is $50,000 a year per hour?", a: "$50,000 ÷ 2,080 hours (40 hrs/week × 52 weeks) = $24.04 per hour. If you work 37.5 hours per week: $50,000 ÷ 1,950 = $25.64/hr. The standard assumption is a 40-hour work week and 52 weeks per year = 2,080 total hours." },
-        { q: "How much is $100,000 a year per hour?", a: "$100,000 ÷ 2,080 hours = $48.08 per hour on a standard 40-hour, 52-week schedule. Working 45 hours per week: $100,000 ÷ 2,340 = $42.74/hr. The calculator adjusts for any combination of hours and weeks." },
-        { q: "How much is $15 an hour annually?", a: "$15/hr × 40 hrs/week × 52 weeks = $31,200 per year. Biweekly paycheck: $1,200. Monthly: $2,600. This assumes full-time work with no unpaid weeks. If you only work 48 weeks: $15 × 40 × 48 = $28,800." },
-        { q: "How many working hours are in a year?", a: "The standard is 2,080 hours (40 hours/week × 52 weeks). Some companies calculate on 50 weeks (excluding 2 weeks vacation), giving 2,000 hours. Dividing annual salary by 2,080 gives the standard hourly rate; dividing by 2,000 gives the 'paid working hours only' rate." },
-        { q: "How much is $25 an hour annually?", a: "$25/hr × 2,080 hours = $52,000 per year. Monthly gross: $4,333. Weekly gross: $1,000. Biweekly: $2,000. These are gross (before tax) figures — take-home pay will be lower depending on your tax situation." },
-        { q: "How do I convert a monthly salary to hourly?", a: "Multiply the monthly salary by 12 to get the annual figure, then divide by your total hours worked per year. Example: $5,000/month × 12 = $60,000/year. $60,000 ÷ 2,080 = $28.85/hr. Use the calculator: select Monthly, enter $5,000, set your hours per week." },
-        { q: "What is a biweekly paycheck on a $60,000 salary?", a: "$60,000 ÷ 26 biweekly pay periods = $2,307.69 gross per paycheck. The calculator shows this in the full breakdown alongside hourly, daily, weekly, monthly, and annual figures." },
-    ]
+    faqs
 )
 
 useHead({

@@ -47,21 +47,32 @@
                 Use these percentages when following structured programs like 5/3/1, Starting Strength, or any percentage-based programming to ensure every session is appropriately loaded.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "What is a one rep max (1RM)?", a: "A one rep max is the maximum weight you can lift for a single repetition with proper form. It's the standard measure of absolute strength in powerlifting and weightlifting." },
+    { q: "How is one rep max calculated?", a: "This calculator uses the Epley formula: 1RM = weight × (1 + reps ÷ 30). For example, lifting 80 kg for 5 reps gives an estimated 1RM of 80 × 1.167 ≈ 93 kg. The formula works identically in lbs." },
+    { q: "How do I calculate 1RM in pounds?", a: "Select Imperial using the toggle at the bottom-left of the screen. Enter your working weight in lbs and the reps performed — your 1RM and the entire training weight table will display in lbs." },
+    { q: "How accurate is the 1RM calculator?", a: "The Epley formula is most accurate between 2 and 10 reps. Results from sets over 12 reps are less reliable as fatigue plays a bigger role. Always treat the result as an estimate." },
+    { q: "What percentage of 1RM should I train at?", a: "For strength (1–5 reps), use 85–95% of your 1RM. For hypertrophy (6–12 reps), use 65–85%. For muscular endurance (12+ reps), use 50–65% of your 1RM." },
+    { q: "What is a good bench press 1RM for a beginner?", a: "For men just starting out, a bench press 1RM of 0.5–0.75× body weight is typical. After 6–12 months of consistent training, reaching 1× body weight is achievable. Elite natural lifters may hit 1.5–2× body weight. Beginners should build form before testing 1RM." },
+    { q: "What is a good squat 1RM?", a: "Beginner men typically squat 1–1.25× body weight; intermediate 1.5–2×; advanced 2.5×+. For women, beginner: 0.75×; intermediate: 1.25×; advanced: 1.75×+. These are general strength standards — focus on progress relative to yourself rather than comparisons." },
+    { q: "How often should I test my 1RM?", a: "Testing a true 1RM every 4–8 weeks is typical in powerlifting programs. More frequent testing risks injury and slows long-term progress. For most gym-goers, estimating 1RM from heavy sets of 3–5 reps (which is what this calculator does) is safer and nearly as accurate." },
+    { q: "Why does my estimated 1RM differ from my actual max?", a: "The Epley formula is an estimate based on average endurance-to-strength ratios. If you're a powerlifter who trains heavy singles, your actual 1RM may be higher than the formula predicts. If you mostly train with high reps (12+), your actual 1RM may be lower. Individual training history affects the accuracy significantly." },
+    { q: "Is it safe to attempt a true 1RM lift?", a: "With proper preparation it can be done safely: warm up thoroughly with progressively heavier singles, use a spotter for bench and squat, never lift to failure on setup lifts, and stop if form breaks down. Many experienced lifters prefer to use calculator estimates rather than risk injury on true max attempts." },
+]
+
 useCalcSEO(
     "One Rep Max Calculator — kg & lbs | Epley Formula",
     "Free 1RM calculator in kg or lbs using the Epley formula. Enter weight lifted and reps to estimate your one rep max and get a full training weight guide.",
-    [
-        { q: "What is a one rep max (1RM)?", a: "A one rep max is the maximum weight you can lift for a single repetition with proper form. It's the standard measure of absolute strength in powerlifting and weightlifting." },
-        { q: "How is one rep max calculated?", a: "This calculator uses the Epley formula: 1RM = weight × (1 + reps ÷ 30). For example, lifting 80 kg for 5 reps gives an estimated 1RM of 80 × 1.167 ≈ 93 kg. The formula works identically in lbs." },
-        { q: "How do I calculate 1RM in pounds?", a: "Select Imperial using the toggle at the bottom-left of the screen. Enter your working weight in lbs and the reps performed — your 1RM and the entire training weight table will display in lbs." },
-        { q: "How accurate is the 1RM calculator?", a: "The Epley formula is most accurate between 2 and 10 reps. Results from sets over 12 reps are less reliable as fatigue plays a bigger role. Always treat the result as an estimate." },
-        { q: "What percentage of 1RM should I train at?", a: "For strength (1–5 reps), use 85–95% of your 1RM. For hypertrophy (6–12 reps), use 65–85%. For muscular endurance (12+ reps), use 50–65% of your 1RM." },
-    ]
+    faqs
 )
 
 useHead({

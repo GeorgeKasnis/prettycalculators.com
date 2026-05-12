@@ -37,24 +37,33 @@
                 If you can push contributions to £700/month, that drops to roughly <strong>22 months</strong> — over a year faster, for £200 more per month.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How long does it take to save £10,000?", a: "At £300/month with no interest it takes about 33 months (2 yr 9 mo). Add a 4.5% savings rate and it drops to roughly 31 months. At £500/month: about 19 months. The exact timeline depends on how much you already have saved and your account's interest rate — enter your numbers above for a precise answer." },
+    { q: "How long does it take to save £20,000 for a house deposit?", a: "At £500/month with £2,000 already saved at 4.5% interest: approximately 33 months (under 3 years). At £700/month: about 24 months. The UK average first-time buyer deposit is around £53,000 in 2025, which at £700/month and 4.5% interest takes roughly 5.5 years from zero." },
+    { q: "How much should I save each month to reach my goal faster?", a: "The single biggest lever is contribution amount, not interest rate. Doubling your monthly contribution roughly halves the time to your goal. Interest compounding helps most over longer periods (5+ years). To reach a goal faster, focus first on increasing your monthly saving, then on maximising your interest rate." },
+    { q: "What is the best savings account rate in the UK in 2025?", a: "In 2025, UK easy-access savings accounts offer 4.5–5%, fixed-rate bonds up to 5.5%, and Cash ISAs 4–5%. Regular saver accounts can offer 6–8% but cap monthly deposits (typically £200–500). For large balances, a fixed-rate ISA or bond usually offers the best rate." },
+    { q: "How much should I have saved by age 30?", a: "A common guideline is to have 1× your annual salary saved by 30. For a £30,000 salary that means £30,000. If you're behind, contributing £400–600/month into a high-yield account or Stocks and Shares ISA from your mid-20s can close the gap — use this calculator with your current savings and monthly contribution to see your timeline." },
+    { q: "How long to save $10,000 in the US?", a: "At $300/month with no existing savings and 4.8% APY (typical US HYSA in 2025): about 31 months. At $500/month: about 19 months. At $200/month: about 47 months. Starting with $1,000 already saved shaves a few months off each figure." },
+    { q: "Does the interest rate on a savings account really matter?", a: "For short goals (under 2 years), interest rate has a small effect — the difference between 0% and 5% on a 1-year save of £500/month is only about £150. Over 5 years it's £1,500+. For house deposits and longer goals, maximising your savings rate (ISA, HYSA) is genuinely worthwhile." },
+    { q: "What is a realistic savings rate (%) for UK savers?", a: "In 2025: easy-access ISAs and savings accounts typically offer 4–5.5%. If your savings pot will be invested in a Stocks and Shares ISA for 5+ years, a 7–8% long-run average is a commonly cited planning figure (though returns vary year to year). Use 0% to see the no-interest baseline." },
+    { q: "How long to save a £5,000 emergency fund?", a: "A £5,000 emergency fund at £200/month with 4.5% interest takes about 23 months. At £300/month: about 16 months. At £400/month: about 12 months. Most financial advisors recommend starting an emergency fund before any other savings goal — even a small buffer of £1,000 prevents most people from reaching for credit cards." },
+    { q: "Is it better to save or invest when working toward a goal?", a: "For goals under 3 years, cash savings (ISA, HYSA) are almost always better — markets can fall 20–40% and not recover in your timeframe. For goals 5+ years away (pension, long-term wealth), a Stocks and Shares ISA or index fund historically outperforms cash. For a 3–5 year horizon like a house deposit, a mix of cash ISA and cautious investment is common." },
+    { q: "How much should I save per month to build a £50,000 deposit in 5 years?", a: "At 4.5% interest over 60 months starting from £0: you'd need approximately £750/month. At 0% interest (cash under the mattress): £833/month. Starting with £10,000 already saved reduces the required monthly contribution to about £615/month at 4.5%. Enter your exact numbers above for a precise figure." },
+]
+
 useCalcSEO(
     "Savings Goal Calculator — How Long to Save £10,000, £20,000 or More",
     "Free savings goal calculator. Enter your target, monthly savings, and interest rate to find out exactly when you'll reach your goal. Works for house deposits, emergency funds, and any savings target in £ or $.",
-    [
-        { q: "How long does it take to save £10,000?", a: "At £300/month with no interest it takes about 33 months (2 yr 9 mo). Add a 4.5% savings rate and it drops to roughly 31 months. At £500/month: about 19 months. The exact timeline depends on how much you already have saved and your account's interest rate — enter your numbers above for a precise answer." },
-        { q: "How long does it take to save £20,000 for a house deposit?", a: "At £500/month with £2,000 already saved at 4.5% interest: approximately 33 months (under 3 years). At £700/month: about 24 months. The UK average first-time buyer deposit is around £53,000 in 2025, which at £700/month and 4.5% interest takes roughly 5.5 years from zero." },
-        { q: "How much should I save each month to reach my goal faster?", a: "The single biggest lever is contribution amount, not interest rate. Doubling your monthly contribution roughly halves the time to your goal. Interest compounding helps most over longer periods (5+ years). To reach a goal faster, focus first on increasing your monthly saving, then on maximising your interest rate." },
-        { q: "What is the best savings account rate in the UK in 2025?", a: "In 2025, UK easy-access savings accounts offer 4.5–5%, fixed-rate bonds up to 5.5%, and Cash ISAs 4–5%. Regular saver accounts can offer 6–8% but cap monthly deposits (typically £200–500). For large balances, a fixed-rate ISA or bond usually offers the best rate." },
-        { q: "How much should I have saved by age 30?", a: "A common guideline is to have 1× your annual salary saved by 30. For a £30,000 salary that means £30,000. If you're behind, contributing £400–600/month into a high-yield account or Stocks and Shares ISA from your mid-20s can close the gap — use this calculator with your current savings and monthly contribution to see your timeline." },
-        { q: "How long to save $10,000 in the US?", a: "At $300/month with no existing savings and 4.8% APY (typical US HYSA in 2025): about 31 months. At $500/month: about 19 months. At $200/month: about 47 months. Starting with $1,000 already saved shaves a few months off each figure." },
-        { q: "Does the interest rate on a savings account really matter?", a: "For short goals (under 2 years), interest rate has a small effect — the difference between 0% and 5% on a 1-year save of £500/month is only about £150. Over 5 years it's £1,500+. For house deposits and longer goals, maximising your savings rate (ISA, HYSA) is genuinely worthwhile." },
-        { q: "What is a realistic savings rate (%) for UK savers?", a: "In 2025: easy-access ISAs and savings accounts typically offer 4–5.5%. If your savings pot will be invested in a Stocks and Shares ISA for 5+ years, a 7–8% long-run average is a commonly cited planning figure (though returns vary year to year). Use 0% to see the no-interest baseline." },
-    ]
+    faqs
 )
 
 useHead({

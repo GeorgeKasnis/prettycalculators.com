@@ -38,21 +38,33 @@
                 deficit without sacrificing energy or muscle mass.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "What is TDEE?", a: "TDEE (Total Daily Energy Expenditure) is the total number of calories you burn in a day, including your BMR plus calories burned through physical activity and digestion." },
+    { q: "How do I use TDEE to lose weight?", a: "To lose weight, eat 300–500 calories below your TDEE per day. A 500-calorie daily deficit leads to approximately 0.5 kg (1 lb) of fat loss per week." },
+    { q: "Can I calculate TDEE using pounds and inches?", a: "Yes — select Imperial using the toggle at the bottom-left of the screen. Enter weight in lbs and height in feet/inches. The calculator converts to metric internally before applying the Harris-Benedict formula." },
+    { q: "What is the difference between BMR and TDEE?", a: "BMR is the calories you burn at complete rest. TDEE is your BMR multiplied by an activity factor — it represents your total daily calorie burn including all movement and exercise." },
+    { q: "How accurate is a TDEE calculator?", a: "TDEE calculators provide a good estimate, but individual metabolism varies. Use it as a starting point and adjust your intake based on real results over 2–4 weeks." },
+    { q: "What is a normal TDEE for a woman?", a: "For a sedentary woman aged 25–40 at average height and weight (60–65 kg), TDEE is typically 1,700–2,000 kcal/day. At moderate activity (3–5 workouts/week), this rises to 2,100–2,400 kcal. Very active women (daily training) may reach 2,600–3,000 kcal. Individual variation is ±15%." },
+    { q: "What is a normal TDEE for a man?", a: "For a sedentary man aged 25–40 at average height and weight (75–85 kg), TDEE is typically 2,200–2,600 kcal/day. At moderate activity it rises to 2,800–3,200 kcal. Heavily active men can exceed 3,500 kcal. Muscle mass pushes TDEE higher than the formula predicts for very muscular individuals." },
+    { q: "Why is my TDEE so high but I'm not losing weight?", a: "The most common reasons are underestimating food intake (portion sizes are often 20–30% larger than people think), overestimating activity level, or choosing too high an activity multiplier. Liquid calories, cooking oils, and condiments are frequently missed. Track everything in a food diary for 2–3 weeks before adjusting your TDEE estimate." },
+    { q: "Should I eat my TDEE to maintain weight?", a: "Yes — your TDEE is your maintenance calorie level. Eating exactly at TDEE over time keeps weight stable. Real-world fluctuations of ±200 kcal/day are normal and won't cause meaningful weight change. Only sustained deficits or surpluses over weeks result in measurable fat loss or gain." },
+    { q: "How much below my TDEE should I eat to lose fat?", a: "A deficit of 300–500 kcal/day is safe for most people and produces 0.3–0.5 kg of fat loss per week. Aggressive deficits (750–1,000 kcal/day) speed up weight loss but increase the risk of muscle loss, nutrient deficiency, and metabolic adaptation. High protein intake (2.0+ g/kg) is essential to preserve muscle during a deficit." },
+    { q: "Does TDEE change as I lose weight?", a: "Yes — as you lose weight your BMR decreases because you have less body mass to maintain. A 10 kg weight loss might reduce TDEE by 100–200 kcal/day. Recalculate your TDEE every 5–10 kg of weight loss to ensure your deficit remains appropriate and adjust calories or activity to continue progressing." },
+]
+
 useCalcSEO(
     "TDEE Calculator — Metric & Imperial | Total Daily Calories",
     "Calculate your TDEE in metric (kg, cm) or imperial (lbs, ft, in). Find your total daily calorie burn and set the right goal for weight loss or muscle gain.",
-    [
-        { q: "What is TDEE?", a: "TDEE (Total Daily Energy Expenditure) is the total number of calories you burn in a day, including your BMR plus calories burned through physical activity and digestion." },
-        { q: "How do I use TDEE to lose weight?", a: "To lose weight, eat 300–500 calories below your TDEE per day. A 500-calorie daily deficit leads to approximately 0.5 kg (1 lb) of fat loss per week." },
-        { q: "Can I calculate TDEE using pounds and inches?", a: "Yes — select Imperial using the toggle at the bottom-left of the screen. Enter weight in lbs and height in feet/inches. The calculator converts to metric internally before applying the Harris-Benedict formula." },
-        { q: "What is the difference between BMR and TDEE?", a: "BMR is the calories you burn at complete rest. TDEE is your BMR multiplied by an activity factor — it represents your total daily calorie burn including all movement and exercise." },
-        { q: "How accurate is a TDEE calculator?", a: "TDEE calculators provide a good estimate, but individual metabolism varies. Use it as a starting point and adjust your intake based on real results over 2–4 weeks." },
-    ]
+    faqs
 )
 
 useHead({

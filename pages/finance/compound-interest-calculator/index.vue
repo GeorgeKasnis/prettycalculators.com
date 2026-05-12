@@ -39,24 +39,33 @@
                 Run the same numbers at 7% (closer to a global equity index fund long-term average) and the final balance jumps to around <strong>£77,200</strong>, earning £31,200 in interest.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How does compound interest work?", a: "Compound interest means you earn interest on both your original principal and the interest already accumulated. For example, £1,000 at 5% annual interest earns £50 in year 1, then £52.50 in year 2 (5% of £1,050), and so on. Over long periods this snowball effect creates dramatically more wealth than simple interest." },
+    { q: "How much does £10,000 grow with compound interest?", a: "At 5% annual rate compounded monthly with no additional contributions, £10,000 grows to approximately £16,470 in 10 years and £27,126 in 20 years. Add £200/month and those figures jump to roughly £42,000 and £95,000 respectively. The longer the timeframe, the more compounding dominates." },
+    { q: "What is a good compound interest rate for UK savings?", a: "In 2025, UK Cash ISAs offer 4–5%, easy-access savings accounts 4.5–5%, and fixed-rate bonds up to 5.5%. Stocks and Shares ISAs tracking a global index have historically averaged 7–9% annually over 10-year rolling periods, though with more volatility than a cash account." },
+    { q: "What is the difference between APR and APY (AER in the UK)?", a: "APR (Annual Percentage Rate) is the stated rate before compounding. APY (Annual Percentage Yield) — called AER in the UK — is the effective rate after compounding is applied. A 5% APR compounded monthly becomes a 5.12% AER. Always compare savings accounts using AER/APY, not APR." },
+    { q: "What is the Rule of 72?", a: "The Rule of 72 is a quick mental shortcut: divide 72 by your annual interest rate to find the approximate number of years to double your money. At 6% it takes about 12 years (72 ÷ 6). At 9% it takes 8 years. At 4% (common for UK savings), about 18 years." },
+    { q: "Does compounding frequency really matter?", a: "Yes, but the impact is smaller than most people expect. £10,000 at 5% for 10 years: annually → £16,289; monthly → £16,470; daily → £16,487. The difference between monthly and daily is only £17 on £10,000. Contribution amount and rate matter far more than compounding frequency." },
+    { q: "How much do I need to save to have $100,000 in 10 years?", a: "At 5% annual rate compounded monthly with no starting balance, you'd need to save approximately $643/month. If you start with $10,000, that drops to about $447/month. Use the calculator to model your exact starting balance and rate." },
+    { q: "What compound interest rate does the S&P 500 return?", a: "The S&P 500 has historically returned about 10% annually before inflation, or roughly 7% after inflation (real return). Over any specific 10-year window results vary widely — from as low as 1% to over 17% annualised. Index funds are not savings accounts; short-term volatility is real." },
+    { q: "How much does £500 a month grow in 20 years at 5%?", a: "Starting from £0, £500/month at 5% compounded monthly for 20 years grows to approximately £206,000. Total contributions would be £120,000; interest earned ≈ £86,000. The last 5 years generate roughly as much interest as the first 15 combined — the classic compounding acceleration effect." },
+    { q: "Is compound interest better than simple interest?", a: "Always, over long periods. On £10,000 at 5% for 20 years: simple interest = £10,000 + (£500 × 20) = £20,000. Compound interest (monthly) ≈ £27,126 — nearly 36% more. The advantage grows larger with higher rates and longer timeframes." },
+    { q: "At what interest rate does money double in 10 years?", a: "Using the Rule of 72: 72 ÷ 10 years = 7.2% annual rate. To double in 10 years you need roughly 7.2% compounded annually. At 5% it takes about 14 years; at 10% about 7 years. Stocks and Shares ISAs or global index funds have historically approached or exceeded this rate over 10-year periods." },
+]
+
 useCalcSEO(
     "Compound Interest Calculator — Daily, Monthly & Yearly Growth",
     "Free compound interest calculator with monthly contributions. See how £1,000, £10,000 or $50,000 grows over time with daily, monthly or annual compounding. Works for UK ISAs, US savings accounts and investments.",
-    [
-        { q: "How does compound interest work?", a: "Compound interest means you earn interest on both your original principal and the interest already accumulated. For example, £1,000 at 5% annual interest earns £50 in year 1, then £52.50 in year 2 (5% of £1,050), and so on. Over long periods this snowball effect creates dramatically more wealth than simple interest." },
-        { q: "How much does £10,000 grow with compound interest?", a: "At 5% annual rate compounded monthly with no additional contributions, £10,000 grows to approximately £16,470 in 10 years and £27,126 in 20 years. Add £200/month and those figures jump to roughly £42,000 and £95,000 respectively. The longer the timeframe, the more compounding dominates." },
-        { q: "What is a good compound interest rate for UK savings?", a: "In 2025, UK Cash ISAs offer 4–5%, easy-access savings accounts 4.5–5%, and fixed-rate bonds up to 5.5%. Stocks and Shares ISAs tracking a global index have historically averaged 7–9% annually over 10-year rolling periods, though with more volatility than a cash account." },
-        { q: "What is the difference between APR and APY (AER in the UK)?", a: "APR (Annual Percentage Rate) is the stated rate before compounding. APY (Annual Percentage Yield) — called AER in the UK — is the effective rate after compounding is applied. A 5% APR compounded monthly becomes a 5.12% AER. Always compare savings accounts using AER/APY, not APR." },
-        { q: "What is the Rule of 72?", a: "The Rule of 72 is a quick mental shortcut: divide 72 by your annual interest rate to find the approximate number of years to double your money. At 6% it takes about 12 years (72 ÷ 6). At 9% it takes 8 years. At 4% (common for UK savings), about 18 years." },
-        { q: "Does compounding frequency really matter?", a: "Yes, but the impact is smaller than most people expect. £10,000 at 5% for 10 years: annually → £16,289; monthly → £16,470; daily → £16,487. The difference between monthly and daily is only £17 on £10,000. Contribution amount and rate matter far more than compounding frequency." },
-        { q: "How much do I need to save to have $100,000 in 10 years?", a: "At 5% annual rate compounded monthly with no starting balance, you'd need to save approximately $643/month. If you start with $10,000, that drops to about $447/month. Use the calculator to model your exact starting balance and rate." },
-        { q: "What compound interest rate does the S&P 500 return?", a: "The S&P 500 has historically returned about 10% annually before inflation, or roughly 7% after inflation (real return). Over any specific 10-year window results vary widely — from as low as 1% to over 17% annualised. Index funds are not savings accounts; short-term volatility is real." },
-    ]
+    faqs
 )
 
 useHead({

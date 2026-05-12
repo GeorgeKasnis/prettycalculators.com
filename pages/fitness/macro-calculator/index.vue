@@ -43,26 +43,34 @@
                 Across 4 meals: ~58g protein, ~58g carbs, ~22g fat per meal.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "What are macros and why do they matter?", a: "Macros (macronutrients) are protein, carbohydrates, and fat — the three nutrients that provide calories. Counting macros gives you more control than counting calories alone because it tells you *where* those calories come from. Hitting 2,500 calories from 40% protein vs 40% carbs produces very different results in body composition." },
+    { q: "How do I calculate my macros for cutting?", a: "For cutting: first find your TDEE, subtract 250–500 calories, then split 35–40% protein, 30–35% carbs, 30% fat. Higher protein during a cut preserves lean muscle mass. For an 80kg person on a 2,400 kcal cut, that's approximately 210–240g protein, 180–200g carbs, and 80g fat per day." },
+    { q: "What macros should I eat for muscle gain?", a: "For building muscle (lean bulk), aim for a +200–300 kcal surplus with a 25–30% protein, 45–50% carb, 25% fat split. Carbohydrates are the primary fuel for resistance training and glycogen replenishment — keeping them high supports performance and recovery. 1.6–2.2g of protein per kg of body weight is the evidence-based range for hypertrophy." },
+    { q: "What is the best macro split for keto?", a: "Standard keto macros are 70% fat, 25% protein, 5% carbs. For a 2,000 kcal keto diet that's roughly 155g fat, 125g protein, and 25g carbs per day. Staying under 20–50g of net carbs is the typical threshold to maintain ketosis. Keto-cut adds a 200–300 kcal deficit on top of these ratios." },
+    { q: "How much protein do I need per day to build muscle?", a: "Research consistently supports 1.6–2.2g of protein per kg of body weight for muscle gain. For a 75kg person that's 120–165g/day. Going higher (2.4–3g/kg) during aggressive cuts helps preserve muscle. The calculator uses your weight, activity, and goal to set protein at the appropriate level for each scenario." },
+    { q: "What macro calculator is used by bodybuilders?", a: "Most bodybuilders use a TDEE-based macro calculator: calculate BMR → multiply by activity factor → adjust for goal → split into macros. The protein target is typically set first (1.8–2.6g/kg for active individuals), with carbs and fat filling the remaining calories based on training style and personal preference." },
+    { q: "Can I use this as a keto macro calculator?", a: "Yes — select 'Keto (maintenance)' or 'Keto Cut' from the Goal dropdown. The calculator automatically sets 5% carbs, 70% fat, and 25% protein, adjusted for your calorie needs. At 1,800 kcal that's roughly 22g carbs, 140g fat, 113g protein." },
+    { q: "What macros should a woman eat for fat loss?", a: "Women typically have lower TDEE than men, but the macro *ratios* for cutting are similar: 35–40% protein, 30–35% carbs, 25–30% fat. The calculator adjusts TDEE using sex-specific BMR coefficients (Harris-Benedict), so calorie and gram targets will be appropriately lower while the split stays goal-optimal." },
+    { q: "How many meals a day should I eat for macros?", a: "Meal frequency doesn't significantly affect fat loss or muscle gain in controlled studies — total daily macros matter most. However, spreading protein across 3–5 meals maximises muscle protein synthesis because muscle can only use about 30–40g of protein per sitting efficiently. The calculator's per-meal table helps you distribute evenly." },
+    { q: "How accurate is a macro calculator?", a: "TDEE formulas like Harris-Benedict are accurate within about ±10–15% for most people. Individual variation in metabolic rate, muscle mass, and non-exercise activity thermogenesis (NEAT) affects actual needs. Use the calculator to set a starting point, track results for 2–3 weeks, and adjust by 100–200 kcal if weight is not changing as expected." },
+    { q: "How many carbs should I eat on a 2,000 calorie diet?", a: "On a standard maintenance split (30% protein, 40% carbs, 30% fat) at 2,000 kcal: carbs = 2,000 × 40% ÷ 4 = 200g/day. For a cut, you'd lower carbs to 30–35% (150–175g). For keto, under 5% (25g). Adjust based on your training intensity — more volume and heavy lifting demands more carbohydrate." },
+    { q: "Why does my macro calculator give different numbers from another app?", a: "Differences arise from the BMR formula used (Mifflin-St Jeor vs Harris-Benedict), the activity multipliers chosen, and how each app defines cutting, bulking, and maintenance deficits/surpluses. Results typically differ by 50–150 kcal, which is within the margin of individual metabolic variation. Use any consistent tool as a starting point and adjust based on real results." },
+]
+
 useCalcSEO(
     "Macro Calculator — Protein, Carbs & Fat for Cutting, Bulking & Keto",
     "Free macro calculator. Get your exact daily protein, carb and fat targets in grams based on your stats and goal — cutting, lean bulk, maintenance, or keto. Includes per-meal breakdown.",
-    [
-        { q: "What are macros and why do they matter?", a: "Macros (macronutrients) are protein, carbohydrates, and fat — the three nutrients that provide calories. Counting macros gives you more control than counting calories alone because it tells you *where* those calories come from. Hitting 2,500 calories from 40% protein vs 40% carbs produces very different results in body composition." },
-        { q: "How do I calculate my macros for cutting?", a: "For cutting: first find your TDEE, subtract 250–500 calories, then split 35–40% protein, 30–35% carbs, 30% fat. Higher protein during a cut preserves lean muscle mass. For an 80kg person on a 2,400 kcal cut, that's approximately 210–240g protein, 180–200g carbs, and 80g fat per day." },
-        { q: "What macros should I eat for muscle gain?", a: "For building muscle (lean bulk), aim for a +200–300 kcal surplus with a 25–30% protein, 45–50% carb, 25% fat split. Carbohydrates are the primary fuel for resistance training and glycogen replenishment — keeping them high supports performance and recovery. 1.6–2.2g of protein per kg of body weight is the evidence-based range for hypertrophy." },
-        { q: "What is the best macro split for keto?", a: "Standard keto macros are 70% fat, 25% protein, 5% carbs. For a 2,000 kcal keto diet that's roughly 155g fat, 125g protein, and 25g carbs per day. Staying under 20–50g of net carbs is the typical threshold to maintain ketosis. Keto-cut adds a 200–300 kcal deficit on top of these ratios." },
-        { q: "How much protein do I need per day to build muscle?", a: "Research consistently supports 1.6–2.2g of protein per kg of body weight for muscle gain. For a 75kg person that's 120–165g/day. Going higher (2.4–3g/kg) during aggressive cuts helps preserve muscle. The calculator uses your weight, activity, and goal to set protein at the appropriate level for each scenario." },
-        { q: "What macro calculator is used by bodybuilders?", a: "Most bodybuilders use a TDEE-based macro calculator: calculate BMR → multiply by activity factor → adjust for goal → split into macros. The protein target is typically set first (1.8–2.6g/kg for active individuals), with carbs and fat filling the remaining calories based on training style and personal preference." },
-        { q: "Can I use this as a keto macro calculator?", a: "Yes — select 'Keto (maintenance)' or 'Keto Cut' from the Goal dropdown. The calculator automatically sets 5% carbs, 70% fat, and 25% protein, adjusted for your calorie needs. At 1,800 kcal that's roughly 22g carbs, 140g fat, 113g protein." },
-        { q: "What macros should a woman eat for fat loss?", a: "Women typically have lower TDEE than men, but the macro *ratios* for cutting are similar: 35–40% protein, 30–35% carbs, 25–30% fat. The calculator adjusts TDEE using sex-specific BMR coefficients (Harris-Benedict), so calorie and gram targets will be appropriately lower while the split stays goal-optimal." },
-        { q: "How many meals a day should I eat for macros?", a: "Meal frequency doesn't significantly affect fat loss or muscle gain in controlled studies — total daily macros matter most. However, spreading protein across 3–5 meals maximises muscle protein synthesis because muscle can only use about 30–40g of protein per sitting efficiently. The calculator's per-meal table helps you distribute evenly." },
-        { q: "How accurate is a macro calculator?", a: "TDEE formulas like Harris-Benedict are accurate within about ±10–15% for most people. Individual variation in metabolic rate, muscle mass, and non-exercise activity thermogenesis (NEAT) affects actual needs. Use the calculator to set a starting point, track results for 2–3 weeks, and adjust by 100–200 kcal if weight is not changing as expected." },
-    ]
+    faqs
 )
 
 useHead({

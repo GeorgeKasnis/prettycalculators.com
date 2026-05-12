@@ -34,24 +34,33 @@
                 Add £100/month (£350 total): payoff drops to about <strong>28 months (2 yr 4 mo)</strong>, saving over <strong>£700 in interest</strong> and 14 months of payments.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How long does it take to pay off £10,000 of credit card debt?", a: "It depends on your APR and monthly payment. At 22% APR paying £250/month: about 55 months (4 yr 7 mo) with roughly £3,700 in interest. Increase to £400/month and it drops to about 30 months (2 yr 6 mo), saving over £1,600 in interest. Use the calculator to model your exact balance and rate." },
+    { q: "What happens if I only pay the minimum on my credit card?", a: "Minimum payments are typically 1–3% of the balance. At this rate, a £3,000 balance at 20% APR could take 15+ years to pay off and cost more than the original debt in interest. The calculator shows this clearly — most people are shocked by the result." },
+    { q: "How much does an extra £50 a month save on debt?", a: "It varies by balance and rate, but extra payments have a disproportionate impact. On a £5,000 debt at 22% APR with £150/month base payment, adding £50/month saves roughly 12 months and £400–£600 in interest. The higher your APR, the more each extra pound saves." },
+    { q: "What is APR and how does it affect my debt payoff?", a: "APR (Annual Percentage Rate) is the yearly interest rate on your debt. A higher APR means more of each payment goes to interest rather than reducing your balance. At 10% APR, most of your £200 payment clears principal. At 30% APR, nearly half of it goes to interest first." },
+    { q: "How do I pay off credit card debt fast in the UK?", a: "The fastest methods are: (1) Transfer to a 0% balance transfer card — many UK cards offer 20–30 months interest-free, during which every payment goes to principal. (2) Pay more than the minimum — even an extra £30–50/month makes a substantial difference. (3) Use the debt avalanche: pay off the highest-APR debt first to minimise total interest." },
+    { q: "What is the debt avalanche vs snowball method?", a: "The avalanche method pays off the highest-interest debt first, saving the most money mathematically. The snowball method pays off the smallest balance first for psychological wins and momentum. Both work — avalanche saves more money, snowball is easier to stick with. This calculator models single-debt payoff; for multiple debts, list them in order of priority." },
+    { q: "How long to pay off $5,000 in credit card debt?", a: "At 20% APR paying $150/month, about 42 months (3.5 years) with roughly $1,250 in interest. At $250/month: about 24 months (2 years), saving over $600 in interest. The calculator lets you model any combination of balance, rate, and payment." },
+    { q: "What if my monthly payment is less than the interest?", a: "If your payment is equal to or less than the monthly interest charge, your balance will never decrease — it will grow. The calculator flags this as 'Never — increase payment.' This is called a negative amortisation situation and you must increase your payment immediately." },
+    { q: "Is a 29.9% APR credit card normal in the UK?", a: "29.9% APR is at the high end but not unusual for UK credit cards, especially for those with limited credit history or a history of missed payments. The UK average credit card APR in 2025 is around 22–25%. If you have 29.9% APR and a balance, a 0% balance transfer card is almost certainly worth pursuing to stop the interest bleeding." },
+    { q: "How much of my payment goes to interest vs principal?", a: "In the early months, most of your payment goes to interest. Example: £5,000 at 24% APR, £150/month payment. First month: interest = £100, principal = £50. As the balance drops, more of each payment reduces principal. This is why the debt appears to shrink slowly at first and then faster toward the end." },
+    { q: "What is the minimum payment on a £3,000 credit card balance?", a: "UK credit card minimum payments are typically 1–3% of the balance or £25, whichever is higher. On a £3,000 balance at 2%: minimum = £60/month. At 24% APR, £60/month would take approximately 8–9 years to pay off and cost roughly £2,800 in interest — nearly doubling the original debt." },
+]
+
 useCalcSEO(
     "Debt Payoff Calculator — Credit Card & Loan Payoff Timeline",
     "Free debt payoff calculator. See how long to pay off credit cards, loans, or any debt, and how much interest extra payments save. Works for UK and US debt at any APR.",
-    [
-        { q: "How long does it take to pay off £10,000 of credit card debt?", a: "It depends on your APR and monthly payment. At 22% APR paying £250/month: about 55 months (4 yr 7 mo) with roughly £3,700 in interest. Increase to £400/month and it drops to about 30 months (2 yr 6 mo), saving over £1,600 in interest. Use the calculator to model your exact balance and rate." },
-        { q: "What happens if I only pay the minimum on my credit card?", a: "Minimum payments are typically 1–3% of the balance. At this rate, a £3,000 balance at 20% APR could take 15+ years to pay off and cost more than the original debt in interest. The calculator shows this clearly — most people are shocked by the result." },
-        { q: "How much does an extra £50 a month save on debt?", a: "It varies by balance and rate, but extra payments have a disproportionate impact. On a £5,000 debt at 22% APR with £150/month base payment, adding £50/month saves roughly 12 months and £400–£600 in interest. The higher your APR, the more each extra pound saves." },
-        { q: "What is APR and how does it affect my debt payoff?", a: "APR (Annual Percentage Rate) is the yearly interest rate on your debt. A higher APR means more of each payment goes to interest rather than reducing your balance. At 10% APR, most of your £200 payment clears principal. At 30% APR, nearly half of it goes to interest first." },
-        { q: "How do I pay off credit card debt fast in the UK?", a: "The fastest methods are: (1) Transfer to a 0% balance transfer card — many UK cards offer 20–30 months interest-free, during which every payment goes to principal. (2) Pay more than the minimum — even an extra £30–50/month makes a substantial difference. (3) Use the debt avalanche: pay off the highest-APR debt first to minimise total interest." },
-        { q: "What is the debt avalanche vs snowball method?", a: "The avalanche method pays off the highest-interest debt first, saving the most money mathematically. The snowball method pays off the smallest balance first for psychological wins and momentum. Both work — avalanche saves more money, snowball is easier to stick with. This calculator models single-debt payoff; for multiple debts, list them in order of priority." },
-        { q: "How long to pay off $5,000 in credit card debt?", a: "At 20% APR paying $150/month, about 42 months (3.5 years) with roughly $1,250 in interest. At $250/month: about 24 months (2 years), saving over $600 in interest. The calculator lets you model any combination of balance, rate, and payment." },
-        { q: "What if my monthly payment is less than the interest?", a: "If your payment is equal to or less than the monthly interest charge, your balance will never decrease — it will grow. The calculator flags this as 'Never — increase payment.' This is called a negative amortisation situation and you must increase your payment immediately." },
-    ]
+    faqs
 )
 
 useHead({

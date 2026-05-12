@@ -27,20 +27,31 @@
         <template #example>
             <p>For instance, a person with a weight of 70 kg should aim to consume approximately 2.1 liters of water per day to meet their hydration needs.</p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How much water should I drink per day?", a: "A general guideline is 30 ml of water per kilogram of body weight per day. A 70 kg person should aim for about 2.1 liters (2,100 ml) daily." },
+    { q: "Does body weight affect how much water you need?", a: "Yes. Heavier people have more body mass to hydrate and generally need more water. Physical activity level, climate, and health conditions also affect daily water needs." },
+    { q: "What are signs of dehydration?", a: "Common signs include dark urine, dry mouth, fatigue, headaches, and dizziness. Aim for pale yellow urine as a sign of good hydration." },
+    { q: "Can you drink too much water?", a: "Yes, in rare cases excessive water intake can cause hyponatremia (low sodium). For most people, drinking to thirst and following weight-based guidelines is safe." },
+    { q: "How much water should I drink if I exercise?", a: "Add approximately 500 ml (about 17 oz) per 30 minutes of exercise to your baseline daily intake. For intense workouts in heat, losses can exceed 1 litre per hour through sweat. Weigh yourself before and after exercise: every 1 kg lost = approximately 1 litre of fluid to replace." },
+    { q: "Does coffee and tea count toward daily water intake?", a: "Yes. Caffeinated drinks like coffee and tea do contribute to hydration despite their mild diuretic effect — studies show their net hydration contribution is positive, not negative. Roughly 80% of your daily fluid intake can come from all beverages combined (water, tea, coffee, juice); food provides the remaining 20%." },
+    { q: "How much water should I drink to lose weight?", a: "Drinking 500 ml of water before meals has been shown in studies to reduce calorie intake by 13–20% at that meal. There is no magic number, but staying well hydrated supports metabolism, reduces false-hunger signals, and improves exercise performance. Use the 30 ml/kg guideline as a minimum and increase if exercising." },
+    { q: "Is 2 litres of water a day enough?", a: "For a 65–70 kg person with average activity, 2 litres/day is approximately sufficient (meets the 30 ml/kg guideline). For heavier individuals (80+ kg), 2 litres is below the guideline. For people exercising heavily or in hot climates, 3+ litres is more appropriate. Enter your weight above for a personalised answer." },
+    { q: "What is the best time of day to drink water?", a: "Spreading water intake throughout the day is more effective than drinking large amounts at once. Key moments: 500 ml upon waking (to rehydrate after sleep), water before meals (aids satiety), and small amounts during and after exercise. Drinking heavily right before bed can disrupt sleep with night-time trips to the bathroom." },
+]
+
 useCalcSEO(
     "Daily Water Intake Calculator — How Much Water Per Day",
     "Find out how much water you should drink per day based on your body weight. Free daily water intake calculator — results shown in ml and liters. Instant.",
-    [
-        { q: "How much water should I drink per day?", a: "A general guideline is 30 ml of water per kilogram of body weight per day. A 70 kg person should aim for about 2.1 liters (2,100 ml) daily." },
-        { q: "Does body weight affect how much water you need?", a: "Yes. Heavier people have more body mass to hydrate and generally need more water. Physical activity level, climate, and health conditions also affect daily water needs." },
-        { q: "What are signs of dehydration?", a: "Common signs include dark urine, dry mouth, fatigue, headaches, and dizziness. Aim for pale yellow urine as a sign of good hydration." },
-        { q: "Can you drink too much water?", a: "Yes, in rare cases excessive water intake can cause hyponatremia (low sodium). For most people, drinking to thirst and following weight-based guidelines is safe." },
-    ]
+    faqs
 )
 
 useHead({

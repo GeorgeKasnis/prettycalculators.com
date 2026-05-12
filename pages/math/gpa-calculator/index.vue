@@ -81,24 +81,32 @@
                 GPA = 53.0 ÷ 15 = <strong>3.53</strong> — letter equivalent: A−. Strong semester — Magna Cum Laude territory.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 
+const faqs = [
+    { q: "What is a 3.5 GPA equivalent to in letter grades?", a: "A 3.5 GPA falls between A− (3.7) and B+ (3.3) on the 4.0 scale, roughly equivalent to an A−/B+ average. It represents excellent academic performance — above a B+ average but just below a pure A− average. Many universities recognise 3.5+ GPA for Dean's List and Magna Cum Laude candidacy." },
+    { q: "How do I calculate my GPA with different credit hours?", a: "Multiply each course grade (in GPA points) by its credit hours to get quality points. Sum all quality points and divide by total credit hours. Example: A (4.0) in 3 credits + B (3.0) in 4 credits = (12 + 12) ÷ 7 = 3.43 GPA. Courses with more credits have a bigger impact on your overall GPA." },
+    { q: "What GPA is needed for medical school?", a: "Most US medical schools require a minimum GPA of 3.0, but competitive applicants typically have 3.7+ science GPA and 3.7+ overall GPA. Top schools (Harvard, Hopkins, Stanford) typically matriculate students with 3.9+ GPAs. MCAT scores, research experience, and letters of recommendation also weigh heavily." },
+    { q: "Does an A+ count as a 4.0 or higher for GPA?", a: "In most US universities, both A and A+ receive 4.0 grade points — there is no 4.3 or 4.33 distinction. Some schools do award A+ = 4.3 on a modified scale, but the standard 4.0 scale treats A and A+ identically. This calculator uses the standard 4.0 scale where A+ = A = 4.0." },
+    { q: "What is the minimum GPA to graduate college?", a: "Most US colleges require a minimum 2.0 GPA (C average) to graduate. Some competitive programs (engineering, nursing, pre-med) may require 2.5 or 3.0. Graduate school typically requires maintaining a 3.0 GPA. Falling below the minimum puts students on academic probation, which can lead to suspension if not improved." },
+    { q: "How much does one bad grade affect your GPA?", a: "It depends on credit hours and your existing GPA. One F (0.0) in a 3-credit course added to a 3.5 GPA over 30 existing credits: new quality points = (3.5 × 30 + 0 × 3) ÷ 33 = 105 ÷ 33 = 3.18. A single F can drop a 3.5 GPA to 3.18 — about 0.32 points. Higher-credit courses have a proportionally larger impact." },
+    { q: "What is a 4.0 GPA on a percentage scale?", a: "A 4.0 GPA corresponds to A or A+ grades, typically 93–100% at most institutions. However, GPA-to-percentage conversion varies by school. A 3.0 (B average) is typically 83–86%, and a 2.0 (C average) is typically 73–76%. The calculator works from letter grades directly so no percentage conversion is needed." },
+    { q: "What grades do I need to get a 3.0 GPA this semester?", a: "It depends on how many credits you're taking and what your current GPA is. If you're taking 15 credits and want a semester GPA of exactly 3.0, you need an average of B (3.0) across all courses. Mix of A's and C's can average to 3.0: e.g., two A's (4.0) in 3-credit courses and three C's (2.0) in 3-credit courses = (24 + 18) ÷ 15 = 2.8. Enter your individual grades above to see the exact result." },
+    { q: "Is a 3.2 GPA good for law school?", a: "A 3.2 GPA is below the median for most law schools. Top-25 US law schools typically have median GPAs of 3.7–3.9. Regional and lower-ranked schools often admit students with 3.0–3.3. LSAT score can partially compensate — a high LSAT (170+) can offset a GPA in the 3.2–3.5 range at many programs." },
+    { q: "How many A's do I need to raise my GPA from 2.5 to 3.0?", a: "It depends on your total credits. If you have 60 credits at a 2.5 GPA (150 quality points), to reach 3.0 you need: (total credits × 3.0 − 150) more quality points. If you take 30 more credits of all A's: (90 × 3.0) ÷ 90 + 60 = but with As: (150 + 30×4.0) ÷ 90 = 270 ÷ 90 = 3.0. Generally the further behind you are and the fewer credits remain, the harder it is to raise a GPA significantly." },
+]
+
 useCalcSEO(
     "GPA Calculator — US 4.0 Scale with Letter Grades & Credit Hours",
     "Free GPA calculator for US college students. Add your courses, letter grades (A, B+, C, etc.) and credit hours to calculate your cumulative GPA on the 4.0 scale instantly.",
-    [
-        { q: "What is a 3.5 GPA equivalent to in letter grades?", a: "A 3.5 GPA falls between A− (3.7) and B+ (3.3) on the 4.0 scale, roughly equivalent to an A−/B+ average. It represents excellent academic performance — above a B+ average but just below a pure A− average. Many universities recognise 3.5+ GPA for Dean's List and Magna Cum Laude candidacy." },
-        { q: "How do I calculate my GPA with different credit hours?", a: "Multiply each course grade (in GPA points) by its credit hours to get quality points. Sum all quality points and divide by total credit hours. Example: A (4.0) in 3 credits + B (3.0) in 4 credits = (12 + 12) ÷ 7 = 3.43 GPA. Courses with more credits have a bigger impact on your overall GPA." },
-        { q: "What GPA is needed for medical school?", a: "Most US medical schools require a minimum GPA of 3.0, but competitive applicants typically have 3.7+ science GPA and 3.7+ overall GPA. Top schools (Harvard, Hopkins, Stanford) typically matriculate students with 3.9+ GPAs. MCAT scores, research experience, and letters of recommendation also weigh heavily." },
-        { q: "Does an A+ count as a 4.0 or higher for GPA?", a: "In most US universities, both A and A+ receive 4.0 grade points — there is no 4.3 or 4.33 distinction. Some schools do award A+ = 4.3 on a modified scale, but the standard 4.0 scale treats A and A+ identically. This calculator uses the standard 4.0 scale where A+ = A = 4.0." },
-        { q: "What is the minimum GPA to graduate college?", a: "Most US colleges require a minimum 2.0 GPA (C average) to graduate. Some competitive programs (engineering, nursing, pre-med) may require 2.5 or 3.0. Graduate school typically requires maintaining a 3.0 GPA. Falling below the minimum puts students on academic probation, which can lead to suspension if not improved." },
-        { q: "How much does one bad grade affect your GPA?", a: "It depends on credit hours and your existing GPA. One F (0.0) in a 3-credit course added to a 3.5 GPA over 30 existing credits: new quality points = (3.5 × 30 + 0 × 3) ÷ 33 = 105 ÷ 33 = 3.18. A single F can drop a 3.5 GPA to 3.18 — about 0.32 points. Higher-credit courses have a proportionally larger impact." },
-        { q: "What is a 4.0 GPA on a percentage scale?", a: "A 4.0 GPA corresponds to A or A+ grades, typically 93–100% at most institutions. However, GPA-to-percentage conversion varies by school. A 3.0 (B average) is typically 83–86%, and a 2.0 (C average) is typically 73–76%. The calculator works from letter grades directly so no percentage conversion is needed." },
-    ]
+    faqs
 )
 
 useHead({

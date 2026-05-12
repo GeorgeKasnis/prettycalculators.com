@@ -33,20 +33,32 @@
                 <span class="font-bold">equivalent distance in miles is approximately 62.14 miles</span>.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How many miles are in a kilometer?", a: "1 kilometer equals 0.62137 miles." },
+    { q: "How do I convert kilometers to miles?", a: "Multiply the number of kilometers by 0.62137. For example, 10 km × 0.62137 = 6.214 miles." },
+    { q: "How many miles is 5 km?", a: "5 km is approximately 3.107 miles." },
+    { q: "How many miles is 42.195 km (a marathon)?", a: "42.195 km is approximately 26.2 miles — the standard marathon distance." },
+    { q: "How many miles is 10 km?", a: "10 km is 6.214 miles. A 10K race is one of the most popular road race distances — 6.2 miles when rounded." },
+    { q: "How many miles is 100 km?", a: "100 km is 62.137 miles — roughly the distance between two mid-sized cities on a motorway." },
+    { q: "How many miles is 1 km?", a: "1 km is 0.621 miles — just over half a mile. A quick mental rule: multiply km by 0.6 for a rough estimate in miles." },
+    { q: "How many miles is 20 km?", a: "20 km is 12.427 miles. This is a common ultra-race stage distance and roughly the distance a person can comfortably walk in 4–5 hours." },
+    { q: "How do I convert km/h to mph?", a: "To convert kilometers per hour to miles per hour, multiply by 0.62137. For example, 100 km/h × 0.62137 = 62.14 mph. The UK national speed limit of 70 mph is approximately 113 km/h." },
+    { q: "Why do some countries use miles and others use kilometers?", a: "Miles are used primarily in the United States and the United Kingdom (for road distances and speed limits). Most other countries adopted kilometers as part of the metric system. The UK officially uses miles for road signs despite otherwise using metric units — a legacy of the imperial system. Conversion is needed frequently for international travel, mapping, and motorsport." },
+]
+
 useCalcSEO(
     "Kilometers to Miles Converter — Free Distance Calculator",
     "Convert kilometers to miles instantly. 1 km = 0.62137 miles. Free distance converter — enter km and get miles in one click. No sign-up required.",
-    [
-        { q: "How many miles are in a kilometer?", a: "1 kilometer equals 0.62137 miles." },
-        { q: "How do I convert kilometers to miles?", a: "Multiply the number of kilometers by 0.62137. For example, 10 km × 0.62137 = 6.214 miles." },
-        { q: "How many miles is 5 km?", a: "5 km is approximately 3.107 miles." },
-        { q: "How many miles is 42.195 km (a marathon)?", a: "42.195 km is approximately 26.2 miles — the standard marathon distance." },
-    ]
+    faqs
 )
 
 useHead({

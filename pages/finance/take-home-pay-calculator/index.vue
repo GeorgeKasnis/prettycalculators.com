@@ -41,24 +41,33 @@
                 Total deductions: $13,851. Annual take-home: <strong>$61,149</strong>. Monthly take-home: <strong>$5,096</strong>. Effective total rate: ~18.5%.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How much is $50,000 a year after taxes?", a: "For a single filer in Texas (no state tax): federal tax is about $4,614, FICA $3,825. Total deductions ~$8,439. Annual take-home: roughly $41,561 ($3,463/month). In California, add ~$2,300 in state income tax, giving about $39,300 annual take-home ($3,275/month)." },
+    { q: "How much is $75,000 a year after taxes?", a: "Single filer in Texas: federal tax ~$8,114, FICA ~$5,738. Total deductions ~$13,852. Take-home: about $61,148 ($5,096/month). In New York, adding ~$4,200 state tax drops take-home to roughly $56,900 ($4,742/month). In California: roughly $55,500 ($4,625/month)." },
+    { q: "How much is $100,000 a year after taxes?", a: "Single filer in Texas: federal tax ~$17,414, FICA ~$7,650. Take-home: about $74,936 ($6,245/month). In California: state tax adds roughly $7,000+, bringing take-home to around $67,500 ($5,625/month). High-tax states like New York, New Jersey, and Minnesota significantly reduce the $100K paycheck." },
+    { q: "Which states have no income tax?", a: "Nine states have no individual income tax: Alaska, Florida, Nevada, New Hampshire (no tax on wages), South Dakota, Tennessee (no tax on wages), Texas, Washington, and Wyoming. If you live and work in one of these states, your take-home pay is significantly higher than in California or New York for the same salary." },
+    { q: "What is FICA tax and how much is it?", a: "FICA stands for Federal Insurance Contributions Act and covers Social Security (6.2%, up to $176,100 of wages in 2025) and Medicare (1.45% with no cap). Most employees pay a combined 7.65% FICA. Your employer matches this amount. High earners over $200,000 also pay an Additional Medicare Tax of 0.9% on amounts above that threshold." },
+    { q: "How does filing status affect take-home pay?", a: "Filing status affects your standard deduction and tax bracket thresholds. Married Filing Jointly gets a $30,000 standard deduction (vs $15,000 for single), and all bracket thresholds are doubled, meaning the same total household income typically results in a lower effective tax rate. Head of Household falls between the two." },
+    { q: "How much California income tax will I pay on $80,000?", a: "For a single filer with $80,000 salary in California: state income tax is approximately $4,000–$4,500 (after the California standard deduction of $5,202). Federal income tax adds about $9,700. FICA adds $6,120. Estimated California take-home on $80K: roughly $59,700–$60,000 annually ($4,975–$5,000/month)." },
+    { q: "Is this calculator accurate for W-2 employees?", a: "It gives a close estimate for standard W-2 employees with no pre-tax deductions. Your actual paycheck will differ if you contribute to a 401(k), HSA, FSA, or pay health insurance premiums through payroll — all of which reduce your taxable income. Self-employed workers also pay the employer half of FICA (another 7.65%), effectively doubling the FICA burden." },
+    { q: "How much is $60,000 a year after taxes in Florida?", a: "Florida has no state income tax. Single filer: federal tax ≈ $5,914, FICA ≈ $4,590. Total deductions ≈ $10,504. Annual take-home ≈ $49,496 ($4,125/month). Effective total tax rate ≈ 17.5%. Florida residents keep more than counterparts in California ($45,000 take-home at similar salary) or New York." },
+    { q: "What is my effective tax rate vs marginal tax rate?", a: "Your marginal rate is the tax on your last dollar of income (e.g., 22% bracket). Your effective rate is the average across all dollars earned. On a $75,000 salary, you might be in the 22% bracket but only pay an effective federal rate of ~13.5%, because the first $26,925 (after deduction) is taxed at 10–12%. This calculator shows both." },
+    { q: "How much more take-home pay does a $10,000 raise give?", a: "It depends on which tax bracket the raise falls into. If you're in the 22% federal bracket and live in Texas (no state tax), a $10,000 raise adds about $7,680 annually after federal tax and FICA (22% + 7.65% = 29.65% combined marginal rate). In California, that drops to roughly $6,500 after state tax." },
+]
+
 useCalcSEO(
     "Take-Home Pay Calculator 2025 — US Federal & State Tax Estimator",
     "Free US take-home pay calculator. Enter your salary, filing status, and state to see your federal tax, state tax, FICA deductions, and real monthly paycheck. All 50 states supported.",
-    [
-        { q: "How much is $50,000 a year after taxes?", a: "For a single filer in Texas (no state tax): federal tax is about $4,614, FICA $3,825. Total deductions ~$8,439. Annual take-home: roughly $41,561 ($3,463/month). In California, add ~$2,300 in state income tax, giving about $39,300 annual take-home ($3,275/month)." },
-        { q: "How much is $75,000 a year after taxes?", a: "Single filer in Texas: federal tax ~$8,114, FICA ~$5,738. Total deductions ~$13,852. Take-home: about $61,148 ($5,096/month). In New York, adding ~$4,200 state tax drops take-home to roughly $56,900 ($4,742/month). In California: roughly $55,500 ($4,625/month)." },
-        { q: "How much is $100,000 a year after taxes?", a: "Single filer in Texas: federal tax ~$17,414, FICA ~$7,650. Take-home: about $74,936 ($6,245/month). In California: state tax adds roughly $7,000+, bringing take-home to around $67,500 ($5,625/month). High-tax states like New York, New Jersey, and Minnesota significantly reduce the $100K paycheck." },
-        { q: "Which states have no income tax?", a: "Nine states have no individual income tax: Alaska, Florida, Nevada, New Hampshire (no tax on wages), South Dakota, Tennessee (no tax on wages), Texas, Washington, and Wyoming. If you live and work in one of these states, your take-home pay is significantly higher than in California or New York for the same salary." },
-        { q: "What is FICA tax and how much is it?", a: "FICA stands for Federal Insurance Contributions Act and covers Social Security (6.2%, up to $176,100 of wages in 2025) and Medicare (1.45% with no cap). Most employees pay a combined 7.65% FICA. Your employer matches this amount. High earners over $200,000 also pay an Additional Medicare Tax of 0.9% on amounts above that threshold." },
-        { q: "How does filing status affect take-home pay?", a: "Filing status affects your standard deduction and tax bracket thresholds. Married Filing Jointly gets a $30,000 standard deduction (vs $15,000 for single), and all bracket thresholds are doubled, meaning the same total household income typically results in a lower effective tax rate. Head of Household falls between the two." },
-        { q: "How much California income tax will I pay on $80,000?", a: "For a single filer with $80,000 salary in California: state income tax is approximately $4,000–$4,500 (after the California standard deduction of $5,202). Federal income tax adds about $9,700. FICA adds $6,120. Estimated California take-home on $80K: roughly $59,700–$60,000 annually ($4,975–$5,000/month)." },
-        { q: "Is this calculator accurate for W-2 employees?", a: "It gives a close estimate for standard W-2 employees with no pre-tax deductions. Your actual paycheck will differ if you contribute to a 401(k), HSA, FSA, or pay health insurance premiums through payroll — all of which reduce your taxable income. Self-employed workers also pay the employer half of FICA (another 7.65%), effectively doubling the FICA burden." },
-    ]
+    faqs
 )
 
 useHead({

@@ -80,25 +80,33 @@
                 Now flip to <strong>Calculate Finish Time</strong>, select <strong>Half Marathon</strong>, enter <strong>4:47 min/km</strong> pace, and you'll see a projected half marathon time of <strong>1:40:58</strong> — a solid 2-hour half marathon pace buffer.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
 
+const faqs = [
+    { q: "How do I calculate my running pace?", a: "Divide your total time in seconds by the distance in kilometres. For example, 30 minutes (1800 seconds) over 5 km = 1800 ÷ 5 = 360 seconds per km = 6:00/km. In miles: divide by the distance in miles (5 km ÷ 1.60934 = 3.107 miles → 1800 ÷ 3.107 = 579.4 sec/mile = 9:39/mile)." },
+    { q: "What is a good running pace per km?", a: "It depends on your fitness and goal. A beginner 5K runner often runs 6:00–8:00/km. Intermediate runners aiming to break 25 minutes need under 5:00/km. Sub-20 minute 5K requires 3:59/km. For marathons, recreational runners often target 5:00–7:00/km, while a sub-4-hour marathon needs 5:41/km." },
+    { q: "What pace do I need to run a sub-2 hour half marathon?", a: "To finish a half marathon (21.0975 km) in under 2 hours, you need to maintain a pace of 5:41/km (9:09/mile) or faster. That works out to 12.6 km/h average speed. Use the Finish Time mode and enter 5:40/km to confirm you'd finish in 1:59:40." },
+    { q: "How do I convert pace from km to miles?", a: "Multiply your pace in min/km by 1.60934 to get min/mile. For example, 5:00/km × 1.60934 = 8:03/mile. To go the other way, divide your min/mile pace by 1.60934. The calculator shows both automatically in every result." },
+    { q: "What pace is a 4-hour marathon?", a: "A 4-hour marathon requires a pace of 5:41/km (9:09/mile). That's 42.195 km ÷ 240 minutes = 5.69 min/km. Enter Marathon in the Finish Time mode with 5:41 pace to confirm: 4:00:01." },
+    { q: "How do I calculate speed from pace?", a: "Speed (km/h) = 60 ÷ pace in minutes per km. A pace of 5:00/km = 60 ÷ 5 = 12 km/h. A pace of 6:00/km = 10 km/h. To convert to mph, divide by 1.60934. The calculator shows both km/h and mph in all results." },
+    { q: "What pace should I run for easy training runs?", a: "Easy runs should feel conversational — you can speak in full sentences. For most runners this is 60–90 seconds per km slower than your 5K race pace. If your 5K pace is 5:00/km, your easy pace would be around 6:00–6:30/km. Easy running builds your aerobic base without excessive fatigue." },
+    { q: "How far can I run in 30 minutes at a 6:00/km pace?", a: "At 6:00/km pace, you cover 1 km every 6 minutes. In 30 minutes: 30 ÷ 6 = 5 km. Use the Distance mode — enter 0h 30m 0s and pace 6:00 (min=6, sec=0) to get 5.00 km (3.11 miles)." },
+    { q: "What is a 5:30 per km pace in mph?", a: "5:30/km = 60 ÷ 5.5 = 10.9 km/h. Converting to mph: 10.9 ÷ 1.60934 ≈ 6.77 mph. Your mile pace would be 5:30 × 1.60934 ≈ 8:51/mile." },
+    { q: "Why does my GPS watch show a different pace to the calculator?", a: "GPS pace fluctuates with satellite signal accuracy — especially under trees, in urban canyons, or on turns. The calculator uses your inputted distance and time for a precise average pace, which is more reliable than real-time GPS pace. For road races with accurate distance markings, this calculator gives the most trustworthy result." },
+    { q: "What pace is a 30-minute 5K?", a: "A 30-minute 5K requires a pace of 6:00/km (9:39/mile) sustained throughout. This is a common beginner target and corresponds to a speed of exactly 10 km/h. If you can run 1 km in 6 minutes, you're exactly on pace for a 30-minute 5K." },
+]
+
 useCalcSEO(
     "Pace Calculator — Running Pace, Finish Time & Distance",
     "Free running pace calculator. Calculate your pace per km or per mile, predicted finish time for 5K to marathon, or distance from time and pace. Includes race pace chart.",
-    [
-        { q: "How do I calculate my running pace?", a: "Divide your total time in seconds by the distance in kilometres. For example, 30 minutes (1800 seconds) over 5 km = 1800 ÷ 5 = 360 seconds per km = 6:00/km. In miles: divide by the distance in miles (5 km ÷ 1.60934 = 3.107 miles → 1800 ÷ 3.107 = 579.4 sec/mile = 9:39/mile)." },
-        { q: "What is a good running pace per km?", a: "It depends on your fitness and goal. A beginner 5K runner often runs 6:00–8:00/km. Intermediate runners aiming to break 25 minutes need under 5:00/km. Sub-20 minute 5K requires 3:59/km. For marathons, recreational runners often target 5:00–7:00/km, while a sub-4-hour marathon needs 5:41/km." },
-        { q: "What pace do I need to run a sub-2 hour half marathon?", a: "To finish a half marathon (21.0975 km) in under 2 hours, you need to maintain a pace of 5:41/km (9:09/mile) or faster. That works out to 12.6 km/h average speed. Use the Finish Time mode and enter 5:40/km to confirm you'd finish in 1:59:40." },
-        { q: "How do I convert pace from km to miles?", a: "Multiply your pace in min/km by 1.60934 to get min/mile. For example, 5:00/km × 1.60934 = 8:03/mile. To go the other way, divide your min/mile pace by 1.60934. The calculator shows both automatically in every result." },
-        { q: "What pace is a 4-hour marathon?", a: "A 4-hour marathon requires a pace of 5:41/km (9:09/mile). That's 42.195 km ÷ 240 minutes = 5.69 min/km. Enter Marathon in the Finish Time mode with 5:41 pace to confirm: 4:00:01." },
-        { q: "How do I calculate speed from pace?", a: "Speed (km/h) = 60 ÷ pace in minutes per km. A pace of 5:00/km = 60 ÷ 5 = 12 km/h. A pace of 6:00/km = 10 km/h. To convert to mph, divide by 1.60934. The calculator shows both km/h and mph in all results." },
-        { q: "What pace should I run for easy training runs?", a: "Easy runs should feel conversational — you can speak in full sentences. For most runners this is 60–90 seconds per km slower than your 5K race pace. If your 5K pace is 5:00/km, your easy pace would be around 6:00–6:30/km. Easy running builds your aerobic base without excessive fatigue." },
-        { q: "How far can I run in 30 minutes at a 6:00/km pace?", a: "At 6:00/km pace, you cover 1 km every 6 minutes. In 30 minutes: 30 ÷ 6 = 5 km. Use the Distance mode — enter 0h 30m 0s and pace 6:00 (min=6, sec=0) to get 5.00 km (3.11 miles)." },
-    ]
+    faqs
 )
 
 useHead({

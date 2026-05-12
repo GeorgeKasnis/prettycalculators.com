@@ -36,21 +36,33 @@
                 registered dietitian is highly recommended for personalized guidance on your nutritional and health journey.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "What is BMR?", a: "BMR (Basal Metabolic Rate) is the number of calories your body burns at complete rest to maintain basic functions like breathing, circulation, and cell production." },
+    { q: "How is BMR calculated?", a: "This calculator uses the revised Harris-Benedict equation. For men: 88.362 + (13.397 × kg) + (4.799 × cm) − (5.677 × age). For women: 447.593 + (9.247 × kg) + (3.098 × cm) − (4.33 × age). Imperial inputs are converted to metric before the formula is applied." },
+    { q: "How do I calculate BMR in pounds and inches?", a: "Select Imperial using the toggle at the bottom-left of the screen. Enter your weight in lbs and height in feet and inches — the calculator converts to kg and cm automatically before applying the Harris-Benedict formula." },
+    { q: "What is the average BMR?", a: "The average BMR for adults is roughly 1,400–1,800 calories per day, though it varies based on age, weight, height, and sex." },
+    { q: "Does BMR decrease with age?", a: "Yes, BMR typically decreases by about 1–2% per decade after age 20 as muscle mass naturally declines. This is mainly due to loss of lean muscle tissue." },
+    { q: "What is a good BMR for my age?", a: "At 25, a typical male BMR is 1,700–1,900 kcal; at 40, closer to 1,600–1,800; at 60, roughly 1,400–1,600. For women these are 100–200 kcal lower at each decade. Higher lean muscle mass pushes your BMR to the top of these ranges." },
+    { q: "Why does my BMR seem low?", a: "Low BMR can result from low muscle mass, being shorter, being older, or being female. Crash dieting and very-low-calorie eating can also suppress BMR by 15–30% through adaptive thermogenesis — your body becomes more efficient when it senses food restriction." },
+    { q: "Is a BMR of 1,400 calories normal for a woman?", a: "Yes — a BMR of 1,350–1,500 kcal is typical for women aged 30–50 at an average height and weight. It represents only the calories needed at complete rest. Your actual daily needs (TDEE) will be 20–90% higher once activity is added." },
+    { q: "What is the difference between BMR and TDEE?", a: "BMR is calories burned at absolute rest. TDEE (Total Daily Energy Expenditure) multiplies your BMR by an activity factor (1.2 for sedentary, up to 1.9 for extra-active). TDEE is the number you actually need to eat to maintain your current weight." },
+    { q: "Can I increase my BMR?", a: "Yes. Building muscle through resistance training is the most effective long-term strategy — muscle tissue burns roughly 6–7 kcal per kg per day at rest, compared to 2 kcal for fat. Eating enough protein (1.6+ g/kg) and avoiding prolonged very-low-calorie diets also helps prevent BMR suppression." },
+    { q: "How does BMR differ between men and women?", a: "Men generally have higher BMR than women of the same weight and height because they carry more muscle mass and less fat. The Harris-Benedict formula accounts for this with different coefficients — men's formula has a higher constant and higher weight multiplier." },
+]
+
 useCalcSEO(
     "BMR Calculator — Metric & Imperial | Basal Metabolic Rate",
     "Free BMR calculator in metric (kg, cm) or imperial (lbs, ft, in). Uses the revised Harris-Benedict formula to estimate calories your body burns at rest.",
-    [
-        { q: "What is BMR?", a: "BMR (Basal Metabolic Rate) is the number of calories your body burns at complete rest to maintain basic functions like breathing, circulation, and cell production." },
-        { q: "How is BMR calculated?", a: "This calculator uses the revised Harris-Benedict equation. For men: 88.362 + (13.397 × kg) + (4.799 × cm) − (5.677 × age). For women: 447.593 + (9.247 × kg) + (3.098 × cm) − (4.33 × age). Imperial inputs are converted to metric before the formula is applied." },
-        { q: "How do I calculate BMR in pounds and inches?", a: "Select Imperial using the toggle at the bottom-left of the screen. Enter your weight in lbs and height in feet and inches — the calculator converts to kg and cm automatically before applying the Harris-Benedict formula." },
-        { q: "What is the average BMR?", a: "The average BMR for adults is roughly 1,400–1,800 calories per day, though it varies based on age, weight, height, and sex." },
-        { q: "Does BMR decrease with age?", a: "Yes, BMR typically decreases by about 1–2% per decade after age 20 as muscle mass naturally declines. This is mainly due to loss of lean muscle tissue." },
-    ]
+    faqs
 )
 
 useHead({

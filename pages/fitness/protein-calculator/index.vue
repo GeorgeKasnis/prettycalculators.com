@@ -47,21 +47,32 @@
                 That adds up to ~182g — slightly above target, which is fine. Use the food table in the calculator as a starting guide and track intake with a food diary for the first few weeks until you know your portions intuitively.
             </p>
         </template>
+        <template #faq>
+            <CalcFaq :faqs="faqs" />
+        </template>
     </UiCalcPage>
 </template>
 
 <script setup>
 definePageMeta({ layout: 'brutalist' })
+
+const faqs = [
+    { q: "How much protein do I need per day?", a: "It depends on your goals. Sedentary adults need about 0.8 g/kg. Active people building muscle should aim for 1.6–2.2 g/kg. Those cutting fat benefit from 2.0–2.4 g/kg to preserve muscle mass." },
+    { q: "How much protein do I need per pound of body weight?", a: "A common guideline is 0.7–1 gram of protein per pound of body weight (1.5–2.2 g/kg). For muscle building, aim for around 1 g per pound. Enter your weight in lbs using the Imperial toggle for an instant result." },
+    { q: "Does high protein intake damage kidneys?", a: "For healthy individuals with no pre-existing kidney disease, high protein intake (up to 2.6 g/kg) is safe. The kidney-damage claim stems from studies on people with existing kidney problems." },
+    { q: "Can I eat too much protein?", a: "Protein above roughly 2.8 g/kg of body weight provides no additional muscle-building benefit and the excess is used for energy. It won't cause harm but is a waste of calories and money." },
+    { q: "When should I eat protein to build muscle?", a: "Total daily protein intake matters most. Spreading it across 3–5 meals is optimal. Having 20–40g of protein near your workouts (before or after) can support muscle protein synthesis." },
+    { q: "How much protein is in 100g of chicken breast?", a: "100g of raw skinless chicken breast contains approximately 22–23g of protein. When cooked, the weight reduces by about 25%, so 100g cooked = roughly 28–30g protein. Chicken breast is one of the most protein-dense whole foods at around 4 kcal per gram of protein." },
+    { q: "How much protein should a 70 kg person eat to build muscle?", a: "At 1.6–2.2 g/kg, a 70 kg person should eat 112–154g of protein per day to optimally support muscle growth with resistance training. At 2.2 g/kg (upper range): 70 × 2.2 = 154g/day. Divide across 4 meals = about 38g per meal, achievable with one chicken breast + Greek yogurt." },
+    { q: "Is 50g of protein a day enough?", a: "50g/day meets the minimum RDA for a sedentary person under 60 kg, but is well below optimal for anyone exercising regularly. At 70 kg, 50g represents only 0.71 g/kg — less than the sedentary minimum of 0.8 g/kg. If you are training, you will likely lose muscle on 50g unless you are very small or sedentary." },
+    { q: "What happens if I don't eat enough protein?", a: "Insufficient protein causes the body to break down muscle tissue (muscle catabolism) to meet essential protein needs. Signs include slower recovery, decreased strength over time, frequent hunger (protein is the most satiating macro), and difficulty losing fat while preserving lean mass. Aim for at least 1.2 g/kg even on rest days." },
+    { q: "Can vegetarians and vegans hit their protein target?", a: "Yes, with planning. High-protein plant foods include tofu (8g/100g), edamame (11g/100g), lentils (9g/100g cooked), chickpeas (7g/100g), seitan (25g/100g), and pea or soy protein powder (20–25g per scoop). Combining varied plant proteins throughout the day provides all essential amino acids." },
+]
+
 useCalcSEO(
     "Protein Calculator — Daily Protein Target in kg or lbs",
     "Free protein intake calculator supporting metric (kg) and imperial (lbs). Find your daily protein target based on body weight, activity level, and goal.",
-    [
-        { q: "How much protein do I need per day?", a: "It depends on your goals. Sedentary adults need about 0.8 g/kg. Active people building muscle should aim for 1.6–2.2 g/kg. Those cutting fat benefit from 2.0–2.4 g/kg to preserve muscle mass." },
-        { q: "How much protein do I need per pound of body weight?", a: "A common guideline is 0.7–1 gram of protein per pound of body weight (1.5–2.2 g/kg). For muscle building, aim for around 1 g per pound. Enter your weight in lbs using the Imperial toggle for an instant result." },
-        { q: "Does high protein intake damage kidneys?", a: "For healthy individuals with no pre-existing kidney disease, high protein intake (up to 2.6 g/kg) is safe. The kidney-damage claim stems from studies on people with existing kidney problems." },
-        { q: "Can I eat too much protein?", a: "Protein above roughly 2.8 g/kg of body weight provides no additional muscle-building benefit and the excess is used for energy. It won't cause harm but is a waste of calories and money." },
-        { q: "When should I eat protein to build muscle?", a: "Total daily protein intake matters most. Spreading it across 3–5 meals is optimal. Having 20–40g of protein near your workouts (before or after) can support muscle protein synthesis." },
-    ]
+    faqs
 )
 
 useHead({
