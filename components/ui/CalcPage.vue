@@ -49,6 +49,9 @@
                     </div>
                 </div>
             </div>
+
+            <!-- FAQ accordion -->
+            <slot name="faq" />
         </div>
 
         <!-- Sidebar -->
