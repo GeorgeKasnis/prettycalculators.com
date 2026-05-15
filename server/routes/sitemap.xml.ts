@@ -32,6 +32,8 @@ export default defineEventHandler(async (event) => {
         { loc: '/math/average-calculator',          changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/quadratic-formula-calculator',changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/ratio-calculator',            changefreq: 'monthly', priority: '0.85' },
+        { loc: '/math/standard-deviation-calculator',  changefreq: 'monthly', priority: '0.85' },
+        { loc: '/math/cosine-similarity-calculator',   changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/manhattan-distance-calculator',  changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/euclidean-distance-calculator',  changefreq: 'monthly', priority: '0.85' },
         { loc: '/math/chebyshev-distance-calculator',  changefreq: 'monthly', priority: '0.85' },
@@ -45,6 +47,7 @@ export default defineEventHandler(async (event) => {
         { loc: '/unit/kilometers-to-miles',             changefreq: 'monthly', priority: '0.85' },
         { loc: '/unit/inches-to-cm-converter',          changefreq: 'monthly', priority: '0.85' },
         { loc: '/unit/kg-to-lbs-converter',             changefreq: 'monthly', priority: '0.85' },
+        { loc: '/unit/feet-to-meters-converter',        changefreq: 'monthly', priority: '0.85' },
 
         { loc: '/finance/compound-interest-calculator',    changefreq: 'monthly', priority: '0.85' },
         { loc: '/finance/mortgage-calculator',            changefreq: 'monthly', priority: '0.85' },
@@ -54,6 +57,7 @@ export default defineEventHandler(async (event) => {
         { loc: '/finance/retirement-calculator',          changefreq: 'monthly', priority: '0.85' },
         { loc: '/finance/income-tax-calculator',          changefreq: 'monthly', priority: '0.85' },
         { loc: '/finance/salary-to-hourly-calculator',    changefreq: 'monthly', priority: '0.85' },
+        { loc: '/finance/roi-calculator',                 changefreq: 'monthly', priority: '0.85' },
         { loc: '/finance/savings-goal-calculator',        changefreq: 'monthly', priority: '0.85' },
         { loc: '/finance/debt-payoff-calculator',         changefreq: 'monthly', priority: '0.85' },
         { loc: '/finance/take-home-pay-calculator',       changefreq: 'monthly', priority: '0.85' },
@@ -66,6 +70,7 @@ export default defineEventHandler(async (event) => {
         { loc: '/other/pizza-calculator',               changefreq: 'monthly', priority: '0.85' },
         { loc: '/other/tip-calculator',                 changefreq: 'monthly', priority: '0.85' },
         { loc: '/other/sleep-calculator',               changefreq: 'monthly', priority: '0.85' },
+        { loc: '/other/word-counter',                   changefreq: 'monthly', priority: '0.85' },
         { loc: '/other/pregnancy-due-date-calculator',  changefreq: 'monthly', priority: '0.85' },
         { loc: '/other/ovulation-calculator',           changefreq: 'monthly', priority: '0.85' },
 
