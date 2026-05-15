@@ -17,6 +17,8 @@ const CATEGORIES = {
             { label: "Macro Calculator",   to: "/fitness/macro-calculator" },
             { label: "Pace Calculator",            to: "/fitness/pace-calculator" },
             { label: "Calories Burned Calculator", to: "/fitness/calories-burned-calculator" },
+            { label: "Lean Body Mass Calculator",  to: "/fitness/lean-body-mass-calculator" },
+            { label: "Calorie Deficit Calculator", to: "/fitness/calorie-deficit-calculator" },
         ],
     },
     math: {
