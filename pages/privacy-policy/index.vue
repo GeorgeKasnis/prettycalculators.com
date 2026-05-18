@@ -63,16 +63,32 @@
                 <div class="term-row">
                     <div class="term-num">06</div>
                     <div class="term-content">
-                        <h2 class="term-title">Your Rights (GDPR / CCPA)</h2>
-                        <p class="term-text">If you are located in the European Economic Area or California, you have the right to access, correct, or request deletion of any personal data we hold about you. Because we do not collect personally identifiable information directly, the primary data controller for analytics data is Google. You may exercise your rights regarding that data via Google's privacy controls at <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener noreferrer" class="term-link">myaccount.google.com</a>.</p>
+                        <h2 class="term-title">Advertising (Google AdSense)</h2>
+                        <p class="term-text">We use Google AdSense to display advertisements on this site. Google AdSense uses cookies, including the DoubleClick cookie, to serve ads based on your prior visits to this and other websites. You can opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="term-link">Google Ads Settings</a>, or opt out of a third-party vendor's use of cookies by visiting the <a href="https://www.networkadvertising.org/choices/" target="_blank" rel="noopener noreferrer" class="term-link">Network Advertising Initiative opt-out page</a>.</p>
                     </div>
                 </div>
 
                 <div class="term-row">
                     <div class="term-num">07</div>
                     <div class="term-content">
+                        <h2 class="term-title">Your Rights (GDPR / CCPA)</h2>
+                        <p class="term-text">If you are located in the European Economic Area or California, you have the right to access, correct, or request deletion of any personal data we hold about you. Because we do not collect personally identifiable information directly, the primary data controller for analytics data is Google. You may exercise your rights regarding that data via Google's privacy controls at <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener noreferrer" class="term-link">myaccount.google.com</a>.</p>
+                    </div>
+                </div>
+
+                <div class="term-row">
+                    <div class="term-num">08</div>
+                    <div class="term-content">
                         <h2 class="term-title">Changes to This Policy</h2>
                         <p class="term-text">We may update this privacy policy from time to time. Any changes will be posted on this page. Your continued use of Pretty Calculators after any update constitutes your acceptance of the revised policy.</p>
+                    </div>
+                </div>
+
+                <div class="term-row">
+                    <div class="term-num">09</div>
+                    <div class="term-content">
+                        <h2 class="term-title">Contact</h2>
+                        <p class="term-text">If you have any questions about this privacy policy, please contact us at <a href="mailto:prettycalculators@gmail.com" class="term-link">prettycalculators@gmail.com</a>.</p>
                     </div>
                 </div>
 

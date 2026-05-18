@@ -76,7 +76,10 @@ export default defineEventHandler(async (event) => {
         { loc: '/other/pregnancy-due-date-calculator',  changefreq: 'monthly', priority: '0.85' },
         { loc: '/other/ovulation-calculator',           changefreq: 'monthly', priority: '0.85' },
 
-        { loc: '/terms-of-use', changefreq: 'yearly', priority: '0.3' },
+        { loc: '/terms-of-use',    changefreq: 'yearly',   priority: '0.3' },
+        { loc: '/privacy-policy', changefreq: 'yearly',   priority: '0.3' },
+        { loc: '/about',          changefreq: 'monthly',  priority: '0.3' },
+        { loc: '/contact',        changefreq: 'monthly',  priority: '0.3' },
     ]
 
     // Fetch blog post slugs and last-modified dates from Contentful

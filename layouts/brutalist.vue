@@ -6,12 +6,19 @@
         </main>
         <UiTheFooter />
         <UiCookieBanner />
-        <UiUnitToggle />
+        <UiUnitToggle v-if="isCalcPage" />
     </div>
 </template>
 
 <script setup>
 const route = useRoute()
+
+const CALC_CATEGORIES = new Set(['fitness', 'math', 'finance', 'unit', 'other'])
+const isCalcPage = computed(() => {
+    const parts = route.path.split('/').filter(Boolean)
+    return parts.length >= 2 && CALC_CATEGORIES.has(parts[0])
+})
+
 useHead(() => ({
     link: [
         {
