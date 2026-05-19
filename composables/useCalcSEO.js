@@ -1,4 +1,4 @@
-const SITE = 'https://www.prettycalculators.com'
+const SITE = 'https://prettycalculators.com'
 
 const APP_CATEGORY_MAP = {
     fitness: 'HealthApplication',

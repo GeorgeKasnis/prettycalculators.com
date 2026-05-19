@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
     setResponseHeader(event, 'Cache-Control', 'public, max-age=3600, s-maxage=3600')
 
     const config = useRuntimeConfig()
-    const base = 'https://www.prettycalculators.com'
+    const base = 'https://prettycalculators.com'
     const today = new Date().toISOString().split('T')[0]
 
     const staticUrls = [
