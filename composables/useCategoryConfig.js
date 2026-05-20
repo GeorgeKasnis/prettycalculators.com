@@ -19,6 +19,9 @@ const CATEGORIES = {
             { label: "Calories Burned Calculator", to: "/fitness/calories-burned-calculator" },
             { label: "Lean Body Mass Calculator",  to: "/fitness/lean-body-mass-calculator" },
             { label: "Calorie Deficit Calculator", to: "/fitness/calorie-deficit-calculator" },
+            { label: "VO2 Max Calculator",          to: "/fitness/vo2-max-calculator" },
+            { label: "Heart Rate Zone Calculator",  to: "/fitness/heart-rate-zone-calculator" },
+            { label: "Water Intake Calculator",     to: "/fitness/water-intake-calculator" },
         ],
     },
     math: {
@@ -42,6 +45,8 @@ const CATEGORIES = {
             { label: "Hamming Distance Calculator",    to: "/math/hamming-distance-calculator" },
             { label: "Minkowski Distance Calculator",  to: "/math/minkowski-distance-calculator" },
             { label: "GPA Calculator",                 to: "/math/gpa-calculator" },
+            { label: "LCM & GCF Calculator",           to: "/math/lcm-gcf-calculator" },
+            { label: "Scientific Notation Calculator", to: "/math/scientific-notation-calculator" },
         ],
     },
     finance: {
@@ -66,6 +71,9 @@ const CATEGORIES = {
             { label: "Income Tax Calculator",           to: "/finance/income-tax-calculator" },
             { label: "Salary to Hourly Calculator",     to: "/finance/salary-to-hourly-calculator" },
             { label: "ROI Calculator",                  to: "/finance/roi-calculator" },
+            { label: "Break-Even Calculator",           to: "/finance/break-even-calculator" },
+            { label: "VAT Calculator",                  to: "/finance/vat-calculator" },
+            { label: "Net Worth Calculator",            to: "/finance/net-worth-calculator" },
         ],
     },
     other: {
@@ -92,6 +100,8 @@ const CATEGORIES = {
             { label: "Feet to Meters", to: "/unit/feet-to-meters-converter" },
             { label: "Pregnancy Due Date Calculator", to: "/other/pregnancy-due-date-calculator" },
             { label: "Ovulation Calculator",          to: "/other/ovulation-calculator" },
+            { label: "Discount Calculator",           to: "/other/discount-calculator" },
+            { label: "Reading Time Calculator",       to: "/other/reading-time-calculator" },
         ],
     },
 };
