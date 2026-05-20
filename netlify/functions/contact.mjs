@@ -16,14 +16,24 @@ export default async (req) => {
         return new Response(JSON.stringify({ error: 'Missing fields' }), { status: 400 })
     }
 
+    if (name.length > 100 || email.length > 200 || message.length > 5000) {
+        return new Response(JSON.stringify({ error: 'Input too long' }), { status: 400 })
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return new Response(JSON.stringify({ error: 'Invalid email' }), { status: 400 })
+    }
+
+    const escape = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+
     await resend.emails.send({
         from: 'onboarding@resend.dev',
         to: 'prettycalculators@gmail.com',
-        subject: `New message from ${name}`,
+        subject: `New message from ${escape(name)}`,
         html: `
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Message:</strong><br>${message.replace(/\n/g, '<br>')}</p>
+            <p><strong>Name:</strong> ${escape(name)}</p>
+            <p><strong>Email:</strong> ${escape(email)}</p>
+            <p><strong>Message:</strong><br>${escape(message).replace(/\n/g, '<br>')}</p>
         `,
     })
 
