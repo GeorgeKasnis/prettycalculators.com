@@ -44,40 +44,27 @@
                     <p class="mt-4 text-[15px] opacity-60 max-w-sm leading-relaxed mobile:text-sm">Fast, focused calculators for fitness, math, conversions and more. Built to get you the answer quickly.</p>
                 </div>
                 <div class="tool-marquee">
-                    <div class="tool-marquee-row tool-marquee-row--top">
-                        <NuxtLink to="/fitness/bmi-calculator">BMI</NuxtLink>
-                        <NuxtLink to="/fitness/body-fat-calculator">Body Fat</NuxtLink>
-                        <NuxtLink to="/fitness/bmr-calculator">BMR</NuxtLink>
-                        <NuxtLink to="/fitness/tdee-calculator">TDEE</NuxtLink>
-                        <NuxtLink to="/math/percentage-calculator">Percentage</NuxtLink>
-                        <NuxtLink to="/math/manhattan-distance-calculator">Manhattan</NuxtLink>
-                        <NuxtLink to="/other/px-to-rem-calculator">Px to Rem</NuxtLink>
-                        <NuxtLink to="/other/pizza-calculator">Pizza</NuxtLink>
-                        <NuxtLink to="/fitness/bmi-calculator">BMI</NuxtLink>
-                        <NuxtLink to="/fitness/body-fat-calculator">Body Fat</NuxtLink>
-                        <NuxtLink to="/fitness/bmr-calculator">BMR</NuxtLink>
-                        <NuxtLink to="/fitness/tdee-calculator">TDEE</NuxtLink>
-                        <NuxtLink to="/math/percentage-calculator">Percentage</NuxtLink>
-                        <NuxtLink to="/math/manhattan-distance-calculator">Manhattan</NuxtLink>
-                        <NuxtLink to="/other/px-to-rem-calculator">Px to Rem</NuxtLink>
-                        <NuxtLink to="/other/pizza-calculator">Pizza</NuxtLink>
-                    </div>
-                    <div class="tool-marquee-row tool-marquee-row--bottom">
-                        <NuxtLink to="/unit/celsius-to-fahrenheit-converter">Celsius</NuxtLink>
-                        <NuxtLink to="/unit/fahrenheit-to-celsius-converter">Fahrenheit</NuxtLink>
-                        <NuxtLink to="/unit/miles-to-kilometers">Miles</NuxtLink>
-                        <NuxtLink to="/unit/kilometers-to-miles">Kilometers</NuxtLink>
-                        <NuxtLink to="/other/aqua-calculator">Aqua</NuxtLink>
-                        <NuxtLink to="/other/age-calculator">Age</NuxtLink>
-                        <NuxtLink to="/fitness/ideal-weight-calculator">Ideal Weight</NuxtLink>
-                        <NuxtLink to="/unit/celsius-to-fahrenheit-converter">Celsius</NuxtLink>
-                        <NuxtLink to="/unit/fahrenheit-to-celsius-converter">Fahrenheit</NuxtLink>
-                        <NuxtLink to="/unit/miles-to-kilometers">Miles</NuxtLink>
-                        <NuxtLink to="/unit/kilometers-to-miles">Kilometers</NuxtLink>
-                        <NuxtLink to="/other/aqua-calculator">Aqua</NuxtLink>
-                        <NuxtLink to="/other/age-calculator">Age</NuxtLink>
-                        <NuxtLink to="/fitness/ideal-weight-calculator">Ideal Weight</NuxtLink>
-                    </div>
+                    <ClientOnly>
+                        <Vue3Marquee class="tool-marquee-row tool-marquee-row--top" :duration="28" :pause-on-hover="true">
+                            <NuxtLink to="/fitness/bmi-calculator">BMI</NuxtLink>
+                            <NuxtLink to="/fitness/body-fat-calculator">Body Fat</NuxtLink>
+                            <NuxtLink to="/fitness/bmr-calculator">BMR</NuxtLink>
+                            <NuxtLink to="/fitness/tdee-calculator">TDEE</NuxtLink>
+                            <NuxtLink to="/math/percentage-calculator">Percentage</NuxtLink>
+                            <NuxtLink to="/math/manhattan-distance-calculator">Manhattan</NuxtLink>
+                            <NuxtLink to="/other/px-to-rem-calculator">Px to Rem</NuxtLink>
+                            <NuxtLink to="/other/pizza-calculator">Pizza</NuxtLink>
+                        </Vue3Marquee>
+                        <Vue3Marquee class="tool-marquee-row tool-marquee-row--bottom" :duration="36" :pause-on-hover="true" direction="reverse">
+                            <NuxtLink to="/unit/celsius-to-fahrenheit-converter">Celsius</NuxtLink>
+                            <NuxtLink to="/unit/fahrenheit-to-celsius-converter">Fahrenheit</NuxtLink>
+                            <NuxtLink to="/unit/miles-to-kilometers">Miles</NuxtLink>
+                            <NuxtLink to="/unit/kilometers-to-miles">Kilometers</NuxtLink>
+                            <NuxtLink to="/other/aqua-calculator">Aqua</NuxtLink>
+                            <NuxtLink to="/other/age-calculator">Age</NuxtLink>
+                            <NuxtLink to="/fitness/ideal-weight-calculator">Ideal Weight</NuxtLink>
+                        </Vue3Marquee>
+                    </ClientOnly>
                 </div>
             </div>
 
@@ -303,64 +290,38 @@ useHead({
 }
 
 .tool-marquee-row {
-    display: flex;
-    gap: 32px;
-    white-space: nowrap;
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1;
     color: #0a0a0a;
-    flex-shrink: 0;
-    width: max-content;
 }
 
 .tool-marquee-row--top {
     font-size: 36px;
-    animation: tool-marquee-scroll 28s linear infinite;
 }
 
 .tool-marquee-row--bottom {
     font-size: 28px;
     opacity: 0.45;
-    animation: tool-marquee-scroll 36s linear infinite;
-    animation-direction: reverse;
 }
 
-.tool-marquee-row a {
+.tool-marquee-row :deep(a) {
     display: inline-flex;
     align-items: center;
     gap: 12px;
+    margin-right: 32px;
     color: inherit;
     text-decoration: none;
 }
 
-.tool-marquee-row a::after {
+.tool-marquee-row :deep(a)::after {
     content: "✦";
     font-size: 16px;
     color: #5c3bef;
 }
 
-.tool-marquee-row a:hover {
+.tool-marquee-row :deep(a):hover {
     color: #5c3bef;
-}
-
-.tool-marquee:hover .tool-marquee-row {
-    animation-play-state: paused;
-}
-
-@keyframes tool-marquee-scroll {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .tool-marquee-row {
-        animation: none;
-    }
 }
 
 /* ── Bottom row layout ── */
