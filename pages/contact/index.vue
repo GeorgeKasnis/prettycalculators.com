@@ -115,7 +115,7 @@ async function handleSubmit() {
     }).toString()
 
     try {
-        const res = await fetch('/', {
+        const res = await fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body,
