@@ -1,6 +1,6 @@
 <template>
     <!-- Breadcrumb band -->
-    <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: 'Blog' }]" />
+    <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: 'Blog' }]" :dark="true" />
 
     <!-- Blog header (black) -->
     <div class="bg-brut border-b-3 border-brut px-7 pt-8 pb-7 flex items-end justify-between gap-5 mobile:flex-col mobile:items-start mobile:gap-4 mobile:px-5">

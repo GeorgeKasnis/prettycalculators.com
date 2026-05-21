@@ -6,25 +6,33 @@
             </NuxtLink>
 
             <!-- Desktop nav -->
-            <ul class="flex items-stretch ml-auto list-none mobile:hidden">
-                <li v-for="link in navLinks" :key="link.to">
+            <ul class="flex items-stretch ml-auto list-none tablet:hidden">
+                <li v-for="link in catLinks" :key="link.to" class="nav-cat" :style="{ '--c': link.color }">
                     <NuxtLink
                         :to="link.to"
-                        class="flex items-center px-6 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-cream no-underline border-l border-[#333] h-full transition-colors duration-100"
-                        :class="$route.path.startsWith(link.to) ? 'bg-lavender !text-brut' : 'hover:bg-lavender hover:text-brut'"
+                        class="nav-cat-link"
+                        :class="{ active: $route.path.startsWith(link.to) }"
                     >{{ link.label }}</NuxtLink>
+                </li>
+                <li class="nav-divider" aria-hidden="true"></li>
+                <li class="nav-blog">
+                    <NuxtLink
+                        to="/blog"
+                        class="nav-blog-link"
+                        :class="{ active: $route.path.startsWith('/blog') }"
+                    >Blog</NuxtLink>
                 </li>
             </ul>
 
             <!-- Search button -->
-            <button class="search-btn mobile:hidden" @click="searchOpen = true" aria-label="Search calculators">
+            <button class="search-btn tablet:hidden" @click="searchOpen = true" aria-label="Search calculators">
                 <span class="search-btn-icon">⌕</span>
                 <span class="search-btn-text">Search</span>
             </button>
 
             <!-- Mobile hamburger -->
             <button
-                class="hamburger-btn hidden mobile:flex ml-auto"
+                class="hamburger-btn hidden tablet:flex ml-auto"
                 :class="{ 'is-open': menuOpen }"
                 :aria-expanded="menuOpen"
                 aria-label="Toggle navigation menu"
@@ -37,16 +45,27 @@
         </nav>
 
         <!-- Mobile dropdown menu -->
-        <ul v-show="menuOpen" class="mobile-menu hidden mobile:block fixed z-40 list-none bg-brut w-full border-b-3 border-brut">
-            <li v-for="link in navLinks" :key="link.to">
+        <ul v-show="menuOpen" class="mobile-menu hidden tablet:block fixed z-40 list-none bg-brut w-full border-b-3 border-brut">
+            <li v-for="link in catLinks" :key="link.to" class="nav-cat" :style="{ '--c': link.color }">
                 <NuxtLink
                     :to="link.to"
-                    class="flex items-center justify-between px-5 py-[18px] font-mono text-[13px] font-bold uppercase tracking-[0.1em] text-cream no-underline border-b border-[#222]"
-                    active-class="bg-lavender !text-brut"
+                    class="mobile-cat-link"
+                    :class="{ active: $route.path.startsWith(link.to) }"
                     @click="menuOpen = false"
                 >
                     {{ link.label }}
-                    <span class="text-brut-yellow opacity-60 text-base">→</span>
+                    <span class="opacity-60 text-base">→</span>
+                </NuxtLink>
+            </li>
+            <li class="nav-blog">
+                <NuxtLink
+                    to="/blog"
+                    class="mobile-blog-link"
+                    :class="{ active: $route.path.startsWith('/blog') }"
+                    @click="menuOpen = false"
+                >
+                    Blog
+                    <span class="opacity-60 text-base">→</span>
                 </NuxtLink>
             </li>
         </ul>
@@ -57,7 +76,7 @@
         </Transition>
 
         <!-- Mobile search FAB -->
-        <button class="search-fab hidden mobile:flex" :class="{ 'search-fab--hidden': fabNearBottom || menuOpen }" @click="searchOpen = true" aria-label="Search calculators">
+        <button class="search-fab hidden tablet:flex" :class="{ 'search-fab--hidden': fabNearBottom || menuOpen }" @click="searchOpen = true" aria-label="Search calculators">
             <span style="font-size:22px;line-height:1">⌕</span>
         </button>
 
@@ -89,12 +108,11 @@ watch(menuOpen, (val) => {
     }
 })
 
-const navLinks = [
-    { to: '/fitness', label: 'Fitness' },
-    { to: '/math',    label: 'Math' },
-    { to: '/finance', label: 'Finance' },
-    { to: '/other',   label: 'Other' },
-    { to: '/blog',    label: 'Blog' },
+const catLinks = [
+    { to: '/fitness', label: 'Fitness', color: '#ddd6ff' },
+    { to: '/math',    label: 'Math',    color: '#f5e642' },
+    { to: '/finance', label: 'Finance', color: '#d4edda' },
+    { to: '/other',   label: 'Other',   color: '#ffd6d6' },
 ]
 
 const fabNearBottom = ref(false)
@@ -130,6 +148,99 @@ function onKey(e) {
 </script>
 
 <style scoped>
+/* Category nav links */
+.nav-cat-link {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fafafa;
+    text-decoration: none;
+    border-left: 1px solid #333;
+    height: 100%;
+    transition: background 0.1s, color 0.1s;
+}
+.nav-cat-link::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: var(--c);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    flex-shrink: 0;
+}
+.nav-cat-link:hover,
+.nav-cat-link.active { background: var(--c); color: #0a0a0a; }
+.nav-cat-link:hover::before,
+.nav-cat-link.active::before { border-color: #0a0a0a; }
+
+/* Blog link */
+.nav-blog-link {
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #f5e642;
+    text-decoration: none;
+    border-left: 1px solid #333;
+    height: 100%;
+    transition: background 0.1s, color 0.1s;
+}
+.nav-blog-link:hover,
+.nav-blog-link.active { background: #f5e642; color: #0a0a0a; }
+
+/* Divider between categories and blog */
+.nav-divider {
+    width: 0;
+    border-left: 1px solid #333;
+    margin: 14px 0;
+}
+
+/* Mobile category links */
+.mobile-cat-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fafafa;
+    text-decoration: none;
+    border-bottom: 1px solid #222;
+    transition: background 0.1s, color 0.1s;
+}
+.mobile-cat-link:hover,
+.mobile-cat-link.active { background: var(--c); color: #0a0a0a; }
+
+/* Mobile blog link */
+.mobile-blog-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #f5e642;
+    text-decoration: none;
+    transition: background 0.1s, color 0.1s;
+}
+.mobile-blog-link:hover,
+.mobile-blog-link.active { background: #f5e642; color: #0a0a0a; }
+
 /* Search button */
 .search-btn {
     display: flex;
@@ -228,10 +339,6 @@ function onKey(e) {
 
 .mobile-menu li:last-child a {
     border-bottom: none;
-}
-
-@media (max-width: 767px) {
-    .search-btn { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

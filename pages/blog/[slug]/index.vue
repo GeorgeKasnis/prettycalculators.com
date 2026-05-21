@@ -3,7 +3,7 @@
     <div class="progress-bar" :style="{ width: `${readProgress}%` }" />
 
     <!-- Breadcrumb band -->
-    <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: 'Blog', to: '/blog' }, { label: fields.title }]" />
+    <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: 'Blog', to: '/blog' }, { label: fields.title }]" :dark="true" />
 
     <!-- Article header -->
     <div class="bg-brut border-b-3 border-brut px-8 pt-8 pb-7 mobile:px-5">

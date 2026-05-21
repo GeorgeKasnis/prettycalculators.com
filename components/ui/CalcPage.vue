@@ -1,6 +1,6 @@
 <template>
     <!-- Breadcrumb band -->
-    <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: config.title, to: `/${category}` }, { label: title }]" />
+    <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: config.title, to: `/${category}` }, { label: title }]" :color="config.color" />
 
     <!-- Page grid -->
     <div class="page-grid border-b-3 border-brut">

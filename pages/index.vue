@@ -33,6 +33,11 @@
         </div>
     </div>
 
+    <!-- Slot machine -->
+    <ClientOnly>
+        <UiSlotMachine />
+    </ClientOnly>
+
     <!-- Bottom row -->
     <div class="bottom-row grid border-b-3 border-ink">
         <!-- Feature block -->
