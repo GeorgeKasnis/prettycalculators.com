@@ -68,26 +68,16 @@
 </template>
 
 <script setup>
-const CALCULATORS = [
-    { cat: 'Fitness', name: 'BMI Calculator',          url: '/fitness/bmi-calculator',               color: '#ddd6ff' },
-    { cat: 'Fitness', name: 'Body Fat Calculator',     url: '/fitness/body-fat-calculator',          color: '#ddd6ff' },
-    { cat: 'Fitness', name: 'BMR Calculator',          url: '/fitness/bmr-calculator',               color: '#ddd6ff' },
-    { cat: 'Fitness', name: 'TDEE Calculator',         url: '/fitness/tdee-calculator',              color: '#ddd6ff' },
-    { cat: 'Fitness', name: 'Ideal Weight Calculator', url: '/fitness/ideal-weight-calculator',      color: '#ddd6ff' },
-    { cat: 'Math',    name: 'Percentage Calculator',   url: '/math/percentage-calculator',           color: '#f5e642' },
-    { cat: 'Math',    name: 'GPA Calculator',          url: '/math/gpa-calculator',                  color: '#f5e642' },
-    { cat: 'Math',    name: 'Fraction Calculator',     url: '/math/fraction-calculator',             color: '#f5e642' },
-    { cat: 'Math',    name: 'Ratio Calculator',        url: '/math/ratio-calculator',                color: '#f5e642' },
-    { cat: 'Finance', name: 'YouTube Earnings',        url: '/finance/youtube-earnings-calculator',  color: '#d4edda' },
-    { cat: 'Finance', name: 'Compound Interest',       url: '/finance/compound-interest-calculator', color: '#d4edda' },
-    { cat: 'Finance', name: 'Mortgage Calculator',     url: '/finance/mortgage-calculator',          color: '#d4edda' },
-    { cat: 'Finance', name: 'ROI Calculator',          url: '/finance/roi-calculator',               color: '#d4edda' },
-    { cat: 'Other',   name: 'Age Calculator',          url: '/other/age-calculator',                 color: '#ffd6d6' },
-    { cat: 'Other',   name: 'Pizza Calculator',        url: '/other/pizza-calculator',               color: '#ffd6d6' },
-    { cat: 'Other',   name: 'Tip Calculator',          url: '/other/tip-calculator',                 color: '#ffd6d6' },
-    { cat: 'Other',   name: 'Celsius to Fahrenheit',   url: '/unit/celsius-to-fahrenheit-converter', color: '#ffd6d6' },
-    { cat: 'Other',   name: 'Sleep Calculator',        url: '/other/sleep-calculator',               color: '#ffd6d6' },
-]
+const { otherCategories: allCategories } = useCategoryConfig('_')
+
+const CALCULATORS = allCategories.flatMap(cat =>
+    cat.tools.map(tool => ({
+        cat:   cat.title,
+        name:  tool.label,
+        url:   tool.to,
+        color: cat.color,
+    }))
+)
 
 const ITEM_H      = 60
 const REEL_COPIES = 6
