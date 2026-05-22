@@ -138,6 +138,7 @@ function spin() {
     background: #0a0a0a;
     border-top: 3px solid #0a0a0a;
     border-bottom: 3px solid #0a0a0a;
+    overflow: hidden;
 }
 
 .slot-section {
@@ -484,9 +485,10 @@ function spin() {
 }
 
 /* Mobile: full-width reel, replace lever with button */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
     .slot-left    { padding: 32px 20px; }
     .slot-title   { font-size: 32px; }
+    .slot-result  { max-width: 100%; width: 100%; box-sizing: border-box; }
     .slot-machine {
         flex-direction: column;
         align-items: stretch;

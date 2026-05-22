@@ -257,6 +257,7 @@ function onKey(e) {
     flex-shrink: 0;
 }
 .search-btn:hover { background: #1a1a1a; }
+@media (max-width: 1199px) { .search-btn { display: none; } }
 
 .search-btn-icon { font-size: 18px; line-height: 1; }
 
