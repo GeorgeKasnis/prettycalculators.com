@@ -144,7 +144,7 @@ const blogPosts = computed(() => {
 useHead({
     title: "Pretty Calculators — Find the calculator you need",
     link: [
-        { rel: 'canonical', href: 'https://www.prettycalculators.com/' },
+        { rel: 'canonical', href: 'https://prettycalculators.com/' },
     ],
     script: [
         {
@@ -153,7 +153,7 @@ useHead({
                 '@context': 'https://schema.org',
                 '@type': 'WebSite',
                 name: 'Pretty Calculators',
-                url: 'https://www.prettycalculators.com',
+                url: 'https://prettycalculators.com',
                 description: 'Fast, focused calculators for fitness, math, conversions and more. Free and beautifully designed.',
             }),
         },
@@ -163,15 +163,15 @@ useHead({
                 '@context': 'https://schema.org',
                 '@type': 'Organization',
                 name: 'Pretty Calculators',
-                url: 'https://www.prettycalculators.com',
-                logo: 'https://www.prettycalculators.com/android-icon-192x192.png',
+                url: 'https://prettycalculators.com',
+                logo: 'https://prettycalculators.com/android-icon-192x192.png',
             }),
         },
     ],
     meta: [
         { hid: "title",               name: "title",               content: "Pretty Calculators — Find the calculator you need" },
         { hid: "description",         name: "description",         content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed." },
-        { hid: "og:url",              property: "og:url",          content: "https://www.prettycalculators.com/" },
+        { hid: "og:url",              property: "og:url",          content: "https://prettycalculators.com/" },
         { hid: "og-title",            property: "og:title",        content: "Pretty Calculators — Find the calculator you need" },
         { hid: "og:description",      property: "og:description",  content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed." },
         { hid: "twitter:card",        name: "twitter:card",        content: "summary_large_image" },

@@ -136,7 +136,7 @@ const blogPosts = computed(() => {
     })
 })
 
-const SITE = 'https://www.prettycalculators.com'
+const SITE = 'https://prettycalculators.com'
 const route = useRoute()
 const canonical = `${SITE}${route.path}`
 

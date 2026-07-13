@@ -21,7 +21,7 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            SITE_URL: process.env.SITE_URL || "https://www.prettycalculators.com/",
+            SITE_URL: process.env.SITE_URL || "https://prettycalculators.com/",
             API_URL: process.env.API_URL,
         },
     },
@@ -49,7 +49,7 @@ export default defineNuxtConfig({
                 },
                 {
                     property: "og:image",
-                    content: "https://www.prettycalculators.com/og-image.png",
+                    content: "https://prettycalculators.com/og-image.png",
                 },
                 {
                     property: "og:image:type",
@@ -65,7 +65,7 @@ export default defineNuxtConfig({
                 },
                 {
                     property: "og:image:alt",
-                    content: "www.prettycalculators.com",
+                    content: "prettycalculators.com",
                 },
             ],
             htmlAttrs: {

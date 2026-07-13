@@ -188,7 +188,7 @@ const imageUrl = computed(() => {
 
 const postTitle = `Pretty Calculators — ${fields.value.metaTitle || fields.value.title}`
 const postDesc = fields.value.metaDescription ?? ''
-const canonical = `https://www.prettycalculators.com${route.path}`
+const canonical = `https://prettycalculators.com${route.path}`
 
 const articleLd = {
     '@context': 'https://schema.org',
@@ -198,8 +198,8 @@ const articleLd = {
     url: canonical,
     datePublished: postSys.value.createdAt ?? '',
     dateModified: postSys.value.updatedAt ?? '',
-    author: { '@type': 'Organization', name: 'Pretty Calculators', url: 'https://www.prettycalculators.com' },
-    publisher: { '@type': 'Organization', name: 'Pretty Calculators', url: 'https://www.prettycalculators.com' },
+    author: { '@type': 'Organization', name: 'Pretty Calculators', url: 'https://prettycalculators.com' },
+    publisher: { '@type': 'Organization', name: 'Pretty Calculators', url: 'https://prettycalculators.com' },
     ...(imageUrl.value ? { image: `https:${imageUrl.value}` } : {}),
 }
 
@@ -207,8 +207,8 @@ const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.prettycalculators.com/' },
-        { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.prettycalculators.com/blog' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://prettycalculators.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://prettycalculators.com/blog' },
         { '@type': 'ListItem', position: 3, name: fields.value.title ?? '', item: canonical },
     ],
 }

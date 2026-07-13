@@ -128,12 +128,12 @@ const BLOG_DESC = 'Tips, guides and insights on fitness, math, unit conversions 
 useHead({
     title: BLOG_TITLE,
     link: [
-        { rel: 'canonical', href: 'https://www.prettycalculators.com/blog' },
+        { rel: 'canonical', href: 'https://prettycalculators.com/blog' },
     ],
     meta: [
         { hid: 'title',               name: 'title',               content: BLOG_TITLE },
         { hid: 'description',         name: 'description',         content: BLOG_DESC },
-        { hid: 'og:url',              property: 'og:url',          content: 'https://www.prettycalculators.com/blog' },
+        { hid: 'og:url',              property: 'og:url',          content: 'https://prettycalculators.com/blog' },
         { hid: 'og-title',            property: 'og:title',        content: BLOG_TITLE },
         { hid: 'og:description',      property: 'og:description',  content: BLOG_DESC },
         { hid: 'twitter:card',        name: 'twitter:card',        content: 'summary_large_image' },

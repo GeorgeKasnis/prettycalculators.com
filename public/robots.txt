@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.prettycalculators.com/sitemap.xml
+Sitemap: https://prettycalculators.com/sitemap.xml
