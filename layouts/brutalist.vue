@@ -13,10 +13,10 @@
 <script setup>
 const route = useRoute()
 
-const CALC_CATEGORIES = new Set(['fitness', 'math', 'finance', 'unit', 'other'])
+// only fitness calculators consume useUnit — hide the toggle everywhere else
 const isCalcPage = computed(() => {
     const parts = route.path.split('/').filter(Boolean)
-    return parts.length >= 2 && CALC_CATEGORIES.has(parts[0])
+    return parts.length >= 2 && parts[0] === 'fitness'
 })
 
 useHead(() => ({

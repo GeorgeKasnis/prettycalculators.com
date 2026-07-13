@@ -254,7 +254,9 @@ function clear() {
 .fmt-btn.active { background: #f5e642; }
 .preview-img {
     margin-top: 12px;
-    max-width: 100%;
+    max-width: 240px;
+    max-height: 180px;
+    object-fit: contain;
     border: 3px solid #0a0a0a;
     box-shadow: 5px 5px 0 #0a0a0a;
     display: block;
