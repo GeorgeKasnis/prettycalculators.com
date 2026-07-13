@@ -138,7 +138,7 @@ const blogPosts = computed(() => {
 
 const SITE = 'https://prettycalculators.com'
 const route = useRoute()
-const canonical = `${SITE}${route.path}`
+const canonical = `${SITE}${route.path.replace(/\/+$/, '') || '/'}`
 
 const itemListLd = {
     '@context': 'https://schema.org',

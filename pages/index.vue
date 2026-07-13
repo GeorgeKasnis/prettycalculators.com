@@ -58,6 +58,8 @@
                             <NuxtLink to="/math/percentage-calculator">Percentage</NuxtLink>
                             <NuxtLink to="/math/manhattan-distance-calculator">Manhattan</NuxtLink>
                             <NuxtLink to="/other/px-to-rem-calculator">Px to Rem</NuxtLink>
+                            <NuxtLink to="/other/image-compressor">Image Compressor</NuxtLink>
+                            <NuxtLink to="/other/qr-code-generator">QR Code</NuxtLink>
                             <NuxtLink to="/other/pizza-calculator">Pizza</NuxtLink>
                         </Vue3Marquee>
                         <Vue3Marquee class="tool-marquee-row tool-marquee-row--bottom" :duration="36" :pause-on-hover="true" direction="reverse">
@@ -65,7 +67,8 @@
                             <NuxtLink to="/unit/fahrenheit-to-celsius-converter">Fahrenheit</NuxtLink>
                             <NuxtLink to="/unit/miles-to-kilometers">Miles</NuxtLink>
                             <NuxtLink to="/unit/kilometers-to-miles">Kilometers</NuxtLink>
-                            <NuxtLink to="/other/aqua-calculator">Aqua</NuxtLink>
+                            <NuxtLink to="/other/json-formatter">JSON Formatter</NuxtLink>
+                            <NuxtLink to="/other/unix-timestamp-converter">Timestamp</NuxtLink>
                             <NuxtLink to="/other/age-calculator">Age</NuxtLink>
                             <NuxtLink to="/fitness/ideal-weight-calculator">Ideal Weight</NuxtLink>
                         </Vue3Marquee>

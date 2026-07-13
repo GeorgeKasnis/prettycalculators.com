@@ -5,6 +5,9 @@ export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig()
     const base = 'https://prettycalculators.com'
     const today = new Date().toISOString().split('T')[0]
+    // bump manually when calculator pages meaningfully change — a lastmod that
+    // changes every day teaches Google to distrust it
+    const staticLastmod = '2026-07-14'
 
     const staticUrls = [
         { loc: '/',             changefreq: 'weekly',  priority: '1.0' },
@@ -114,7 +117,7 @@ export default defineEventHandler(async (event) => {
     const toUrl = (loc: string, lastmod: string, changefreq: string, priority: string) =>
         `  <url>\n    <loc>${base}${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
 
-    const staticXml = staticUrls.map(u => toUrl(u.loc, today, u.changefreq, u.priority)).join('\n')
+    const staticXml = staticUrls.map(u => toUrl(u.loc, staticLastmod, u.changefreq, u.priority)).join('\n')
 
     const blogXml = blogEntries
         .map(({ slug, updatedAt }) => toUrl(`/blog/${slug}`, updatedAt, 'monthly', '0.75'))

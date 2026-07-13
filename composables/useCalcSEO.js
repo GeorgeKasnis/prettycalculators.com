@@ -10,9 +10,10 @@ const APP_CATEGORY_MAP = {
 
 export const useCalcSEO = (title, description, faqs = []) => {
     const route = useRoute()
-    const canonical = `${SITE}${route.path}`
+    const path = route.path.replace(/\/+$/, '') || '/'
+    const canonical = `${SITE}${path}`
 
-    const segments = route.path.split('/').filter(Boolean)
+    const segments = path.split('/').filter(Boolean)
     const categorySlug = segments[0] ?? ''
     const categoryLabel = categorySlug.charAt(0).toUpperCase() + categorySlug.slice(1)
     const appCategory = APP_CATEGORY_MAP[categorySlug] ?? 'UtilitiesApplication'

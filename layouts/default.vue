@@ -15,7 +15,7 @@ useHead(() => ({
     link: [
         {
             rel: 'canonical',
-            href: 'https://prettycalculators.com' + route.path,
+            href: 'https://prettycalculators.com' + (route.path.replace(/\/+$/, '') || '/'),
         },
     ],
 }))

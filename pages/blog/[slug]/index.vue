@@ -188,7 +188,7 @@ const imageUrl = computed(() => {
 
 const postTitle = `Pretty Calculators — ${fields.value.metaTitle || fields.value.title}`
 const postDesc = fields.value.metaDescription ?? ''
-const canonical = `https://prettycalculators.com${route.path}`
+const canonical = `https://prettycalculators.com${route.path.replace(/\/+$/, '') || '/'}`
 
 const articleLd = {
     '@context': 'https://schema.org',
