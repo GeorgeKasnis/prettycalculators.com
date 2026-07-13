@@ -37,6 +37,10 @@ export const useCookieConsent = () => {
         localStorage.setItem(CONSENT_KEY, "rejected");
         status.value = "rejected";
         ready.value = true;
+
+        if (typeof window.__updatePrettyCalculatorsConsent === "function") {
+            window.__updatePrettyCalculatorsConsent(false);
+        }
     };
 
     const resetCookieConsent = () => {
