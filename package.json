@@ -29,6 +29,7 @@
     "@nuxtjs/google-adsense": "^2.1.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@vueuse/core": "^9.13.0",
+    "qrcode": "^1.5.4",
     "resend": "^6.4.2",
     "vue-router": "^4.0.13",
     "vue-social-sharing": "^4.0.0-alpha4",

@@ -9,7 +9,12 @@
       "Bash(tar -xzf /tmp/design.tar.gz -O --wildcards \"*/bmi-calculator.html\")",
       "Bash(tar -xzf /tmp/design.tar.gz -O --wildcards \"*/README*\")",
       "Bash(curl -s -L \"https://api.anthropic.com/v1/design/h/jXyxrXC-DdxbqQPM_OEPwQ?open_file=bmi-calculator.html\" -o /tmp/design2.tar.gz)",
-      "Bash(tar -tzf /tmp/design2.tar.gz)"
+      "Bash(tar -tzf /tmp/design2.tar.gz)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/other/json-formatter)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/other/json-formatter)",
+      "Bash(netstat -ano)",
+      "Bash(node -e \"console.log\\('kit:', require\\('./node_modules/@nuxt/kit/package.json'\\).version\\); console.log\\('nuxt:', require\\('./node_modules/nuxt/package.json'\\).version\\)\")"
     ]
   }
 }
