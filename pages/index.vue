@@ -15,7 +15,7 @@
     </div>
 
     <!-- Category cards grid -->
-    <div class="px-7 pb-7 grid grid-cols-4 tablet:grid-cols-2 mobile:grid-cols-1 mobile:px-4 mobile:pb-4 border-b-3 border-ink">
+    <div class="px-7 pb-7 grid grid-cols-5 tablet:grid-cols-2 mobile:grid-cols-1 mobile:px-4 mobile:pb-4 border-b-3 border-ink">
         <div v-for="(cat, i) in categories" :key="cat.slug" class="cat-card border-3 border-ink -m-[1.5px] bg-cream flex flex-col">
             <NuxtLink :to="`/${cat.slug}`" class="px-6 py-5 border-b-3 border-ink flex items-start justify-between gap-2 no-underline text-ink mobile:px-4 mobile:py-4" :style="{ background: cat.color }">
                 <div class="text-[32px] font-bold tracking-[-0.04em] leading-none mobile:text-[28px]">{{ cat.title }}</div>
@@ -57,9 +57,9 @@
                             <NuxtLink to="/fitness/tdee-calculator">TDEE</NuxtLink>
                             <NuxtLink to="/math/percentage-calculator">Percentage</NuxtLink>
                             <NuxtLink to="/math/manhattan-distance-calculator">Manhattan</NuxtLink>
-                            <NuxtLink to="/other/px-to-rem-calculator">Px to Rem</NuxtLink>
-                            <NuxtLink to="/other/image-compressor">Image Compressor</NuxtLink>
-                            <NuxtLink to="/other/qr-code-generator">QR Code</NuxtLink>
+                            <NuxtLink to="/tools/px-to-rem-calculator">Px to Rem</NuxtLink>
+                            <NuxtLink to="/tools/image-compressor">Image Compressor</NuxtLink>
+                            <NuxtLink to="/tools/qr-code-generator">QR Code</NuxtLink>
                             <NuxtLink to="/other/pizza-calculator">Pizza</NuxtLink>
                         </Vue3Marquee>
                         <Vue3Marquee class="tool-marquee-row tool-marquee-row--bottom" :duration="36" :pause-on-hover="true" direction="reverse">
@@ -67,8 +67,8 @@
                             <NuxtLink to="/unit/fahrenheit-to-celsius-converter">Fahrenheit</NuxtLink>
                             <NuxtLink to="/unit/miles-to-kilometers">Miles</NuxtLink>
                             <NuxtLink to="/unit/kilometers-to-miles">Kilometers</NuxtLink>
-                            <NuxtLink to="/other/json-formatter">JSON Formatter</NuxtLink>
-                            <NuxtLink to="/other/unix-timestamp-converter">Timestamp</NuxtLink>
+                            <NuxtLink to="/tools/json-formatter">JSON Formatter</NuxtLink>
+                            <NuxtLink to="/tools/unix-timestamp-converter">Timestamp</NuxtLink>
                             <NuxtLink to="/other/age-calculator">Age</NuxtLink>
                             <NuxtLink to="/fitness/ideal-weight-calculator">Ideal Weight</NuxtLink>
                         </Vue3Marquee>
@@ -236,6 +236,11 @@ useHead({
 .cta-cats {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+/* odd category count: stretch the last cell across the full row */
+.cta-cat-cell:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
 }
 
 .cta-cat-cell {

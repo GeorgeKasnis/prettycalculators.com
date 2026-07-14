@@ -5,6 +5,7 @@ const APP_CATEGORY_MAP = {
     math:    'EducationalApplication',
     unit:    'UtilitiesApplication',
     other:   'UtilitiesApplication',
+    tools:   'UtilitiesApplication',
     finance: 'FinancialApplication',
 }
 
