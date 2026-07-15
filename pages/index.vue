@@ -99,16 +99,19 @@
                     <span class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-35">From the blog</span>
                     <NuxtLink to="/blog" class="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-ink opacity-45 hover:opacity-100 no-underline transition-opacity">All posts →</NuxtLink>
                 </div>
-                <div class="blog-grid gap-4">
-                    <NuxtLink v-for="post in blogPosts" :key="post.slug" :to="`/blog/${post.slug}`" class="blog-card border-3 border-ink -m-[1.5px] no-underline">
-                        <!-- <div class="blog-card-thumb mobile:hidden bg-ink flex items-center justify-center px-4">
-                            <span class="text-[13px] font-bold text-cream text-center tracking-[-0.02em] leading-snug whitespace-pre-line">{{ post.thumb }}</span>
-                        </div> -->
-                        <div class="bg-cream px-4 py-3 flex flex-col justify-between gap-2 flex-1">
-                            <div class="text-xs font-semibold leading-snug text-ink">{{ post.title }}</div>
-                            <div class="font-mono text-[9px] font-bold uppercase tracking-[0.1em] opacity-30">{{ post.tag }}</div>
-                        </div>
+                <div class="blog-index border-3 border-ink bg-cream">
+                    <NuxtLink :to="`/blog/${featuredPost.slug}`" class="blog-feature" :style="{ '--c': featuredPost.cat.color }">
+                        <span class="blog-feature-badge">Latest post</span>
+                        <span class="blog-feature-title">{{ featuredPost.title }}</span>
+                        <span class="blog-feature-meta">{{ featuredPost.cat.label }} · Read →</span>
                     </NuxtLink>
+                    <div class="blog-list">
+                        <NuxtLink v-for="(post, i) in listPosts" :key="post.slug" :to="`/blog/${post.slug}`" class="blog-row" :style="{ '--c': post.cat.color }">
+                            <span class="blog-row-num">{{ String(i + 1).padStart(2, '0') }}</span>
+                            <span class="blog-row-title">{{ post.title }}</span>
+                            <span class="blog-row-cat">{{ post.cat.label }}</span>
+                        </NuxtLink>
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,9 +150,19 @@ const toolsCat = toolCategories[0];
 const totalCount = computed(() => calculatorCategories.reduce((sum, c) => sum + c.tools.length, 0) + toolsCat.tools.length);
 
 const runtimeConfig = useRuntimeConfig();
-const { data: blogData } = await useFetch(`${runtimeConfig.public.API_URL}&content_type=blog&limit=6`);
+// select= keeps the payload small — without it every post's full rich-text body is downloaded
+const { data: blogData } = await useFetch(`${runtimeConfig.public.API_URL}&content_type=blog&limit=5&order=-sys.createdAt&select=fields.title,fields.slug`);
 
-const { thumbLines } = useBlogUtils();
+// Contentful posts carry no category field — infer the swatch from the title
+const CAT_RULES = [
+    { label: "Fitness", color: "#ddd6ff", re: /bmi|bmr|tdee|body fat|calorie|protein|macro|\bpace\b|running|weight|heart rate|vo2|water intake/i },
+    { label: "Math",    color: "#f5e642", re: /percentage|distance|manhattan|euclidean|cosine|fraction|\bratio\b|average|deviation|quadratic|\bgpa\b|\bmath\b/i },
+    { label: "Finance", color: "#d4edda", re: /interest|mortgage|loan|salary|\btax\b|invest|retirement|debt|savings|\broi\b|\bvat\b|earnings|money/i },
+    { label: "Tools",   color: "#cfe8ff", re: /image|compress|\bqr\b|password|json|base64|uuid|timestamp|\bcsv\b|lorem|\burl\b|diff|contrast|px to rem|word count|encoder/i },
+    { label: "Other",   color: "#ffd6d6", re: /pizza|\btip\b|sleep|\bage\b|pregnancy|ovulation|discount|reading time/i },
+];
+
+const postCategory = (title) => CAT_RULES.find((r) => r.re.test(title)) ?? { label: "Blog", color: "#ddd6ff" };
 
 const blogPosts = computed(() => {
     if (!blogData.value?.items?.length) return [];
@@ -158,11 +171,13 @@ const blogPosts = computed(() => {
         return {
             slug: item.fields.slug,
             title,
-            thumb: thumbLines(title).join("\n"),
-            tag: "Blog",
+            cat: postCategory(title),
         };
     });
 });
+
+const featuredPost = computed(() => blogPosts.value[0]);
+const listPosts = computed(() => blogPosts.value.slice(1, 5));
 
 useHead({
     title: "Pretty Calculators — Free Calculators & Tools",
@@ -249,31 +264,121 @@ useHead({
     opacity: 0.5;
 }
 
-/* ── Blog grid ── */
-.blog-grid {
+/* ── Blog index: featured post + numbered list ── */
+.blog-index {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin: -1.5px;
+    grid-template-columns: 1.1fr 1fr;
 }
 
-.blog-card {
+.blog-feature {
+    padding: 24px;
+    border-right: 3px solid #0a0a0a;
     display: flex;
     flex-direction: column;
-    transition:
-        transform 0.08s,
-        box-shadow 0.08s;
-    position: relative;
+    gap: 14px;
+    text-decoration: none;
     color: #0a0a0a;
+    transition: background 0.1s;
 }
-.blog-card:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 5px 5px 0px #0a0a0a;
-    z-index: 10;
+.blog-feature:hover { background: var(--c, #ddd6ff); }
+
+.blog-feature-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    background: #0a0a0a;
+    color: #fafafa;
+    padding: 4px 8px;
+    max-width: max-content;
 }
 
-.blog-card-thumb {
-    height: 90px;
-    border-bottom: 3px solid #0a0a0a;
+.blog-feature-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-wrap: pretty;
+}
+
+.blog-feature-meta {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.5;
+}
+.blog-feature-meta::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--c, #ddd6ff);
+    border: 1.5px solid #0a0a0a;
+}
+
+.blog-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: #0a0a0a;
+    border-bottom: 1.5px solid rgba(10, 10, 10, 0.12);
+    flex: 1;
+    transition: background 0.1s;
+}
+.blog-row:last-child { border-bottom: none; }
+.blog-row:hover { background: var(--c, #ddd6ff); }
+
+.blog-row-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0.3;
+    flex-shrink: 0;
+}
+
+.blog-row-title {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-wrap: pretty;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.blog-row-cat {
+    margin-left: auto;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.45;
+}
+.blog-row-cat::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--c, #ddd6ff);
+    border: 1.5px solid #0a0a0a;
 }
 
 /* ── CTA breakdown grid ── */
@@ -386,39 +491,33 @@ useHead({
     grid-template-columns: 2fr 1fr;
 }
 
-/* ── Tablet (768–1199px) ── */
-@media (max-width: 1199px) {
-    .blog-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
 @media (max-width: 900px) {
     .bottom-row {
         grid-template-columns: 1fr;
+    }
+
+    .blog-index {
+        grid-template-columns: 1fr;
+    }
+    .blog-feature {
+        border-right: none;
+        border-bottom: 3px solid #0a0a0a;
     }
 }
 
 /* ── Mobile (≤767px) ── */
 @media (max-width: 767px) {
-    .blog-grid {
-        grid-template-columns: 1fr;
-        margin: 0;
+    .blog-feature-title {
+        font-size: 18px;
     }
 
-    /* Horizontal blog card on mobile */
-    .blog-card {
-        flex-direction: row;
-        min-height: 96px;
-        margin: -1.5px;
+    .blog-row {
+        padding: 12px 14px;
+        gap: 10px;
     }
 
-    .blog-card-thumb {
-        width: 110px;
-        height: auto;
-        flex-shrink: 0;
-        border-bottom: none;
-        border-right: 3px solid #0a0a0a;
+    .blog-row-cat {
+        display: none;
     }
 
     .cat-card:hover {
