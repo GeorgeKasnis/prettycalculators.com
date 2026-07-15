@@ -11,7 +11,7 @@
             <!-- Category header -->
             <div class="border-b-3 border-brut px-8 pt-8 pb-7 flex items-start justify-between gap-4 mobile:px-5" :style="{ background: config.color }">
                 <h1 class="text-[56px] font-bold tracking-[-0.05em] leading-none mobile:text-[40px]">{{ config.title }}</h1>
-                <div class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] opacity-40 pt-1 whitespace-nowrap">{{ config.tools.length }} calculators</div>
+                <div class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] opacity-40 pt-1 whitespace-nowrap">{{ config.tools.length }} {{ config.kind }}</div>
             </div>
 
             <!-- Tools section -->
@@ -22,7 +22,7 @@
                     <input
                         v-model="toolSearch"
                         class="cat-search-input"
-                        :placeholder="`Filter ${config.tools.length} calculators…`"
+                        :placeholder="`Filter ${config.tools.length} ${config.kind}…`"
                         autocomplete="off"
                         spellcheck="false"
                     />
@@ -77,11 +77,11 @@
         <div class="sidebar flex flex-col border-brut">
 
             <div class="px-5 py-4 border-b-3 border-brut bg-brut flex items-center">
-                <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">Other Categories</span>
+                <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">{{ calcSectionLabel }}</span>
             </div>
 
             <NuxtLink
-                v-for="other in otherCategories"
+                v-for="other in calculatorCategories"
                 :key="other.slug"
                 :to="`/${other.slug}`"
                 class="sidebar-cat border-b-3 border-brut no-underline text-brut block"
@@ -94,6 +94,27 @@
                     <span v-for="tool in other.tools.slice(0, 3)" :key="tool.to" class="text-[13px] font-medium opacity-70">{{ tool.label }}</span>
                 </div>
             </NuxtLink>
+
+            <template v-if="toolCategories.length">
+                <div class="px-5 py-4 border-b-3 border-brut bg-brut flex items-center">
+                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">Browser Tools</span>
+                </div>
+
+                <NuxtLink
+                    v-for="other in toolCategories"
+                    :key="other.slug"
+                    :to="`/${other.slug}`"
+                    class="sidebar-cat border-b-3 border-brut no-underline text-brut block"
+                >
+                    <div class="px-5 py-4 border-b border-[rgba(10,10,10,0.1)] flex items-center justify-between" :style="{ background: other.color }">
+                        <span class="text-[22px] font-bold tracking-[-0.03em]">{{ other.title }}</span>
+                        <span class="text-sm opacity-25 sidebar-arrow">→</span>
+                    </div>
+                    <div class="px-5 pt-3 pb-4 flex flex-col gap-[6px]">
+                        <span v-for="tool in other.tools.slice(0, 3)" :key="tool.to" class="text-[13px] font-medium opacity-70">{{ tool.label }}</span>
+                    </div>
+                </NuxtLink>
+            </template>
 
             <UiAdSlot variant="rectangle" bordered class="flex-1" />
         </div>
@@ -108,7 +129,9 @@ const props = defineProps({
     },
 })
 
-const { config, otherCategories } = useCategoryConfig(props.slug)
+const { config, calculatorCategories, toolCategories } = useCategoryConfig(props.slug)
+
+const calcSectionLabel = computed(() => (config.kind === 'tools' ? 'Calculators' : 'More Calculators'))
 
 const toolSearch   = ref('')
 const filteredTools = computed(() => {

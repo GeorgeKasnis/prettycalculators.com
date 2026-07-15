@@ -2,7 +2,7 @@
     <Teleport to="body">
         <Transition name="sm-fade">
             <div v-if="modelValue" class="sm-overlay" @click.self="close">
-                <div class="sm-modal" role="dialog" aria-modal="true" aria-label="Search calculators">
+                <div class="sm-modal" role="dialog" aria-modal="true" aria-label="Search calculators and tools">
 
                     <!-- Input row -->
                     <div class="sm-input-row">
@@ -11,7 +11,7 @@
                             ref="inputEl"
                             v-model="query"
                             class="sm-input"
-                            placeholder="Search calculators…"
+                            placeholder="Search calculators & tools…"
                             autocomplete="off"
                             spellcheck="false"
                             @keydown.escape="close"
@@ -26,7 +26,7 @@
                     <div class="sm-body">
                         <!-- Empty query: show hint -->
                         <div v-if="!query.trim()" class="sm-hint">
-                            <span class="sm-hint-count">{{ allCalcs.length }} calculators</span> across 4 categories
+                            <span class="sm-hint-count">{{ allCalcs.length }} calculators &amp; tools</span> across {{ categoryCount }} categories
                         </div>
 
                         <!-- No match -->
@@ -75,6 +75,7 @@ const inputEl     = ref(null)
 const router      = useRouter()
 
 const allCalcs = useAllCalculators()
+const categoryCount = new Set(allCalcs.map(c => c.category)).size
 
 const results = computed(() => {
     const q = query.value.trim().toLowerCase()

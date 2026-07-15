@@ -5,8 +5,8 @@
     <div class="border-b-3 border-ink bg-yellow flex items-center gap-8 px-7 h-[52px] overflow-hidden relative mobile:flex-col mobile:items-start mobile:h-auto mobile:px-4 mobile:py-[14px] mobile:gap-1">
         <span class="font-mono text-[11px] font-bold uppercase tracking-[0.12em] opacity-50 whitespace-nowrap">Collection</span>
         <span class="font-mono text-[10px] font-bold bg-ink text-yellow px-2 py-[3px] tracking-widest whitespace-nowrap mobile:hidden">V2</span>
-        <span class="text-base font-bold tracking-tight mobile:max-w-[65%]">Find the calculator you need</span>
-        <span class="ml-auto font-mono text-[11px] font-bold bg-ink text-yellow px-3 py-1 tracking-widest whitespace-nowrap mobile:ml-0 mobile:absolute mobile:top-[14px] mobile:right-4">{{ totalTools }} TOOLS</span>
+        <span class="text-base font-bold tracking-tight mobile:max-w-[65%]">Find the calculator — or tool — you need</span>
+        <span class="ml-auto font-mono text-[11px] font-bold bg-ink text-yellow px-3 py-1 tracking-widest whitespace-nowrap mobile:ml-0 mobile:absolute mobile:top-[14px] mobile:right-4">{{ totalCount }} CALCULATORS & TOOLS</span>
     </div>
 
     <!-- Ad slot: leaderboard -->
@@ -15,8 +15,8 @@
     </div>
 
     <!-- Category cards grid -->
-    <div class="px-7 pb-7 grid grid-cols-5 tablet:grid-cols-2 mobile:grid-cols-1 mobile:px-4 mobile:pb-4 border-b-3 border-ink">
-        <div v-for="(cat, i) in categories" :key="cat.slug" class="cat-card border-3 border-ink -m-[1.5px] bg-cream flex flex-col">
+    <div class="px-7 pb-7 grid grid-cols-4 tablet:grid-cols-2 mobile:grid-cols-1 mobile:px-4 mobile:pb-4 border-b-3 border-ink">
+        <div v-for="(cat, i) in calculatorCategories" :key="cat.slug" class="cat-card border-3 border-ink -m-[1.5px] bg-cream flex flex-col">
             <NuxtLink :to="`/${cat.slug}`" class="px-6 py-5 border-b-3 border-ink flex items-start justify-between gap-2 no-underline text-ink mobile:px-4 mobile:py-4" :style="{ background: cat.color }">
                 <div class="text-[32px] font-bold tracking-[-0.04em] leading-none mobile:text-[28px]">{{ cat.title }}</div>
                 <div class="font-mono text-[11px] font-bold opacity-35 pt-1 tracking-wide">{{ String(i + 1).padStart(2, "0") }}</div>
@@ -33,6 +33,21 @@
         </div>
     </div>
 
+    <!-- Tools band -->
+    <div class="tools-band border-b-3 border-ink px-7 py-7 mobile:px-4 mobile:py-6">
+        <div class="flex items-end justify-between gap-4 mb-5 mobile:flex-col mobile:items-start mobile:gap-2">
+            <div>
+                <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-45 mb-2">Tools — private, in your browser</div>
+                <h2 class="text-[32px] font-bold tracking-[-0.04em] leading-none mobile:text-[26px]">Quick tools. No uploads.</h2>
+            </div>
+            <NuxtLink to="/tools" class="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-ink no-underline opacity-50 hover:opacity-100 transition-opacity whitespace-nowrap">All {{ toolsCat.tools.length }} tools →</NuxtLink>
+        </div>
+        <div class="flex flex-wrap gap-3 mobile:gap-2">
+            <NuxtLink v-for="tool in toolsCat.tools.slice(0, 8)" :key="tool.to" :to="tool.to" class="tools-chip">{{ tool.label }}</NuxtLink>
+            <NuxtLink to="/tools" class="tools-chip tools-chip--more">+{{ toolsCat.tools.length - 8 }} more →</NuxtLink>
+        </div>
+    </div>
+
     <!-- Slot machine -->
     <ClientOnly>
         <UiSlotMachine />
@@ -45,8 +60,8 @@
             <div class="feature-inner grid grd">
                 <div class="feature-text">
                     <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-40 mb-3">About Pretty Calculators</div>
-                    <div class="text-[42px] font-bold tracking-[-0.04em] leading-[1.05] mobile:text-[30px]">Every tool you need.<br /><em class="not-italic text-[#5c3bef]">Right here.</em></div>
-                    <p class="mt-4 text-[15px] opacity-60 max-w-sm leading-relaxed mobile:text-sm">Fast, focused calculators for fitness, math, conversions and more. Built to get you the answer quickly.</p>
+                    <div class="text-[42px] font-bold tracking-[-0.04em] leading-[1.05] mobile:text-[30px]">Calculators &amp; tools.<br /><em class="not-italic text-[#5c3bef]">Right here.</em></div>
+                    <p class="mt-4 text-[15px] opacity-60 max-w-sm leading-relaxed mobile:text-sm">Fast, focused calculators for fitness, math and finance — plus free browser tools for images, text and code. Built to get you the answer quickly.</p>
                 </div>
                 <div class="tool-marquee">
                     <ClientOnly>
@@ -101,16 +116,20 @@
         <!-- CTA block -->
         <div class="bg-ink px-7 py-8 flex flex-col gap-5 mobile:px-4 mobile:py-7">
             <div>
-                <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-1">Total tools</div>
-                <div class="text-[96px] font-bold tracking-[-0.06em] text-lavender leading-none mobile:text-[80px]">{{ totalTools }}</div>
+                <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-1">Calculators &amp; tools</div>
+                <div class="text-[96px] font-bold tracking-[-0.06em] text-lavender leading-none mobile:text-[80px]">{{ totalCount }}</div>
                 <div class="font-mono text-xs text-white/50 tracking-wide">& growing</div>
             </div>
 
             <!-- Category breakdown grid -->
             <div class="cta-cats border-3 border-white/20 sticky top-8">
-                <NuxtLink v-for="cat in categories" :key="cat.slug" :to="`/${cat.slug}`" class="cta-cat-cell no-underline" :style="{ background: cat.color }">
+                <NuxtLink v-for="cat in calculatorCategories" :key="cat.slug" :to="`/${cat.slug}`" class="cta-cat-cell no-underline" :style="{ background: cat.color }">
                     <span class="text-[28px] font-bold tracking-[-0.05em] leading-none text-ink">{{ cat.tools.length }}</span>
                     <span class="font-mono text-[9px] font-bold uppercase tracking-[0.1em] opacity-50 text-ink">{{ cat.title }}</span>
+                </NuxtLink>
+                <NuxtLink :to="`/${toolsCat.slug}`" class="cta-cat-cell cta-cat-cell--tools no-underline" :style="{ background: toolsCat.color }">
+                    <span class="text-[28px] font-bold tracking-[-0.05em] leading-none text-ink">{{ toolsCat.tools.length }}</span>
+                    <span class="font-mono text-[9px] font-bold uppercase tracking-[0.1em] opacity-50 text-ink">{{ toolsCat.title }}</span>
                 </NuxtLink>
             </div>
 
@@ -122,9 +141,10 @@
 <script setup>
 definePageMeta({ layout: "brutalist" });
 
-const { otherCategories: categories } = useCategoryConfig("_");
+const { calculatorCategories, toolCategories } = useCategoryConfig("_");
+const toolsCat = toolCategories[0];
 
-const totalTools = computed(() => categories.reduce((sum, c) => sum + c.tools.length, 0));
+const totalCount = computed(() => calculatorCategories.reduce((sum, c) => sum + c.tools.length, 0) + toolsCat.tools.length);
 
 const runtimeConfig = useRuntimeConfig();
 const { data: blogData } = await useFetch(`${runtimeConfig.public.API_URL}&content_type=blog&limit=6`);
@@ -145,7 +165,7 @@ const blogPosts = computed(() => {
 });
 
 useHead({
-    title: "Pretty Calculators — Find the calculator you need",
+    title: "Pretty Calculators — Free Calculators & Tools",
     link: [
         { rel: 'canonical', href: 'https://prettycalculators.com/' },
     ],
@@ -157,7 +177,7 @@ useHead({
                 '@type': 'WebSite',
                 name: 'Pretty Calculators',
                 url: 'https://prettycalculators.com',
-                description: 'Fast, focused calculators for fitness, math, conversions and more. Free and beautifully designed.',
+                description: 'Fast, focused calculators and free browser tools — fitness, math, finance, images, text and code.',
             }),
         },
         {
@@ -172,19 +192,43 @@ useHead({
         },
     ],
     meta: [
-        { hid: "title",               name: "title",               content: "Pretty Calculators — Find the calculator you need" },
-        { hid: "description",         name: "description",         content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed." },
+        { hid: "title",               name: "title",               content: "Pretty Calculators — Free Calculators & Tools" },
+        { hid: "description",         name: "description",         content: "Fast, focused calculators for fitness, math and finance — plus free browser tools: image compressor, QR code generator, JSON formatter and more." },
         { hid: "og:url",              property: "og:url",          content: "https://prettycalculators.com/" },
-        { hid: "og-title",            property: "og:title",        content: "Pretty Calculators — Find the calculator you need" },
-        { hid: "og:description",      property: "og:description",  content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed." },
+        { hid: "og-title",            property: "og:title",        content: "Pretty Calculators — Free Calculators & Tools" },
+        { hid: "og:description",      property: "og:description",  content: "Fast, focused calculators for fitness, math and finance — plus free browser tools: image compressor, QR code generator, JSON formatter and more." },
         { hid: "twitter:card",        name: "twitter:card",        content: "summary_large_image" },
-        { hid: "twitter:title",       name: "twitter:title",       content: "Pretty Calculators — Find the calculator you need" },
-        { hid: "twitter:description", name: "twitter:description", content: "Fast, focused calculators for fitness, math, conversions and more. BMI, BMR, TDEE, Body Fat, Percentage and more — free and beautifully designed." },
+        { hid: "twitter:title",       name: "twitter:title",       content: "Pretty Calculators — Free Calculators & Tools" },
+        { hid: "twitter:description", name: "twitter:description", content: "Fast, focused calculators for fitness, math and finance — plus free browser tools: image compressor, QR code generator, JSON formatter and more." },
     ],
 });
 </script>
 
 <style scoped>
+/* ── Tools band ── */
+.tools-band {
+    background: #cfe8ff;
+}
+.tools-chip {
+    border: 3px solid #0a0a0a;
+    background: #fafafa;
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    padding: 10px 16px;
+    transition: transform 0.08s, box-shadow 0.08s;
+}
+.tools-chip:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 #0a0a0a;
+}
+.tools-chip--more {
+    background: #0a0a0a;
+    color: #cfe8ff;
+}
+
 /* ── Category cards ── */
 .cat-card {
     transition:
@@ -238,9 +282,9 @@ useHead({
     grid-template-columns: 1fr 1fr;
 }
 
-/* odd category count: stretch the last cell across the full row */
-.cta-cat-cell:last-child:nth-child(odd) {
+.cta-cat-cell--tools {
     grid-column: 1 / -1;
+    border-top: 3px solid #0a0a0a;
 }
 
 .cta-cat-cell {

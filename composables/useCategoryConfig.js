@@ -1,6 +1,7 @@
 const CATEGORIES = {
     fitness: {
         title: "Fitness",
+        sectionLabel: "Fitness Calculators",
         color: "#ddd6ff",
         seo: {
             title: "Pretty Calculators - Fitness Calculators",
@@ -26,6 +27,7 @@ const CATEGORIES = {
     },
     math: {
         title: "Math",
+        sectionLabel: "Math Calculators",
         color: "#f5e642",
         seo: {
             title: "Pretty Calculators - Math Calculators",
@@ -53,6 +55,7 @@ const CATEGORIES = {
     },
     finance: {
         title: "Finance",
+        sectionLabel: "Finance Calculators",
         color: "#d4edda",
         seo: {
             title: "Pretty Calculators - Finance Calculators",
@@ -80,6 +83,8 @@ const CATEGORIES = {
     },
     tools: {
         title: "Tools",
+        sectionLabel: "Browser Tools",
+        kind: "tools",
         color: "#cfe8ff",
         seo: {
             title: "Pretty Calculators - Free Online Tools",
@@ -107,6 +112,7 @@ const CATEGORIES = {
     },
     other: {
         title: "Other",
+        sectionLabel: "Other Calculators",
         color: "#ffd6d6",
         seo: {
             title: "Pretty Calculators - Other Calculators & Converters",
@@ -133,12 +139,17 @@ const CATEGORIES = {
     },
 };
 
+const normalize = ([key, val]) => ({ slug: key, kind: "calculators", ...val });
+
 export const useCategoryConfig = (slug) => {
-    const config = CATEGORIES[slug] ?? null;
+    const config = CATEGORIES[slug] ? normalize([slug, CATEGORIES[slug]]) : null;
 
     const otherCategories = Object.entries(CATEGORIES)
         .filter(([key]) => key !== slug)
-        .map(([key, val]) => ({ slug: key, ...val }));
+        .map(normalize);
 
-    return { config, otherCategories };
+    const calculatorCategories = otherCategories.filter((c) => c.kind === "calculators");
+    const toolCategories = otherCategories.filter((c) => c.kind === "tools");
+
+    return { config, otherCategories, calculatorCategories, toolCategories };
 };

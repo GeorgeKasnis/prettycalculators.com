@@ -4,8 +4,8 @@
         <!-- Left: copy + result card -->
         <div class="slot-left">
             <div class="slot-eyebrow">Feeling lucky</div>
-            <h2 class="slot-title">Spin the wheel.<br /><em>Pick a calculator at random.</em></h2>
-            <p class="slot-sub">Pull the lever and let the slot decide your next tool. {{ CALCULATORS.length }} calculators on the reel.</p>
+            <h2 class="slot-title">Spin the wheel.<br /><em>Pick a calculator or tool at random.</em></h2>
+            <p class="slot-sub">Pull the lever and let the slot decide where you land. {{ CALCULATORS.length }} calculators &amp; tools on the reel.</p>
             <NuxtLink
                 v-if="currentResult"
                 :key="currentResult.url"

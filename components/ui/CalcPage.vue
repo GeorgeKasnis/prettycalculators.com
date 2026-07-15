@@ -59,7 +59,7 @@
 
             <!-- Category tools header -->
             <div class="px-5 py-4 border-b-3 border-brut bg-brut flex items-center">
-                <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">{{ config.title }} Calculators</span>
+                <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">{{ config.sectionLabel }}</span>
             </div>
 
             <!-- Tool links — thin separators, lavender active -->
@@ -83,13 +83,13 @@
                 </NuxtLink>
             </div>
 
-            <!-- Other categories header -->
+            <!-- Calculator categories header -->
             <div class="px-5 py-4 border-b-3 border-brut bg-brut flex items-center">
-                <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">Other Categories</span>
+                <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">{{ calcSectionLabel }}</span>
             </div>
 
             <NuxtLink
-                v-for="other in otherCategories"
+                v-for="other in calculatorCategories"
                 :key="other.slug"
                 :to="`/${other.slug}`"
                 class="sidebar-cat border-b-3 border-brut no-underline text-brut block"
@@ -102,6 +102,28 @@
                     <span v-for="tool in other.tools.slice(0, 3)" :key="tool.to" class="text-[13px] font-medium opacity-65">{{ tool.label }}</span>
                 </div>
             </NuxtLink>
+
+            <!-- Browser tools (hidden when already on a tools page) -->
+            <template v-if="toolCategories.length">
+                <div class="px-5 py-4 border-b-3 border-brut bg-brut flex items-center">
+                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">Browser Tools</span>
+                </div>
+
+                <NuxtLink
+                    v-for="other in toolCategories"
+                    :key="other.slug"
+                    :to="`/${other.slug}`"
+                    class="sidebar-cat border-b-3 border-brut no-underline text-brut block"
+                >
+                    <div class="px-5 py-[14px] pb-[10px] border-b border-[rgba(10,10,10,0.1)] flex items-center justify-between" :style="{ background: other.color }">
+                        <span class="text-[20px] font-bold tracking-[-0.03em]">{{ other.title }}</span>
+                        <span class="text-sm opacity-25 sidebar-arrow">→</span>
+                    </div>
+                    <div class="px-5 pt-2 pb-[14px] flex flex-col gap-[5px] bg-cream">
+                        <span v-for="tool in other.tools.slice(0, 3)" :key="tool.to" class="text-[13px] font-medium opacity-65">{{ tool.label }}</span>
+                    </div>
+                </NuxtLink>
+            </template>
 
             <!-- Rectangle ad -->
             <UiAdSlot variant="rectangle" bordered class="flex-1" />
@@ -118,7 +140,9 @@ const props = defineProps({
     descriptionTitle: { type: String, default: '' },
 })
 
-const { config, otherCategories } = useCategoryConfig(props.category)
+const { config, calculatorCategories, toolCategories } = useCategoryConfig(props.category)
+
+const calcSectionLabel = computed(() => (config.kind === 'tools' ? 'Calculators' : 'More Calculators'))
 </script>
 
 <style scoped>

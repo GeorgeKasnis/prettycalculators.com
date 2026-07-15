@@ -15,6 +15,14 @@
                     >{{ link.label }}</NuxtLink>
                 </li>
                 <li class="nav-divider" aria-hidden="true"></li>
+                <li class="nav-cat" :style="{ '--c': '#cfe8ff' }">
+                    <NuxtLink
+                        to="/tools"
+                        class="nav-cat-link nav-tools-link"
+                        :class="{ active: $route.path.startsWith('/tools') }"
+                    >Tools</NuxtLink>
+                </li>
+                <li class="nav-divider" aria-hidden="true"></li>
                 <li class="nav-blog">
                     <NuxtLink
                         to="/blog"
@@ -25,7 +33,7 @@
             </ul>
 
             <!-- Search button -->
-            <button class="search-btn tablet:hidden" @click="searchOpen = true" aria-label="Search calculators">
+            <button class="search-btn tablet:hidden" @click="searchOpen = true" aria-label="Search calculators and tools">
                 <span class="search-btn-icon">⌕</span>
                 <span class="search-btn-text">Search</span>
             </button>
@@ -57,6 +65,17 @@
                     <span class="opacity-60 text-base">→</span>
                 </NuxtLink>
             </li>
+            <li class="nav-cat" :style="{ '--c': '#cfe8ff' }">
+                <NuxtLink
+                    to="/tools"
+                    class="mobile-cat-link nav-tools-link"
+                    :class="{ active: $route.path.startsWith('/tools') }"
+                    @click="menuOpen = false"
+                >
+                    Tools
+                    <span class="opacity-60 text-base">→</span>
+                </NuxtLink>
+            </li>
             <li class="nav-blog">
                 <NuxtLink
                     to="/blog"
@@ -76,7 +95,7 @@
         </Transition>
 
         <!-- Mobile search FAB -->
-        <button class="search-fab hidden tablet:flex" :class="{ 'search-fab--hidden': fabNearBottom || menuOpen }" @click="searchOpen = true" aria-label="Search calculators">
+        <button class="search-fab hidden tablet:flex" :class="{ 'search-fab--hidden': fabNearBottom || menuOpen }" @click="searchOpen = true" aria-label="Search calculators and tools">
             <span style="font-size:22px;line-height:1">⌕</span>
         </button>
 
@@ -177,6 +196,11 @@ function onKey(e) {
 .nav-cat-link.active { background: var(--c); color: #0a0a0a; }
 .nav-cat-link:hover::before,
 .nav-cat-link.active::before { border-color: #0a0a0a; }
+
+/* Tools link — tinted like Blog, swatch behavior from .nav-cat-link */
+.nav-tools-link {
+    color: #cfe8ff;
+}
 
 /* Blog link */
 .nav-blog-link {
