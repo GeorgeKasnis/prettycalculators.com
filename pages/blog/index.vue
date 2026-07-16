@@ -2,98 +2,83 @@
     <!-- Breadcrumb band -->
     <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: 'Blog' }]" :dark="true" />
 
-    <!-- Blog header (black) -->
-    <div class="bg-brut border-b-3 border-brut px-7 pt-8 pb-7 flex items-end justify-between gap-5 mobile:flex-col mobile:items-start mobile:gap-4 mobile:px-5">
+    <!-- Hero -->
+    <header class="blog-hero">
         <div>
-            <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-lavender opacity-50 mb-2">Knowledge Base</div>
-            <h1 class="text-[52px] font-bold tracking-[-0.05em] leading-none text-cream mobile:text-[36px]">
-                The<br><em class="not-italic text-lavender">Blog</em>
-            </h1>
+            <div class="blog-hero-eyebrow">Knowledge base</div>
+            <h1 class="blog-hero-title">Guides behind <em>the numbers.</em></h1>
+            <p class="blog-hero-sub">Deep dives into the formulas, science and practical use of every calculator on the site.</p>
         </div>
-        <div v-if="posts.length" class="font-mono text-[11px] font-bold bg-lavender text-brut px-[14px] py-[5px] tracking-[0.1em] self-start shrink-0">
-            {{ posts.length }} POSTS
-        </div>
+        <div v-if="posts.length" class="blog-hero-count">{{ posts.length }} ARTICLES &middot; {{ topicCount }} TOPICS</div>
+    </header>
+
+    <!-- Filter bar -->
+    <div v-if="cats.length > 1" class="filter-bar">
+        <button
+            class="filter-chip"
+            :class="{ active: activeFilter === 'All' }"
+            @click="activeFilter = 'All'"
+        ><i style="background:#0a0a0a;"></i>All posts</button>
+        <button
+            v-for="cat in cats"
+            :key="cat"
+            class="filter-chip"
+            :class="{ active: activeFilter === cat }"
+            :style="{ '--c': catColor(cat) }"
+            @click="activeFilter = cat"
+        ><i :style="{ background: catColor(cat) }"></i>{{ catLabel(cat) }}</button>
+        <span class="filter-count">{{ gridPosts.length }} {{ gridPosts.length === 1 ? 'post' : 'posts' }}</span>
     </div>
 
-    <!-- Filter bar — only shown when posts have categories -->
-    <div v-if="filterTags.length > 1" class="border-b-3 border-brut bg-cream flex items-stretch h-12 overflow-x-auto">
-        <div class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] opacity-35 px-5 flex items-center border-r-3 border-brut shrink-0">Filter</div>
-        <div class="flex items-stretch">
-            <button
-                v-for="tag in filterTags"
-                :key="tag"
-                class="filter-tag"
-                :class="activeFilter === tag ? 'active' : ''"
-                @click="activeFilter = tag"
-            >{{ tag }}</button>
+    <!-- Featured (latest post) -->
+    <NuxtLink
+        v-if="featuredPost"
+        :to="`/blog/${featuredPost.fields.slug}`"
+        class="featured"
+        :style="{ '--c': catColor(postCategory(featuredPost)) }"
+    >
+        <div class="featured-body">
+            <span class="featured-badge">★ Latest post</span>
+            <h2 class="featured-title">{{ featuredPost.fields.title }}</h2>
+            <p v-if="featuredPost.fields.metaDescription" class="featured-excerpt">{{ featuredPost.fields.metaDescription }}</p>
+            <span class="featured-meta"><i></i>{{ catLabel(postCategory(featuredPost)) }} &middot; {{ readTime(featuredPost) }} min read &middot; Read →</span>
         </div>
+        <div class="featured-visual"><span>{{ catSymbol(postCategory(featuredPost)) }}</span></div>
+    </NuxtLink>
+
+    <!-- Posts grid -->
+    <main v-if="gridPosts.length" class="posts">
+        <NuxtLink
+            v-for="(post, i) in gridPosts"
+            :key="post.fields.slug"
+            :to="`/blog/${post.fields.slug}`"
+            class="post-card"
+            :style="{ '--c': catColor(postCategory(post)) }"
+        >
+            <div class="post-card-top">
+                <span class="post-card-cat">{{ catLabel(postCategory(post)) }}</span>
+                <span class="post-card-num">{{ String(i + 1).padStart(2, '0') }}</span>
+            </div>
+            <div class="post-card-body">
+                <h3 class="post-card-title">{{ post.fields.title }}</h3>
+                <p v-if="post.fields.metaDescription" class="post-card-excerpt">{{ post.fields.metaDescription }}</p>
+            </div>
+            <div class="post-card-foot"><span>{{ readTime(post) }} min read</span><span class="arrow">→</span></div>
+        </NuxtLink>
+    </main>
+
+    <!-- Empty state -->
+    <div v-if="!posts.length" class="px-7 py-14 text-center opacity-40">
+        <div class="font-mono text-[11px] uppercase tracking-[0.15em]">No posts yet</div>
     </div>
 
     <!-- Leaderboard ad -->
     <UiAdSlot bordered />
 
-    <!-- Featured post (first in filtered list) -->
-    <NuxtLink
-        v-if="featuredPost"
-        :to="`/blog/${featuredPost.fields.slug}`"
-        class="featured-post border-b-3 border-brut"
-    >
-        <div class="featured-thumb">
-            <div class="thumb-grid"></div>
-            <div class="featured-thumb-title">
-                {{ thumbLines(featuredPost.fields.title)[0] }}<br
-                v-if="thumbLines(featuredPost.fields.title)[1]"
-                />{{ thumbLines(featuredPost.fields.title)[1] }}
-            </div>
-            <div v-if="postCategory(featuredPost)" class="thumb-tag">{{ postCategory(featuredPost) }}</div>
-        </div>
-        <div class="featured-body">
-            <div>
-                <div class="font-mono text-[10px] font-bold uppercase tracking-[0.14em] opacity-35 mb-3">Featured post</div>
-                <div class="text-[28px] font-bold tracking-[-0.04em] leading-[1.15] mb-[14px] mobile:text-[22px]">{{ featuredPost.fields.title }}</div>
-                <div v-if="featuredPost.fields.metaDescription" class="text-[14px] leading-[1.65] opacity-60">{{ featuredPost.fields.metaDescription }}</div>
-            </div>
-            <div class="mt-6 flex items-center justify-between gap-3">
-                <span class="featured-btn">Read article →</span>
-                <span class="font-mono text-[10px] opacity-30 tracking-[0.06em]">{{ formatDate(featuredPost.sys.createdAt) }}</span>
-            </div>
-        </div>
-    </NuxtLink>
-
-    <!-- Posts grid (remaining posts) -->
-    <div v-if="gridPosts.length" class="px-7 py-7 border-b-3 border-brut mobile:px-4">
-        <div class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-35 mb-5">All posts</div>
-        <div class="posts-grid">
-            <NuxtLink
-                v-for="(post, i) in gridPosts"
-                :key="post.fields.slug"
-                :to="`/blog/${post.fields.slug}`"
-                class="post-card"
-            >
-                <div class="post-card-thumb" :style="{ background: thumbColor(i) }">
-                    <div class="thumb-grid"></div>
-                    <div class="post-card-thumb-text">
-                        {{ thumbLines(post.fields.title)[0] }}<br
-                        v-if="thumbLines(post.fields.title)[1]"
-                        />{{ thumbLines(post.fields.title)[1] }}
-                    </div>
-                    <div v-if="postCategory(post)" class="post-card-tag">{{ postCategory(post) }}</div>
-                </div>
-                <div class="post-card-body">
-                    <div class="post-card-title">{{ post.fields.title }}</div>
-                    <div v-if="post.fields.metaDescription" class="post-card-excerpt">{{ post.fields.metaDescription }}</div>
-                    <div class="post-card-footer">
-                        <span class="post-card-date">{{ formatDate(post.sys.createdAt) }}</span>
-                        <span class="post-card-arrow">→</span>
-                    </div>
-                </div>
-            </NuxtLink>
-        </div>
-    </div>
-
-    <!-- Empty state -->
-    <div v-if="!posts.length" class="px-7 py-14 text-center opacity-40">
-        <div class="font-mono text-[11px] uppercase tracking-[0.15em]">No posts yet</div>
+    <!-- CTA strip -->
+    <div class="cta-strip">
+        <div class="cta-strip-title">Done reading? <em>Go calculate something.</em></div>
+        <NuxtLink to="/" class="cta-btn">Browse {{ totalTools }} tools →</NuxtLink>
     </div>
 </template>
 
@@ -106,21 +91,43 @@ const { data: blogData } = await useFetch(`${runtimeConfig.public.API_URL}&conte
 const posts = computed(() => blogData.value?.items ?? [])
 
 const activeFilter = ref('All')
-const { thumbLines, thumbColor, formatDate, postCategory } = useBlogUtils()
+const { postCategory } = useBlogUtils()
 
-const filterTags = computed(() => {
-    const cats = posts.value.map(p => postCategory(p)).filter(Boolean)
-    const unique = [...new Set(cats)]
-    return unique.length ? ['All', ...unique] : []
+const CAT_COLORS = { fitness: '#ddd6ff', math: '#f5e642', maths: '#f5e642', finance: '#d4f5d4', other: '#ffd6d6', tools: '#cfe8f7' }
+const CAT_SYMBOLS = { fitness: 'kcal', math: '√x', maths: '√x', finance: '€', other: '✱', tools: '</>' }
+const CAT_ORDER = ['fitness', 'math', 'maths', 'finance', 'other', 'tools']
+
+const catColor = (cat) => CAT_COLORS[cat] ?? '#ddd6ff'
+const catSymbol = (cat) => CAT_SYMBOLS[cat] ?? '✱'
+const catLabel = (cat) => (cat ? cat.charAt(0).toUpperCase() + cat.slice(1) : '')
+
+const cats = computed(() => {
+    const unique = [...new Set(posts.value.map((p) => postCategory(p)).filter(Boolean))]
+    return unique.sort((a, b) => CAT_ORDER.indexOf(a) - CAT_ORDER.indexOf(b))
 })
 
-const filteredPosts = computed(() => {
-    if (activeFilter.value === 'All') return posts.value
-    return posts.value.filter(p => postCategory(p) === activeFilter.value)
+const topicCount = computed(() => cats.value.length)
+
+// Featured = newest post, always pinned; the filter drives the grid below it
+const featuredPost = computed(() => posts.value[0] ?? null)
+
+const gridPosts = computed(() => {
+    const rest = posts.value.slice(1)
+    if (activeFilter.value === 'All') return rest
+    return rest.filter((p) => postCategory(p) === activeFilter.value)
 })
 
-const featuredPost = computed(() => filteredPosts.value[0] ?? null)
-const gridPosts = computed(() => filteredPosts.value.slice(1))
+const readTime = (post) => {
+    try {
+        const content = post.fields?.content
+        if (!content) return 1
+        const wordCount = JSON.stringify(content).split(/\s+/).length
+        return Math.max(1, Math.ceil(wordCount / 200))
+    } catch { return 1 }
+}
+
+const { otherCategories: allCats } = useCategoryConfig('_')
+const totalTools = allCats.reduce((n, c) => n + c.tools.length, 0)
 
 const BLOG_TITLE = 'Pretty Calculators — Blog'
 const BLOG_DESC = 'Tips, guides and insights on fitness, math, unit conversions and more — from the Pretty Calculators team.'
@@ -144,95 +151,252 @@ useHead({
 </script>
 
 <style scoped>
-/* ── Featured post ── */
-.featured-post {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    text-decoration: none;
-    color: #0a0a0a;
-}
-
-.featured-thumb {
+/* ── Hero ── */
+.blog-hero {
+    border-bottom: 3px solid #0a0a0a;
     background: #0a0a0a;
-    border-right: 3px solid #0a0a0a;
-    min-height: 260px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 32px;
+    color: #fafafa;
+    padding: 56px 28px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
     position: relative;
     overflow: hidden;
 }
 
-.featured-thumb-title {
-    font-size: 28px;
+.blog-hero::before {
+    content: '✳';
+    position: absolute;
+    right: 180px;
+    top: -70px;
+    font-size: 280px;
+    color: rgba(221, 214, 255, 0.05);
+    pointer-events: none;
+    line-height: 1;
+}
+
+.blog-hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
     font-weight: 700;
-    color: #fafafa;
-    text-align: center;
-    letter-spacing: -0.03em;
-    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #f5e642;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.blog-hero-eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #f5e642;
+}
+
+.blog-hero-title {
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+}
+
+.blog-hero-title em {
+    font-style: normal;
+    color: #ddd6ff;
+}
+
+.blog-hero-sub {
+    margin-top: 14px;
+    font-size: 15px;
+    opacity: 0.55;
+    max-width: 420px;
+    line-height: 1.5;
+}
+
+.blog-hero-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    background: #ddd6ff;
+    color: #0a0a0a;
+    border: 3px solid #0a0a0a;
+    box-shadow: 6px 6px 0 #5c3bef;
+    padding: 14px 18px;
+    white-space: nowrap;
     position: relative;
     z-index: 1;
 }
 
-.featured-body {
-    background: #fafafa;
-    padding: 32px;
+/* ── Filter bar ── */
+.filter-bar {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: stretch;
+    border-bottom: 3px solid #0a0a0a;
+    background: #fafafa;
+    overflow-x: auto;
 }
 
-.featured-btn {
-    display: inline-flex;
+.filter-chip {
+    display: flex;
     align-items: center;
+    gap: 9px;
+    padding: 14px 22px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    border-right: 1.5px solid rgba(10, 10, 10, 0.12);
+    background: transparent;
+    color: #0a0a0a;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.1s;
+}
+
+.filter-chip i {
+    width: 9px;
+    height: 9px;
+    background: var(--c, #0a0a0a);
+    border: 1.5px solid #0a0a0a;
+    flex-shrink: 0;
+}
+
+.filter-chip:hover { background: var(--c, #ddd6ff); }
+
+.filter-chip.active {
     background: #0a0a0a;
     color: #fafafa;
-    font-size: 13px;
+}
+
+.filter-chip.active i { border-color: rgba(255, 255, 255, 0.3); }
+
+.filter-count {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding: 0 22px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
     font-weight: 700;
-    padding: 10px 18px;
+    letter-spacing: 0.1em;
+    opacity: 0.4;
+    white-space: nowrap;
+}
+
+/* ── Featured post ── */
+.featured {
+    margin: 28px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
     border: 3px solid #0a0a0a;
-    box-shadow: 5px 5px 0px #0a0a0a;
-    letter-spacing: -0.01em;
+    background: #0a0a0a;
+    box-shadow: 8px 8px 0 #0a0a0a;
+    text-decoration: none;
+    color: #fafafa;
     transition: transform 0.08s, box-shadow 0.08s;
 }
 
-.featured-post:hover .featured-btn {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #0a0a0a;
+.featured:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 11px 11px 0 #0a0a0a;
+    color: #fafafa;
 }
 
-/* ── Shared thumbnail grid overlay ── */
-.thumb-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 25% 33.33%;
-    pointer-events: none;
+.featured-body {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.thumb-tag {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.featured-badge {
     font-family: 'Space Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    background: #f5e642;
+    color: #0a0a0a;
+    border: 2px solid #fafafa;
+    padding: 5px 10px;
+    max-width: max-content;
+}
+
+.featured-title {
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    text-wrap: pretty;
+}
+
+.featured-excerpt {
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 480px;
+}
+
+.featured-meta {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    background: #f5e642;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.featured-meta i {
+    width: 9px;
+    height: 9px;
+    background: var(--c, #ddd6ff);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.featured-visual {
+    border-left: 3px solid #0a0a0a;
+    background: var(--c, #ddd6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 240px;
+}
+
+.featured-visual span {
+    font-size: 120px;
+    font-weight: 700;
     color: #0a0a0a;
-    padding: 4px 10px;
-    z-index: 1;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    transform: rotate(-6deg);
+}
+
+.featured-visual::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 2.5px dashed rgba(10, 10, 10, 0.25);
+    pointer-events: none;
 }
 
 /* ── Posts grid ── */
-.posts-grid {
+.posts {
+    padding: 0 28px 44px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 0;
 }
 
 .post-card {
@@ -249,135 +413,155 @@ useHead({
 
 .post-card:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 8px 8px 0px #0a0a0a;
+    box-shadow: 8px 8px 0 #0a0a0a;
     z-index: 2;
+    color: #0a0a0a;
 }
 
-.post-card-thumb {
-    height: 140px;
+.post-card-top {
+    padding: 16px 20px;
+    border-bottom: 3px solid #0a0a0a;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
-    border-bottom: 3px solid #0a0a0a;
-    position: relative;
-    overflow: hidden;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--c, #ddd6ff);
 }
 
-.post-card-thumb-text {
-    font-size: 16px;
-    font-weight: 700;
-    color: #fafafa;
-    text-align: center;
-    letter-spacing: -0.02em;
-    line-height: 1.25;
-    position: relative;
-    z-index: 1;
-}
-
-.post-card-tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
+.post-card-cat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-family: 'Space Mono', monospace;
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 3px 8px;
-    z-index: 1;
-    border: 1.5px solid rgba(255, 255, 255, 0.25);
-    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.12em;
+}
+
+.post-card-cat::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: #fafafa;
+    border: 2px solid #0a0a0a;
+}
+
+.post-card-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0.4;
 }
 
 .post-card-body {
-    padding: 18px 20px 20px;
-    flex: 1;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
+    flex: 1;
 }
 
 .post-card-title {
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.3;
+    line-height: 1.2;
+    text-wrap: pretty;
 }
 
 .post-card-excerpt {
     font-size: 13px;
+    line-height: 1.5;
     opacity: 0.55;
-    line-height: 1.55;
-    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
-.post-card-footer {
+.post-card-foot {
+    margin-top: auto;
+    padding: 12px 20px;
+    border-top: 1.5px solid rgba(10, 10, 10, 0.12);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 12px;
-    border-top: 1.5px solid rgba(10, 10, 10, 0.08);
-    margin-top: auto;
-}
-
-.post-card-date {
     font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    opacity: 0.3;
-    letter-spacing: 0.06em;
-}
-
-.post-card-arrow {
-    font-size: 14px;
-    opacity: 0.2;
-    transition: opacity 0.08s, transform 0.08s;
-}
-
-.post-card:hover .post-card-arrow {
-    opacity: 0.7;
-    transform: translateX(3px);
-}
-
-/* ── Filter bar ── */
-.filter-tag {
-    padding: 0 20px;
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #0a0a0a;
-    background: none;
-    border: none;
-    border-right: 1px solid rgba(10, 10, 10, 0.1);
-    cursor: pointer;
+    letter-spacing: 0.1em;
     opacity: 0.45;
-    transition: opacity 0.1s, background 0.1s, color 0.1s;
-    white-space: nowrap;
-    height: 100%;
 }
 
-.filter-tag:hover {
-    opacity: 1;
-    background: #ddd6ff;
+.post-card-foot .arrow {
+    font-size: 13px;
+    transition: transform 0.1s;
 }
 
-.filter-tag.active {
-    opacity: 1;
+.post-card:hover .post-card-foot .arrow { transform: translateX(4px); }
+
+/* ── CTA strip ── */
+.cta-strip {
+    border-top: 3px solid #0a0a0a;
     background: #0a0a0a;
     color: #fafafa;
+    padding: 40px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.cta-strip-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.cta-strip-title em {
+    font-style: normal;
+    color: #ddd6ff;
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f5e642;
+    color: #0a0a0a;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 20px;
+    border: 3px solid #0a0a0a;
+    box-shadow: 5px 5px 0 #5c3bef;
+    text-decoration: none;
+    transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.cta-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 #5c3bef;
+    color: #0a0a0a;
 }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-    .featured-post { grid-template-columns: 1fr; }
-    .featured-thumb { border-right: none; border-bottom: 3px solid #0a0a0a; min-height: 200px; }
-    .featured-body { padding: 24px; }
-    .posts-grid { grid-template-columns: 1fr 1fr; }
+    .posts { grid-template-columns: 1fr 1fr; padding: 0 16px 28px; }
+    .featured { margin: 16px; grid-template-columns: 1fr; }
+    .featured-visual { border-left: none; border-top: 3px solid #0a0a0a; min-height: 150px; }
+    .featured-visual span { font-size: 80px; }
+    .blog-hero { grid-template-columns: 1fr; align-items: start; padding: 40px 24px 36px; }
+    .blog-hero-count { max-width: max-content; }
+    .blog-hero::before { display: none; }
 }
 
 @media (max-width: 560px) {
-    .posts-grid { grid-template-columns: 1fr; }
+    .posts { grid-template-columns: 1fr; }
+    .featured-body { padding: 24px 20px; }
+    .blog-hero-title { font-size: 36px; }
 }
 </style>

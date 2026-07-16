@@ -1,5 +1,6 @@
 node_modules
 *.log*
+blog-drafts
 .nuxt
 .nitro
 .cache
