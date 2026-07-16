@@ -105,6 +105,8 @@ const CATEGORIES = {
             { label: "Text Case Converter", to: "/tools/text-case-converter" },
             { label: "CSV to JSON Converter", to: "/tools/csv-to-json-converter" },
             { label: "Color Contrast Checker", to: "/tools/color-contrast-checker" },
+            { label: "Hex to RGB Converter", to: "/tools/hex-to-rgb-converter" },
+            { label: "Hash Generator", to: "/tools/hash-generator" },
             { label: "Px to Rem Calculator", to: "/tools/px-to-rem-calculator" },
             { label: "Aspect Ratio Calculator", to: "/tools/aspect-ratio-calculator" },
             { label: "CSS clamp() Calculator", to: "/tools/css-clamp-calculator" },

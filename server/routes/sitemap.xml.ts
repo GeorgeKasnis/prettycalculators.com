@@ -98,6 +98,8 @@ export default defineEventHandler(async (event) => {
         { loc: '/tools/csv-to-json-converter',          changefreq: 'monthly', priority: '0.85' },
         { loc: '/tools/base64-encoder-decoder',         changefreq: 'monthly', priority: '0.85' },
         { loc: '/tools/uuid-generator',                 changefreq: 'monthly', priority: '0.85' },
+        { loc: '/tools/hex-to-rgb-converter',           changefreq: 'monthly', priority: '0.85' },
+        { loc: '/tools/hash-generator',                 changefreq: 'monthly', priority: '0.85' },
         { loc: '/other/pizza-calculator',               changefreq: 'monthly', priority: '0.85' },
         { loc: '/other/tip-calculator',                 changefreq: 'monthly', priority: '0.85' },
         { loc: '/other/sleep-calculator',               changefreq: 'monthly', priority: '0.85' },
