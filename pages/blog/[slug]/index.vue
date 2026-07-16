@@ -1,109 +1,85 @@
 <template>
-    <!-- Reading progress bar -->
-    <div class="progress-bar" :style="{ width: `${readProgress}%` }" />
+    <!-- Reading progress -->
+    <div class="progress">
+        <div class="progress-fill" :style="{ width: `${readProgress}%` }" />
+    </div>
 
     <!-- Breadcrumb band -->
     <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: 'Blog', to: '/blog' }, { label: fields.title }]" :dark="true" />
 
-    <!-- Article header -->
-    <div class="bg-brut border-b-3 border-brut px-8 pt-8 pb-7 mobile:px-5">
-        <div class="flex items-center gap-3 mb-5 flex-wrap">
-            <span v-if="fields.category" class="font-mono text-[9px] font-bold uppercase tracking-[0.14em] bg-brut-yellow text-brut px-[10px] py-[4px]">{{ fields.category }}</span>
-            <span class="font-mono text-[10px] text-lavender opacity-60 tracking-[0.08em]">{{ formatDate(postSys.createdAt, true) }}</span>
-            <span class="font-mono text-[10px] text-cream opacity-30 tracking-[0.08em]">{{ readTime }} min read</span>
-        </div>
-        <h1 class="text-[48px] font-bold tracking-[-0.05em] leading-[1.1] text-cream mobile:text-[30px] max-w-3xl">
-            {{ titleStart }}<em class="not-italic text-lavender">{{ titleEnd }}</em>
-        </h1>
-    </div>
-
-    <!-- Page grid -->
-    <div class="post-grid border-b-3 border-brut">
-
-        <!-- Main content -->
-        <div class="post-main border-brut">
-
-            <!-- Share bar -->
-            <div class="border-b-3 border-brut h-[52px] flex items-stretch bg-cream">
-                <div class="px-5 flex items-center border-r-3 border-brut shrink-0">
-                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] opacity-40">Share</span>
-                </div>
-                <div class="flex items-center px-4 gap-1">
+    <!-- HERO -->
+    <header class="article-hero">
+        <div class="article-hero-symbol" aria-hidden="true">{{ catSymbol }}</div>
+        <div class="article-hero-inner">
+            <NuxtLink to="/blog" class="article-cat" :style="{ background: cat.color }">{{ cat.label }}</NuxtLink>
+            <h1 class="article-title">{{ titleStart }}<em>{{ titleEnd }}</em></h1>
+            <div class="article-meta">
+                <span>By <b>Pretty Calculators</b></span>
+                <span>·</span>
+                <span>{{ formatDate(postSys.createdAt, true) }}</span>
+                <span>·</span>
+                <span><b>{{ readTime }} min</b> read</span>
+                <span class="article-share">
                     <a
                         :href="`https://www.facebook.com/sharer/sharer.php?u=https://prettycalculators.com/blog/${route.params.slug}`"
-                        target="_blank" rel="noopener"
-                        class="share-btn"
-                        title="Share on Facebook"
+                        target="_blank" rel="noopener" class="share-btn" title="Share on Facebook"
                     >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </a>
                     <a
                         :href="`https://twitter.com/intent/tweet?url=https://prettycalculators.com/blog/${route.params.slug}&text=${encodeURIComponent(fields.title ?? '')}`"
-                        target="_blank" rel="noopener"
-                        class="share-btn"
-                        title="Share on X"
+                        target="_blank" rel="noopener" class="share-btn" title="Share on X"
                     >
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                     </a>
-                    <button @click="copyLink" class="share-btn" :title="copied ? 'Copied!' : 'Copy link'">
-                        <svg v-if="!copied" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                        <svg v-else width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <button class="share-btn" :title="copied ? 'Copied!' : 'Copy link'" @click="copyLink">
+                        <svg v-if="!copied" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <svg v-else width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                     </button>
-                </div>
-            </div>
-
-            <!-- Leaderboard ad -->
-            <UiAdSlot bordered />
-
-            <!-- Article body -->
-            <div class="article-section">
-                <div class="article-card">
-                    <div class="article-card-head">
-                        <div class="article-eyebrow">Article</div>
-                        <h2 class="article-headline">{{ fields.title }}</h2>
-                    </div>
-                    <div class="article-body blog-content" v-html="bodyHtml" />
-                </div>
-            </div>
-
-            <!-- Related Calculators -->
-            <div class="border-t-3 border-brut">
-                <div class="px-5 py-4 bg-brut border-b-3 border-brut flex items-center">
-                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">Related Calculators</span>
-                </div>
-                <div class="related-grid">
-                    <NuxtLink
-                        v-for="calc in relatedCalcs"
-                        :key="calc.to"
-                        :to="calc.to"
-                        class="related-calc"
-                    >
-                        <span class="text-[14px] font-medium leading-[1.3]">{{ calc.label }}</span>
-                        <span class="text-sm opacity-25 shrink-0 related-arrow">→</span>
-                    </NuxtLink>
-                </div>
+                </span>
             </div>
         </div>
+    </header>
 
-        <!-- Sidebar -->
-        <div class="post-sidebar flex flex-col border-brut">
-            <div class="px-5 py-4 border-b-3 border-brut bg-brut flex items-center">
-                <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">More Articles</span>
-            </div>
-            <NuxtLink
-                v-for="related in sidebarPosts"
-                :key="related.fields.slug"
-                :to="`/blog/${related.fields.slug}`"
-                class="sidebar-article border-b-3 border-brut"
-                :class="{ 'active': String(related.fields.slug) === String(route.params.slug) }"
-            >
-                <span class="text-[13px] font-semibold leading-[1.3] pr-2">{{ related.fields.title }}</span>
-                <span class="text-sm opacity-25 shrink-0 sa-arrow">→</span>
-            </NuxtLink>
-            <div v-if="!sidebarPosts.length" class="px-5 py-4 text-[13px] opacity-40">No other posts yet.</div>
-            <UiAdSlot variant="rectangle" bordered class="flex-1" />
-        </div>
+    <!-- LAYOUT -->
+    <div class="article-layout">
+        <article class="article-body" v-html="bodyHtml" />
+
+        <aside class="sidebar">
+            <nav v-if="tocItems.length" class="toc">
+                <div class="toc-head" :style="{ background: cat.color }">On this page</div>
+                <a
+                    v-for="(item, i) in tocItems"
+                    :key="item.id"
+                    :href="`#${item.id}`"
+                    :class="{ current: activeToc === item.id }"
+                    :style="{ '--c': cat.color }"
+                ><i>{{ String(i + 1).padStart(2, '0') }}</i>{{ item.text }}</a>
+            </nav>
+            <UiAdSlot variant="rectangle" bordered />
+        </aside>
     </div>
+
+    <!-- RELATED -->
+    <section v-if="relatedPosts.length" class="related">
+        <div class="related-head">
+            <h2 class="related-title">Keep reading</h2>
+            <NuxtLink to="/blog" class="related-all">All posts →</NuxtLink>
+        </div>
+        <div class="related-grid">
+            <NuxtLink
+                v-for="rel in relatedPosts"
+                :key="rel.fields.slug"
+                :to="`/blog/${rel.fields.slug}`"
+                class="post-card"
+                :style="{ '--cc': postTag(rel).color }"
+            >
+                <div class="post-card-top"><span class="post-card-cat">{{ postTag(rel).label }}</span></div>
+                <div class="post-card-body"><h3 class="post-card-title">{{ rel.fields.title }}</h3></div>
+                <div class="post-card-foot"><span>{{ postReadTime(rel) }} min read</span><span>→</span></div>
+            </NuxtLink>
+        </div>
+    </section>
 </template>
 
 <script setup>
@@ -124,6 +100,22 @@ const { data: allBlogData } = await useFetch(
 const fields = computed(() => post.value?.items?.[0]?.fields ?? {})
 const postSys = computed(() => post.value?.items?.[0]?.sys ?? {})
 
+/* ── Category from Contentful tag ── */
+const TAG_META = {
+    fitness: { label: "Fitness", color: "#ddd6ff", symbol: "kcal" },
+    math:    { label: "Math",    color: "#f5e642", symbol: "√x" },
+    maths:   { label: "Math",    color: "#f5e642", symbol: "√x" },
+    finance: { label: "Finance", color: "#d4f5d4", symbol: "€" },
+    other:   { label: "Other",   color: "#ffd6d6", symbol: "✱" },
+    tools:   { label: "Tools",   color: "#cfe8f7", symbol: "</>" },
+}
+
+const postTag = (item) => TAG_META[item?.metadata?.tags?.[0]?.sys?.id] ?? { label: "Blog", color: "#ddd6ff", symbol: "✱" }
+
+const cat = computed(() => postTag(post.value?.items?.[0]))
+const catSymbol = computed(() => cat.value.symbol)
+
+/* ── Title split: last word gets the accent color ── */
 const titleStart = computed(() => {
     const t = fields.value.title ?? ''
     const words = t.split(' ')
@@ -137,37 +129,65 @@ const titleEnd = computed(() => {
     return words.length > 1 ? words[words.length - 1] : ''
 })
 
-const readTime = computed(() => {
-    try {
-        const content = fields.value.content
-        if (!content) return 1
-        const wordCount = JSON.stringify(content).split(/\s+/).length
-        return Math.max(1, Math.ceil(wordCount / 200))
-    } catch { return 1 }
+/* ── Read time ── */
+const wordCountOf = (content) => {
+    try { return JSON.stringify(content ?? '').split(/\s+/).length } catch { return 0 }
+}
+const readTime = computed(() => Math.max(1, Math.ceil(wordCountOf(fields.value.content) / 200)))
+const postReadTime = (item) => Math.max(1, Math.ceil(wordCountOf(item.fields?.content) / 200))
+
+/* ── Body HTML + table of contents (ids injected into h2s) ── */
+const processed = computed(() => {
+    let html = ''
+    try { html = documentToHtmlString(fields.value.content) } catch { html = '' }
+    const headings = []
+    let i = 0
+    html = html.replace(/<h2>([\s\S]*?)<\/h2>/g, (m, inner) => {
+        i++
+        headings.push({ id: `s${i}`, text: inner.replace(/<[^>]+>/g, '') })
+        return `<h2 id="s${i}">${inner}</h2>`
+    })
+    return { html, headings }
 })
 
-const bodyHtml = computed(() => {
-    try { return documentToHtmlString(fields.value.content) }
-    catch { return '' }
-})
+const bodyHtml = computed(() => processed.value.html)
+const tocItems = computed(() => processed.value.headings)
 
-const sidebarPosts = computed(() => (allBlogData.value?.items ?? []).slice(0, 8))
-
-const { otherCategories: allCats } = useCategoryConfig('_')
-const relatedCalcs = allCats.flatMap(cat => cat.tools.slice(0, 2).map(t => ({ label: t.label, to: t.to })))
+/* ── Related posts ── */
+const relatedPosts = computed(() =>
+    (allBlogData.value?.items ?? [])
+        .filter((p) => String(p.fields?.slug) !== String(route.params.slug))
+        .slice(0, 3)
+)
 
 const { formatDate } = useBlogUtils()
 
+/* ── Scroll: progress bar + TOC highlight ── */
 const readProgress = ref(0)
-const updateProgress = () => {
+const activeToc = ref('')
+
+const onScroll = () => {
     const el = document.documentElement
     const scrolled = el.scrollTop || document.body.scrollTop
     const total = el.scrollHeight - el.clientHeight
     readProgress.value = total > 0 ? Math.min(100, (scrolled / total) * 100) : 0
-}
-onMounted(() => window.addEventListener('scroll', updateProgress, { passive: true }))
-onUnmounted(() => window.removeEventListener('scroll', updateProgress))
 
+    const y = window.scrollY + 150
+    let current = tocItems.value[0]?.id ?? ''
+    for (const h of tocItems.value) {
+        const heading = document.getElementById(h.id)
+        if (heading && heading.getBoundingClientRect().top + window.scrollY <= y) current = h.id
+    }
+    activeToc.value = current
+}
+
+onMounted(() => {
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+})
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
+
+/* ── Copy link ── */
 const copied = ref(false)
 const copyLink = async () => {
     try {
@@ -177,6 +197,7 @@ const copyLink = async () => {
     } catch {}
 }
 
+/* ── SEO ── */
 const imageUrl = computed(() => {
     try {
         const assetId = fields.value.featuredImage?.sys?.id
@@ -241,302 +262,444 @@ useHead({
 </script>
 
 <style scoped>
-/* Reading progress bar */
-.progress-bar {
-    position: fixed;
+/* ── Reading progress ── */
+.progress {
+    position: sticky;
     top: 0;
-    left: 0;
-    height: 3px;
-    background: #ddd6ff;
-    z-index: 200;
-    transition: width 0.1s linear;
+    z-index: 49;
+    height: 6px;
+    background: #fafafa;
+    border-bottom: 2.5px solid #0a0a0a;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: #5c3bef;
+}
+
+/* ── Hero ── */
+.article-hero {
+    border-bottom: 3px solid #0a0a0a;
+    background: #0a0a0a;
+    color: #fafafa;
+    padding: 52px 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.article-hero-symbol {
+    position: absolute;
+    right: -30px;
+    bottom: -40px;
+    font-size: 180px;
+    font-weight: 700;
+    color: rgba(221, 214, 255, 0.05);
+    letter-spacing: -0.05em;
     pointer-events: none;
+    line-height: 1;
+    transform: rotate(-6deg);
 }
 
-/* Layout */
-.post-grid {
-    display: grid;
-    grid-template-columns: 1fr 300px;
+.article-hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
-.post-main {
-    border-right: 3px solid #0a0a0a;
-    min-width: 0;
+.article-cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #0a0a0a;
+    border: 2px solid #fafafa;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+    text-decoration: none;
 }
 
-/* Share bar */
-.share-btn {
+.article-cat:hover { background: #fafafa !important; color: #0a0a0a; }
+
+.article-title {
+    font-size: clamp(30px, 4.2vw, 54px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    text-wrap: pretty;
+}
+
+.article-title em {
+    font-style: normal;
+    color: #ddd6ff;
+}
+
+.article-meta {
+    margin-top: 22px;
     display: flex;
     align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.article-meta b { color: #fafafa; }
+
+.article-share {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    color: #0a0a0a;
-    opacity: 0.4;
-    border: none;
-    background: none;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
-    transition: opacity 0.1s, background 0.1s;
-    text-decoration: none;
+    transition: background 0.1s, color 0.1s, border-color 0.1s;
 }
 
 .share-btn:hover {
-    opacity: 1;
-    background: rgba(10, 10, 10, 0.06);
+    background: #fafafa;
+    color: #0a0a0a;
+    border-color: #fafafa;
 }
 
-/* Article card */
-.article-section {
-    padding: 28px 32px;
-    background: #ddd6ff;
-    border-bottom: 3px solid #0a0a0a;
+/* ── Layout ── */
+.article-layout {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 28px 56px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 44px;
+    align-items: start;
 }
 
-.article-card {
-    background: #fff;
-    border: 3px solid #0a0a0a;
-    box-shadow: 5px 5px 0 #0a0a0a;
-}
-
-.article-card-head {
-    background: #f5e642;
-    border-bottom: 3px solid #0a0a0a;
-    padding: 22px 28px 20px;
-}
-
-.article-eyebrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    opacity: 0.55;
-    margin-bottom: 6px;
-}
-
-.article-headline {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.15;
-    max-width: 620px;
-}
-
+/* ── Body typography (rendered Contentful rich text) ── */
 .article-body {
-    padding: 28px 32px;
-    overflow-wrap: break-word;
-    word-break: break-word;
+    max-width: 720px;
+    font-size: 17px;
+    line-height: 1.7;
 }
 
-/* Blog prose */
-.blog-content :deep(h1),
-.blog-content :deep(h2),
-.blog-content :deep(h3) {
+.article-body :deep(* + *) { margin-top: 22px; }
+.article-body :deep(p) { text-wrap: pretty; }
+
+.article-body :deep(> p:first-child) {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+.article-body :deep(a) { color: #5c3bef; font-weight: 600; }
+.article-body :deep(a:hover) { color: #0a0a0a; }
+
+.article-body :deep(h2) {
+    font-size: 30px;
     font-weight: 700;
     letter-spacing: -0.03em;
-    margin-top: 1.75rem;
-    margin-bottom: 0.75rem;
-    line-height: 1.2;
-}
-
-.blog-content :deep(h1) { font-size: 2rem; }
-.blog-content :deep(h2) { font-size: 1.5rem; }
-.blog-content :deep(h3) { font-size: 1.2rem; }
-
-.blog-content :deep(p) {
-    font-size: 16px;
-    line-height: 1.75;
-    opacity: 0.75;
-    margin-bottom: 1.25rem;
-    max-width: 680px;
-}
-
-.blog-content :deep(p:first-child) {
-    font-size: 17px;
-    font-weight: 500;
-    opacity: 0.85;
-    padding-bottom: 24px;
-    margin-bottom: 1.5rem;
-    border-bottom: 3px solid #0a0a0a;
-}
-
-.blog-content :deep(ul),
-.blog-content :deep(ol) {
-    padding-left: 0;
-    margin-bottom: 1.25rem;
-    list-style: none;
-}
-
-.blog-content :deep(li) {
-    font-size: 16px;
-    line-height: 1.7;
-    padding: 10px 0;
-    border-bottom: 1.5px solid rgba(10, 10, 10, 0.08);
+    line-height: 1.1;
+    margin-top: 44px;
     display: flex;
-    gap: 10px;
-    opacity: 0.8;
+    align-items: center;
+    gap: 13px;
+    scroll-margin-top: 90px;
 }
 
-.blog-content :deep(li::before) {
-    content: '→';
-    font-weight: 700;
+.article-body :deep(h2)::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #5c3bef;
     flex-shrink: 0;
-    opacity: 0.4;
 }
 
-.blog-content :deep(a) {
-    color: #0a0a0a;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+.article-body :deep(h3) {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-top: 32px;
 }
 
-.blog-content :deep(img) {
-    width: 100%;
-    height: auto;
+.article-body :deep(ul),
+.article-body :deep(ol) { padding-left: 24px; }
+.article-body :deep(li) { margin-top: 8px; }
+.article-body :deep(li p) { margin-top: 0; }
+.article-body :deep(strong) { font-weight: 700; }
+
+.article-body :deep(blockquote) {
     border: 3px solid #0a0a0a;
-    margin: 1.5rem 0;
-}
-
-.blog-content :deep(blockquote) {
-    border-left: 5px solid #0a0a0a;
-    background: #ddd6ff;
-    padding: 20px 24px;
-    margin: 1.5rem 0;
-    font-size: 17px;
-    font-style: italic;
+    background: #fafafa;
+    box-shadow: 5px 5px 0 #0a0a0a;
+    padding: 20px 22px;
+    font-size: 15px;
     line-height: 1.6;
 }
 
-.blog-content :deep(blockquote p) {
-    font-size: inherit;
-    opacity: 1;
-    margin-bottom: 0;
-    max-width: none;
-    border-bottom: none;
-    padding-bottom: 0;
+.article-body :deep(hr) {
+    border: none;
+    border-top: 3px solid #0a0a0a;
+    margin-top: 36px;
 }
 
-.blog-content :deep(pre),
-.blog-content :deep(code) {
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    background: #0a0a0a;
-    color: #ddd6ff;
-    padding: 2px 6px;
-}
-
-.blog-content :deep(pre) {
-    padding: 16px 20px;
-    overflow-x: auto;
-    margin-bottom: 1.25rem;
-}
-
-.blog-content :deep(pre code) {
-    background: none;
-    padding: 0;
-}
-
-.blog-content :deep(table) {
+/* Tables from rich text get the data-table treatment */
+.article-body :deep(table) {
+    border: 3px solid #0a0a0a;
+    background: #fafafa;
+    box-shadow: 5px 5px 0 #0a0a0a;
+    margin-top: 28px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
     display: block;
     overflow-x: auto;
-    border-collapse: collapse;
-    width: max-content;
-    max-width: 100%;
-    margin-bottom: 1.25rem;
-    font-size: 14px;
 }
 
-.blog-content :deep(th),
-.blog-content :deep(td) {
-    border: 1.5px solid rgba(10,10,10,0.15);
-    padding: 9px 14px;
-    text-align: left;
-    line-height: 1.4;
-    white-space: nowrap;
-}
+.article-body :deep(table p) { margin: 0; }
 
-.blog-content :deep(th) {
-    background: #0a0a0a;
-    color: #fafafa;
+.article-body :deep(tr:first-child td),
+.article-body :deep(th) {
     font-family: 'Space Mono', monospace;
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    white-space: nowrap;
+    letter-spacing: 0.1em;
+    background: #0a0a0a;
+    color: #fafafa;
+    padding: 10px 14px;
+    text-align: left;
 }
 
-.blog-content :deep(tr:nth-child(even) td) {
-    background: rgba(10,10,10,0.03);
+.article-body :deep(td) {
+    padding: 10px 14px;
+    border-top: 1.5px solid rgba(10, 10, 10, 0.12);
+    font-weight: 500;
 }
 
-/* Related calcs */
+.article-body :deep(tr:not(:first-child):hover td) { background: #ddd6ff33; }
+
+.article-body :deep(td:first-child) {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+    position: sticky;
+    top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.toc {
+    border: 3px solid #0a0a0a;
+    background: #fafafa;
+    box-shadow: 5px 5px 0 #0a0a0a;
+}
+
+.toc-head {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 12px 16px;
+    border-bottom: 3px solid #0a0a0a;
+    color: #0a0a0a;
+}
+
+.toc a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 11px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #0a0a0a;
+    text-decoration: none;
+    border-bottom: 1.5px solid rgba(10, 10, 10, 0.08);
+    transition: background 0.1s, color 0.1s;
+}
+
+.toc a:last-child { border-bottom: none; }
+.toc a:hover { background: var(--c, #ddd6ff); color: #0a0a0a; }
+.toc a.current { background: #0a0a0a; color: #fafafa; }
+.toc a.current i { opacity: 0.6; }
+
+.toc a i {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    font-style: normal;
+    opacity: 0.35;
+    flex-shrink: 0;
+}
+
+/* ── Related ── */
+.related {
+    border-top: 3px solid #0a0a0a;
+    padding: 36px 28px 44px;
+}
+
+.related-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.related-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.related-title::before {
+    content: '';
+    width: 13px;
+    height: 13px;
+    background: #5c3bef;
+}
+
+.related-all {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0a0a0a;
+    text-decoration: none;
+    opacity: 0.5;
+}
+
+.related-all:hover { opacity: 1; color: #0a0a0a; }
+
 .related-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 0;
 }
 
-.related-calc {
+.post-card {
+    border: 3px solid #0a0a0a;
+    margin: -1.5px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #0a0a0a;
+    transition: transform 0.08s, box-shadow 0.08s;
+    position: relative;
+}
+
+.post-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 #0a0a0a;
+    z-index: 2;
+    color: #0a0a0a;
+}
+
+.post-card-top {
+    padding: 14px 18px;
+    border-bottom: 3px solid #0a0a0a;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 18px;
-    border: 1.5px solid rgba(10, 10, 10, 0.08);
-    margin: -0.75px;
-    text-decoration: none;
-    color: #0a0a0a;
-    background: #fafafa;
-    transition: background 0.08s, color 0.08s;
+    background: var(--cc, #ddd6ff);
+}
+
+.post-card-cat {
+    display: flex;
+    align-items: center;
     gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
 }
 
-.related-calc:hover {
-    background: #0a0a0a;
-    color: #fafafa;
-}
-
-.related-calc:hover .related-arrow { opacity: 0.7; }
-
-/* Sidebar */
-.sidebar-article {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 20px 14px 15px;
-    border-left: 5px solid transparent;
-    text-decoration: none;
-    color: #0a0a0a;
+.post-card-cat::before {
+    content: '';
+    width: 9px;
+    height: 9px;
     background: #fafafa;
-    transition: background 0.08s, border-color 0.08s;
+    border: 2px solid #0a0a0a;
 }
 
-.sidebar-article:hover {
-    border-left-color: #ddd6ff;
-    background: rgba(221, 214, 255, 0.2);
+.post-card-body {
+    padding: 18px;
+    flex: 1;
 }
 
-.sidebar-article.active {
-    border-left-color: #0a0a0a;
-    background: rgba(10, 10, 10, 0.04);
-    font-weight: 600;
+.post-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    text-wrap: pretty;
 }
 
-.sidebar-article:hover .sa-arrow,
-.sidebar-article.active .sa-arrow { opacity: 0.6; }
+.post-card-foot {
+    padding: 11px 18px;
+    border-top: 1.5px solid rgba(10, 10, 10, 0.12);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.45;
+}
 
-/* Responsive */
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+    .article-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .sidebar {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .toc { flex: 1 1 280px; }
+    .sidebar > :last-child { flex: 1 1 280px; }
+}
+
 @media (max-width: 900px) {
-    .post-grid { grid-template-columns: 1fr; }
-    .post-main { border-right: none; }
-    .post-sidebar { border-top: 3px solid #0a0a0a; }
     .related-grid { grid-template-columns: 1fr 1fr; }
-    .article-section { padding: 16px; }
-    .article-body { padding: 20px; }
-    .article-card-head { padding: 18px 20px; }
-    .article-headline { font-size: 20px; }
 }
 
 @media (max-width: 560px) {
+    .article-hero { padding: 36px 20px; }
+    .article-layout { padding: 28px 20px 40px; }
+    .article-body { font-size: 16px; }
+    .article-body :deep(> p:first-child) { font-size: 18px; }
+    .article-body :deep(h2) { font-size: 24px; }
     .related-grid { grid-template-columns: 1fr; }
+    .related { padding: 28px 16px 36px; }
 }
 </style>
