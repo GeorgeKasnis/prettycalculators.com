@@ -131,6 +131,8 @@ function spin() {
         spinning.value = false
     }, SPIN_MS + 100)
 }
+
+defineExpose({ spin })
 </script>
 
 <style scoped>
