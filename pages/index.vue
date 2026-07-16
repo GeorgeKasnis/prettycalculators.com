@@ -69,7 +69,7 @@
     </div>
 
     <!-- CATEGORIES -->
-    <div id="categories" class="sec-head">
+    <div id="categories" class="sec-head mobile:flex-col mobile:gap-4">
         <h2 class="sec-head-title">Browse by category</h2>
         <span class="sec-head-sub">{{ allCats.length }} categories · {{ totalCount }} tools</span>
     </div>
