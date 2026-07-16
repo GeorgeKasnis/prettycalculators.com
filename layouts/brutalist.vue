@@ -6,6 +6,7 @@
         </main>
         <UiTheFooter />
         <UiCookieBanner />
+        <UiBookmarkToast />
         <UiUnitToggle v-if="isCalcPage" />
     </div>
 </template>
