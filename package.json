@@ -8,8 +8,10 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@contentful/rich-text-from-markdown": "^16.2.1",
     "@nuxtjs/device": "^3.1.0",
     "autoprefixer": "^10.4.14",
+    "contentful-management": "^12.8.0",
     "nuxt": "^3.3.1",
     "nuxt-security": "^0.13.0",
     "nuxt-simple-sitemap": "^2.1.8",

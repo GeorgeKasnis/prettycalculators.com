@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node \"C:\\\\Users\\\\georg\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-georg-OneDrive-Desktop-Code-Vue-prettycalculators-com\\\\d8b28fbb-f2d4-4cbf-aacb-f181c46703ce\\\\scratchpad\\\\delete-draft.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\georg\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-georg-OneDrive-Desktop-Code-Vue-prettycalculators-com\\\\d8b28fbb-f2d4-4cbf-aacb-f181c46703ce\\\\scratchpad\\\\publish-entry.mjs\")"
+    ]
+  }
+}
