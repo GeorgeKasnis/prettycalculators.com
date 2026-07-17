@@ -3,6 +3,13 @@ const CATEGORIES = {
         title: "Fitness",
         sectionLabel: "Fitness Calculators",
         color: "#ddd6ff",
+        hero: {
+            num: "01",
+            titlePre: "Numbers for",
+            titleEm: "your body.",
+            sub: "BMI, calories, macros and pace — free fitness calculators that give straight answers, no signup.",
+            mark: "kcal",
+        },
         seo: {
             title: "Pretty Calculators - Fitness Calculators",
             description: "Free fitness calculators at Pretty Calculators. BMI, BMR, TDEE, Body Fat, Ideal Weight — beautifully designed and fast.",
@@ -29,6 +36,13 @@ const CATEGORIES = {
         title: "Math",
         sectionLabel: "Math Calculators",
         color: "#f5e642",
+        hero: {
+            num: "02",
+            titlePre: "Math without",
+            titleEm: "the homework.",
+            sub: "Percentages, fractions, statistics and distance metrics — instant answers to everyday math.",
+            mark: "√x",
+        },
         seo: {
             title: "Pretty Calculators - Math Calculators",
             description: "Free math calculators at Pretty Calculators. Percentage, Manhattan Distance and more — beautifully designed and fast.",
@@ -56,7 +70,14 @@ const CATEGORIES = {
     finance: {
         title: "Finance",
         sectionLabel: "Finance Calculators",
-        color: "#d4edda",
+        color: "#d4f5d4",
+        hero: {
+            num: "03",
+            titlePre: "Money,",
+            titleEm: "made clear.",
+            sub: "Interest, loans, salaries and creator earnings — practical money tools with honest math.",
+            mark: "€",
+        },
         seo: {
             title: "Pretty Calculators - Finance Calculators",
             description: "Free finance calculators at Pretty Calculators. YouTube earnings, TikTok income, compound interest, debt payoff, savings goals and take-home pay — practical money tools.",
@@ -85,7 +106,14 @@ const CATEGORIES = {
         title: "Tools",
         sectionLabel: "Browser Tools",
         kind: "tools",
-        color: "#cfe8ff",
+        color: "#cfe8f7",
+        hero: {
+            num: "05",
+            titlePre: "Tools for",
+            titleEm: "the browser.",
+            sub: "Free utilities for images, text, code and color — no install, no signup, everything runs locally.",
+            mark: "</>",
+        },
         seo: {
             title: "Pretty Calculators - Free Online Tools",
             description: "Free online tools that run in your browser — image compressor, QR code generator, password generator, JSON formatter, diff checker and more. Private: nothing is uploaded.",
@@ -116,6 +144,13 @@ const CATEGORIES = {
         title: "Other",
         sectionLabel: "Other Calculators",
         color: "#ffd6d6",
+        hero: {
+            num: "04",
+            titlePre: "Everything else,",
+            titleEm: "calculated.",
+            sub: "Age, sleep, tips, pizza and unit conversions — the everyday questions with exact answers.",
+            mark: "✱",
+        },
         seo: {
             title: "Pretty Calculators - Other Calculators & Converters",
             description: "Free utility calculators and unit converters at Pretty Calculators. Age, Sleep, Tip, Pizza, and temperature/distance/weight converters — fast and free.",

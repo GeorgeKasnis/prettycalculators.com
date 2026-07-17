@@ -15,7 +15,7 @@
                     >{{ link.label }}</NuxtLink>
                 </li>
                 <li class="nav-divider" aria-hidden="true"></li>
-                <li class="nav-cat" :style="{ '--c': '#cfe8ff' }">
+                <li class="nav-cat" :style="{ '--c': '#cfe8f7' }">
                     <NuxtLink
                         to="/tools"
                         class="nav-cat-link nav-tools-link"
@@ -65,7 +65,7 @@
                     <span class="opacity-60 text-base">→</span>
                 </NuxtLink>
             </li>
-            <li class="nav-cat" :style="{ '--c': '#cfe8ff' }">
+            <li class="nav-cat" :style="{ '--c': '#cfe8f7' }">
                 <NuxtLink
                     to="/tools"
                     class="mobile-cat-link nav-tools-link"
@@ -130,7 +130,7 @@ watch(menuOpen, (val) => {
 const catLinks = [
     { to: '/fitness', label: 'Fitness', color: '#ddd6ff' },
     { to: '/math',    label: 'Math',    color: '#f5e642' },
-    { to: '/finance', label: 'Finance', color: '#d4edda' },
+    { to: '/finance', label: 'Finance', color: '#d4f5d4' },
     { to: '/other',   label: 'Other',   color: '#ffd6d6' },
 ]
 
@@ -199,7 +199,7 @@ function onKey(e) {
 
 /* Tools link — tinted like Blog, swatch behavior from .nav-cat-link */
 .nav-tools-link {
-    color: #cfe8ff;
+    color: #cfe8f7;
 }
 
 /* Blog link */

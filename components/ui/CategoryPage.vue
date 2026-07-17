@@ -1,123 +1,90 @@
 <template>
     <!-- Breadcrumb band -->
-    <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: config.title }]" :color="config.color" />
+    <UiBreadcrumbBand :links="[{ label: 'Home', to: '/' }, { label: config.title }]" color="#fafafa" />
 
-    <!-- Page grid -->
-    <div class="page-grid border-b-3 border-brut">
+    <!-- Hero -->
+    <header class="cat-hero" :style="{ '--c': config.color }">
+        <div>
+            <div class="cat-hero-eyebrow">Category {{ config.hero.num }}</div>
+            <h1 class="cat-hero-title">{{ config.hero.titlePre }} <em>{{ config.hero.titleEm }}</em></h1>
+            <p class="cat-hero-sub">{{ config.hero.sub }}</p>
+        </div>
+        <div class="cat-hero-count">{{ config.tools.length }} {{ config.kind }} &middot; Updated weekly</div>
+        <span class="cat-hero-mark" aria-hidden="true">{{ config.hero.mark }}</span>
+    </header>
 
-        <!-- Main column -->
-        <div class="main-col border-brut">
-
-            <!-- Category header -->
-            <div class="border-b-3 border-brut px-8 pt-8 pb-7 flex items-start justify-between gap-4 mobile:px-5" :style="{ background: config.color }">
-                <h1 class="text-[56px] font-bold tracking-[-0.05em] leading-none mobile:text-[40px]">{{ config.title }}</h1>
-                <div class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] opacity-40 pt-1 whitespace-nowrap">{{ config.tools.length }} {{ config.kind }}</div>
+    <div class="cat-layout" :style="{ '--c': config.color }">
+        <main class="cat-main">
+            <!-- Filter -->
+            <div v-if="config.tools.length > 6" class="filter-box">
+                <span class="filter-icon">⌕</span>
+                <input
+                    v-model="toolSearch"
+                    :placeholder="`Filter ${config.tools.length} ${config.kind}…`"
+                    autocomplete="off"
+                    spellcheck="false"
+                />
+                <button v-if="toolSearch" class="filter-clear" @click="toolSearch = ''">Clear</button>
             </div>
 
-            <!-- Tools section -->
-            <div class="px-8 py-7 border-b-3 border-brut mobile:px-5">
-                <!-- Filter bar — only shown when there are enough tools -->
-                <div v-if="config.tools.length > 6" class="cat-search-wrap">
-                    <span class="cat-search-icon">⌕</span>
-                    <input
-                        v-model="toolSearch"
-                        class="cat-search-input"
-                        :placeholder="`Filter ${config.tools.length} ${config.kind}…`"
-                        autocomplete="off"
-                        spellcheck="false"
-                    />
-                    <button v-if="toolSearch" class="cat-search-clear" @click="toolSearch = ''">✕</button>
-                </div>
-
-                <div v-if="filteredTools.length" class="tools-grid">
-                    <NuxtLink
-                        v-for="tool in filteredTools"
-                        :key="tool.to"
-                        :to="tool.to"
-                        class="tool-card"
-                    >
-                        <span class="text-base font-bold tracking-[-0.02em]">{{ tool.label }}</span>
-                        <span class="tool-arrow text-lg flex-shrink-0 opacity-30">→</span>
-                    </NuxtLink>
-                </div>
-                <div v-else class="cat-no-results">
-                    No results for "{{ toolSearch }}"
-                </div>
+            <!-- Tool grid -->
+            <div v-if="filteredTools.length" class="tools-grid">
+                <NuxtLink
+                    v-for="tool in filteredTools"
+                    :key="tool.to"
+                    :to="tool.to"
+                    class="tool-row"
+                >
+                    <span class="tool-row-num">{{ tool.num }}</span>
+                    <span class="tool-row-name">{{ tool.label }}</span>
+                    <span class="tool-row-arrow">→</span>
+                </NuxtLink>
             </div>
+            <div v-else class="no-match">No {{ config.kind }} match your filter.</div>
 
-            <!-- Ad slot leaderboard -->
-            <UiAdSlot bordered />
-
-            <!-- Blog section -->
-            <div v-if="blogPosts.length" class="px-8 py-7 mobile:px-5">
-                <div class="flex items-baseline justify-between mb-[18px]">
-                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-35">Suggested articles</span>
-                    <NuxtLink to="/blog" class="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-brut no-underline opacity-45 hover:opacity-100 transition-opacity">All posts →</NuxtLink>
+            <!-- Suggested articles -->
+            <div v-if="blogPosts.length" class="suggested">
+                <div class="suggested-head">
+                    <span class="suggested-title">Suggested articles</span>
+                    <NuxtLink to="/blog" class="suggested-all">All posts →</NuxtLink>
                 </div>
-                <div class="blog-grid">
+                <div class="suggested-grid">
                     <NuxtLink
                         v-for="post in blogPosts"
                         :key="post.slug"
                         :to="`/blog/${post.slug}`"
-                        class="blog-card"
+                        class="post-card"
+                        :style="{ '--cc': post.color }"
                     >
-                        <div class="bg-brut h-20 flex items-center justify-center p-[14px] border-b-3 border-brut">
-                            <span class="text-xs font-bold text-cream text-center tracking-[-0.02em] leading-[1.3] whitespace-pre-line">{{ post.thumb }}</span>
-                        </div>
-                        <div class="bg-cream p-3 flex-1">
-                            <div class="text-xs font-semibold leading-[1.4] text-brut">{{ post.title }}</div>
-                            <div class="mt-[6px] font-mono text-[9px] font-bold uppercase tracking-[0.1em] opacity-30">Blog</div>
-                        </div>
+                        <div class="post-card-top"><span class="post-card-cat">{{ post.cat }}</span></div>
+                        <div class="post-card-body"><h3 class="post-card-title">{{ post.title }}</h3></div>
+                        <div class="post-card-foot"><span>{{ post.minutes }} min read</span><span class="arrow">→</span></div>
                     </NuxtLink>
                 </div>
             </div>
-        </div>
+        </main>
 
         <!-- Sidebar -->
-        <div class="sidebar flex flex-col border-brut">
-
-            <div class="px-5 py-4 border-b-3 border-brut bg-brut flex items-center">
-                <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">{{ calcSectionLabel }}</span>
-            </div>
-
-            <NuxtLink
-                v-for="other in calculatorCategories"
+        <aside class="cat-side">
+            <div class="side-head">Other categories</div>
+            <div
+                v-for="other in otherCategories"
                 :key="other.slug"
-                :to="`/${other.slug}`"
-                class="sidebar-cat border-b-3 border-brut no-underline text-brut block"
+                class="side-cat"
+                :style="{ '--cc': other.color }"
             >
-                <div class="px-5 py-4 border-b border-[rgba(10,10,10,0.1)] flex items-center justify-between" :style="{ background: other.color }">
-                    <span class="text-[22px] font-bold tracking-[-0.03em]">{{ other.title }}</span>
-                    <span class="text-sm opacity-25 sidebar-arrow">→</span>
-                </div>
-                <div class="px-5 pt-3 pb-4 flex flex-col gap-[6px]">
-                    <span v-for="tool in other.tools.slice(0, 3)" :key="tool.to" class="text-[13px] font-medium opacity-70">{{ tool.label }}</span>
-                </div>
-            </NuxtLink>
-
-            <template v-if="toolCategories.length">
-                <div class="px-5 py-4 border-b-3 border-brut bg-brut flex items-center">
-                    <span class="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-lavender">Browser Tools</span>
-                </div>
-
-                <NuxtLink
-                    v-for="other in toolCategories"
-                    :key="other.slug"
-                    :to="`/${other.slug}`"
-                    class="sidebar-cat border-b-3 border-brut no-underline text-brut block"
-                >
-                    <div class="px-5 py-4 border-b border-[rgba(10,10,10,0.1)] flex items-center justify-between" :style="{ background: other.color }">
-                        <span class="text-[22px] font-bold tracking-[-0.03em]">{{ other.title }}</span>
-                        <span class="text-sm opacity-25 sidebar-arrow">→</span>
-                    </div>
-                    <div class="px-5 pt-3 pb-4 flex flex-col gap-[6px]">
-                        <span v-for="tool in other.tools.slice(0, 3)" :key="tool.to" class="text-[13px] font-medium opacity-70">{{ tool.label }}</span>
-                    </div>
+                <NuxtLink :to="`/${other.slug}`" class="side-cat-head">
+                    <span class="side-cat-name">{{ other.title }}</span>
+                    <b>{{ other.tools.length }}</b>
                 </NuxtLink>
-            </template>
-
-            <UiAdSlot variant="rectangle" bordered class="flex-1" />
-        </div>
+                <div class="side-cat-links">
+                    <NuxtLink v-for="tool in other.tools.slice(0, 3)" :key="tool.to" :to="tool.to">{{ tool.label }}</NuxtLink>
+                </div>
+            </div>
+            <div class="side-ad">
+                <UiAdSlot variant="rectangle" />
+            </div>
+        </aside>
     </div>
 </template>
 
@@ -129,15 +96,14 @@ const props = defineProps({
     },
 })
 
-const { config, calculatorCategories, toolCategories } = useCategoryConfig(props.slug)
+const { config, otherCategories } = useCategoryConfig(props.slug)
 
-const calcSectionLabel = computed(() => (config.kind === 'tools' ? 'Calculators' : 'More Calculators'))
-
-const toolSearch   = ref('')
+const toolSearch = ref('')
 const filteredTools = computed(() => {
+    const all = config.tools.map((t, i) => ({ ...t, num: String(i + 1).padStart(2, '0') }))
     const q = toolSearch.value.trim().toLowerCase()
-    if (!q) return config.tools
-    return config.tools.filter(t => t.label.toLowerCase().includes(q))
+    if (!q) return all
+    return all.filter(t => t.label.toLowerCase().includes(q))
 })
 
 const runtimeConfig = useRuntimeConfig()
@@ -145,16 +111,29 @@ const { data: blogData } = await useFetch(
     `${runtimeConfig.public.API_URL}&content_type=blog&limit=3`
 )
 
-const { thumbLines } = useBlogUtils()
+const { postCategory } = useBlogUtils()
+
+const CAT_COLORS = { fitness: '#ddd6ff', math: '#f5e642', maths: '#f5e642', finance: '#d4f5d4', other: '#ffd6d6', tools: '#cfe8f7' }
+
+const readTime = (post) => {
+    try {
+        const content = post.fields?.content
+        if (!content) return 1
+        const wordCount = JSON.stringify(content).split(/\s+/).length
+        return Math.max(1, Math.ceil(wordCount / 200))
+    } catch { return 1 }
+}
 
 const blogPosts = computed(() => {
     if (!blogData.value?.items?.length) return []
     return blogData.value.items.map(item => {
-        const title = item.fields.title ?? ''
+        const cat = postCategory(item)
         return {
             slug: item.fields.slug,
-            title,
-            thumb: thumbLines(title).join('\n'),
+            title: item.fields.title ?? '',
+            cat: cat ? cat.charAt(0).toUpperCase() + cat.slice(1) : 'Blog',
+            color: CAT_COLORS[cat] ?? '#ddd6ff',
+            minutes: readTime(item),
         }
     })
 })
@@ -209,171 +188,458 @@ useHead({
 </script>
 
 <style scoped>
-.page-grid {
+/* ── Hero ── */
+.cat-hero {
+    border-bottom: 3px solid #0a0a0a;
+    background: #0a0a0a;
+    color: #fafafa;
+    padding: 52px 28px 44px;
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+    position: relative;
+    overflow: hidden;
 }
 
-.main-col {
+.cat-hero-mark {
+    position: absolute;
+    right: 200px;
+    top: -50px;
+    font-family: 'Space Mono', monospace;
+    font-size: 220px;
+    font-weight: 700;
+    color: var(--c);
+    opacity: 0.06;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.cat-hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    color: var(--c);
+}
+
+.cat-hero-eyebrow::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: var(--c);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.cat-hero-title {
+    font-size: clamp(44px, 5.5vw, 76px);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+}
+
+.cat-hero-title em {
+    font-style: normal;
+    color: var(--c);
+}
+
+.cat-hero-sub {
+    margin-top: 14px;
+    font-size: 15px;
+    opacity: 0.55;
+    max-width: 440px;
+    line-height: 1.5;
+}
+
+.cat-hero-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--c);
+    color: #0a0a0a;
+    border: 3px solid #0a0a0a;
+    box-shadow: 6px 6px 0 #5c3bef;
+    padding: 14px 18px;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Layout ── */
+.cat-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    align-items: start;
+    border-bottom: 3px solid #0a0a0a;
+}
+
+.cat-main {
+    padding: 28px;
     border-right: 3px solid #0a0a0a;
+    min-height: 100%;
 }
 
-.sidebar {
-    border-top: 0;
+/* ── Filter ── */
+.filter-box {
+    display: flex;
+    align-items: stretch;
+    border: 3px solid #0a0a0a;
+    background: #fafafa;
+    box-shadow: 5px 5px 0 #0a0a0a;
+    margin-bottom: 24px;
+    max-width: 640px;
 }
 
-/* Filter bar */
-.cat-search-wrap {
+.filter-box:focus-within {
+    box-shadow: 5px 5px 0 #5c3bef;
+}
+
+.filter-icon {
     display: flex;
     align-items: center;
-    border: 3px solid #0a0a0a;
-    background: #fff;
-    margin-bottom: 16px;
-    gap: 0;
+    padding-left: 16px;
+    font-size: 16px;
+    opacity: 0.4;
 }
 
-.cat-search-icon {
-    padding: 0 12px;
-    font-size: 18px;
-    color: rgba(10, 10, 10, 0.3);
-    flex-shrink: 0;
-    line-height: 1;
-}
-
-.cat-search-input {
+.filter-box input {
     flex: 1;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: #0a0a0a;
-    background: transparent;
     border: none;
     outline: none;
-    padding: 12px 0;
-    letter-spacing: -0.01em;
+    background: transparent;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 14px;
+    color: #0a0a0a;
     min-width: 0;
 }
-.cat-search-input::placeholder { color: rgba(10, 10, 10, 0.25); font-weight: 400; }
-.cat-search-input:focus { color: #5c3bef; }
 
-.cat-search-clear {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    background: none;
+.filter-box input::placeholder { color: rgba(10, 10, 10, 0.4); }
+
+.filter-clear {
     border: none;
-    border-left: 2px solid rgba(10, 10, 10, 0.1);
-    cursor: pointer;
-    font-size: 11px;
-    color: rgba(10, 10, 10, 0.35);
-    transition: color 0.08s, background 0.08s;
-}
-.cat-search-clear:hover { background: rgba(10, 10, 10, 0.05); color: #0a0a0a; }
-
-.cat-no-results {
-    padding: 24px 0;
-    font-size: 14px;
-    color: rgba(10, 10, 10, 0.4);
-    text-align: center;
+    border-left: 2px solid #0a0a0a;
+    background: #ffd6d6;
     font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 14px;
+    cursor: pointer;
+    color: #0a0a0a;
 }
 
+/* ── Tool grid ── */
 .tools-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.tool-card {
+.tool-row {
     border: 3px solid #0a0a0a;
     margin: -1.5px;
-    padding: 20px 22px;
     background: #fafafa;
-    text-decoration: none;
-    color: #0a0a0a;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    transition: transform 0.08s, box-shadow 0.08s, background 0.08s, color 0.08s;
+    gap: 14px;
+    padding: 20px 22px;
+    text-decoration: none;
+    color: #0a0a0a;
+    transition: transform 0.08s, box-shadow 0.08s, background 0.08s;
     position: relative;
 }
 
-.tool-card:hover {
-    background: #0a0a0a;
-    color: #fafafa;
+.tool-row:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 5px 5px 0px #0a0a0a;
+    box-shadow: 8px 8px 0 #0a0a0a;
     z-index: 2;
+    background: var(--c);
+    color: #0a0a0a;
 }
 
-.tool-card:hover .tool-arrow {
+.tool-row-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0.3;
+    flex-shrink: 0;
+    width: 22px;
+}
+
+.tool-row-name {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.tool-row-arrow {
+    margin-left: auto;
+    font-size: 15px;
+    opacity: 0.25;
+    transition: opacity 0.1s, transform 0.1s;
+}
+
+.tool-row:hover .tool-row-arrow {
     opacity: 1;
-    transform: translateX(3px);
+    transform: translateX(4px);
 }
 
-.tool-arrow {
-    transition: opacity 0.08s, transform 0.08s;
+.no-match {
+    border: 3px solid #0a0a0a;
+    background: #fafafa;
+    padding: 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    opacity: 0.6;
 }
 
-.blog-grid {
+/* ── Suggested articles ── */
+.suggested { margin-top: 36px; }
+
+.suggested-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.suggested-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.4;
+}
+
+.suggested-all {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0a0a0a;
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.1s;
+}
+
+.suggested-all:hover { opacity: 1; color: #0a0a0a; }
+
+.suggested-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.blog-card {
+.post-card {
     border: 3px solid #0a0a0a;
     margin: -1.5px;
+    background: #fafafa;
     display: flex;
     flex-direction: column;
     text-decoration: none;
+    color: #0a0a0a;
     transition: transform 0.08s, box-shadow 0.08s;
     position: relative;
 }
 
-.blog-card:hover {
+.post-card:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 5px 5px 0px #0a0a0a;
+    box-shadow: 8px 8px 0 #0a0a0a;
     z-index: 2;
+    color: #0a0a0a;
 }
 
-.sidebar-cat {
-    transition: background 0.08s;
+.post-card-top {
+    padding: 13px 16px;
+    border-bottom: 3px solid #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--cc, #ddd6ff);
 }
 
-.sidebar-cat:hover {
-    background: rgba(10, 10, 10, 0.04);
+.post-card-cat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
 }
 
-.sidebar-cat:hover .sidebar-arrow {
-    opacity: 0.7;
-    transform: translateX(2px);
+.post-card-cat::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: #fafafa;
+    border: 2px solid #0a0a0a;
 }
 
-.sidebar-arrow {
-    transition: opacity 0.08s, transform 0.08s;
+.post-card-body {
+    padding: 16px;
+    flex: 1;
+}
+
+.post-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    text-wrap: pretty;
+}
+
+.post-card-foot {
+    padding: 10px 16px;
+    border-top: 1.5px solid rgba(10, 10, 10, 0.12);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.45;
+}
+
+.post-card-foot .arrow { transition: transform 0.1s; }
+.post-card:hover .post-card-foot .arrow { transform: translateX(4px); }
+
+/* ── Sidebar ── */
+.cat-side {
+    position: sticky;
+    top: 64px;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-head {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 14px 20px;
+    background: #0a0a0a;
+    color: #fafafa;
+    border-bottom: 3px solid #0a0a0a;
+}
+
+.side-cat {
+    border-bottom: 3px solid #0a0a0a;
+    background: #fafafa;
+}
+
+.side-cat-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--cc);
+    border-bottom: 1.5px solid rgba(10, 10, 10, 0.15);
+    text-decoration: none;
+    color: #0a0a0a;
+    transition: filter 0.1s;
+}
+
+.side-cat-head:hover {
+    filter: brightness(0.96);
+    color: #0a0a0a;
+}
+
+.side-cat-name {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.side-cat-head b {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    background: #0a0a0a;
+    color: #fafafa;
+    padding: 2px 8px;
+}
+
+.side-cat-links {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+}
+
+.side-cat-links a {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0a0a0a;
+    text-decoration: none;
+    padding: 7px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.1s;
+}
+
+.side-cat-links a::after {
+    content: '→';
+    font-size: 11px;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+
+.side-cat-links a:hover {
+    background: var(--cc);
+    color: #0a0a0a;
+}
+
+.side-cat-links a:hover::after { opacity: 0.5; }
+
+.side-ad {
+    padding: 20px;
+    background: #fafafa;
+    flex: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+    .cat-layout { grid-template-columns: 1fr; }
+    .cat-main { border-right: none; }
+    .cat-side { position: static; border-top: 3px solid #0a0a0a; }
 }
 
 @media (max-width: 900px) {
-    .page-grid {
+    .cat-hero {
         grid-template-columns: 1fr;
+        align-items: start;
+        padding: 40px 24px 36px;
     }
-    .main-col {
-        border-right: none;
-    }
-    .sidebar {
-        border-top: 3px solid #0a0a0a;
-    }
-    .tools-grid {
-        grid-template-columns: 1fr;
-    }
-    .blog-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    .cat-hero-mark { display: none; }
+    .cat-hero-count { max-width: max-content; }
+    .suggested-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+    .tools-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
-    .blog-grid {
-        grid-template-columns: 1fr;
-    }
+    .cat-main { padding: 16px; }
+    .cat-hero-title { font-size: 40px; }
+    .tool-row { padding: 16px; }
+    .tool-row-name { font-size: 15px; }
 }
 </style>
