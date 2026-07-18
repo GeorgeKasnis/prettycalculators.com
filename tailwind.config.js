@@ -34,6 +34,7 @@ module.exports = {
                 lavender: "#ddd6ff",
                 "lavender-dark": "#b8acf6",
                 brut: "#0a0a0a",
+                "brut-purple": "#5c3bef",
                 ink: "#0a0a0a",
                 cream: "#fafafa",
                 "brut-yellow": "#f5e642",

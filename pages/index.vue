@@ -98,32 +98,17 @@
         </ClientOnly>
     </div>
 
-    <!-- ABOUT + BLOG + STATS -->
-    <div class="bottom-row border-b-3 border-ink">
+    <!-- ABOUT + STATS -->
+    <div class="bottom-row">
         <div class="feature-block">
             <div class="feature-block-eyebrow">About Pretty Calculators</div>
             <div class="feature-block-headline">Every tool you need. <em>Right here.</em></div>
             <div class="feature-block-sub">Fast, focused calculators for fitness, math and finance — plus free browser tools for images, text and code. Built to get you the answer quickly.</div>
-
-            <div v-if="blogPosts.length" class="blog-section">
-                <div class="blog-section-header">
-                    <span class="blog-section-title">From the blog</span>
-                    <NuxtLink to="/blog" class="blog-section-all">All posts →</NuxtLink>
-                </div>
-                <div class="blog-index">
-                    <NuxtLink :to="`/blog/${featuredPost.slug}`" class="blog-feature" :style="{ '--c': featuredPost.cat.color }">
-                        <span class="blog-feature-badge">Latest post</span>
-                        <span class="blog-feature-title">{{ featuredPost.title }}</span>
-                        <span class="blog-feature-meta">{{ featuredPost.cat.label }} · Read →</span>
-                    </NuxtLink>
-                    <div class="blog-list">
-                        <NuxtLink v-for="(post, i) in listPosts" :key="post.slug" :to="`/blog/${post.slug}`" class="blog-row" :style="{ '--c': post.cat.color }">
-                            <span class="blog-row-num">{{ String(i + 1).padStart(2, '0') }}</span>
-                            <span class="blog-row-title">{{ post.title }}</span>
-                            <span class="blog-row-cat">{{ post.cat.label }}</span>
-                        </NuxtLink>
-                    </div>
-                </div>
+            <div class="feature-block-stats">
+                <div class="fb-stat"><b>{{ totalCount }}</b><span>Tools</span></div>
+                <div class="fb-stat"><b>{{ allCats.length }}</b><span>Categories</span></div>
+                <div class="fb-stat"><b>0</b><span>Signups</span></div>
+                <div class="fb-stat"><b>100%</b><span>Free</span></div>
             </div>
         </div>
 
@@ -150,6 +135,30 @@
             <UiAdSlot variant="rectangle" :dark="true" />
         </div>
     </div>
+
+    <!-- BLOG (FULL WIDTH) -->
+    <section v-if="blogPosts.length" class="blog-wide">
+        <div class="blog-section">
+            <div class="blog-section-header">
+                <span class="blog-section-title">From the blog</span>
+                <NuxtLink to="/blog" class="blog-section-all">All posts →</NuxtLink>
+            </div>
+            <div class="blog-index">
+                <NuxtLink :to="`/blog/${featuredPost.slug}`" class="blog-feature" :style="{ '--c': featuredPost.cat.color }">
+                    <span class="blog-feature-badge">Latest post</span>
+                    <span class="blog-feature-title">{{ featuredPost.title }}</span>
+                    <span class="blog-feature-meta">{{ featuredPost.cat.label }} · Read →</span>
+                </NuxtLink>
+                <div class="blog-list">
+                    <NuxtLink v-for="(post, i) in listPosts" :key="post.slug" :to="`/blog/${post.slug}`" class="blog-row" :style="{ '--c': post.cat.color }">
+                        <span class="blog-row-num">{{ String(i + 1).padStart(2, '0') }}</span>
+                        <span class="blog-row-title">{{ post.title }}</span>
+                        <span class="blog-row-cat">{{ post.cat.label }}</span>
+                    </NuxtLink>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script setup>
@@ -377,6 +386,18 @@ useHead({
     letter-spacing: -0.02em;
     pointer-events: none;
     white-space: nowrap;
+}
+
+@media (min-width: 1200px) {
+    .hero {
+        grid-template-columns: auto auto;
+        justify-content: center;
+        gap: clamp(72px, 9vw, 150px);
+        padding-left: clamp(32px, 6vw, 90px);
+        padding-right: clamp(32px, 6vw, 90px);
+    }
+    .hero::before { right: auto; left: 52%; top: -70px; }
+    .hero-stat { min-width: 290px; }
 }
 
 .hero-eyebrow {
@@ -900,6 +921,9 @@ useHead({
 .feature-block {
     padding: 40px 28px;
     border-right: 3px solid #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .feature-block-eyebrow {
@@ -909,15 +933,15 @@ useHead({
     text-transform: uppercase;
     letter-spacing: 0.15em;
     opacity: 0.4;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
 }
 
 .feature-block-headline {
-    font-size: 42px;
+    font-size: clamp(42px, 4vw, 60px);
     font-weight: 700;
     letter-spacing: -0.04em;
-    line-height: 1.05;
-    max-width: 480px;
+    line-height: 1.02;
+    max-width: 560px;
     text-wrap: pretty;
 }
 
@@ -927,14 +951,59 @@ useHead({
 }
 
 .feature-block-sub {
-    margin-top: 16px;
-    font-size: 15px;
+    margin-top: 18px;
+    font-size: 17px;
     opacity: 0.6;
-    max-width: 400px;
-    line-height: 1.55;
+    max-width: 460px;
+    line-height: 1.6;
+}
+
+.feature-block-stats {
+    margin-top: 30px;
+    display: flex;
+    border: 3px solid #0a0a0a;
+    background: #fafafa;
+    box-shadow: 5px 5px 0 #0a0a0a;
+    max-width: max-content;
+}
+
+.fb-stat {
+    padding: 14px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.fb-stat + .fb-stat { border-left: 2.5px solid #0a0a0a; }
+
+.fb-stat b {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.fb-stat span {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.45;
 }
 
 /* ── Blog index ── */
+.blog-wide {
+    padding: 36px 28px 44px;
+    border-top: 3px solid #0a0a0a;
+}
+
+.blog-wide .blog-section { margin-top: 0; }
+.blog-wide .blog-index { grid-template-columns: 1.35fr 1fr; }
+.blog-wide .blog-feature-title { font-size: clamp(22px, 2.4vw, 32px); }
+.blog-wide .blog-row-title { font-size: 14px; }
+
 .blog-section { margin-top: 32px; }
 
 .blog-section-header {
@@ -1205,7 +1274,9 @@ useHead({
     .bottom-row { grid-template-columns: 1fr; }
     .feature-block { border-right: none; border-bottom: 3px solid #0a0a0a; }
     .cta-block-number { font-size: 64px; }
+    .blog-wide { padding: 28px 16px 32px; }
     .blog-index { grid-template-columns: 1fr; }
+    .blog-wide .blog-index { grid-template-columns: 1fr; }
     .blog-feature { border-right: none; border-bottom: 3px solid #0a0a0a; }
 }
 
@@ -1213,7 +1284,9 @@ useHead({
     .main { grid-template-columns: 1fr; }
     .hero { padding: 44px 20px 40px; }
     .search-kbd { display: none; }
-    .feature-block-headline { font-size: 28px; }
+    .feature-block-headline { font-size: 32px; }
+    .feature-block-stats { flex-wrap: wrap; }
+    .fb-stat { padding: 12px 16px; }
     .blog-feature-title { font-size: 18px; }
     .blog-row { padding: 12px 14px; gap: 10px; }
     .blog-row-cat { display: none; }

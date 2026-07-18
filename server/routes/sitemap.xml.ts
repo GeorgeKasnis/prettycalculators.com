@@ -13,7 +13,6 @@ export default defineEventHandler(async (event) => {
         { loc: '/',             changefreq: 'weekly',  priority: '1.0' },
         { loc: '/fitness',      changefreq: 'weekly',  priority: '0.9' },
         { loc: '/math',         changefreq: 'weekly',  priority: '0.9' },
-        { loc: '/unit',         changefreq: 'weekly',  priority: '0.9' },
         { loc: '/finance',      changefreq: 'weekly',  priority: '0.9' },
         { loc: '/other',        changefreq: 'weekly',  priority: '0.9' },
         { loc: '/tools',        changefreq: 'weekly',  priority: '0.9' },
