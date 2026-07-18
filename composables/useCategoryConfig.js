@@ -178,11 +178,15 @@ const CATEGORIES = {
 
 const normalize = ([key, val]) => ({ slug: key, kind: "calculators", ...val });
 
+// pages under /unit/* belong to the "other" category since the category redesign
+const ALIASES = { unit: "other" };
+
 export const useCategoryConfig = (slug) => {
-    const config = CATEGORIES[slug] ? normalize([slug, CATEGORIES[slug]]) : null;
+    const key = ALIASES[slug] ?? slug;
+    const config = CATEGORIES[key] ? normalize([key, CATEGORIES[key]]) : null;
 
     const otherCategories = Object.entries(CATEGORIES)
-        .filter(([key]) => key !== slug)
+        .filter(([k]) => k !== key)
         .map(normalize);
 
     const calculatorCategories = otherCategories.filter((c) => c.kind === "calculators");
