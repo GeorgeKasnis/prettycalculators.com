@@ -961,8 +961,9 @@ useHead({
 .feature-block-stats {
     margin-top: 30px;
     display: flex;
+    gap: 4px;
     border: 3px solid #0a0a0a;
-    background: #fafafa;
+    background: black;
     box-shadow: 5px 5px 0 #0a0a0a;
     max-width: max-content;
 }
@@ -972,9 +973,9 @@ useHead({
     display: flex;
     flex-direction: column;
     gap: 2px;
+    background: white;
+    flex: 1;
 }
-
-.fb-stat + .fb-stat { border-left: 2.5px solid #0a0a0a; }
 
 .fb-stat b {
     font-size: 26px;
@@ -1196,13 +1197,12 @@ useHead({
 .cta-cats {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 4px;
     border: 3px solid #0a0a0a;
 }
 
 .cta-cat-item {
     padding: 14px 16px;
-    border-right: 3px solid #0a0a0a;
-    border-bottom: 3px solid #0a0a0a;
     display: flex;
     flex-direction: column;
     gap: 2px;
